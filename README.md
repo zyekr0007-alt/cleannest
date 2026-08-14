@@ -1,54 +1,49 @@
 # CleanNest — cleannest.in (site v2)
 
-Static website for CleanNest cleaning services, Jalandhar, Punjab (India).
+Static site for **CleanNest — Deep Cleaning Services, Jalandhar** (Punjab, India).
 
-**Live preview:** https://zyekr0007-alt.github.io/cleannest/
-**Production domain:** https://www.cleannest.in (DNS switch in progress — see Deployment)
+- **Production domain:** https://www.cleannest.in (DNS switched 14 Aug 2026; HTTPS cert auto-provisions within hours of the switch)
+- **Preview URL:** https://zyekr0007-alt.github.io/cleannest/ (redirects to the custom domain while the custom domain is set)
+- **Repo:** github.com/zyekr0007-alt/cleannest — GitHub Pages auto-deploys from `main` (no build step)
 
 ## Stack
-- Plain HTML + CSS + JS. No build step, no framework, no dependencies (Google Fonts: Sora display + Roboto body).
-- Hosted on GitHub Pages. Static = fast (~1 MB per page on the old Wix site → ~50 KB total here).
-- Design language: MyClean.com-style — white + royal blue `#1654CC` + cyan `#0CD7E5` accents, light-blue `#F0F4FF` sections, pill buttons with arrows. All tokens in `:root` of `style.css`.
+
+- Plain static HTML/CSS/JS — no framework, no build step, no dependencies
+- Fonts: Sora (display) + Roboto (body) via Google Fonts
+- Design: MyClean-style — white + royal blue `#1654CC` + cyan `#0CD7E5` + light blue `#F0F4FF`, navy `#0B4364` nav, pill buttons with arrows
+- Real business content from the GMB listing ("Cleannest - Deep Cleaning Services"): real green logo (`assets/img/logo-cn.png`), 9 real services, 4.9★/219 Google reviews + real review quotes, gallery photos, full address + hours, service areas
 
 ## Pages
-`index.html` (home) · `services.html` · `book.html` (booking → WhatsApp) · `about.html` · `faq.html` · `contact.html` · `privacy.html` · `terms.html` · `refund.html` · `404.html` · `sitemap.xml` · `robots.txt`
 
-## Business details encoded in the site
-- Phone / WhatsApp: **+91 98151 12768** (`wa.me/919815112768`)
-- Email: cleannestclub@gmail.com · Instagram: @cleannest.co
-- Promo: **10% OFF first booking, code CLEAN10** (top banner + hero + pricing)
-- Pricing model: quote-based (no invented price list) — every card/CTA routes to WhatsApp for a real quote
-- JSON-LD: CleaningService schema (home), ItemList (services), FAQPage (faq), ContactPage/AboutPage/WebPage
+- `index.html` — home: quote widget hero, rating badge, why-us, about + stats, 8-service grid, reviews, plans, how it works, what to expect, gallery, FAQ, CLEAN10 promo, schema.org (CleaningService + aggregateRating)
+- `services.html` — all 9 services with details and WhatsApp CTA per service
+- `about.html`, `faq.html`, `contact.html`, `book.html` — contact/book have WhatsApp lead forms (build prefilled wa.me URLs)
+- `privacy.html`, `terms.html`, `refund.html`, `404.html`, `sitemap.xml`, `robots.txt`
+
+## Business facts on the site
+
+- Promo: **10% OFF with code CLEAN10**
+- WhatsApp / booking line: **+91 98151 12768** (`PHONE_INTL = "919815112768"` in `assets/js/main.js`)
+- GMB phone (secondary, listed on contact): +91 76100 00654 — NAP split unresolved; owner to pick one canonical number
+- Address: Shop 3, Wadala Rd, opp. Palm Royale Estate, Guru Teg Bahadur Nagar, Green Model Town, Jalandhar 144001
+- Hours: 9 AM – 8 PM, 7 days a week
+- Instagram: instagram.com/cleannest.co
 
 ## Editing
-- Shared styles: `assets/css/style.css` (design tokens in `:root` — brand colors, radius, font)
-- Shared JS: `assets/js/main.js` (mobile nav, scroll reveal, WhatsApp form handler)
-- To change the phone number: search-replace `919815112768` (also update the wa.me links) — best done via repo search, all occurrences are the intl format.
-- To add real prices later: drop a price table into the "Pricing" section of `index.html`.
 
-## Local dev
-```bash
-python3 -m http.server 8123   # then open http://localhost:8123
-```
+- Edit any page's HTML directly; `assets/css/style.css` (461 lines) holds all styles; `assets/js/main.js` (83 lines) holds the WhatsApp form logic + mobile nav + scroll reveal.
+- Verify locally: `python3 -m http.server 8123` in this dir, open http://localhost:8123
+- Commit to `main` — GitHub Pages deploys automatically.
 
-## Deployment (GitHub Pages)
-Repo: `zyekr0007-alt/cleannest` · branch `main` (site at repo root). Pushing to `main` auto-deploys.
+## Deployment notes
 
-### Pointing cleannest.in at this site (do once, at the domain registrar)
-The domain currently runs on Wix (registrar backend: Tucows, bought 2025-12-07). Recommended path:
-
-1. Create a free Cloudflare account and add `cleannest.in`.
-2. In Cloudflare → DNS, add:
-   - `A  @  185.199.108.153` (plus .109/.110/.111 — all four GitHub Pages IPs)
-   - `CNAME  www  zyekr0007-alt.github.io`
-3. At the current DNS provider (Wix Domains panel or wherever the domain's nameservers live), change nameservers to the two Cloudflare nameservers shown after step 1.
-4. In Cloudflare: SSL/TLS → Full (strict not required), "Always Use HTTPS" on, and a Redirect rule `cleannest.in/* → https://www.cleannest.in/*` (keep www as canonical).
-5. In GitHub repo → Settings → Pages → Custom domain: `www.cleannest.in`, tick Enforce HTTPS.
-6. Wait for propagation (minutes to a few hours), then verify `https://www.cleannest.in`.
-
-Email is Gmail (cleannestclub@gmail.com) — no MX records needed.
-
-## SEO notes
-- Canonicals point to `https://www.cleannest.in/...` — correct once DNS lands; while on the preview URL, Google consolidates to the production domain.
-- `sitemap.xml` + `robots.txt` reference the production domain.
-- Old Wix site has 4 blank pages (`/blank*`) and ~1 MB HTML per page — replaced entirely by this build.
+- Domain `cleannest.in` is registered via Wix (Tucows backend, renews 2028-12-07).
+- DNS (managed in Wix Domains → the domain → ⋮ → Manage DNS records):
+  - `A @ → 185.199.108.153 / 185.199.109.153 / 185.199.110.153` (GitHub Pages)
+  - `CNAME www → zyekr0007-alt.github.io`
+  - GitHub Pages custom domain: `www.cleannest.in` (set in repo Settings → Pages); apex 301s to www automatically.
+- HTTPS: GitHub Pages auto-issues the Let's Encrypt cert for the custom domain (may take up to a day after the DNS change; usually under an hour).
+- Old Wix site is now dark at cleannest.in. The Wix site/plan can be cancelled in the Wix account once the new site is fully verified.
+- `cleannest.co.in` (Zyro) still runs as a duplicate — recommend redirecting it to cleannest.in or shutting it down (owner decision).
+- GMB website field currently points to `cleannest.co.in` — should be updated to `https://www.cleannest.in` (owner action in Google Business Profile).
+- Canonicals point to `https://www.cleannest.in/...`.
