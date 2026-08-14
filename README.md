@@ -6,8 +6,9 @@ Static website for CleanNest cleaning services, Jalandhar, Punjab (India).
 **Production domain:** https://www.cleannest.in (DNS switch in progress — see Deployment)
 
 ## Stack
-- Plain HTML + CSS + JS. No build step, no framework, no dependencies (only Google Fonts: Mukta).
-- Hosted on GitHub Pages. Static = fast (~1 MB per page on the old Wix site → ~40 KB total here).
+- Plain HTML + CSS + JS. No build step, no framework, no dependencies (Google Fonts: Sora display + Roboto body).
+- Hosted on GitHub Pages. Static = fast (~1 MB per page on the old Wix site → ~50 KB total here).
+- Design language: MyClean.com-style — white + royal blue `#1654CC` + cyan `#0CD7E5` accents, light-blue `#F0F4FF` sections, pill buttons with arrows. All tokens in `:root` of `style.css`.
 
 ## Pages
 `index.html` (home) · `services.html` · `book.html` (booking → WhatsApp) · `about.html` · `faq.html` · `contact.html` · `privacy.html` · `terms.html` · `refund.html` · `404.html` · `sitemap.xml` · `robots.txt`
