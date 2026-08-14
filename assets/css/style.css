@@ -101,7 +101,7 @@ h3{font-size:1.18rem;font-weight:700}
 }
 .header-inner{display:flex;align-items:center;gap:18px;height:74px}
 .brand{display:flex;align-items:center;gap:10px;font-family:var(--font-d);font-weight:800;font-size:1.35rem;color:var(--text);letter-spacing:-.01em}
-.brand svg{width:34px;height:34px}
+.brand img{height:44px;width:auto}
 .brand small{display:block;font-size:.64rem;font-weight:600;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;line-height:1;font-family:var(--font-b)}
 .main-nav{display:flex;align-items:center;gap:4px;margin-left:auto}
 .main-nav a{
@@ -186,6 +186,37 @@ h3{font-size:1.18rem;font-weight:700}
 .quote-block .q-mark{font-size:3rem;font-family:var(--font-d);color:var(--accent);line-height:.4;margin-bottom:18px}
 .quote-block blockquote{font-family:var(--font-d);font-size:clamp(1.3rem,2.6vw,1.7rem);font-weight:700;color:var(--text);line-height:1.3}
 .quote-block .q-sub{margin-top:16px;color:var(--muted);font-weight:600}
+
+/* Rating badge + stats */
+.rating-badge{
+  display:inline-flex;align-items:center;gap:9px;background:var(--bg-light);
+  border:1px solid var(--line);border-radius:var(--radius-pill);padding:8px 16px;
+  font-weight:700;font-size:.95rem;color:var(--text);margin-bottom:22px;
+}
+.rating-badge .stars{color:#F5A623;letter-spacing:2px;font-size:.95rem}
+.rating-badge a{color:var(--primary)}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:880px;margin:36px auto 0}
+.stat{text-align:center}
+.stat .n{font-family:var(--font-d);font-size:2.1rem;font-weight:800;color:var(--primary);line-height:1.1}
+.stat .l{font-size:.86rem;color:var(--muted);font-weight:600}
+
+/* Reviews */
+.review-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;max-width:920px;margin:0 auto}
+.review-card{background:var(--white);border:1px solid var(--line);border-radius:var(--radius);padding:24px}
+.review-card .rv-top{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+.review-card .rv-avatar{
+  flex:none;width:44px;height:44px;border-radius:50%;background:var(--bg-light);color:var(--primary);
+  display:flex;align-items:center;justify-content:center;font-weight:800;font-family:var(--font-d);
+}
+.review-card .rv-name{font-weight:700;font-size:.97rem;color:var(--text);line-height:1.2}
+.review-card .rv-stars{color:#F5A623;font-size:.92rem;letter-spacing:1.5px}
+.review-card p{font-size:.94rem;color:var(--muted)}
+
+/* Gallery */
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.gallery-grid a{border-radius:var(--radius);overflow:hidden;display:block}
+.gallery-grid img{width:100%;height:230px;object-fit:cover;border:1px solid var(--line);border-radius:var(--radius);transition:transform .22s ease}
+.gallery-grid a:hover img{transform:scale(1.04)}
 
 /* Plan cards (4-col pricing) */
 .plan-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
@@ -387,7 +418,7 @@ h3{font-size:1.18rem;font-weight:700}
 .footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:34px}
 .footer-grid h4{color:#fff;font-size:1rem;margin-bottom:14px;font-weight:700;font-family:var(--font-d)}
 .footer-brand{display:flex;align-items:center;gap:10px;font-family:var(--font-d);font-weight:800;font-size:1.3rem;color:#fff;margin-bottom:12px}
-.footer-brand svg{width:30px;height:30px}
+.footer-brand img{height:42px;width:auto}
 .footer-grid p{font-size:.93rem}
 .footer-grid ul{list-style:none;display:flex;flex-direction:column;gap:9px;font-size:.93rem}
 .footer-grid a{color:#B9CCE2}
@@ -434,6 +465,10 @@ h3{font-size:1.18rem;font-weight:700}
   body{font-size:16px}
   .section{padding:58px 0}
   .feature-grid{grid-template-columns:1fr}
+  .review-grid{grid-template-columns:1fr}
+  .stats-row{grid-template-columns:repeat(2,1fr)}
+  .gallery-grid{grid-template-columns:repeat(2,1fr)}
+  .gallery-grid img{height:150px}
   .main-nav{
     position:fixed;top:74px;left:0;right:0;background:#fff;border-bottom:1px solid var(--line);
     flex-direction:column;align-items:stretch;padding:14px 18px 20px;gap:6px;

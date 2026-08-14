@@ -23,23 +23,53 @@
     "@context": "https://schema.org",
     "@type": "CleaningService",
     "@id": "https://www.cleannest.in/#business",
-    "name": "CleanNest",
-    "description": "Professional cleaning services in Jalandhar, Punjab: kitchen deep clean, bathroom cleaning, sofa dry clean, floor cleaning, balcony washing, whole-home and office cleaning.",
+    "name": "Cleannest - Deep Cleaning Services",
+    "alternateName": "CleanNest",
+    "description": "Professional deep cleaning services in Jalandhar, Punjab: full house cleaning, kitchen, bathroom, chimney, AC services, carpet and sofa dry cleaning, floor renew and commercial cleaning.",
     "url": "https://www.cleannest.in/",
     "telephone": "+919815112768",
     "email": "cleannestclub@gmail.com",
-    "image": "https://www.cleannest.in/assets/img/logo.svg",
+    "image": "https://www.cleannest.in/assets/img/logo-cn.png",
     "priceRange": "INR",
     "address": {
       "@type": "PostalAddress",
+      "streetAddress": "Shop 3, Wadala Rd, opp. Palm Royale Estate, Guru Teg Bahadur Nagar, Green Model Town",
       "addressLocality": "Jalandhar",
       "addressRegion": "Punjab",
+      "postalCode": "144001",
       "addressCountry": "IN"
     },
     "areaServed": { "@type": "City", "name": "Jalandhar" },
-    "sameAs": ["https://www.instagram.com/cleannest.co"]
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+      "opens": "09:00",
+      "closes": "20:00"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "bestRating": "5",
+      "reviewCount": "219"
+    },
+    "review": [
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Neha Verma" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+        "reviewBody": "We are so grateful to CleanNest for helping us clean up our home after the flood. Their team responded quickly, provided excellent service, and completed the work efficiently. The charges were very reasonable, and the quality of service was outstanding. Truly the best experience - highly recommended!"
+      },
+      {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": "Google user" },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+        "reviewBody": "Best sofa dry cleaning service I ever received."
+      }
+    ],
+    "sameAs": ["https://www.instagram.com/cleannest.co", "https://cleannest.co.in"],
+    "hasMap": "https://www.google.com/maps/search/Cleannest+Deep+Cleaning+Services+Jalandhar"
   }
-  </script>
+  </script>  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -55,8 +85,7 @@
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="index.html" aria-label="CleanNest — home">
-        <img src="assets/img/logo.svg" alt="" width="34" height="34">
-        <span>CleanNest<small>Cleaning Services &middot; Jalandhar</small></span>
+        <img src="assets/img/logo-cn.png" alt="CleanNest — Cleaning Services, Jalandhar">
       </a>
       <nav class="main-nav" id="site-nav" aria-label="Main navigation">
         <a href="index.html" aria-current="page">Home</a>
@@ -91,19 +120,25 @@
             <p class="eyebrow"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.4 5.9L20.5 10l-6.1 2.1L12 18l-2.4-5.9L3.5 10l6.1-2.1z"/></svg>Jalandhar&rsquo;s trusted cleaning team</p>
             <h1>Your home is not a chore.<br><span class="cyan-word">It&rsquo;s our craft.</span></h1>
             <p class="sub">Professional cleaners. Real employees. Trained, verified staff who treat your home like their own &mdash; eco-friendly products, transparent pricing, and a satisfaction guarantee on every clean.</p>
+            <div class="rating-badge reveal">
+              <span class="stars">★★★★★</span>
+              <span>4.9 on Google &middot; 219 reviews</span>
+              <a href="https://www.google.com/maps/search/Cleannest+Deep+Cleaning+Services+Jalandhar" target="_blank" rel="noopener">See reviews &rarr;</a>
+            </div>
             <div class="hero-widget reveal">
               <p class="hw-label">Get your free quote &mdash; in minutes</p>
               <div class="hw-row">
                 <select id="hero-service" aria-label="Service needed" onchange="if(this.value){window.open('https://wa.me/919815112768?text='+encodeURIComponent('Hi CleanNest! I\'d like a quote for ' + this.value + ' (CLEAN10).'),'_blank');this.value='';}">
                   <option value="">Choose a service…</option>
-                  <option>Whole-Home Clean</option>
-                  <option>Kitchen Deep Clean</option>
-                  <option>Bathroom Cleaning</option>
-                  <option>Sofa Dry Clean</option>
-                  <option>Floor Cleaning</option>
-                  <option>Balcony Washing</option>
-                  <option>Room Deep Clean</option>
-                  <option>Office / Commercial Clean</option>
+                  <option>Full House Cleaning</option>
+                  <option>Kitchen Deep Cleaninging</option>
+                  <option>Bathroom Deep Cleaning</option>
+                  <option>Sofa Dry Cleaninging</option>
+                  <option>Carpet &amp; Steam Cleaning</option>
+                  <option>Floor Renew</option>
+                  <option>AC Services</option>
+                  <option>Chimney Cleaning</option>
+                  <option>Commercial Cleaning</option>
                 </select>
                 <a class="btn btn-primary" href="https://wa.me/919815112768?text=Hi%20CleanNest!%20I%27d%20like%20a%20free%20quote%20for%20cleaning%20(CLEAN10)." target="_blank" rel="noopener">Get Quote <span class="arr">→</span></a>
               </div>
@@ -182,6 +217,120 @@
           <p class="q-sub">Built for real life &mdash; that&rsquo;s the only kind of clean we know how to do.</p>
           <div class="row-actions" style="justify-content:center;margin-top:26px">
             <a class="btn btn-primary" href="about.html">About CleanNest <span class="arr">→</span></a>
+          </div>
+          <div class="stats-row reveal">
+            <div class="stat"><div class="n">400+</div><div class="l">Happy customers</div></div>
+            <div class="stat"><div class="n">50+</div><div class="l">Commercial clients</div></div>
+            <div class="stat"><div class="n">4.9&nbsp;★</div><div class="l">Google rating</div></div>
+            <div class="stat"><div class="n">7</div><div class="l">Days a week</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="section" id="services">
+      <div class="container">
+        <div class="section-head center reveal">
+          <p class="eyebrow" style="justify-content:center"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.4 5.9L20.5 10l-6.1 2.1L12 18l-2.4-5.9L3.5 10l6.1-2.1z"/></svg>Our Services</p>
+          <h2>Deep cleaning for every space</h2>
+          <p class="lead">Homes, offices, schools and restaurants &mdash; with high-quality machines and products, from Jalandhar&rsquo;s top-rated cleaning team.</p>
+        </div>
+        <div class="services-grid">
+          <div class="service-card reveal">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8"/><path d="M5 9v11h14V9"/><path d="M9 20v-6h6v6"/></svg></div>
+            <h3>Full House Cleaning</h3>
+            <p>Every room cleaned &mdash; dusting, vacuuming, mopping, kitchens and bathrooms included.</p>
+            <div class="card-actions"><a class="btn btn-wa btn-sm" href="https://wa.me/919815112768?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Full%20House%20Cleaning." target="_blank" rel="noopener">Get a price</a></div>
+          </div>
+          <div class="service-card reveal">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c0 4-3 5-3 9a3 3 0 0 0 6 0c0-4-3-5-3-9z"/></svg></div>
+            <h3>Kitchen Deep Cleaninging</h3>
+            <p>Degreasing, surface sanitisation and detail work &mdash; a spotless, safe cooking environment.</p>
+            <div class="card-actions"><a class="btn btn-wa btn-sm" href="https://wa.me/919815112768?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Kitchen%20Deep%20Cleaning." target="_blank" rel="noopener">Get a price</a></div>
+          </div>
+          <div class="service-card reveal">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3c0 4-3 5-3 9a3 3 0 0 0 6 0c0-4-3-5-3-9z" transform="scale(-1 1) translate(-24 0)"/></svg></div>
+            <h3>Bathroom Deep Cleaning</h3>
+            <p>Thorough cleaning and sanitisation with professional equipment &mdash; hygiene and freshness guaranteed.</p>
+            <div class="card-actions"><a class="btn btn-wa btn-sm" href="https://wa.me/919815112768?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Bathroom%20Deep%20Cleaning." target="_blank" rel="noopener">Get a price</a></div>
+          </div>
+          <div class="service-card reveal">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11a3 3 0 0 1 3-3h8a3 3 0 0 1 3 3v1h1a2 2 0 0 1 2 2v3h-3"/><path d="M5 14H2v-3a2 2 0 0 1 2-2h1z"/><path d="M5 17v2M19 17v2M4 14h16"/></svg></div>
+            <h3>Sofa Dry Cleaninging</h3>
+            <p>Dust, stains and odours lifted from fabric upholstery &mdash; fresh and revived.</p>
+            <div class="card-actions"><a class="btn btn-wa btn-sm" href="https://wa.me/919815112768?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Sofa%20Dry%20Cleaning." target="_blank" rel="noopener">Get a price</a></div>
+          </div>
+          <div class="service-card reveal">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></div>
+            <h3>Carpet &amp; Steam Cleaning</h3>
+            <p>Hot-water extraction that removes 99% of bacteria, dust mites and deep-set dirt. Safe for kids &amp; pets.</p>
+            <div class="card-actions"><a class="btn btn-wa btn-sm" href="https://wa.me/919815112768?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Carpet%20and%20Steam%20Cleaning." target="_blank" rel="noopener">Get a price</a></div>
+          </div>
+          <div class="service-card reveal">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3h4"/><path d="M12 3v4"/><path d="M8 7h8l-1.2 12a2 2 0 0 1-2 1.8h-1.6a2 2 0 0 1-2-1.8z"/></svg></div>
+            <h3>Floor Renew</h3>
+            <p>Deep floor cleaning and renewal that restores the shine of tiles, marble and wooden floors.</p>
+            <div class="card-actions"><a class="btn btn-wa btn-sm" href="https://wa.me/919815112768?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Floor%20Renew." target="_blank" rel="noopener">Get a price</a></div>
+          </div>
+          <div class="service-card reveal">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2v20"/><path d="M4 6l16 12"/><path d="M20 6L4 18"/><path d="M12 6l-2-2M12 6l2-2M12 18l-2 2M12 18l2 2"/></svg></div>
+            <h3>AC Services</h3>
+            <p>AC cleaning and servicing &mdash; filters, coils and units cleaned so cooling stays efficient and air stays fresh.</p>
+            <div class="card-actions"><a class="btn btn-wa btn-sm" href="https://wa.me/919815112768?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20AC%20Services." target="_blank" rel="noopener">Get a price</a></div>
+          </div>
+          <div class="service-card reveal">
+            <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V5a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v16"/><path d="M8 21v-4h8v4"/><path d="M9 8h.01M12 8h.01M15 8h.01M9 12h.01M12 12h.01M15 12h.01"/></svg></div>
+            <h3>Commercial Cleaning</h3>
+            <p>Offices, shops, schools and restaurants &mdash; professional deep cleaning with high-quality machines.</p>
+            <div class="card-actions"><a class="btn btn-wa btn-sm" href="https://wa.me/919815112768?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Commercial%20Cleaning." target="_blank" rel="noopener">Get a price</a></div>
+          </div>
+        </div>
+        <p class="price-note reveal" style="margin-top:32px;text-align:center">
+          <a class="btn btn-line" href="services.html">All services &amp; details <span class="arr">→</span></a>
+        </p>
+      </div>
+    </section>
+
+    <!-- Reviews -->
+    <section class="section alt-bg" id="reviews">
+      <div class="container">
+        <div class="section-head center reveal">
+          <p class="eyebrow" style="justify-content:center"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.4 5.9L20.5 10l-6.1 2.1L12 18l-2.4-5.9L3.5 10l6.1-2.1z"/></svg>Google Reviews</p>
+          <h2>Here&rsquo;s what our customers are saying</h2>
+          <p class="lead">Rated <b>4.9 out of 5</b> from 219 Google reviews &mdash; real feedback from real customers in Jalandhar.</p>
+        </div>
+        <div class="review-grid">
+          <div class="review-card reveal">
+            <div class="rv-top">
+              <span class="rv-avatar">NV</span>
+              <div><div class="rv-name">Neha Verma</div><div class="rv-stars">★★★★★</div></div>
+            </div>
+            <p>&ldquo;We are so grateful to CleanNest for helping us clean up our home after the flood. Their team responded quickly, provided excellent service, and completed the work efficiently. The charges were very reasonable, and the quality of service was outstanding. Truly the best experience &mdash; highly recommended!&rdquo;</p>
+          </div>
+          <div class="review-card reveal">
+            <div class="rv-top">
+              <span class="rv-avatar">★</span>
+              <div><div class="rv-name">Google review</div><div class="rv-stars">★★★★★</div></div>
+            </div>
+            <p>&ldquo;Best sofa dry cleaning service I ever received.&rdquo;</p>
+          </div>
+          <div class="review-card reveal">
+            <div class="rv-top">
+              <span class="rv-avatar">★</span>
+              <div><div class="rv-name">Google review</div><div class="rv-stars">★★★★★</div></div>
+            </div>
+            <p>&ldquo;No harsh smells, just a fresh and hygienic environment.&rdquo;</p>
+          </div>
+          <div class="review-card reveal">
+            <div class="rv-top">
+              <span class="rv-avatar">G</span>
+              <div><div class="rv-name">4.9 &middot; 219 reviews</div><div class="rv-stars">★★★★★</div></div>
+            </div>
+            <p>Loved our service? We&rsquo;d be grateful for your review &mdash; it helps more Jalandhar families find us.</p>
+            <div class="row-actions" style="margin-top:12px">
+              <a class="btn btn-primary btn-sm" href="https://www.google.com/maps/search/Cleannest+Deep+Cleaning+Services+Jalandhar" target="_blank" rel="noopener">See all reviews <span class="arr">→</span></a>
+            </div>
           </div>
         </div>
       </div>
@@ -307,6 +456,25 @@
       </div>
     </section>
 
+    <!-- Gallery -->
+    <section class="section" id="gallery">
+      <div class="container">
+        <div class="section-head center reveal">
+          <p class="eyebrow" style="justify-content:center"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l2.4 5.9L20.5 10l-6.1 2.1L12 18l-2.4-5.9L3.5 10l6.1-2.1z"/></svg>Our Work</p>
+          <h2>Fresh from the job</h2>
+          <p class="lead">Real photos from our Google listing and recent cleans.</p>
+        </div>
+        <div class="gallery-grid reveal">
+          <a href="assets/img/gallery/gmb-1.jpg" target="_blank" rel="noopener"><img src="assets/img/gallery/gmb-1.jpg" alt="CleanNest deep cleaning work — Google listing photo" loading="lazy"></a>
+          <a href="assets/img/gallery/gmb-2.jpg" target="_blank" rel="noopener"><img src="assets/img/gallery/gmb-2.jpg" alt="CleanNest professional cleaning — Google listing photo" loading="lazy"></a>
+          <a href="assets/img/gallery/work-1.jpeg" target="_blank" rel="noopener"><img src="assets/img/gallery/work-1.jpeg" alt="CleanNest cleaning team at work" loading="lazy"></a>
+          <a href="assets/img/gallery/work-2.jpeg" target="_blank" rel="noopener"><img src="assets/img/gallery/work-2.jpeg" alt="Deep cleaning result — CleanNest Jalandhar" loading="lazy"></a>
+          <a href="assets/img/gallery/work-3.jpg" target="_blank" rel="noopener"><img src="assets/img/gallery/work-3.jpg" alt="CleanNest professional equipment in action" loading="lazy"></a>
+          <a href="assets/img/gallery/work-5.jpg" target="_blank" rel="noopener"><img src="assets/img/gallery/work-5.jpg" alt="Sofa and carpet cleaning by CleanNest" loading="lazy"></a>
+        </div>
+      </div>
+    </section>
+
     <!-- FAQ -->
     <section class="section" id="faq">
       <div class="container">
@@ -373,8 +541,8 @@
           <div>
             <h3>Popular Services</h3>
             <ul>
-              <li><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Kitchen Deep Clean</li>
-              <li><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Sofa Dry Clean</li>
+              <li><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Kitchen Deep Cleaning</li>
+              <li><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Sofa Dry Cleaning</li>
               <li><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Bathroom &amp; floor cleaning</li>
               <li><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>Office / commercial clean</li>
             </ul>
@@ -387,7 +555,7 @@
     <section class="cta-band">
       <div class="container reveal">
         <h2>Book your cleaning today</h2>
-        <p>We clean. You relax. Get a free quote in minutes and enjoy 10% OFF your first booking.</p>
+        <p>We clean. You relax. Join 400+ happy customers &mdash; rated 4.9/5 on Google. Get a free quote in minutes and enjoy 10% OFF your first booking.</p>
         <div class="cta-row">
           <a class="btn btn-wa" href="https://wa.me/919815112768?text=Hi%20CleanNest!%20I%27d%20like%20to%20book%20a%20cleaning%20(CLEAN10)." target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
@@ -407,18 +575,18 @@
         <div>
           <div class="footer-brand">
             <img src="assets/img/logo.svg" alt="" width="30" height="30">
-            CleanNest
+            <span style="color:#fff">CleanNest</span>
           </div>
-          <p>Professional home &amp; office cleaning in Jalandhar. Real employees, eco-friendly products, satisfaction guaranteed.</p>
+          <p>Professional deep cleaning in Jalandhar &mdash; rated 4.9/5 on Google. Real employees, eco-friendly products, satisfaction guaranteed.</p>
         </div>
         <div>
           <h4>Our Services</h4>
           <ul>
-            <li><a href="services.html#home">Whole-Home Clean</a></li>
-            <li><a href="services.html#kitchen">Kitchen Deep Clean</a></li>
-            <li><a href="services.html#bathroom">Bathroom Cleaning</a></li>
-            <li><a href="services.html#sofa">Sofa Dry Clean</a></li>
-            <li><a href="services.html#office">Office / Commercial Clean</a></li>
+            <li><a href="services.html#home">Full House Cleaning</a></li>
+            <li><a href="services.html#kitchen">Kitchen Deep Cleaning</a></li>
+            <li><a href="services.html#bathroom">Bathroom Deep Cleaning</a></li>
+            <li><a href="services.html#sofa">Sofa Dry Cleaning</a></li>
+            <li><a href="services.html#office">Commercial Cleaning</a></li>
           </ul>
         </div>
         <div>
@@ -438,7 +606,7 @@
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+919815112768">+91 98151 12768</a></li>
             <li><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg><a href="https://wa.me/919815112768" target="_blank" rel="noopener">WhatsApp us</a></li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M22 7l-10 6L2 7"/></svg><a href="mailto:cleannestclub@gmail.com">cleannestclub@gmail.com</a></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Jalandhar, Punjab, India</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Shop 3, Wadala Rd, Jalandhar, Punjab 144001</li>
             <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg><a href="https://www.instagram.com/cleannest.co" target="_blank" rel="noopener">@cleannest.co</a></li>
           </ul>
         </div>
