@@ -4,6 +4,12 @@
    pill buttons, light-blue sections, Sora display / Roboto body
    ============================================================ */
 
+html{
+  -webkit-text-size-adjust:100%;
+  text-size-adjust:100%;
+  -webkit-tap-highlight-color:transparent;
+}
+
 :root{
   --primary:#1654CC;        /* royal blue — buttons/links */
   --primary-deep:#0B3C99;   /* hover */
@@ -514,6 +520,16 @@ h3{font-size:1.18rem;font-weight:700}
   .btn-sm{min-height:44px}
   .row-actions .btn{width:100%}
   .promo{font-size:.88rem;padding:8px 12px}
+  /* phone tap targets — footer & inline links */
+  .footer-grid a{display:inline-block;padding:8px 12px;min-height:44px;margin-left:-12px}
+  .footer-grid li{display:flex;align-items:center}
+  .footer-grid .f-contact li{min-height:44px}
+  .footer-bottom .policies a{padding:6px 2px;min-height:40px}
+  .rating-badge a{padding:6px 0;display:inline-block}
+  .rating-badge a::after{display:inline-block}
+  /* iPhone home-indicator safe areas */
+  .sticky-bar{padding-bottom:max(10px, env(safe-area-inset-bottom))}
+  .site-footer{padding-bottom:calc(120px + env(safe-area-inset-bottom))}
 }
 @media (max-width:480px){
   .hero-ctas .btn{width:100%}
