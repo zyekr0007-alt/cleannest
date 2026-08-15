@@ -375,6 +375,27 @@ h3{font-size:1.18rem;font-weight:700}
 }
 .steps-mini p{font-size:.94rem;color:var(--muted)}
 
+/* Services grid (homepage) */
+.services-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:20px;
+}
+.service-card{
+  background:var(--white);border:1px solid var(--line);border-radius:var(--radius);
+  padding:24px;display:flex;flex-direction:column;gap:12px;
+  transition:box-shadow .18s ease,transform .18s ease;
+}
+.service-card:hover{box-shadow:var(--shadow-sm);transform:translateY(-2px)}
+.service-card .icon{
+  flex:none;width:52px;height:52px;border-radius:14px;background:var(--bg-light);color:var(--primary);
+  display:flex;align-items:center;justify-content:center;
+}
+.service-card .icon svg{width:26px;height:26px}
+.service-card h3{font-size:1.08rem;margin:0}
+.service-card p{font-size:.93rem;color:var(--muted);margin:0;line-height:1.55}
+.card-actions{margin-top:auto;padding-top:4px}
+.card-actions .btn{width:100%;justify-content:center}
+.price-note{margin-top:32px;text-align:center}
+
 /* Services detail rows (services page) */
 .feature-row{
   display:flex;gap:20px;background:var(--white);border:1px solid var(--line);
@@ -466,11 +487,14 @@ h3{font-size:1.18rem;font-weight:700}
   .footer-grid{grid-template-columns:1fr 1fr}
   .seo-cols{grid-template-columns:1fr 1fr}
   .booking-wrap,.about-grid,.contact-grid{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:repeat(2,1fr);gap:16px}
 }
 @media (max-width:760px){
   body{font-size:16px}
   .section{padding:58px 0}
   .feature-grid{grid-template-columns:1fr}
+  .services-grid{grid-template-columns:1fr;gap:14px}
+  .service-card{padding:20px 18px}
   .review-grid{grid-template-columns:1fr}
   .stats-row{grid-template-columns:repeat(2,1fr)}
   .gallery-grid{grid-template-columns:repeat(2,1fr)}
@@ -483,6 +507,7 @@ h3{font-size:1.18rem;font-weight:700}
   .main-nav.open{display:flex}
   .main-nav a{padding:14px 14px;font-size:1.05rem;border-radius:var(--radius)}
   .nav-toggle{display:block}
+  .header-cta{margin-left:auto}
   .header-cta .btn-navy,.header-cta .btn-wa{display:none}
   .sticky-bar{display:flex}
   .sticky-bar .btn{min-height:48px}
