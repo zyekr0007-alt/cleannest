@@ -386,10 +386,11 @@ h3{font-size:1.18rem;font-weight:700}
 }
 .service-card:hover{box-shadow:var(--shadow-sm);transform:translateY(-2px)}
 .service-card .icon{
-  flex:none;width:52px;height:52px;border-radius:14px;background:var(--bg-light);color:var(--primary);
+  flex:none;width:100%;height:150px;border-radius:14px;overflow:hidden;
+  background:var(--bg-light);color:var(--primary);
   display:flex;align-items:center;justify-content:center;
 }
-.service-card .icon svg{width:26px;height:26px}
+.service-card .icon img{width:100%;height:100%;object-fit:cover;display:block}
 .service-card h3{font-size:1.08rem;margin:0}
 .service-card p{font-size:.93rem;color:var(--muted);margin:0;line-height:1.55}
 .card-actions{margin-top:auto;padding-top:4px}
@@ -403,10 +404,11 @@ h3{font-size:1.18rem;font-weight:700}
 }
 .feature-row:hover{box-shadow:var(--shadow-sm)}
 .feature-row .icon{
-  flex:none;width:54px;height:54px;border-radius:14px;background:var(--bg-light);color:var(--primary);
+  flex:none;width:100%;max-width:340px;height:200px;border-radius:16px;overflow:hidden;
+  background:var(--bg-light);color:var(--primary);
   display:flex;align-items:center;justify-content:center;
 }
-.feature-row .icon svg{width:27px;height:27px}
+.feature-row .icon img{width:100%;height:100%;object-fit:cover;display:block}
 .feature-row h2{font-size:1.4rem;margin-bottom:6px}
 .feature-row p{font-size:.95rem;color:var(--muted)}
 .info-list{list-style:none;display:flex;flex-direction:column;gap:8px;margin:14px 0 20px}
