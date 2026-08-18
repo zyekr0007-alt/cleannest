@@ -34,7 +34,24 @@
         }
       });
     }, { threshold: 0.12 });
-    els.forEach(function (el) { io.observe(el); });
+    els.forEach(function (el) {
+      // Elements already at/above the fold (e.g. page restored mid-scroll, or
+      // JS finishing after the user scrolled) would never intersect and would
+      // stay invisible forever — reveal them immediately instead of observing.
+      var r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight * 0.88) {
+        el.classList.add("in");
+        return;
+      }
+      io.observe(el);
+    });
+    // Safety net: never leave content hidden (paused tabs, throttled frames,
+    // anything that stalls the observer). Everything fades in after 4s.
+    setTimeout(function () {
+      for (var i = 0; i < els.length; i++) {
+        if (!els[i].classList.contains("in")) els[i].classList.add("in");
+      }
+    }, 4000);
   }
 
   /* ---------- WhatsApp forms ---------- */

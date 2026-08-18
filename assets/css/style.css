@@ -565,6 +565,7 @@ h4{font-size:.95rem;font-weight:700}
   .footer-grid > div:first-child{grid-column:1/-1}
   .footer-grid > div:last-child{grid-column:1/-1}
   .sticky-bar{display:flex}
+  body{padding-bottom:74px}
   .seo-cols{grid-template-columns:1fr}
   .why-trust{grid-template-columns:1fr}
   .form-grid{grid-template-columns:1fr}
