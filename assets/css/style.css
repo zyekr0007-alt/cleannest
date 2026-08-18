@@ -46,6 +46,7 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 img,svg{display:block;max-width:100%}
+[id]{scroll-margin-top:88px}
 a{color:var(--navy);text-decoration:none}
 a:hover{text-decoration:none}
 :focus-visible{outline:3px solid var(--cyan);outline-offset:2px;border-radius:6px}
@@ -546,16 +547,23 @@ h4{font-size:.95rem;font-weight:700}
   .main-nav.open{transform:none;opacity:1;pointer-events:auto}
   .main-nav a{display:block;width:100%;padding:13px 0;border-bottom:1px solid var(--line);font-size:1.02rem}
   .nav-toggle{display:inline-flex}
-  .header-cta .btn-navy{display:none}
+}
+@media (max-width:1100px){
+  .main-nav{gap:16px}
+  .main-nav a{font-size:.9rem}
+  .header-cta .btn-navy,.header-cta .btn-ink{display:none}
 }
 @media (max-width:720px){
-  .section{padding:64px 0}
-  .hero{padding:52px 0 64px}
+  .section{padding:56px 0}
+  .hero{padding:44px 0 56px}
+  .header-cta .btn{display:none}
   .services-grid,.plan-grid,.review-grid,.pricing-grid,.feature-grid,.steps{grid-template-columns:1fr}
   .stats-row{grid-template-columns:repeat(2,1fr)}
   .gallery-grid{grid-template-columns:repeat(2,1fr)}
   .hero-visual{padding:24px}
-  .footer-grid{grid-template-columns:1fr}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:28px}
+  .footer-grid > div:first-child{grid-column:1/-1}
+  .footer-grid > div:last-child{grid-column:1/-1}
   .sticky-bar{display:flex}
   .seo-cols{grid-template-columns:1fr}
   .why-trust{grid-template-columns:1fr}
