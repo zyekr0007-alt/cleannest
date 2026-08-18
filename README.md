@@ -11,7 +11,7 @@ Static site for **CleanNest — Deep Cleaning Services, Jalandhar** (Punjab, Ind
 - Plain static HTML/CSS/JS — no framework, no build step, no dependencies
 - Fonts: Sora (display) + Roboto (body) via Google Fonts
 - Design: MyClean-style — white + royal blue `#1654CC` + cyan `#0CD7E5` + light blue `#F0F4FF`, navy `#0B4364` nav, pill buttons with arrows
-- Real business content from the GMB listing ("Cleannest - Deep Cleaning Services"): real green logo (`assets/img/logo-cn.png`), 9 real services, 4.9★/219 Google reviews + real review quotes, gallery photos, full address + hours, service areas
+- Real business content from the GMB listing ("Cleannest - Deep Cleaning Services"): real green logo (`assets/img/logo-emblem.png`), 9 real services, 4.9★/219 Google reviews + real review quotes, gallery photos, full address + hours, service areas
 
 ## Pages
 

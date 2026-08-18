@@ -77,6 +77,10 @@ h4{font-size:.95rem;font-weight:700}
   font-size:.78rem;color:var(--cyan-ink);margin-bottom:14px;font-family:var(--font-b);
 }
 .eyebrow svg{width:15px;height:15px}
+.hero .eyebrow{
+  background:var(--cyan-soft);border:1px solid rgba(12,215,229,.4);
+  border-radius:999px;padding:7px 14px;font-size:.82rem;
+}
 .lead{font-size:1.04rem;color:var(--muted);max-width:62ch}
 .sub{font-size:1rem;color:var(--text);max-width:56ch}
 .cyan-word{color:var(--navy)}
@@ -120,8 +124,11 @@ h4{font-size:.95rem;font-weight:700}
   border-bottom:1px solid var(--line);
 }
 .header-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;height:72px}
-.brand{display:flex;align-items:center;flex:none}
-.brand img{height:44px;width:auto}
+.brand{display:flex;align-items:center;gap:10px;flex:none}
+.brand-emblem{height:44px;width:44px;border-radius:50%;object-fit:cover}
+.brand-text{display:flex;flex-direction:column;line-height:1.04}
+.brand-name{font-family:'Ultima Pro','Ultima Bold Pro',var(--font-d);font-weight:700;font-size:1.3rem;color:var(--navy);white-space:nowrap}
+.brand-sub{font-size:.6rem;font-weight:600;letter-spacing:.22em;color:var(--muted);white-space:nowrap}
 .main-nav{display:flex;align-items:center;gap:26px}
 .main-nav a{
   font-weight:600;font-size:.95rem;color:var(--text);
@@ -556,7 +563,14 @@ h4{font-size:.95rem;font-weight:700}
 @media (max-width:720px){
   .section{padding:56px 0}
   .hero{padding:44px 0 56px}
+  .header-inner{justify-content:center;gap:0}
+  .nav-toggle{position:absolute;right:12px;top:50%;transform:translateY(-50%)}
   .header-cta .btn{display:none}
+  .rating-badge{
+    flex-direction:column;align-items:flex-start;gap:5px;
+    border-radius:16px;width:fit-content;max-width:100%;padding:12px 18px;
+  }
+  .hero .eyebrow{border-radius:14px}
   .services-grid,.plan-grid,.review-grid,.pricing-grid,.feature-grid,.steps{grid-template-columns:1fr}
   .stats-row{grid-template-columns:repeat(2,1fr)}
   .gallery-grid{grid-template-columns:repeat(2,1fr)}
