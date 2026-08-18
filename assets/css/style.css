@@ -615,7 +615,11 @@ h4{font-size:.95rem;font-weight:700}
   display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:36px;
   padding:64px 0 40px;
 }
-.footer-brand img{height:42px;margin-bottom:14px}
+.footer-brand{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.footer-brand img{height:38px;width:38px;margin-bottom:0;border-radius:50%}
+.footer-brand .fb-text{display:flex;flex-direction:column;line-height:1.05}
+.footer-brand .fb-name{font-family:var(--font-d);font-weight:700;font-size:1.2rem;color:#fff;white-space:nowrap}
+.footer-brand .fb-sub{font-size:.58rem;font-weight:600;letter-spacing:.22em;color:#B9D3DE;white-space:nowrap}
 .footer-brand p{font-size:.93rem;line-height:1.6}
 .site-footer h3{color:#fff;font-size:.98rem;margin-bottom:14px}
 .site-footer ul{list-style:none}
