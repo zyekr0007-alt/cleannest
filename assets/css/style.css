@@ -432,6 +432,22 @@ h4{font-size:.95rem;font-weight:700}
 .seo-cols ul{list-style:none}
 .seo-cols li{padding:4px 0;font-size:.9rem}
 
+/* ---------- Trust marquee ---------- */
+.marquee{
+  background:var(--navy-grad);overflow:hidden;padding:15px 0;
+  border-top:1px solid rgba(12,215,229,.22);border-bottom:1px solid rgba(12,215,229,.22);
+}
+.marquee-track{display:flex;width:max-content;animation:marquee 30s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+.marquee-group{display:flex;align-items:center;gap:34px;padding-right:34px;flex:none}
+.marquee span{
+  color:#EAF6FB;font-family:var(--font-d);font-weight:600;font-size:.95rem;
+  letter-spacing:.05em;white-space:nowrap;
+}
+.marquee i{color:var(--cyan);font-style:normal;font-size:.85rem}
+@keyframes marquee{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.marquee-track{animation:none}}
+
 /* ---------- Blog ---------- */
 .blog-featured{
   display:grid;grid-template-columns:1.15fr 1fr;gap:0;
@@ -474,6 +490,9 @@ h4{font-size:.95rem;font-weight:700}
 .bc-body h3 a:hover{color:var(--navy)}
 .bc-body p{font-size:.9rem;color:var(--muted);flex:1;margin:0}
 .blog-card .card-foot{margin-top:10px}
+.card-foot{display:flex;align-items:center;gap:10px;font-size:.85rem;color:var(--muted)}
+.card-foot a{font-weight:700;color:var(--navy)}
+.card-foot a:hover{color:var(--cyan-ink)}
 
 /* ---------- Contact / forms ---------- */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
