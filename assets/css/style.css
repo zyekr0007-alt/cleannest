@@ -152,12 +152,30 @@ h4{font-size:.95rem;font-weight:700}
 
 /* ---------- Hero ---------- */
 .hero{
+  position:relative;overflow:hidden;
   padding:76px 0 84px;
   background:
     radial-gradient(1100px 480px at 88% -8%, rgba(12,215,229,.14), transparent 60%),
     radial-gradient(900px 420px at -10% 20%, rgba(11,67,100,.08), transparent 55%),
     var(--white);
   border-bottom:1px solid var(--line);
+}
+.hero::before,.hero::after{
+  content:"";position:absolute;border-radius:50%;filter:blur(64px);
+  opacity:.5;pointer-events:none;z-index:0;
+}
+.hero::before{width:360px;height:360px;background:rgba(12,215,229,.3);top:-130px;right:-90px;animation:orbA 13s ease-in-out infinite alternate}
+.hero::after{width:320px;height:320px;background:rgba(11,67,100,.16);bottom:-120px;left:-100px;animation:orbB 15s ease-in-out infinite alternate}
+.hero .container{position:relative;z-index:1}
+@keyframes orbA{to{transform:translate(-50px,40px) scale(1.12)}}
+@keyframes orbB{to{transform:translate(50px,-40px) scale(1.1)}}
+@media (prefers-reduced-motion:reduce){.hero::before,.hero::after{animation:none}}
+.grad-word{
+  background:linear-gradient(100deg,var(--navy) 10%,var(--cyan-ink) 90%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+@supports not ((background-clip:text) or (-webkit-background-clip:text)){
+  .grad-word{background:none;color:var(--navy)}
 }
 .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
 .hero h1{margin:0 0 18px}
@@ -168,14 +186,32 @@ h4{font-size:.95rem;font-weight:700}
   border-radius:var(--radius-pill);padding:9px 18px;margin-bottom:22px;
   font-size:.9rem;font-weight:600;color:var(--ink);
 }
-.rating-badge .stars{color:var(--cyan-ink);letter-spacing:2px}
+.rating-badge .stars{letter-spacing:2px}
+.rating-badge{background:linear-gradient(180deg,#FFFDF4,#FFF7E0);border-color:rgba(245,168,0,.45)}
+.stars,.rv-stars{
+  background:linear-gradient(100deg,#FFB300 18%,#FFF3B0 38%,#FFC400 52%,#FFB300 72%);
+  background-size:200% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 0 5px rgba(255,196,0,.6)) drop-shadow(0 0 12px rgba(255,196,0,.25));
+  animation:starShine 2.4s linear infinite;
+}
+@keyframes starShine{0%{background-position:190% 0}100%{background-position:-190% 0}}
+@supports not ((background-clip:text) or (-webkit-background-clip:text)){
+  .stars,.rv-stars{background:none;color:#F5A800;animation:none}
+}
+@media (prefers-reduced-motion:reduce){.stars,.rv-stars{animation:none}}
 .rating-badge a{font-weight:700;font-size:.88rem}
 .hero-widget{
-  background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);
+  background:#fff;border:1px solid rgba(12,215,229,.4);border-radius:var(--radius-lg);
   padding:22px;box-shadow:var(--shadow);margin-bottom:22px;max-width:560px;
+  position:relative;overflow:hidden;
+}
+.hero-widget::before{
+  content:"";position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--cyan),var(--navy));opacity:.9;
 }
 .hw-label{font-size:.8rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--navy);margin-bottom:12px}
-.hw-row{display:flex;gap:10px;flex-wrap:wrap}
+.hw-row{display:flex;gap:10px;flex-wrap:wrap;align-items:stretch}
 .hw-row select{
   flex:1;min-width:220px;padding:12px 16px;border:1.5px solid var(--line);
   border-radius:var(--radius-pill);font-family:var(--font-b);font-size:.95rem;
@@ -184,13 +220,14 @@ h4{font-size:.95rem;font-weight:700}
 .hw-row select:focus{outline:3px solid var(--cyan);outline-offset:1px;border-color:var(--navy)}
 .form-note{display:flex;align-items:center;gap:8px;font-size:.84rem;color:var(--muted)}
 .form-note svg{width:15px;height:15px;color:var(--navy)}
-.chips-row{display:flex;flex-wrap:wrap;gap:10px}
+.chips-row{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:16px}
 .chip{
-  display:inline-flex;align-items:center;gap:8px;
-  background:var(--cyan-softest);border:1px solid var(--line);border-radius:var(--radius-pill);
-  padding:8px 15px;font-size:.84rem;font-weight:600;color:var(--text);
+  display:flex;align-items:center;gap:9px;text-align:left;
+  background:#fff;border:1px solid var(--line);border-radius:12px;
+  padding:11px 13px;font-size:.84rem;font-weight:600;color:var(--text);
+  box-shadow:var(--shadow-sm);
 }
-.chip svg{width:15px;height:15px;color:var(--navy);flex:none}
+.chip svg{width:17px;height:17px;color:var(--cyan-ink);flex:none}
 .hero-visual{
   background:var(--navy-grad);color:#fff;border-radius:var(--radius-lg);
   padding:30px;box-shadow:var(--shadow);position:relative;overflow:hidden;
@@ -331,9 +368,9 @@ h4{font-size:.95rem;font-weight:700}
   display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;flex:none;
 }
 .rv-name{font-weight:700;color:var(--ink);font-size:.95rem}
-.rv-stars{color:var(--cyan-ink);letter-spacing:2px;font-size:.85rem}
+.rv-stars{letter-spacing:2px;font-size:.85rem}
 .review-card p{font-size:.92rem;color:var(--text);flex:1}
-.rating-badge .stars{color:var(--cyan-ink)}
+.rating-badge .stars{color:transparent}
 
 /* Gallery */
 .gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
@@ -608,6 +645,21 @@ h4{font-size:.95rem;font-weight:700}
 }
 .sticky-bar .btn{flex:1;min-height:46px;font-size:.92rem;padding:10px 14px}
 
+/* ---------- Spacing systematization (uniform scale) ---------- */
+/* cards: 24px padding standard, 28px for featured blocks */
+.form-card,.contact-card,.info-box,.plan-card,.pricing-card,.feature,.review-card,.step,.hero-widget{padding:24px}
+.hero-visual,.blog-featured .bf-body{padding:28px}
+.service-card h3{padding:20px 22px 4px}
+.service-card p{padding:0 22px 14px}
+.card-actions{padding:0 22px 22px}
+.bc-body{padding:20px 22px 22px}
+/* card grids: consistent 22px rhythm */
+.feature-grid,.plan-grid,.review-grid,.steps{gap:22px}
+/* card headings: consistent 8px below-title spacing */
+.plan-card h3,.pricing-card h3,.step h3,.feature h3,.contact-card h3,.info-box h3,.bc-body h3{margin-bottom:8px}
+/* section rhythm: one vertical step */
+.section{padding:88px 0}
+
 /* ---------- Responsive ---------- */
 @media (max-width:1024px){
   .feature-grid,.steps{grid-template-columns:repeat(2,1fr)}
@@ -664,6 +716,8 @@ h4{font-size:.95rem;font-weight:700}
     border-radius:16px;width:fit-content;max-width:100%;padding:12px 18px;
   }
   .hero .eyebrow{border-radius:14px}
+  .hw-row{flex-direction:column}
+  .hw-row select,.hw-row .btn{width:100%}
   .services-grid,.plan-grid,.review-grid,.pricing-grid,.feature-grid,.steps{grid-template-columns:1fr}
   .blog-grid{grid-template-columns:1fr}
   .blog-featured h2{font-size:1.25rem}
