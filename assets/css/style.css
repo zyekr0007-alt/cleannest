@@ -434,10 +434,21 @@ h4{font-size:.95rem;font-weight:700}
 
 /* ---------- Contact / forms ---------- */
 .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start}
+.contact-grid > *{min-width:0}
+.contact-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+.contact-cards > *{min-width:0}
 .contact-card{
   background:#fff;border:1px solid var(--line);border-radius:var(--radius);
-  padding:26px;box-shadow:var(--shadow-sm);margin-bottom:18px;
+  padding:26px;box-shadow:var(--shadow-sm);margin-bottom:0;
 }
+.contact-card a{overflow-wrap:break-word;word-break:break-word}
+.contact-card a[href^="tel"]{white-space:nowrap}
+.contact-card.wide{grid-column:1/-1}
+.contact-card .icon{
+  width:48px;height:48px;border-radius:12px;background:var(--cyan-soft);
+  color:var(--navy);display:flex;align-items:center;justify-content:center;margin-bottom:14px;
+}
+.contact-card .icon svg{width:24px;height:24px}
 .contact-card h3{font-size:1.02rem;margin-bottom:6px}
 .contact-card p{font-size:.93rem;color:var(--muted)}
 .f-contact li{display:flex;align-items:center;gap:12px;padding:8px 0}
@@ -543,6 +554,8 @@ h4{font-size:.95rem;font-weight:700}
   .hero-grid{grid-template-columns:1fr;gap:36px}
   .footer-grid{grid-template-columns:1fr 1fr;gap:30px}
   .contact-grid,.about-grid{grid-template-columns:1fr;gap:30px}
+  .contact-grid > :first-child{order:2}
+  .contact-grid > :last-child{order:1}
   .info-side{grid-template-columns:1fr}
   .values-grid{grid-template-columns:repeat(2,1fr)}
 }
