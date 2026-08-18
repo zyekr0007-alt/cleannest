@@ -430,7 +430,9 @@ h4{font-size:.95rem;font-weight:700}
 }
 .contact-card h3{font-size:1.02rem;margin-bottom:6px}
 .contact-card p{font-size:.93rem;color:var(--muted)}
-.f-contact a{display:flex;align-items:center;gap:12px;padding:9px 0;font-size:1.02rem;font-weight:600;color:var(--navy)}
+.f-contact li{display:flex;align-items:center;gap:12px;padding:8px 0}
+.f-contact li svg{width:20px;height:20px;flex:none;color:var(--cyan)}
+.f-contact a{color:#fff;font-size:1.02rem;font-weight:600}
 .f-contact a svg{width:20px;height:20px;flex:none}
 .form-card{
   background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);
