@@ -416,6 +416,21 @@ h4{font-size:.95rem;font-weight:700}
 .step h3{font-size:1rem;margin-bottom:5px}
 .step p{font-size:.9rem;color:var(--muted)}
 .steps-mini{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+.steps-mini a.city-chip{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:10px 18px;border-radius:999px;
+  background:#fff;border:1px solid var(--line);
+  color:var(--navy);font-weight:600;font-size:.92rem;
+  transition:border-color .2s ease,box-shadow .2s ease,transform .2s ease;
+}
+.steps-mini a.city-chip:hover{
+  border-color:var(--cyan);box-shadow:0 4px 14px rgba(12,215,229,.18);transform:translateY(-1px);
+  text-decoration:none;
+}
+.steps-mini a.city-chip:before{
+  content:"";width:8px;height:8px;border-radius:50%;
+  background:var(--cyan);flex:none;
+}
 .steps-mini span{
   background:var(--cyan-softest);border:1px solid var(--line);border-radius:var(--radius-pill);
   padding:8px 16px;font-size:.85rem;font-weight:600;color:var(--text);
@@ -632,6 +647,18 @@ h4{font-size:.95rem;font-weight:700}
   font-size:.82rem;color:#8EA9B5;text-align:center;
 }
 .footer-bottom a{color:#B9D3DE}
+.footer-cities{
+  border-top:1px solid rgba(255,255,255,.12);
+  padding:20px 0 0;margin-bottom:18px;
+  font-size:.9rem;color:#B9D3DE;
+  display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center;
+}
+.footer-cities span{color:#fff;font-weight:600}
+.footer-cities a{color:#B9D3DE;font-size:.9rem}
+.footer-cities a:hover{color:var(--cyan)}
+@media (max-width:720px){
+  .footer-cities{justify-content:center;text-align:center}
+}
 
 /* ---------- Reveal animation ---------- */
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
@@ -741,4 +768,13 @@ h4{font-size:.95rem;font-weight:700}
   .why-trust{grid-template-columns:1fr}
   .form-grid{grid-template-columns:1fr}
   .cta-band{padding:44px 24px}
+}
+
+/* ---------- Restructure additions ---------- */
+.line-link{color:var(--navy);font-weight:600;font-size:.92rem}
+.line-link:hover{color:var(--cyan-ink);text-decoration:underline}
+.feature-row .icon img{width:100%;height:auto;border-radius:18px;object-fit:cover;aspect-ratio:16/10}
+.service-card .card-actions{display:flex;gap:8px;flex-wrap:wrap}
+@media (max-width:520px){
+  .service-card .card-actions .btn{flex:1;min-width:0}
 }

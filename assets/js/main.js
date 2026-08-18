@@ -90,10 +90,27 @@
     if (y) y.textContent = new Date().getFullYear();
   }
 
+  /* ---------- service pre-fill from URL (?service=...) ---------- */
+  function initServicePrefill() {
+    try {
+      var q = new URLSearchParams(window.location.search).get("service");
+      if (!q) return;
+      var sel = document.querySelector("select[name=service]");
+      if (!sel) return;
+      for (var i = 0; i < sel.options.length; i++) {
+        if (sel.options[i].text.toLowerCase() === q.toLowerCase()) {
+          sel.selectedIndex = i;
+          break;
+        }
+      }
+    } catch (e) { /* ignore */ }
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     initNav();
     initReveal();
     initForms();
     initYear();
+    initServicePrefill();
   });
 })();
