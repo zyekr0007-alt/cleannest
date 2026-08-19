@@ -161,6 +161,66 @@
     }
   }
 
+  /* ---------- reviews marquee (slow auto-scroll, pause on interaction, arrows) ---------- */
+  function initRevMarquee() {
+    var wrap = document.querySelector(".rev-marquee");
+    if (!wrap) return;
+    var track = wrap.querySelector(".rev-track");
+    if (!track) return;
+    var group = track.querySelector(".rev-group");
+    var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var paused = false, pauseUntil = 0, last = 0, raf = null;
+    var speed = window.innerWidth <= 720 ? 26 : 34; // px/s — slow and readable
+    var pos = wrap.scrollLeft || 0;   // fractional virtual scroll position
+    var lastWritten = pos;            // last value THIS loop wrote
+
+    function groupWidth() {
+      var r = group.getBoundingClientRect();
+      return r.width;
+    }
+    function pause() { paused = true; }
+    function resume(delay) { paused = false; pauseUntil = delay ? Date.now() + delay : 0; }
+    function step(ts) {
+      if (!last) last = ts;
+      var dt = Math.min(120, ts - last);
+      last = ts;
+      if (!paused && Date.now() >= pauseUntil) {
+        var w = groupWidth();
+        pos += speed * dt / 1000;
+        if (pos >= w) pos -= w; // seamless loop — content at pos-w is identical
+        var t = Math.round(pos); // write whole pixels only (sub-pixel writes round to 0 on mobile)
+        if (t !== wrap.scrollLeft) { wrap.scrollLeft = t; lastWritten = t; }
+      }
+      raf = requestAnimationFrame(step);
+    }
+
+    // Any scroll NOT caused by this loop (swipe, trackpad, arrows) resets the
+    // virtual position so auto-scroll continues from where the user left it.
+    wrap.addEventListener("scroll", function () {
+      if (wrap.scrollLeft !== lastWritten) pos = wrap.scrollLeft;
+    });
+    wrap.addEventListener("mouseenter", pause);
+    wrap.addEventListener("mouseleave", function () { resume(0); });
+    wrap.addEventListener("touchstart", pause, { passive: true });
+    wrap.addEventListener("touchend", function () { resume(2000); }, { passive: true });
+    wrap.addEventListener("focusin", pause);
+    wrap.addEventListener("focusout", function () { resume(0); });
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) { pause(); last = 0; } else resume(0);
+    });
+
+    var prev = document.querySelector(".rev-prev"), next = document.querySelector(".rev-next");
+    function cardStep() {
+      var c = track.querySelector(".review-mini");
+      var gap = parseFloat(getComputedStyle(group).gap) || 18;
+      return (c ? c.getBoundingClientRect().width : 350) + gap;
+    }
+    if (prev) prev.addEventListener("click", function () { resume(8000); wrap.scrollBy({ left: -cardStep(), behavior: "smooth" }); });
+    if (next) next.addEventListener("click", function () { resume(8000); wrap.scrollBy({ left: cardStep(), behavior: "smooth" }); });
+
+    if (!reduceMotion) raf = requestAnimationFrame(step);
+  }
+
   /* ---------- footer year ---------- */
   function initYear() {
     var y = document.getElementById("year");
@@ -190,6 +250,7 @@
     initHeroQuote();
     initServiceFilter();
     initBaSlider();
+    initRevMarquee();
     initYear();
     initServicePrefill();
   });

@@ -414,12 +414,34 @@ h4{font-size:.95rem;font-weight:700}
 .steps-3{grid-template-columns:repeat(3,1fr)}
 
 /* ---------- Reviews marquee (real Google reviews) ---------- */
-.rev-marquee{overflow:hidden;border-top:1px solid var(--line);padding:8px 0 34px;background:transparent}
-.rev-track{display:flex;width:max-content;animation:marquee 42s linear infinite}
-.rev-marquee:hover .rev-track{animation-play-state:paused}
+/* ---------- Reviews (marquee carousel) ---------- */
+.rev-marquee{overflow-x:auto;scrollbar-width:none;overscroll-behavior-x:contain;touch-action:pan-x pan-y;-webkit-overflow-scrolling:touch;border-top:1px solid var(--line);padding:26px 0 6px;background:transparent}
+.rev-marquee::-webkit-scrollbar{display:none}
+.rev-track{display:flex;width:max-content}
 .rev-group{display:flex;gap:18px;padding-right:18px}
-.review-mini{width:350px;flex:none;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column}
-.review-mini p{font-size:.9rem;color:var(--text);flex:1}
+.review-mini{width:350px;flex:none;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px 24px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column}
+.review-mini p{font-size:.92rem;color:var(--text);flex:1;margin:0}
+.rm-top{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.rm-avatar{width:44px;height:44px;border-radius:50%;background:var(--navy-grad);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;flex:none}
+.rm-avatar.g{background:#fff;border:1px solid var(--line)}
+.rm-avatar.g svg{width:20px;height:20px}
+.rm-name{font-weight:700;color:var(--ink);font-size:.95rem;margin-bottom:2px}
+.rm-foot{display:flex;align-items:center;gap:7px;margin-top:14px;font-size:.78rem;font-weight:600;color:var(--muted)}
+.g-logo{display:inline-flex;flex:none;line-height:0}
+.g-logo svg{width:16px;height:16px}
+.rm-svc{margin-left:auto;background:var(--cyan-soft);color:var(--navy);font-size:.72rem;font-weight:700;padding:3px 10px;border-radius:999px;white-space:nowrap}
+.rev-trust{position:relative;display:flex;align-items:center;justify-content:center;gap:16px;margin:0 0 34px;flex-wrap:wrap}
+.rev-badge{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid rgba(12,215,229,.4);border-radius:999px;padding:9px 18px;font-size:.9rem;color:var(--muted);box-shadow:var(--shadow-sm)}
+.rev-badge b{color:var(--navy);font-size:1.04rem;letter-spacing:-.01em}
+.rb-stars{color:#F5A800;letter-spacing:1px;font-size:.88rem}
+.rev-badge i{width:3px;height:3px;border-radius:50%;background:var(--line)}
+.rev-all{color:var(--navy);font-weight:700;font-size:.9rem;text-decoration:none;border-bottom:1.5px solid rgba(12,215,229,.5);padding-bottom:2px;transition:color .2s ease,border-color .2s ease}
+.rev-all:hover{color:var(--cyan-ink);border-color:var(--cyan-ink)}
+.rev-nav{position:absolute;right:0;top:50%;transform:translateY(-50%);display:flex;gap:10px}
+.rev-btn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:#fff;color:var(--navy);cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-sm);transition:background .2s ease,color .2s ease,border-color .2s ease,transform .2s ease}
+.rev-btn svg{width:19px;height:19px}
+.rev-btn:hover{background:var(--navy);border-color:var(--navy);color:#fff;transform:translateY(-1px)}
+.rev-btn:active{transform:scale(.94)}
 .g-tag{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:.76rem;font-weight:700;color:var(--muted)}
 .g-tag::before{content:"G";width:16px;height:16px;border-radius:50%;background:var(--navy-grad);color:#fff;font-size:.62rem;font-weight:800;display:inline-flex;align-items:center;justify-content:center}
 
@@ -899,7 +921,8 @@ h4{font-size:.95rem;font-weight:700}
   .ba-featured{aspect-ratio:4/3}
   .ba-minis{grid-template-columns:repeat(2,1fr);max-width:560px}
   .ba-mini:nth-child(3){display:none}
-  .review-mini{width:300px}
+  .review-mini{width:min(340px,82vw)}
+  .rev-nav{display:none}
   .hp-card{padding:8px 12px;font-size:.78rem}
   .hp-card-1{top:10px;left:10px}
   .hp-card-2{bottom:10px;right:10px}
