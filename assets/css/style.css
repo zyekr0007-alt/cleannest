@@ -311,14 +311,21 @@ h4{font-size:.95rem;font-weight:700}
 .card-actions{padding:0 20px 20px;display:flex;gap:10px}
 .card-label{font-size:.9rem;font-weight:700;color:var(--navy)}
 
-/* ---------- UC-inspired: Why CleanNest strip ---------- */
-.why-strip{padding:56px 0 8px}
-.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.why-item{display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px 20px;box-shadow:var(--shadow-sm)}
-.why-item .wi-icon{width:46px;height:46px;border-radius:12px;background:var(--cyan-soft);color:var(--navy);display:flex;align-items:center;justify-content:center;flex:none}
-.why-item .wi-icon svg{width:22px;height:22px}
-.why-item h3{font-size:1rem;margin-bottom:4px}
-.why-item p{font-size:.88rem;color:var(--muted);margin:0}
+/* ---------- Why CleanNest (numbered trust cards) ---------- */
+.why-benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+.why-benefit{
+  position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+  padding:28px 24px 26px;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
+}
+.why-benefit:hover{transform:translateY(-4px);border-color:rgba(12,215,229,.6);box-shadow:var(--shadow-sm)}
+.wb-num{
+  display:block;font-family:var(--font-d);font-weight:800;font-size:clamp(1.5rem,2vw,1.9rem);
+  line-height:1;letter-spacing:.03em;color:var(--cyan-ink);margin-bottom:20px;
+  transition:color .2s ease;
+}
+.why-benefit:hover .wb-num{color:var(--navy)}
+.why-benefit h3{font-size:1.05rem;margin-bottom:8px}
+.why-benefit p{font-size:.9rem;color:var(--muted);margin:0}
 
 /* ---------- Hero photo (professional visual) ---------- */
 .hero-photo{position:relative;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow)}
@@ -833,6 +840,7 @@ h4{font-size:.95rem;font-weight:700}
   .main-nav{gap:16px}
   .main-nav a{font-size:.9rem}
   .header-cta .btn-navy,.header-cta .btn-ink{display:none}
+  .why-benefits{grid-template-columns:repeat(2,1fr)}
 }
 @media (max-width:720px){
   .section{padding:56px 0}
@@ -850,7 +858,6 @@ h4{font-size:.95rem;font-weight:700}
   .services-grid{grid-template-columns:repeat(2,1fr)}
   .svc-tile{grid-column:1/-1}
   .plan-grid,.review-grid,.pricing-grid,.feature-grid,.steps{grid-template-columns:1fr}
-  .why-grid{grid-template-columns:1fr}
   .ba-featured{aspect-ratio:4/3}
   .ba-minis{grid-template-columns:repeat(2,1fr);max-width:560px}
   .ba-mini:nth-child(3){display:none}
@@ -887,4 +894,5 @@ h4{font-size:.95rem;font-weight:700}
 @media (max-width:520px){
   .service-card .card-actions .btn{flex:1;min-width:0}
   .hero h1{font-size:clamp(1.45rem,7vw,1.8rem);line-height:1.2}
+  .why-benefits{grid-template-columns:1fr}
 }
