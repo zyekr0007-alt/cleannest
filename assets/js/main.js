@@ -328,37 +328,107 @@
     if (wa) setTimeout(function () { wa.classList.add("in"); }, 700);
   }
 
-  /* ---------- conversion event tracking (GoatCounter events, cookieless) ---------- */
+  /* ---------- conversion event tracking (GoatCounter events, cookieless) ----------
+     Taxonomy (base event = one conversion type, params = where/how it came from):
+       /event/whatsapp?loc=<location>&svc=<service>   direct WhatsApp clicks
+       /event/call?loc=<location>                     phone clicks
+       /event/get-quote?loc=<location>                Get Free Quote -> book.html
+       /event/service-click?loc=<location>            service page link clicks
+       /event/quote-form-start|submit?form=hero|book  quote form funnel
+       /event/contact-form-start|submit?form=contact  contact form funnel
+     NEVER sent: names, phones, addresses, messages. No personal data. */
   function initTracking() {
-    function track(name) {
+    function track(name, params) {
       try {
         if (window.goatcounter && goatcounter.count) {
-          goatcounter.count({ path: "/event/" + name, event: true });
+          var p = "/event/" + name;
+          if (params) {
+            var q = [];
+            for (var k in params) {
+              if (params[k]) q.push(k + "=" + encodeURIComponent(params[k]));
+            }
+            if (q.length) p += "?" + q.join("&");
+          }
+          goatcounter.count({ path: p, event: true });
         }
       } catch (e) { /* tracking must never break the site */ }
     }
-    // ONE delegated listener for all CTA clicks — fires once per click, never duplicates
+
+    // Service identifiers — only services that actually exist on the site.
+    var SVC_MAP = {
+      "full house cleaning": "full_house_cleaning",
+      "kitchen deep cleaning": "kitchen_deep_cleaning",
+      "bathroom deep cleaning": "bathroom_deep_cleaning",
+      "sofa dry cleaning": "sofa_dry_cleaning",
+      "carpet and steam cleaning": "carpet_steam_cleaning",
+      "carpet & steam cleaning": "carpet_steam_cleaning",
+      "ac services": "ac_services",
+      "ac cleaning and servicing": "ac_services",
+      "commercial cleaning": "commercial_cleaning",
+      "chimney cleaning": "chimney_cleaning",
+      "floor renew": "floor_renew"
+    };
+    function waService(href) {
+      var m = href.match(/[?&]text=([^&]*)/);
+      if (!m) return "";
+      try {
+        var t = decodeURIComponent(m[1]).toLowerCase();
+        for (var k in SVC_MAP) {
+          if (t.indexOf(k) !== -1) return SVC_MAP[k];
+        }
+      } catch (e) { /* ignore */ }
+      return "";
+    }
+    // Where did the click come from? (stable wrapper classes — no HTML changes)
+    function ctaLocation(a) {
+      if (a.closest(".wa-float")) return "float";
+      if (a.closest(".sticky-bar")) return "sticky";
+      if (a.closest(".site-header")) return "header";
+      if (a.closest(".hero")) return "hero";
+      if (a.closest(".cta-band")) return "final";
+      if (a.closest(".service-card")) return "services";
+      if (a.closest(".contact-card")) return "contact";
+      if (a.closest(".site-footer")) return "footer";
+      return "other";
+    }
+
+    // ONE delegated capture listener — each click produces exactly one event.
     document.addEventListener("click", function (e) {
       var a = e.target && e.target.closest ? e.target.closest("a") : null;
       if (!a) return;
       var h = (a.getAttribute("href") || "").toLowerCase();
-      if (h.indexOf("tel:") === 0) track("call");
-      else if (h.indexOf("wa.me") !== -1 || h.indexOf("api.whatsapp.com") !== -1) track("whatsapp");
-      else if (h.indexOf("book.html") !== -1) track("get-quote");
-      else if (h.indexOf("service-page/") !== -1) track("service-click");
+      var loc = ctaLocation(a);
+      if (h.indexOf("tel:") === 0) {
+        track("call", { loc: loc });
+      } else if (h.indexOf("wa.me") !== -1 || h.indexOf("api.whatsapp.com") !== -1) {
+        var params = { loc: loc };
+        var svc = waService(a.getAttribute("href") || "");
+        if (svc) params.svc = svc;
+        track("whatsapp", params);
+      } else if (h.indexOf("book.html") !== -1) {
+        track("get-quote", { loc: loc });
+      } else if (h.indexOf("service-page/") !== -1) {
+        track("service-click", { loc: loc });
+      }
     }, true);
-    // quote/contact form start — first interaction inside the form (once per visit)
+
+    // Form funnel: start (first interaction, once per visit) + submit.
+    function formKind(f) {
+      if (f && f.hasAttribute && f.hasAttribute("data-hero-quote")) return "hero";
+      return /contact\.html/.test(location.pathname) ? "contact" : "book";
+    }
     document.addEventListener("focusin", function (e) {
       var f = e.target && e.target.closest ? e.target.closest("form[data-wa-form], form[data-hero-quote]") : null;
       if (!f || f.dataset.trackedStart) return;
       f.dataset.trackedStart = "1";
-      track(/contact\.html/.test(location.pathname) ? "contact-form-start" : "quote-form-start");
+      var kind = formKind(f);
+      track(kind === "contact" ? "contact-form-start" : "quote-form-start", { form: kind });
     }, true);
-    // form submission — fires in addition to the functional handler, no duplicates
     document.addEventListener("submit", function (e) {
       var f = e.target;
       if (!f || !f.matches || !f.matches("form[data-wa-form], form[data-hero-quote]")) return;
-      track(/contact\.html/.test(location.pathname) ? "contact-form-submit" : "quote-form-submit");
+      var kind = formKind(f);
+      track(kind === "contact" ? "contact-form-submit" : "quote-form-submit", { form: kind });
     }, true);
   }
 
