@@ -17,7 +17,7 @@ html{
   --navy-deep:#082F47;     /* hover / darker navy */
   --navy-grad:linear-gradient(135deg,#0E4E75 0%,#082F47 100%);
   --cyan:#0CD7E5;          /* accent — logo cyan sparkle */
-  --cyan-ink:#0897A4;      /* accessible cyan for small text */
+  --cyan-ink:#067A86;      /* accessible cyan for small text (AA 5.08:1 on white) */
   --cyan-soft:#E6F6FA;     /* pale cyan section bands */
   --cyan-softest:#F3FBFC;  /* lighter cyan */
   --white:#FFFFFF;
@@ -464,7 +464,7 @@ h4{font-size:.95rem;font-weight:700}
 
 /* ---------- UC-inspired: service category chips ---------- */
 .svc-chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:30px}
-.svc-chip{background:#fff;border:1.5px solid var(--line);border-radius:var(--radius-pill);padding:9px 18px;font-family:var(--font-b);font-size:.9rem;font-weight:600;color:var(--text);cursor:pointer;transition:all .15s ease}
+.svc-chip{background:#fff;border:1.5px solid var(--line);border-radius:var(--radius-pill);padding:9px 18px;min-height:42px;font-family:var(--font-b);font-size:.9rem;font-weight:600;color:var(--text);cursor:pointer;transition:all .15s ease}
 .svc-chip:hover{border-color:var(--navy);color:var(--navy)}
 .svc-chip.active{background:var(--navy-grad);color:#fff;border-color:transparent}
 .service-card.hidden{display:none}
@@ -1002,4 +1002,5 @@ h4{font-size:.95rem;font-weight:700}
 }
 @media (max-width:560px){
   .footer-grid{grid-template-columns:1fr;gap:28px;padding:48px 0 32px}
+  .site-footer li{padding:7px 0}
 }
