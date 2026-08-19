@@ -315,6 +315,11 @@ h4{font-size:.95rem;font-weight:700}
 
 /* ---------- Why CleanNest (numbered trust cards) ---------- */
 .why-benefits{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+/* service-page reviews: static grid of the shared review cards */
+.svc-reviews{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:960px;margin:0 auto}
+.svc-reviews .review-mini{width:auto}
+@media (max-width:1024px){.svc-reviews{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:720px){.svc-reviews{grid-template-columns:1fr}}
 .why-benefit{
   position:relative;background:#fff;border:1px solid var(--line);border-radius:var(--radius);
   padding:28px 24px 26px;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
