@@ -1,0 +1,17 @@
+{
+  "_comment": "CleanNest service areas — canonical catalog. 12 verified cities (Aug 2026). distance = factual on-page chip (from city page, approx road distance from Jalandhar); Jalandhar has none. Order = homepage + footer order.",
+  "areas": [
+    { "name": "Jalandhar", "url": "cities/jalandhar.html", "distance": "" },
+    { "name": "Phagwara", "url": "cities/phagwara.html", "distance": "about 25 km from Jalandhar" },
+    { "name": "Kapurthala", "url": "cities/kapurthala.html", "distance": "about 20 km from Jalandhar" },
+    { "name": "Hoshiarpur", "url": "cities/hoshiarpur.html", "distance": "about 55 km from Jalandhar" },
+    { "name": "Nakodar", "url": "cities/nakodar.html", "distance": "about 25 km from Jalandhar" },
+    { "name": "Goraya", "url": "cities/goraya.html", "distance": "about 15 km from Jalandhar" },
+    { "name": "Adampur", "url": "cities/adampur.html", "distance": "about 13 km from Jalandhar" },
+    { "name": "Kartarpur", "url": "cities/kartarpur.html", "distance": "about 20 km from Jalandhar" },
+    { "name": "Sultanpur Lodhi", "url": "cities/sultanpur-lodhi.html", "distance": "about 35 km from Jalandhar" },
+    { "name": "Nawanshahr", "url": "cities/nawanshahr.html", "distance": "about 60 km from Jalandhar" },
+    { "name": "Phillaur", "url": "cities/phillaur.html", "distance": "about 25 km from Jalandhar" },
+    { "name": "Ludhiana", "url": "cities/ludhiana.html", "distance": "about 55 km from Jalandhar" }
+  ]
+}
