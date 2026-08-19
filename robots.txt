@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.cleannest.in/sitemap.xml
+Sitemap: https://cleannest.in/sitemap.xml
