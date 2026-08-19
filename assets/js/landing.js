@@ -54,9 +54,12 @@
     var lines = st.lines || [el];
     if (state === 'initial') {
       gsap.set(lines, { yPercent: 110 });
-      gsap.set(el, { clipPath: 'inset(0 0 -1% 0)' });
+      gsap.set(el, { overflow: 'hidden' });
     } else {
-      gsap.to(lines, { yPercent: 0, duration: durL, ease: 'InOut', stagger: stagger * 0.6, delay: delayReveal });
+      gsap.to(lines, {
+        yPercent: 0, duration: durL, ease: 'InOut', stagger: stagger * 0.6, delay: delayReveal,
+        onComplete: function () { gsap.set(el, { overflow: 'visible' }); },
+      });
     }
   }
 
@@ -66,9 +69,12 @@
     var lines = st.lines || [el];
     if (state === 'initial') {
       gsap.set(lines, { yPercent: 110 });
-      gsap.set(el, { clipPath: 'inset(0 0 -1% 0)' });
+      gsap.set(el, { overflow: 'hidden' });
     } else {
-      gsap.to(lines, { yPercent: 0, duration: durL, ease: 'InOut', stagger: stagger, delay: delayReveal });
+      gsap.to(lines, {
+        yPercent: 0, duration: durL, ease: 'InOut', stagger: stagger, delay: delayReveal,
+        onComplete: function () { gsap.set(el, { overflow: 'visible' }); },
+      });
     }
   }
 

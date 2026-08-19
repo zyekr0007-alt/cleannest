@@ -327,6 +327,45 @@ h4{font-size:.95rem;font-weight:700}
 .why-benefit h3{font-size:1.05rem;margin-bottom:8px}
 .why-benefit p{font-size:.9rem;color:var(--muted);margin:0}
 
+/* ---------- How It Works (numbered steps + connector) ---------- */
+.steps-hiw{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.steps-hiw::before{
+  content:"";position:absolute;top:33px;height:2px;background:var(--line);
+  left:calc((100% - 64px)/6 + 34px);right:calc((100% - 64px)/6 + 34px);
+  transform:scaleX(0);transform-origin:left;transition:transform .55s ease .2s;
+}
+.steps-hiw.in::before{transform:scaleX(1)}
+.step-hiw{
+  position:relative;text-align:center;padding:6px 10px 2px;
+  opacity:0;transform:translateY(14px);transition:opacity .45s ease,transform .45s ease;
+}
+.steps-hiw.in .step-hiw{opacity:1;transform:none}
+.steps-hiw.in .step-hiw:nth-child(2){transition-delay:.12s}
+.steps-hiw.in .step-hiw:nth-child(3){transition-delay:.24s}
+.hiw-num{
+  width:68px;height:68px;border-radius:50%;margin:0 auto 18px;
+  display:flex;align-items:center;justify-content:center;
+  background:#fff;border:2px solid rgba(12,215,229,.5);color:var(--cyan-ink);
+  font-family:var(--font-d);font-weight:800;font-size:1.28rem;letter-spacing:.02em;
+  transition:background .25s ease,color .25s ease,border-color .25s ease;
+}
+.step-hiw:hover .hiw-num{background:var(--navy);border-color:var(--navy);color:#fff}
+.step-hiw h3{font-size:1.08rem;margin-bottom:8px}
+.step-hiw p{font-size:.92rem;color:var(--muted);max-width:28ch;margin:0 auto}
+@media (max-width:720px){
+  .steps-hiw{grid-template-columns:1fr;gap:0;max-width:420px;margin-left:auto;margin-right:auto}
+  .steps-hiw::before{
+    left:27px;right:auto;top:44px;bottom:44px;width:2px;height:auto;
+    transform:scaleY(0);transform-origin:top;
+  }
+  .steps-hiw.in::before{transform:scaleY(1)}
+  .step-hiw{display:flex;gap:20px;text-align:left;padding:16px 0;align-items:flex-start}
+  .hiw-body{flex:1;min-width:0}
+  .hiw-num{width:56px;height:56px;margin:0;flex:none;font-size:1.12rem}
+  .step-hiw h3{margin-bottom:4px}
+  .step-hiw p{max-width:none;margin:0}
+}
+
 /* ---------- Hero photo (professional visual) ---------- */
 .hero-photo{position:relative;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow)}
 .hero-photo img{width:100%;aspect-ratio:5/4;object-fit:cover;display:block}
@@ -894,4 +933,8 @@ h4{font-size:.95rem;font-weight:700}
   .service-card .card-actions .btn{flex:1;min-width:0}
   .hero h1{font-size:clamp(1.45rem,7vw,1.8rem);line-height:1.2}
   .why-benefits{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  .step-hiw{opacity:1;transform:none;transition:none}
+  .steps-hiw::before{transform:none;transition:none}
 }
