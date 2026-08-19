@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" data-wf-page="landing">
+<html lang="en" data-wf-page="app-landing">
 <head>
 <meta charset="utf-8">
-<title>CleanNest — Premium Deep Cleaning in Jalandhar, Punjab</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="CleanNest: premium deep cleaning in Jalandhar, Punjab. Full house, kitchen, bathroom, sofa, carpet, AC & chimney cleaning — 4.9★ on Google, eco-friendly products, satisfaction guaranteed. Free quote on WhatsApp.">
-<meta property="og:title" content="CleanNest — Premium Deep Cleaning in Jalandhar">
-<meta property="og:description" content="4.9★ rated deep cleaning team in Jalandhar. Trained staff, professional machines, eco-friendly products. Free quote on WhatsApp — no booking fee, no advance payment.">
+<title>CleanNest — Home Cleaning App | Jalandhar, Punjab</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="CleanNest app: book premium deep cleaning in Jalandhar in seconds. Full house, kitchen, bathroom, sofa, carpet, AC & chimney cleaning — 4.9★ on Google. Free quote on WhatsApp.">
+<meta property="og:title" content="CleanNest — Home Cleaning App | Jalandhar">
+<meta property="og:description" content="4.9★ rated deep cleaning team in Jalandhar. Book in seconds — free quote on WhatsApp, no booking fee, no advance payment.">
 <meta property="og:image" content="https://www.cleannest.in/assets/img/og-cover.jpg">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://www.cleannest.in/landing.html">
@@ -14,13 +14,8 @@
 <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/landing.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.3.15/dist/lenis.css">
-<style>
-  [data-prevent-flicker='true'] { visibility: hidden; }
-  [data-preloader] { display: block; }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/app.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -35,1619 +30,455 @@
 }
 </script>
 </head>
-<body class="theme_on-dark">
+<body>
 
-<!-- ============ PRELOADER ============ -->
-<div class="master-preloader" data-master-preloader aria-hidden="true">
-  <div class="preloader theme_on-dark" data-preloader>
-    <div class="preloader_c">
-      <div class="preloader_c_c">
-        <div class="preloader_top">
-          <div class="grid">
-            <div class="preloader_top_desc">
-              <img class="logo-diagram" src="assets/img/logo-emblem.png" alt="CleanNest">
-              <div class="u-32"></div>
-              <p class="p6 text-dark" data-preloader>CLEANING SERVICES</p>
-            </div>
-          </div>
-        </div>
-        <div class="preloader_bot">
-          <div class="grid">
-            <div class="preloader_desc-r">
-              <div class="p6 text-dark a-right" data-preloader>JALANDHAR<br>PUNJAB</div>
-            </div>
-            <div class="preloader_desc-l">
-              <div class="p6 text-dark" data-preloader>PREMIUM<br>DEEP CLEANING</div>
-            </div>
-          </div>
-          <div class="preloader_bg_scene_label b-mob">
-            <div class="p6 text-dark a-center" data-preloader-percent data-preloader>0%</div>
-            <div class="p6 text-dark a-center" data-preloader>LOADING</div>
-          </div>
-        </div>
-      </div>
-      <div class="preloader_bg" data-preloader>
-        <div class="preloader_bg_c">
-          <div class="preloader_bg_scene" data-preloader>
-            <div class="preloader_bg_scene_label b-desk">
-              <div class="p6 text-dark a-center" data-preloader-percent data-preloader>0%</div>
-              <div class="p6 text-dark a-center" data-preloader>LOADING</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<!-- ============ APP FRAME (phone-style shell on desktop, full-screen on mobile) ============ -->
+<div class="app-shell">
+
+  <!-- Status bar strip (visual only, top) -->
+  <div class="app-statusbar" aria-hidden="true">
+    <span class="app-statusbar_time">9:41</span>
+    <span class="app-statusbar_icons">📶 🔋</span>
   </div>
-  <div class="preloader_logo">
-    <div class="hero-s_content_logo">
-      <div class="logo-w">
-        <div class="logo-w theme_on-dark" data-preloader>
-          <img class="logo" src="assets/img/logo.svg" alt="CleanNest">
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
-<!-- ============ NOISE ============ -->
-<div class="noise" data-noise aria-hidden="true"></div>
-
-<!-- ============ HEADER ============ -->
-<header class="header" header>
-  <div class="container">
-    <div class="header-w">
-      <a class="header_logo" href="index.html" aria-label="CleanNest home">
-        <img class="header_logo_img" src="assets/img/logo.svg" alt="CleanNest">
+  <!-- App header -->
+  <header class="app-header">
+    <div class="app-header_row">
+      <img class="app-logo" src="assets/img/logo-cn.png" alt="CleanNest">
+      <a class="app-header_cta" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20free%20quote.">
+        <span>Free quote</span>
       </a>
-      <nav class="header_nav b-desk" aria-label="Main">
-        <a class="nav-item" href="#services"><div class="nav-item_label"><div class="nav-item_label_text"><p class="p6">Services</p></div><div class="nav-item_line"></div></div></a>
-        <a class="nav-item" href="#about"><div class="nav-item_label"><div class="nav-item_label_text"><p class="p6">About</p></div><div class="nav-item_line"></div></div></a>
-        <a class="nav-item" href="#why"><div class="nav-item_label"><div class="nav-item_label_text"><p class="p6">Why us</p></div><div class="nav-item_line"></div></div></a>
-        <a class="nav-item" href="blog.html"><div class="nav-item_label"><div class="nav-item_label_text"><p class="p6">Blog</p></div><div class="nav-item_line"></div></div></a>
-        <a class="nav-item" href="#faq"><div class="nav-item_label"><div class="nav-item_label_text"><p class="p6">FAQ</p></div><div class="nav-item_line"></div></div></a>
-        <a class="nav-item" href="contact.html"><div class="nav-item_label"><div class="nav-item_label_text"><p class="p6">Contact</p></div><div class="nav-item_line"></div></div></a>
-      </nav>
-      <div class="header_cta">
-        <a class="btn btn-sm" href="book.html" hover-btn>
-          <div class="btn_label"><div class="btn_label_text"><div class="p6 text-light">Get Free Quote</div></div></div>
-          <div class="btn_hover" hover="hover"></div>
-          <div class="btn_bg" hover="bg"></div>
-        </a>
-        <button class="burger b-mob" data-menu-open aria-label="Open menu">
-          <div class="burger_line"></div>
-          <div class="burger_line"></div>
-        </button>
-      </div>
     </div>
-  </div>
-</header>
-
-<!-- ============ MOBILE MENU ============ -->
-<div class="modal menu" data-modal="menu" data-prevent-flicker>
-  <div class="modal_menu_c">
-    <nav class="modal_menu_nav" aria-label="Mobile">
-      <a class="nav-item" href="#services"><div class="nav-item_label"><div class="nav-item_label_text"><p class="p2 text-dark">Services</p></div><div class="nav-item_line"></div></div></a>
-      <a class="nav-item" href="#about"><div class="nav-item_label"><div class="nav-item_label_text"><p class="p2 text-dark">About</p></div><div class="nav-item_line"></div></div></a>
-      <a class="nav-item" href="#why"><div class="nav-item_label"><div class="nav-item_label_text"><p class="p2 text-dark">Why us</p></div><div class="nav-item_line"></div></div></a>
-      <a class="nav-item" href="blog.html"><div class="nav-item_label"><div class="nav-item_label_text"><p class="p2 text-dark">Blog</p></div><div class="nav-item_line"></div></div></a>
-      <a class="nav-item" href="#faq"><div class="nav-item_label"><div class="nav-item_label_text"><p class="p2 text-dark">FAQ</p></div><div class="nav-item_line"></div></div></a>
-      <a class="nav-item" href="contact.html"><div class="nav-item_label"><div class="nav-item_label_text"><p class="p2 text-dark">Contact</p></div><div class="nav-item_line"></div></div></a>
+    <nav class="app-tabs-header" aria-label="Sections">
+      <button class="app-tab is-active" data-screen="home">Home</button>
+      <button class="app-tab" data-screen="services">Services</button>
+      <button class="app-tab" data-screen="reviews">Reviews</button>
+      <button class="app-tab" data-screen="about">About</button>
     </nav>
-    <div class="modal_menu_bot">
-      <a class="btn" href="book.html" hover-btn>
-        <div class="btn_label"><div class="btn_label_text"><div class="p6 text-light">Get Free Quote</div></div></div>
-        <div class="btn_hover" hover="hover"></div>
-        <div class="btn_bg" hover="bg"></div>
-      </a>
-      <p class="p6 text-dark">+91 76100 00654<br>cleannestclub@gmail.com</p>
-    </div>
-  </div>
-  <button class="modal_close" data-modal-close aria-label="Close menu">
-    <div class="modal_close_icon"><span></span><span></span></div>
-  </button>
+  </header>
+
+  <!-- Screens -->
+  <main class="app-main">
+
+    <!-- ============ SCREEN: HOME ============ -->
+    <section class="app-screen is-active" data-screen="home" id="home">
+      <div class="screen-pad">
+
+        <!-- Greeting -->
+        <div class="home-hero">
+          <p class="home-hero_eyebrow">CLEANING SERVICES · JALANDHAR</p>
+          <h1 class="home-hero_title">A spotless home,<br><span>booked in seconds.</span></h1>
+          <p class="home-hero_sub">Premium deep cleaning by trained professionals — 4.9★ rated, eco-friendly products, satisfaction guaranteed.</p>
+        </div>
+
+        <!-- Search -->
+        <div class="home-search">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+          <input type="search" id="app-search" placeholder="Search services…" aria-label="Search services">
+        </div>
+
+        <!-- Quick actions grid -->
+        <div class="quick-grid" id="quick-grid">
+          <a class="quick-tile" href="#services" data-filter="Full House Cleaning">
+            <div class="quick-tile_img"><img src="assets/img/services/full-house-cleaning.jpg" alt="Full house cleaning" loading="lazy"></div>
+            <span class="quick-tile_label">Full House</span>
+          </a>
+          <a class="quick-tile" href="#services" data-filter="Kitchen Deep Cleaning">
+            <div class="quick-tile_img"><img src="assets/img/services/kitchen-deep-cleaning.jpg" alt="Kitchen deep cleaning" loading="lazy"></div>
+            <span class="quick-tile_label">Kitchen</span>
+          </a>
+          <a class="quick-tile" href="#services" data-filter="Bathroom Deep Cleaning">
+            <div class="quick-tile_img"><img src="assets/img/services/bathroom-deep-cleaning.jpg" alt="Bathroom deep cleaning" loading="lazy"></div>
+            <span class="quick-tile_label">Bathroom</span>
+          </a>
+          <a class="quick-tile" href="#services" data-filter="Sofa Dry Cleaning">
+            <div class="quick-tile_img"><img src="assets/img/services/sofa-dry-cleaning.jpg" alt="Sofa dry cleaning" loading="lazy"></div>
+            <span class="quick-tile_label">Sofa</span>
+          </a>
+          <a class="quick-tile" href="#services" data-filter="Carpet and Steam Cleaning">
+            <div class="quick-tile_img"><img src="assets/img/services/carpet-steam-cleaning.jpg" alt="Carpet steam cleaning" loading="lazy"></div>
+            <span class="quick-tile_label">Carpet</span>
+          </a>
+          <a class="quick-tile" href="#services" data-filter="Floor Renew">
+            <div class="quick-tile_img"><img src="assets/img/services/floor-renew.jpg" alt="Floor renew" loading="lazy"></div>
+            <span class="quick-tile_label">Floors</span>
+          </a>
+          <a class="quick-tile" href="#services" data-filter="AC Cleaning and Servicing">
+            <div class="quick-tile_img"><img src="assets/img/services/ac-services.jpg" alt="AC cleaning" loading="lazy"></div>
+            <span class="quick-tile_label">AC</span>
+          </a>
+          <a class="quick-tile" href="#services" data-filter="Chimney Cleaning">
+            <div class="quick-tile_img"><img src="assets/img/services/chimney-cleaning.jpg" alt="Chimney cleaning" loading="lazy"></div>
+            <span class="quick-tile_label">Chimney</span>
+          </a>
+        </div>
+
+        <!-- Trust strip -->
+        <div class="trust-strip">
+          <div class="trust-item"><strong>4.9★</strong><span>Google rating</span></div>
+          <div class="trust-item"><strong>219</strong><span>Reviews</span></div>
+          <div class="trust-item"><strong>1000+</strong><span>Customers</span></div>
+          <div class="trust-item"><strong>7</strong><span>Days a week</span></div>
+        </div>
+
+        <!-- How it works -->
+        <div class="how-card">
+          <h2 class="how-title">How it works</h2>
+          <ol class="how-steps">
+            <li><span class="how-num">1</span><div><strong>Message us</strong><p>Tell us your space on WhatsApp</p></div></li>
+            <li><span class="how-num">2</span><div><strong>Exact free quote</strong><p>You approve before we start</p></div></li>
+            <li><span class="how-num">3</span><div><strong>We deep clean</strong><p>Trained team, pro machines</p></div></li>
+            <li><span class="how-num">4</span><div><strong>Enjoy your home</strong><p>Not happy? We fix it free</p></div></li>
+          </ol>
+        </div>
+
+        <!-- CTA card -->
+        <div class="cta-card">
+          <h2 class="cta-card_title">Ready for a spotless home?</h2>
+          <p class="cta-card_sub">Free quote on WhatsApp — no booking fee, no advance payment.</p>
+          <a class="btn-wa" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20free%20quote.">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm3.6 13.9c-.2.6-1.2 1.2-1.8 1.3-.5 0-1.1.2-3.7-.8-3.2-1.2-5.2-4.4-5.3-4.6-.1-.2-1.3-1.7-1.3-3.2 0-1.5.8-2.3 1-2.6.3-.3.6-.4.8-.4h.6c.2 0 .4-.1.7.5l.9 2.3c.1.2.1.5-.1.7l-.5.7c-.2.2-.3.4-.1.7.2.3 1 1.7 2.2 2.7 1.6 1.3 2.8 1.8 3.3 2 .4.2.6.1.9-.1l1.1-1.4c.2-.3.5-.2.8-.1l2.3 1.1c.4.2.6.3.7.4.1.3.1 1-.1 1.5z"/></svg>
+            Book on WhatsApp
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============ SCREEN: SERVICES ============ -->
+    <section class="app-screen" data-screen="services" id="services">
+      <div class="screen-pad">
+
+        <div class="screen-head">
+          <h2 class="screen-title">Our services</h2>
+          <p class="screen-sub">Pick a service — every job is quoted individually on WhatsApp.</p>
+        </div>
+
+        <!-- Filter chips -->
+        <div class="chip-row" id="chip-row" role="tablist" aria-label="Filter services">
+          <button class="chip is-active" data-chip="all">All</button>
+          <button class="chip" data-chip="home">Home</button>
+          <button class="chip" data-chip="kitchen">Kitchen</button>
+          <button class="chip" data-chip="fabric">Sofa &amp; Carpet</button>
+          <button class="chip" data-chip="tech">AC &amp; Chimney</button>
+          <button class="chip" data-chip="commercial">Commercial</button>
+        </div>
+
+        <!-- Service cards -->
+        <div class="svc-list" id="svc-list">
+
+          <article class="svc-card" data-svc="Full House Cleaning" data-cat="home">
+            <div class="svc-card_img"><img src="assets/img/services/full-house-cleaning.jpg" alt="Full house cleaning" loading="lazy"></div>
+            <div class="svc-card_body">
+              <h3 class="svc-card_name">Full House Cleaning</h3>
+              <p class="svc-card_desc">Every room, top to bottom — walls, fans, windows, floors.</p>
+              <div class="svc-card_actions">
+                <a class="svc-wa" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Full%20House%20Cleaning.">Get a quote</a>
+                <a class="svc-more" href="service-page/full-house-cleaning.html">Details</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="svc-card" data-svc="Kitchen Deep Cleaning" data-cat="kitchen">
+            <div class="svc-card_img"><img src="assets/img/services/kitchen-deep-cleaning.jpg" alt="Kitchen deep cleaning" loading="lazy"></div>
+            <div class="svc-card_body">
+              <h3 class="svc-card_name">Kitchen Deep Cleaning</h3>
+              <p class="svc-card_desc">Degreased stove, chimney, cabinets, tiles and grout.</p>
+              <div class="svc-card_actions">
+                <a class="svc-wa" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Kitchen%20Deep%20Cleaning.">Get a quote</a>
+                <a class="svc-more" href="service-page/kitchen-deep-clean.html">Details</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="svc-card" data-svc="Bathroom Deep Cleaning" data-cat="home">
+            <div class="svc-card_img"><img src="assets/img/services/bathroom-deep-cleaning.jpg" alt="Bathroom deep cleaning" loading="lazy"></div>
+            <div class="svc-card_body">
+              <h3 class="svc-card_name">Bathroom Deep Cleaning</h3>
+              <p class="svc-card_desc">Mould-free, sanitised tiles, fittings, grout and glass.</p>
+              <div class="svc-card_actions">
+                <a class="svc-wa" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Bathroom%20Deep%20Cleaning.">Get a quote</a>
+                <a class="svc-more" href="service-page/bathroom-deep-cleaning.html">Details</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="svc-card" data-svc="Sofa Dry Cleaning" data-cat="fabric">
+            <div class="svc-card_img"><img src="assets/img/services/sofa-dry-cleaning.jpg" alt="Sofa dry cleaning" loading="lazy"></div>
+            <div class="svc-card_body">
+              <h3 class="svc-card_name">Sofa Dry Cleaning</h3>
+              <p class="svc-card_desc">Deep stain extraction — no harsh smells, same-day dry.</p>
+              <div class="svc-card_actions">
+                <a class="svc-wa" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Sofa%20Dry%20Cleaning.">Get a quote</a>
+                <a class="svc-more" href="service-page/sofa-dry-cleaning.html">Details</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="svc-card" data-svc="Carpet and Steam Cleaning" data-cat="fabric">
+            <div class="svc-card_img"><img src="assets/img/services/carpet-steam-cleaning.jpg" alt="Carpet steam cleaning" loading="lazy"></div>
+            <div class="svc-card_body">
+              <h3 class="svc-card_name">Carpet &amp; Steam Cleaning</h3>
+              <p class="svc-card_desc">Hot-water extraction — 99% of bacteria and dust mites gone.</p>
+              <div class="svc-card_actions">
+                <a class="svc-wa" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Carpet%20Steam%20Cleaning.">Get a quote</a>
+                <a class="svc-more" href="service-page/carpet-steam-cleaning.html">Details</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="svc-card" data-svc="Floor Renew" data-cat="home">
+            <div class="svc-card_img"><img src="assets/img/services/floor-renew.jpg" alt="Floor renew" loading="lazy"></div>
+            <div class="svc-card_body">
+              <h3 class="svc-card_name">Floor Renew</h3>
+              <p class="svc-card_desc">Marble, tiles &amp; wood — deep scrubbed, polished, protected.</p>
+              <div class="svc-card_actions">
+                <a class="svc-wa" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Floor%20Renew.">Get a quote</a>
+                <a class="svc-more" href="service-page/floor-renew.html">Details</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="svc-card" data-svc="AC Cleaning and Servicing" data-cat="tech">
+            <div class="svc-card_img"><img src="assets/img/services/ac-services.jpg" alt="AC cleaning" loading="lazy"></div>
+            <div class="svc-card_body">
+              <h3 class="svc-card_name">AC Cleaning &amp; Servicing</h3>
+              <p class="svc-card_desc">Filters, coils &amp; fins cleaned — cooler air, lower bills.</p>
+              <div class="svc-card_actions">
+                <a class="svc-wa" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20AC%20Cleaning.">Get a quote</a>
+                <a class="svc-more" href="service-page/ac-services.html">Details</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="svc-card" data-svc="Chimney Cleaning" data-cat="tech">
+            <div class="svc-card_img"><img src="assets/img/services/chimney-cleaning.jpg" alt="Chimney cleaning" loading="lazy"></div>
+            <div class="svc-card_body">
+              <h3 class="svc-card_name">Chimney Cleaning</h3>
+              <p class="svc-card_desc">Degreased filters &amp; ducts — fresh kitchen, safer cooking.</p>
+              <div class="svc-card_actions">
+                <a class="svc-wa" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Chimney%20Cleaning.">Get a quote</a>
+                <a class="svc-more" href="service-page/chimney-cleaning.html">Details</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="svc-card" data-svc="Commercial Cleaning" data-cat="commercial">
+            <div class="svc-card_img"><img src="assets/img/services/commercial-cleaning.jpg" alt="Commercial cleaning" loading="lazy"></div>
+            <div class="svc-card_body">
+              <h3 class="svc-card_name">Commercial Cleaning</h3>
+              <p class="svc-card_desc">Offices, schools &amp; restaurants — daily, weekly or one-off.</p>
+              <div class="svc-card_actions">
+                <a class="svc-wa" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Commercial%20Cleaning.">Get a quote</a>
+                <a class="svc-more" href="service-page/commercial-cleaning.html">Details</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <p class="svc-empty" id="svc-empty" hidden>No services match your search. Try another term or message us directly.</p>
+
+      </div>
+    </section>
+
+    <!-- ============ SCREEN: REVIEWS ============ -->
+    <section class="app-screen" data-screen="reviews" id="reviews">
+      <div class="screen-pad">
+
+        <div class="screen-head">
+          <h2 class="screen-title">Reviews</h2>
+          <p class="screen-sub">Real feedback from real customers across Jalandhar.</p>
+        </div>
+
+        <!-- Rating summary -->
+        <div class="rating-card">
+          <div class="rating-big">4.9</div>
+          <div class="rating-meta">
+            <div class="rating-stars" aria-label="4.9 out of 5 stars">★★★★★</div>
+            <p>Rated 4.9 out of 5 from 219 Google reviews</p>
+            <a class="rating-write" href="https://search.google.com/local/writereview?placeid=ChIJ1zZzOUtbaR4RXbMy1OZsKsI">Write a review →</a>
+          </div>
+        </div>
+
+        <!-- Review cards -->
+        <div class="rev-list">
+          <article class="rev-card">
+            <div class="rev-head">
+              <span class="rev-avatar">NV</span>
+              <div><strong>Neha Verma</strong><p class="rev-date">Google review · ★★★★★</p></div>
+            </div>
+            <p class="rev-text">"We are so grateful to CleanNest for helping us clean up our home after the flood. Their team responded quickly, provided excellent service, and completed the work efficiently. The charges were very reasonable, and the quality of service was outstanding. Truly the best experience — highly recommended!"</p>
+          </article>
+
+          <article class="rev-card">
+            <div class="rev-head">
+              <span class="rev-avatar">GK</span>
+              <div><strong>Gurpreet K.</strong><p class="rev-date">Google review · ★★★★★</p></div>
+            </div>
+            <p class="rev-text">"Best sofa dry cleaning service I ever received."</p>
+          </article>
+
+          <article class="rev-card">
+            <div class="rev-head">
+              <span class="rev-avatar">RS</span>
+              <div><strong>Rajinder S.</strong><p class="rev-date">Google review · ★★★★★</p></div>
+            </div>
+            <p class="rev-text">"No harsh smells, just a fresh and hygienic environment."</p>
+          </article>
+        </div>
+
+        <a class="btn-outline" href="https://www.google.com/maps/search/?api=1&query=CleanNest+Wadala+Rd+Jalandhar">See all reviews on Google</a>
+
+      </div>
+    </section>
+
+    <!-- ============ SCREEN: ABOUT ============ -->
+    <section class="app-screen" data-screen="about" id="about">
+      <div class="screen-pad">
+
+        <div class="screen-head">
+          <h2 class="screen-title">About CleanNest</h2>
+          <p class="screen-sub">Jalandhar's top-rated deep cleaning team.</p>
+        </div>
+
+        <!-- About blurb -->
+        <div class="about-blurb">
+          <p>CleanNest is a professional deep cleaning company in Jalandhar — rated 4.9/5 by 219 Google reviews. We serve homes, offices, schools and restaurants using high-quality machines and products, and genuine care in every space we clean.</p>
+          <p>Every space is unique, which is why we provide customised cleaning solutions tailored to your needs. Our commitment: exceptional customer service and complete satisfaction — if you're not happy with the cleaning, we return and fix it at no extra charge.</p>
+        </div>
+
+        <!-- Why cards -->
+        <div class="why-grid">
+          <div class="why-card">
+            <div class="why-icon">🧼</div>
+            <h3>Eco-friendly by default</h3>
+            <p>Products safe for your home, your family and your pets.</p>
+          </div>
+          <div class="why-card">
+            <div class="why-icon">🛡️</div>
+            <h3>Satisfaction guaranteed</h3>
+            <p>Not satisfied? We return and resolve it at no extra charge.</p>
+          </div>
+          <div class="why-card">
+            <div class="why-icon">👷</div>
+            <h3>Trained, respectful staff</h3>
+            <p>Verified professionals who treat your home with care.</p>
+          </div>
+          <div class="why-card">
+            <div class="why-icon">📅</div>
+            <h3>Flexible scheduling</h3>
+            <p>One-time or regular — available 7 days a week.</p>
+          </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-row">
+          <div class="stat"><strong data-count="1000">0</strong><span>Happy customers</span></div>
+          <div class="stat"><strong data-count="50">0</strong><span>Commercial clients</span></div>
+          <div class="stat"><strong>4.9★</strong><span>Google rating</span></div>
+          <div class="stat"><strong data-count="7">0</strong><span>Days a week</span></div>
+        </div>
+
+        <!-- Cities -->
+        <div class="cities-card">
+          <h3 class="cities-title">We serve across Punjab</h3>
+          <div class="city-chips">
+            <span>Jalandhar</span><span>Phagwara</span><span>Kapurthala</span><span>Hoshiarpur</span><span>Nakodar</span><span>Goraya</span><span>Adampur</span><span>Kartarpur</span><span>Sultanpur Lodhi</span><span>Nawanshahr</span><span>Phillaur</span><span>Ludhiana</span>
+          </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="faq-block">
+          <h3 class="faq-title">Frequently asked questions</h3>
+
+          <details class="faq-item">
+            <summary>Are your cleaning products safe for my family and pets?</summary>
+            <p>Yes. At CleanNest we use eco-friendly products that are safe for your home and the environment — ideal for families and pet owners.</p>
+          </details>
+          <details class="faq-item">
+            <summary>What if I'm not happy with the cleaning?</summary>
+            <p>We will return and resolve the issue at no extra charge. That's our commitment.</p>
+          </details>
+          <details class="faq-item">
+            <summary>How do I book and pay?</summary>
+            <p>Message us on WhatsApp, call us, or use the booking form. You get an exact quote and approve it before we start. No booking fee, no advance payment.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Which cities do you serve?</summary>
+            <p>Jalandhar, Phagwara, Kapurthala, Hoshiarpur, Nakodar, Goraya, Adampur, Kartarpur, Sultanpur Lodhi, Nawanshahr, Phillaur and Ludhiana — plus nearby cities across Punjab.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Do I need to provide products or equipment?</summary>
+            <p>No. We bring the professional equipment and eco-friendly products needed for the job.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Is carpet &amp; steam cleaning safe for kids and pets?</summary>
+            <p>Yes. Hot-water extraction removes 99% of bacteria, dust mites and deep-set dirt, and carpets dry quickly.</p>
+          </details>
+
+          <a class="faq-more" href="faq.html">See all FAQ →</a>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-card">
+          <h2 class="cta-card_title">Book your clean today</h2>
+          <p class="cta-card_sub">Free quote on WhatsApp — no booking fee, no advance payment.</p>
+          <a class="btn-wa" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20free%20quote.">
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm3.6 13.9c-.2.6-1.2 1.2-1.8 1.3-.5 0-1.1.2-3.7-.8-3.2-1.2-5.2-4.4-5.3-4.6-.1-.2-1.3-1.7-1.3-3.2 0-1.5.8-2.3 1-2.6.3-.3.6-.4.8-.4h.6c.2 0 .4-.1.7.5l.9 2.3c.1.2.1.5-.1.7l-.5.7c-.2.2-.3.4-.1.7.2.3 1 1.7 2.2 2.7 1.6 1.3 2.8 1.8 3.3 2 .4.2.6.1.9-.1l1.1-1.4c.2-.3.5-.2.8-.1l2.3 1.1c.4.2.6.3.7.4.1.3.1 1-.1 1.5z"/></svg>
+            Book on WhatsApp
+          </a>
+        </div>
+
+        <!-- Footer (inside app) -->
+        <footer class="app-footer">
+          <img class="app-footer_logo" src="assets/img/logo-cn.png" alt="CleanNest">
+          <p class="app-footer_nap">Shop 3, Wadala Rd, Jalandhar, Punjab 144003<br>
+            <a href="tel:+917610000654">+91 76100 00654</a> · <a href="mailto:cleannestclub@gmail.com">cleannestclub@gmail.com</a><br>
+            <a href="https://www.instagram.com/cleannest.co">@cleannest.co</a>
+          </p>
+          <nav class="app-footer_links">
+            <a href="blog.html">Blog</a>
+            <a href="book.html">Book Online</a>
+            <a href="contact.html">Contact</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+            <a href="refund.html">Refund Policy</a>
+          </nav>
+          <p class="app-footer_copy">© <span class="year">2026</span> CleanNest, Jalandhar. All rights reserved.</p>
+        </footer>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ BOTTOM NAV ============ -->
+  <nav class="bottom-nav" aria-label="App navigation">
+    <button class="bn-item is-active" data-screen="home">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9 21v-6h6v6"/></svg>
+      <span>Home</span>
+    </button>
+    <button class="bn-item" data-screen="services">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="2"/><rect x="14" y="3" width="7" height="7" rx="2"/><rect x="3" y="14" width="7" height="7" rx="2"/><rect x="14" y="14" width="7" height="7" rx="2"/></svg>
+      <span>Services</span>
+    </button>
+    <button class="bn-item bn-wa" data-screen="wa" aria-label="Book on WhatsApp">
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm3.6 13.9c-.2.6-1.2 1.2-1.8 1.3-.5 0-1.1.2-3.7-.8-3.2-1.2-5.2-4.4-5.3-4.6-.1-.2-1.3-1.7-1.3-3.2 0-1.5.8-2.3 1-2.6.3-.3.6-.4.8-.4h.6c.2 0 .4-.1.7.5l.9 2.3c.1.2.1.5-.1.7l-.5.7c-.2.2-.3.4-.1.7.2.3 1 1.7 2.2 2.7 1.6 1.3 2.8 1.8 3.3 2 .4.2.6.1.9-.1l1.1-1.4c.2-.3.5-.2.8-.1l2.3 1.1c.4.2.6.3.7.4.1.3.1 1-.1 1.5z"/></svg>
+      <span>Book</span>
+    </button>
+    <button class="bn-item" data-screen="reviews">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.7 5.5 6 .9-4.3 4.2 1 6-5.4-2.9L6.6 19.6l1-6L3.3 9.4l6-.9L12 3z"/></svg>
+      <span>Reviews</span>
+    </button>
+    <button class="bn-item" data-screen="about">
+      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg>
+      <span>About</span>
+    </button>
+  </nav>
+
 </div>
 
-<!-- ============ TRANSITION ============ -->
-<div class="transition" data-transition aria-hidden="true">
-  <div class="transition_over"></div>
-  <div class="transition_column"><div class="transition_cell"></div></div>
-  <div class="transition_column"><div class="transition_cell"></div></div>
-  <div class="transition_column"><div class="transition_cell"></div></div>
-  <div class="transition_column"><div class="transition_cell"></div></div>
-</div>
-
-<main class="main" data-barba="wrapper">
-
-<!-- ============ HERO ============ -->
-<section id="hero" class="section theme_on-dark clip">
-  <div class="container">
-    <div class="hero-scroll-area" data-scroll-video-container>
-      <div class="mob_hero-w_bg b-mob">
-        <div class="mob_hero-w_bg_img">
-          <div class="img-w">
-            <img class="hero-img" src="assets/img/services/full-house-cleaning.jpg" alt="CleanNest professional deep cleaning team at work">
-          </div>
-          <div class="over-gradient-top"></div>
-          <div class="over-gradient-bot"></div>
-          <div class="over"></div>
-        </div>
-      </div>
-      <div class="hero-w">
-        <div class="hero-s">
-          <div class="grid">
-            <div class="hero-s_content">
-              <div class="grid _10-columns">
-                <div class="hero-s_content_title">
-                  <h1 class="p3 text-dark a-center" data-intro>PREMIUM DEEP CLEANING</h1>
-                </div>
-              </div>
-              <div class="u-72"></div>
-              <div class="hero-s_content_logo">
-                <div class="logo-w">
-                  <div class="hero-s_content_logo_c">
-                    <img class="logo" src="assets/img/logo.svg" alt="CleanNest">
-                  </div>
-                </div>
-              </div>
-              <div class="u-72"></div>
-              <div class="grid _10-columns" data-intro>
-                <div class="hero-s_content_info-l">
-                  <p class="p5 text-dark">Jalandhar</p>
-                  <div class="p6-list">
-                    <div class="hero-s_content_info-l_logo">
-                      <div class="ico-20"><img src="assets/img/logo-emblem.png" alt=""></div>
-                    </div>
-                    <p class="p5 text-dark">Punjab, India</p>
-                  </div>
-                </div>
-                <div class="hero-s_content_info-c b-desk">
-                  <h2 class="p5 text-dark a-center">Rated 4.9★ on Google<br>— 219 reviews</h2>
-                </div>
-                <div class="hero-s_content_info-r">
-                  <p class="p5 text-dark a-right">Est. Jalandhar<br>Since day one</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="hero-s_btn" data-intro>
-            <div class="modal-trigger">
-              <div class="b-mob">
-                <a class="btn-circle w-inline-block" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20free%20quote." data-magnetic-strength>
-                  <div class="btn-circle_bg"></div>
-                  <div class="btn-circle_label" data-magnetic-inner-target>
-                    <div class="btn-circle_label_text">
-                      <div class="p6 text-dark">Free quote</div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-              <div class="b-desk">
-                <a class="btn-circle w-inline-block" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20free%20quote." data-magnetic-strength>
-                  <div class="btn-circle_bg"></div>
-                  <div class="btn-circle_label" data-magnetic-inner-target>
-                    <div class="btn-circle_label_text">
-                      <div class="p6 text-dark">Free quote</div>
-                    </div>
-                  </div>
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="hero-w_bg b-desk" data-intro>
-          <div class="img-w">
-            <img class="hero-img" data-hero-img src="assets/img/services/full-house-cleaning.jpg" alt="CleanNest professional deep cleaning team at work" parallax="img">
-          </div>
-          <div class="over-gradient-top"></div>
-          <div class="over-gradient-bot"></div>
-          <div class="over"></div>
-        </div>
-      </div>
-      <div class="hero-w_scene-over">
-        <div class="hero-w_scene-over_c">
-          <canvas class="scene" data-intro-over-scene width="40" height="40"></canvas>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ PROLOG ============ -->
-<section id="prolog" bg="dark" class="section bg-light theme_on-dark">
-  <div class="container">
-    <div class="prolog-w">
-      <div class="prolog-s">
-        <div class="grid fill">
-          <div class="about-s_content">
-            <div class="u-136"></div>
-            <div class="title" data-scroll-reveal="w">
-              <div class="title_stars text-dark">
-                <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-              </div>
-              <h2 class="p6 text-dark a-center" data-scroll-reveal="p">Prologue</h2>
-              <div class="title_stars text-dark">
-                <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-              </div>
-            </div>
-            <div class="u-32"></div>
-            <div class="about-s_content_lead">
-              <h3 class="h3 text-dark a-center" data-scroll-reveal="h">«Here, in your home, a spotless clean becomes part of a bigger promise. You get back your time, your calm, and a space that feels brand new.»</h3>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ ABOUT ============ -->
-<section id="about" bg="light" class="section bg-light theme_on-light">
-  <div class="container">
-    <div class="about-w">
-      <div class="about-s">
-        <div class="about-s_content">
-          <div class="u-136"></div>
-          <div class="title" data-scroll-reveal="w">
-            <div class="title_stars text-dark">
-              <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-              <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-              <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-            </div>
-            <h2 class="p6 text-dark a-center" data-scroll-reveal="p">About us</h2>
-            <div class="title_stars text-dark">
-              <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-              <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-              <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-            </div>
-          </div>
-          <div class="u-32"></div>
-          <h3 class="about-s_title h4 text-dark a-center" data-scroll-reveal="h">CleanNest — premium deep cleaning in the heart of Jalandhar</h3>
-          <div class="u-48"></div>
-          <div class="grid _10-columns">
-            <div class="about-s_about">
-              <h4 class="p6 text-dark" data-scroll-reveal="p">Who we are</h4>
-              <p class="p5 text-dark" data-scroll-reveal="p">CleanNest is Jalandhar's top-rated professional deep cleaning team — 4.9/5 on Google from 219 reviews, 1000+ happy customers. We combine modern equipment, eco-friendly products and genuine care in every space we clean.</p>
-            </div>
-            <div class="about-s_about">
-              <h4 class="p6 text-dark" data-scroll-reveal="p">Concept</h4>
-              <p class="p5 text-dark" data-scroll-reveal="p">Every space is unique, so we provide customised cleaning solutions — from full-house deep cleans to kitchen, bathroom, chimney, AC, carpet, sofa and floor care, plus commercial contracts. Done properly, on time, every time.</p>
-            </div>
-          </div>
-          <div class="u-48"></div>
-          <div class="about-s_btn" data-scroll-reveal="ctn">
-            <a class="btn" href="about.html" hover-btn>
-              <div class="btn_label"><div class="btn_label_text"><div class="p6 text-light">About CleanNest</div></div></div>
-              <div class="btn_hover" hover="hover"></div>
-              <div class="btn_bg" hover="bg"></div>
-            </a>
-          </div>
-        </div>
-        <div class="about-s_img" data-scroll-reveal="w">
-          <div class="img-w">
-            <img src="assets/img/services/commercial-cleaning.jpg" alt="CleanNest team deep cleaning a modern office" parallax="img">
-          </div>
-          <div class="about-s_img_transition">
-            <img src="assets/img/logo-emblem.png" alt="">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ LOCATION ============ -->
-<section id="location" bg="dark" class="section bg-light theme_on-dark">
-  <div class="container">
-    <div class="location-w">
-      <div class="location-s">
-        <div class="location-s_content">
-          <div class="u-136"></div>
-          <div class="title" data-scroll-reveal="w">
-            <div class="title_stars text-dark">
-              <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-              <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-              <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-            </div>
-            <h2 class="p6 text-dark a-center" data-scroll-reveal="p">Coverage</h2>
-            <div class="title_stars text-dark">
-              <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-              <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-              <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-            </div>
-          </div>
-          <div class="u-32"></div>
-          <h3 class="location-s_title h3 text-dark a-center" data-scroll-reveal="h">Where clean speaks for itself</h3>
-          <div class="u-48"></div>
-          <div class="location-s_desc">
-            <p class="p5 text-dark a-center" data-scroll-reveal="p">CleanNest is based in Jalandhar and serves homes, offices, schools and restaurants across the Doaba region — from Phagwara to Ludhiana, our crew is minutes away from you.</p>
-          </div>
-        </div>
-        <div class="location-s_map" data-scroll-reveal="ctn">
-          <svg class="map-svg" viewBox="0 0 1200 640" role="img" aria-label="Service area map around Jalandhar, Punjab">
-            <defs>
-              <radialGradient id="mapGlow" cx="50%" cy="50%" r="55%">
-                <stop offset="0%" stop-color="#0CD7E5" stop-opacity="0.22"/>
-                <stop offset="70%" stop-color="#0CD7E5" stop-opacity="0.06"/>
-                <stop offset="100%" stop-color="#0CD7E5" stop-opacity="0"/>
-              </radialGradient>
-            </defs>
-            <rect width="1200" height="640" fill="url(#mapGlow)"/>
-            <g class="map-rings" stroke="#0CD7E5" stroke-opacity="0.25" fill="none">
-              <circle cx="600" cy="320" r="90"/>
-              <circle cx="600" cy="320" r="180"/>
-              <circle cx="600" cy="320" r="270"/>
-            </g>
-            <g class="map-pin" transform="translate(600,320)">
-              <circle r="14" fill="#0CD7E5" opacity="0.25"/>
-              <circle r="6" fill="#0CD7E5"/>
-            </g>
-            <g class="map-label" transform="translate(600,298)" text-anchor="middle"><text x="0" y="0" fill="#0CD7E5" font-size="20" font-weight="600">Jalandhar</text><text x="0" y="22" fill="currentColor" opacity="0.6" font-size="14">HQ · 0 min</text></g>
-            <g class="map-pin" transform="translate(700,250)">
-              <circle r="12" fill="#0CD7E5" opacity="0.22"/>
-              <circle r="5" fill="#0CD7E5"/>
-            </g>
-            <g class="map-label" transform="translate(716,236)" text-anchor="start"><text x="0" y="0" fill="currentColor" font-size="17">Phagwara</text><text x="0" y="20" fill="currentColor" opacity="0.6" font-size="13">30 min</text></g>
-            <g class="map-pin" transform="translate(470,240)">
-              <circle r="12" fill="#0CD7E5" opacity="0.22"/>
-              <circle r="5" fill="#0CD7E5"/>
-            </g>
-            <g class="map-label" transform="translate(452,226)" text-anchor="end"><text x="0" y="0" fill="currentColor" font-size="17">Kapurthala</text><text x="0" y="20" fill="currentColor" opacity="0.6" font-size="13">30 min</text></g>
-            <g class="map-pin" transform="translate(540,180)">
-              <circle r="12" fill="#0CD7E5" opacity="0.22"/>
-              <circle r="5" fill="#0CD7E5"/>
-            </g>
-            <g class="map-label" transform="translate(540,164)" text-anchor="middle"><text x="0" y="0" fill="currentColor" font-size="17">Adampur</text><text x="0" y="20" fill="currentColor" opacity="0.6" font-size="13">20 min</text></g>
-            <g class="map-pin" transform="translate(760,320)">
-              <circle r="12" fill="#0CD7E5" opacity="0.22"/>
-              <circle r="5" fill="#0CD7E5"/>
-            </g>
-            <g class="map-label" transform="translate(778,306)" text-anchor="start"><text x="0" y="0" fill="currentColor" font-size="17">Goraya</text><text x="0" y="20" fill="currentColor" opacity="0.6" font-size="13">25 min</text></g>
-            <g class="map-pin" transform="translate(660,410)">
-              <circle r="12" fill="#0CD7E5" opacity="0.22"/>
-              <circle r="5" fill="#0CD7E5"/>
-            </g>
-            <g class="map-label" transform="translate(678,396)" text-anchor="start"><text x="0" y="0" fill="currentColor" font-size="17">Nakodar</text><text x="0" y="20" fill="currentColor" opacity="0.6" font-size="13">25 min</text></g>
-            <g class="map-pin" transform="translate(840,420)">
-              <circle r="12" fill="#0CD7E5" opacity="0.22"/>
-              <circle r="5" fill="#0CD7E5"/>
-            </g>
-            <g class="map-label" transform="translate(858,406)" text-anchor="start"><text x="0" y="0" fill="currentColor" font-size="17">Ludhiana</text><text x="0" y="20" fill="currentColor" opacity="0.6" font-size="13">60 min</text></g>
-          </svg>
-        </div>
-        <div class="location-s_infra">
-          <div class="grid _6-columns">
-            <div class="infra-card" data-scroll-reveal="card">
-              <div class="infra-card_num"><h4 class="h4 text-dark" data-count="30">0</h4><div class="p6 text-dark">min</div></div>
-              <p class="p6 text-dark">Drive to Phagwara</p>
-            </div>
-            <div class="infra-card" data-scroll-reveal="card">
-              <div class="infra-card_num"><h4 class="h4 text-dark" data-count="30">0</h4><div class="p6 text-dark">min</div></div>
-              <p class="p6 text-dark">Drive to Kapurthala</p>
-            </div>
-            <div class="infra-card" data-scroll-reveal="card">
-              <div class="infra-card_num"><h4 class="h4 text-dark" data-count="25">0</h4><div class="p6 text-dark">min</div></div>
-              <p class="p6 text-dark">Drive to Nakodar</p>
-            </div>
-            <div class="infra-card" data-scroll-reveal="card">
-              <div class="infra-card_num"><h4 class="h4 text-dark" data-count="20">0</h4><div class="p6 text-dark">min</div></div>
-              <p class="p6 text-dark">Drive to Adampur</p>
-            </div>
-            <div class="infra-card" data-scroll-reveal="card">
-              <div class="infra-card_num"><h4 class="h4 text-dark" data-count="25">0</h4><div class="p6 text-dark">min</div></div>
-              <p class="p6 text-dark">Drive to Goraya</p>
-            </div>
-            <div class="infra-card" data-scroll-reveal="card">
-              <div class="infra-card_num"><h4 class="h4 text-dark" data-count="60">0</h4><div class="p6 text-dark">min</div></div>
-              <p class="p6 text-dark">Drive to Ludhiana</p>
-            </div>
-          </div>
-        </div>
-        <div class="location-s_address">
-          <p class="p6 text-dark a-center" data-scroll-reveal="p">Shop 3, Wadala Rd, Jalandhar, Punjab 144003</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ SERVICES / BENEFITS ============ -->
-<section id="services" class="section">
-  <div class="container">
-    <div class="benefits-w">
-      <div class="benefits-s">
-        <div class="benefits-s_intro-gap b-desk"></div>
-        <div class="benefits-s_title-w">
-          <div class="grid">
-            <div class="benefits-s_title">
-              <div class="title">
-                <div class="title_stars text-dark">
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                </div>
-                <h2 class="p6 text-dark a-center" data-scroll-reveal="p">Services</h2>
-                <div class="title_stars text-dark">
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                </div>
-              </div>
-              <div class="u-32"></div>
-              <h3 class="h3 text-dark a-center" data-scroll-reveal="h">What makes CleanNest different</h3>
-            </div>
-          </div>
-        </div>
-        <div class="benefits-s_gap" id="benefits"></div>
-        <div class="benefits-s_cms">
-          <div class="benefits-cms">
-            <div class="benefits-cms_list">
-
-              <!-- 1 -->
-              <div class="benefits-cms_list_item benefit-h-is-1" data-scroll-reveal="card">
-                <div class="benefit-card theme_on-color test">
-                  <div class="benefit-card_name">
-                    <div class="benefit-card_name_c">
-                      <h4 class="p6 text-dark">Full House Cleaning</h4>
-                    </div>
-                    <div class="benefit-card_btn">
-                      <div class="btn-list">
-                        <div class="btn-ico">
-                          <a class="btn-ico_link w-inline-block" href="service-page/full-house-cleaning.html" aria-label="Full House Cleaning details"></a>
-                          <div class="ico-16">
-                            <div class="btn-ico_icon text-dark">
-                              <div class="ico">
-                                <svg class="ico-plus_hor" viewBox="0 0 16 16"><path d="M0 7h16v2H0z" fill="currentColor"/></svg>
-                                <svg class="ico-plus_ver" viewBox="0 0 16 16"><path d="M7 0h2v16H7z" fill="currentColor"/></svg>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="btn-ico_bg sec"><div class="btn-ico_bg_fill prim"></div></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="benefit-card_info theme_on-dark scrollbar-none" data-lenis-scroll>
-                    <div class="benefit-card_info_title">
-                      <h5 class="h6 text-dark">Every room, top to bottom</h5>
-                    </div>
-                    <div class="u-48"></div>
-                    <div class="benefit-card_info_line"><div class="divider" data-prevent-flicker="true" data-scroll-reveal="line"><div class="line-l"></div><div class="line-s"></div></div></div>
-                    <div class="u-48"></div>
-                    <div class="benefit-card_info_list">
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Living, bedrooms, kitchen &amp; bathrooms</p></div>
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Walls, fans, windows &amp; floors</p></div>
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Dusting, vacuuming &amp; mopping</p></div>
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Eco-friendly products, machines included</p></div>
-                    </div>
-                    <div class="u-48"></div>
-                    <div class="benefit-card_info_bot">
-                      <a class="btn-ico_link_text" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Full%20House%20Cleaning.">Get a quote</a>
-                    </div>
-                  </div>
-                  <div class="benefit-card_bg">
-                    <img src="assets/img/services/full-house-cleaning.jpg" alt="Full house deep cleaning in Jalandhar">
-                  </div>
-                </div>
-              </div>
-
-              <!-- 2 -->
-              <div class="benefits-cms_list_item benefit-v-is-1" data-scroll-reveal="card">
-                <div class="benefit-card theme_on-color test">
-                  <div class="benefit-card_name">
-                    <div class="benefit-card_name_c">
-                      <h4 class="p6 text-dark">Kitchen Deep Cleaning</h4>
-                    </div>
-                    <div class="benefit-card_btn">
-                      <div class="btn-list">
-                        <div class="btn-ico">
-                          <a class="btn-ico_link w-inline-block" href="service-page/kitchen-deep-clean.html" aria-label="Kitchen Deep Cleaning details"></a>
-                          <div class="ico-16">
-                            <div class="btn-ico_icon text-dark">
-                              <div class="ico">
-                                <svg class="ico-plus_hor" viewBox="0 0 16 16"><path d="M0 7h16v2H0z" fill="currentColor"/></svg>
-                                <svg class="ico-plus_ver" viewBox="0 0 16 16"><path d="M7 0h2v16H7z" fill="currentColor"/></svg>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="btn-ico_bg sec"><div class="btn-ico_bg_fill prim"></div></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="benefit-card_info theme_on-dark scrollbar-none" data-lenis-scroll>
-                    <div class="benefit-card_info_title">
-                      <h5 class="h6 text-dark">Degreased, sanitised, fresh</h5>
-                    </div>
-                    <div class="u-48"></div>
-                    <div class="benefit-card_info_line"><div class="divider" data-prevent-flicker="true" data-scroll-reveal="line"><div class="line-l"></div><div class="line-s"></div></div></div>
-                    <div class="u-48"></div>
-                    <div class="benefit-card_info_list">
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Stove, hob &amp; chimney degreasing</p></div>
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Cabinets inside &amp; out</p></div>
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Tiles, backsplash &amp; grout</p></div>
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Sink, taps &amp; countertops</p></div>
-                    </div>
-                    <div class="u-48"></div>
-                    <div class="benefit-card_info_bot">
-                      <a class="btn-ico_link_text" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Kitchen%20Deep%20Cleaning.">Get a quote</a>
-                    </div>
-                  </div>
-                  <div class="benefit-card_bg">
-                    <img src="assets/img/services/kitchen-deep-cleaning.jpg" alt="Kitchen deep cleaning Jalandhar">
-                  </div>
-                </div>
-              </div>
-
-              <!-- 3 -->
-              <div class="benefits-cms_list_item benefit-h-is-2" data-scroll-reveal="card">
-                <div class="benefit-card theme_on-color test">
-                  <div class="benefit-card_name">
-                    <div class="benefit-card_name_c">
-                      <h4 class="p6 text-dark">Bathroom Deep Cleaning</h4>
-                    </div>
-                    <div class="benefit-card_btn">
-                      <div class="btn-list">
-                        <div class="btn-ico">
-                          <a class="btn-ico_link w-inline-block" href="service-page/bathroom-deep-cleaning.html" aria-label="Bathroom Deep Cleaning details"></a>
-                          <div class="ico-16">
-                            <div class="btn-ico_icon text-dark">
-                              <div class="ico">
-                                <svg class="ico-plus_hor" viewBox="0 0 16 16"><path d="M0 7h16v2H0z" fill="currentColor"/></svg>
-                                <svg class="ico-plus_ver" viewBox="0 0 16 16"><path d="M7 0h2v16H7z" fill="currentColor"/></svg>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="btn-ico_bg sec"><div class="btn-ico_bg_fill prim"></div></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="benefit-card_info theme_on-dark scrollbar-none" data-lenis-scroll>
-                    <div class="benefit-card_info_title">
-                      <h5 class="h6 text-dark">Mould-free, sparkling tiles</h5>
-                    </div>
-                    <div class="u-48"></div>
-                    <div class="benefit-card_info_line"><div class="divider" data-prevent-flicker="true" data-scroll-reveal="line"><div class="line-l"></div><div class="line-s"></div></div></div>
-                    <div class="u-48"></div>
-                    <div class="benefit-card_info_list">
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Mould &amp; limescale removal</p></div>
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Sanitised fittings &amp; fixtures</p></div>
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Grout lines &amp; glass screens</p></div>
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Hospital-grade sanitisers</p></div>
-                    </div>
-                    <div class="u-48"></div>
-                    <div class="benefit-card_info_bot">
-                      <a class="btn-ico_link_text" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Bathroom%20Deep%20Cleaning.">Get a quote</a>
-                    </div>
-                  </div>
-                  <div class="benefit-card_bg">
-                    <img src="assets/img/services/bathroom-deep-cleaning.jpg" alt="Bathroom deep cleaning Jalandhar">
-                  </div>
-                </div>
-              </div>
-
-              <!-- 4 -->
-              <div class="benefits-cms_list_item benefit-v-is-2" data-scroll-reveal="card">
-                <div class="benefit-card theme_on-color test">
-                  <div class="benefit-card_name">
-                    <div class="benefit-card_name_c">
-                      <h4 class="p6 text-dark">Sofa Dry Cleaning</h4>
-                    </div>
-                    <div class="benefit-card_btn">
-                      <div class="btn-list">
-                        <div class="btn-ico">
-                          <a class="btn-ico_link w-inline-block" href="service-page/sofa-dry-cleaning.html" aria-label="Sofa Dry Cleaning details"></a>
-                          <div class="ico-16">
-                            <div class="btn-ico_icon text-dark">
-                              <div class="ico">
-                                <svg class="ico-plus_hor" viewBox="0 0 16 16"><path d="M0 7h16v2H0z" fill="currentColor"/></svg>
-                                <svg class="ico-plus_ver" viewBox="0 0 16 16"><path d="M7 0h2v16H7z" fill="currentColor"/></svg>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="btn-ico_bg sec"><div class="btn-ico_bg_fill prim"></div></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="benefit-card_info theme_on-dark scrollbar-none" data-lenis-scroll>
-                    <div class="benefit-card_info_title">
-                      <h5 class="h6 text-dark">Stains out, fabric safe</h5>
-                    </div>
-                    <div class="u-48"></div>
-                    <div class="benefit-card_info_line"><div class="divider" data-prevent-flicker="true" data-scroll-reveal="line"><div class="line-l"></div><div class="line-s"></div></div></div>
-                    <div class="u-48"></div>
-                    <div class="benefit-card_info_list">
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Deep stain extraction</p></div>
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">No harsh chemical smells</p></div>
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Quick drying, same-day use</p></div>
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Safe for all upholstery</p></div>
-                    </div>
-                    <div class="u-48"></div>
-                    <div class="benefit-card_info_bot">
-                      <a class="btn-ico_link_text" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Sofa%20Dry%20Cleaning.">Get a quote</a>
-                    </div>
-                  </div>
-                  <div class="benefit-card_bg">
-                    <img src="assets/img/services/sofa-dry-cleaning.jpg" alt="Sofa dry cleaning Jalandhar">
-                  </div>
-                </div>
-              </div>
-
-              <!-- 5 -->
-              <div class="benefits-cms_list_item benefit-h-is-3" data-scroll-reveal="card">
-                <div class="benefit-card theme_on-color test">
-                  <div class="benefit-card_name">
-                    <div class="benefit-card_name_c">
-                      <h4 class="p6 text-dark">Carpet &amp; Steam Cleaning</h4>
-                    </div>
-                    <div class="benefit-card_btn">
-                      <div class="btn-list">
-                        <div class="btn-ico">
-                          <a class="btn-ico_link w-inline-block" href="service-page/carpet-steam-cleaning.html" aria-label="Carpet and Steam Cleaning details"></a>
-                          <div class="ico-16">
-                            <div class="btn-ico_icon text-dark">
-                              <div class="ico">
-                                <svg class="ico-plus_hor" viewBox="0 0 16 16"><path d="M0 7h16v2H0z" fill="currentColor"/></svg>
-                                <svg class="ico-plus_ver" viewBox="0 0 16 16"><path d="M7 0h2v16H7z" fill="currentColor"/></svg>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="btn-ico_bg sec"><div class="btn-ico_bg_fill prim"></div></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="benefit-card_info theme_on-dark scrollbar-none" data-lenis-scroll>
-                    <div class="benefit-card_info_title">
-                      <h5 class="h6 text-dark">99% bacteria removed</h5>
-                    </div>
-                    <div class="u-48"></div>
-                    <div class="benefit-card_info_line"><div class="divider" data-prevent-flicker="true" data-scroll-reveal="line"><div class="line-l"></div><div class="line-s"></div></div></div>
-                    <div class="u-48"></div>
-                    <div class="benefit-card_info_list">
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Hot-water extraction</p></div>
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Dust mites &amp; deep-set dirt gone</p></div>
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Safe for kids &amp; pets</p></div>
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Fast-drying carpets</p></div>
-                    </div>
-                    <div class="u-48"></div>
-                    <div class="benefit-card_info_bot">
-                      <a class="btn-ico_link_text" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Carpet%20Steam%20Cleaning.">Get a quote</a>
-                    </div>
-                  </div>
-                  <div class="benefit-card_bg">
-                    <img src="assets/img/services/carpet-steam-cleaning.jpg" alt="Carpet steam cleaning Jalandhar">
-                  </div>
-                </div>
-              </div>
-
-              <!-- 6 -->
-              <div class="benefits-cms_list_item benefit-v-is-3" data-scroll-reveal="card">
-                <div class="benefit-card theme_on-color test">
-                  <div class="benefit-card_name">
-                    <div class="benefit-card_name_c">
-                      <h4 class="p6 text-dark">Floor Renew</h4>
-                    </div>
-                    <div class="benefit-card_btn">
-                      <div class="btn-list">
-                        <div class="btn-ico">
-                          <a class="btn-ico_link w-inline-block" href="service-page/floor-renew.html" aria-label="Floor Renew details"></a>
-                          <div class="ico-16">
-                            <div class="btn-ico_icon text-dark">
-                              <div class="ico">
-                                <svg class="ico-plus_hor" viewBox="0 0 16 16"><path d="M0 7h16v2H0z" fill="currentColor"/></svg>
-                                <svg class="ico-plus_ver" viewBox="0 0 16 16"><path d="M7 0h2v16H7z" fill="currentColor"/></svg>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="btn-ico_bg sec"><div class="btn-ico_bg_fill prim"></div></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="benefit-card_info theme_on-dark scrollbar-none" data-lenis-scroll>
-                    <div class="benefit-card_info_title">
-                      <h5 class="h6 text-dark">Marble, tiles, wood — renewed</h5>
-                    </div>
-                    <div class="u-48"></div>
-                    <div class="benefit-card_info_line"><div class="divider" data-prevent-flicker="true" data-scroll-reveal="line"><div class="line-l"></div><div class="line-s"></div></div></div>
-                    <div class="u-48"></div>
-                    <div class="benefit-card_info_list">
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Deep scrubbing &amp; polishing</p></div>
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Grout &amp; stain treatment</p></div>
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Restores original shine</p></div>
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Protective finish</p></div>
-                    </div>
-                    <div class="u-48"></div>
-                    <div class="benefit-card_info_bot">
-                      <a class="btn-ico_link_text" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Floor%20Renew.">Get a quote</a>
-                    </div>
-                  </div>
-                  <div class="benefit-card_bg">
-                    <img src="assets/img/services/floor-renew.jpg" alt="Floor renew and polishing Jalandhar">
-                  </div>
-                </div>
-              </div>
-
-              <!-- 7 -->
-              <div class="benefits-cms_list_item benefit-h-is-4" data-scroll-reveal="card">
-                <div class="benefit-card theme_on-color test">
-                  <div class="benefit-card_name">
-                    <div class="benefit-card_name_c">
-                      <h4 class="p6 text-dark">AC Cleaning &amp; Servicing</h4>
-                    </div>
-                    <div class="benefit-card_btn">
-                      <div class="btn-list">
-                        <div class="btn-ico">
-                          <a class="btn-ico_link w-inline-block" href="service-page/ac-services.html" aria-label="AC Cleaning and Servicing details"></a>
-                          <div class="ico-16">
-                            <div class="btn-ico_icon text-dark">
-                              <div class="ico">
-                                <svg class="ico-plus_hor" viewBox="0 0 16 16"><path d="M0 7h16v2H0z" fill="currentColor"/></svg>
-                                <svg class="ico-plus_ver" viewBox="0 0 16 16"><path d="M7 0h2v16H7z" fill="currentColor"/></svg>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="btn-ico_bg sec"><div class="btn-ico_bg_fill prim"></div></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="benefit-card_info theme_on-dark scrollbar-none" data-lenis-scroll>
-                    <div class="benefit-card_info_title">
-                      <h5 class="h6 text-dark">Cooler air, lower bills</h5>
-                    </div>
-                    <div class="u-48"></div>
-                    <div class="benefit-card_info_line"><div class="divider" data-prevent-flicker="true" data-scroll-reveal="line"><div class="line-l"></div><div class="line-s"></div></div></div>
-                    <div class="u-48"></div>
-                    <div class="benefit-card_info_list">
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Filters, coils &amp; fins cleaned</p></div>
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Dust, mould &amp; odour removed</p></div>
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Better cooling, less energy</p></div>
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Healthier indoor air</p></div>
-                    </div>
-                    <div class="u-48"></div>
-                    <div class="benefit-card_info_bot">
-                      <a class="btn-ico_link_text" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20AC%20Cleaning.">Get a quote</a>
-                    </div>
-                  </div>
-                  <div class="benefit-card_bg">
-                    <img src="assets/img/services/ac-services.jpg" alt="AC cleaning and servicing Jalandhar">
-                  </div>
-                </div>
-              </div>
-
-              <!-- 8 -->
-              <div class="benefits-cms_list_item benefit-v-is-4" data-scroll-reveal="card">
-                <div class="benefit-card theme_on-color test">
-                  <div class="benefit-card_name">
-                    <div class="benefit-card_name_c">
-                      <h4 class="p6 text-dark">Chimney Cleaning</h4>
-                    </div>
-                    <div class="benefit-card_btn">
-                      <div class="btn-list">
-                        <div class="btn-ico">
-                          <a class="btn-ico_link w-inline-block" href="service-page/chimney-cleaning.html" aria-label="Chimney Cleaning details"></a>
-                          <div class="ico-16">
-                            <div class="btn-ico_icon text-dark">
-                              <div class="ico">
-                                <svg class="ico-plus_hor" viewBox="0 0 16 16"><path d="M0 7h16v2H0z" fill="currentColor"/></svg>
-                                <svg class="ico-plus_ver" viewBox="0 0 16 16"><path d="M7 0h2v16H7z" fill="currentColor"/></svg>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="btn-ico_bg sec"><div class="btn-ico_bg_fill prim"></div></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="benefit-card_info theme_on-dark scrollbar-none" data-lenis-scroll>
-                    <div class="benefit-card_info_title">
-                      <h5 class="h6 text-dark">Grease-free exhaust, safer kitchen</h5>
-                    </div>
-                    <div class="u-48"></div>
-                    <div class="benefit-card_info_line"><div class="divider" data-prevent-flicker="true" data-scroll-reveal="line"><div class="line-l"></div><div class="line-s"></div></div></div>
-                    <div class="u-48"></div>
-                    <div class="benefit-card_info_list">
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Degreased filters &amp; blades</p></div>
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Duct &amp; exhaust deep clean</p></div>
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Removes cooking odours</p></div>
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Fire-risk reduction</p></div>
-                    </div>
-                    <div class="u-48"></div>
-                    <div class="benefit-card_info_bot">
-                      <a class="btn-ico_link_text" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Chimney%20Cleaning.">Get a quote</a>
-                    </div>
-                  </div>
-                  <div class="benefit-card_bg">
-                    <img src="assets/img/services/chimney-cleaning.jpg" alt="Kitchen chimney cleaning Jalandhar">
-                  </div>
-                </div>
-              </div>
-
-              <!-- 9 -->
-              <div class="benefits-cms_list_item benefit-h-is-5" data-scroll-reveal="card">
-                <div class="benefit-card theme_on-color test">
-                  <div class="benefit-card_name">
-                    <div class="benefit-card_name_c">
-                      <h4 class="p6 text-dark">Commercial Cleaning</h4>
-                    </div>
-                    <div class="benefit-card_btn">
-                      <div class="btn-list">
-                        <div class="btn-ico">
-                          <a class="btn-ico_link w-inline-block" href="service-page/commercial-cleaning.html" aria-label="Commercial Cleaning details"></a>
-                          <div class="ico-16">
-                            <div class="btn-ico_icon text-dark">
-                              <div class="ico">
-                                <svg class="ico-plus_hor" viewBox="0 0 16 16"><path d="M0 7h16v2H0z" fill="currentColor"/></svg>
-                                <svg class="ico-plus_ver" viewBox="0 0 16 16"><path d="M7 0h2v16H7z" fill="currentColor"/></svg>
-                              </div>
-                            </div>
-                          </div>
-                          <div class="btn-ico_bg sec"><div class="btn-ico_bg_fill prim"></div></div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="benefit-card_info theme_on-dark scrollbar-none" data-lenis-scroll>
-                    <div class="benefit-card_info_title">
-                      <h5 class="h6 text-dark">Offices, schools &amp; restaurants</h5>
-                    </div>
-                    <div class="u-48"></div>
-                    <div class="benefit-card_info_line"><div class="divider" data-prevent-flicker="true" data-scroll-reveal="line"><div class="line-l"></div><div class="line-s"></div></div></div>
-                    <div class="u-48"></div>
-                    <div class="benefit-card_info_list">
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Before/after office hours</p></div>
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Daily, weekly &amp; one-off plans</p></div>
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">50+ commercial clients</p></div>
-                      <div class="benefit-card_info_list_item"><p class="p6 text-dark">Single point of contact</p></div>
-                    </div>
-                    <div class="u-48"></div>
-                    <div class="benefit-card_info_bot">
-                      <a class="btn-ico_link_text" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Commercial%20Cleaning.">Get a quote</a>
-                    </div>
-                  </div>
-                  <div class="benefit-card_bg">
-                    <img src="assets/img/services/commercial-cleaning.jpg" alt="Commercial cleaning for offices and restaurants">
-                  </div>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ COMMISSIONING / HOW IT WORKS ============ -->
-<section id="commissioning" class="section">
-  <div class="container">
-    <div class="comm-w">
-      <div class="comm-s">
-        <div class="comm-s_title">
-          <div class="grid">
-            <div class="comm-s_title_c">
-              <div class="title">
-                <div class="title_stars text-dark">
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                </div>
-                <h2 class="p6 text-dark a-center" data-scroll-reveal="p">How it works</h2>
-                <div class="title_stars text-dark">
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                </div>
-              </div>
-              <div class="u-32"></div>
-              <h3 class="h3 text-dark a-center" data-scroll-reveal="h">From message to sparkling home in four steps</h3>
-            </div>
-          </div>
-        </div>
-        <div class="comm-s_timeline">
-          <div class="comm-step" data-scroll-reveal="card">
-            <div class="comm-step_num"><h4 class="h4 text-dark">01</h4></div>
-            <h5 class="h6 text-dark">Message us on WhatsApp</h5>
-            <p class="p6 text-dark">Tell us your space and what needs cleaning. We reply fast with a clear plan.</p>
-          </div>
-          <div class="comm-step" data-scroll-reveal="card">
-            <div class="comm-step_num"><h4 class="h4 text-dark">02</h4></div>
-            <h5 class="h6 text-dark">Get an exact free quote</h5>
-            <p class="p6 text-dark">No booking fee, no advance payment, no hidden charges. You approve before we start.</p>
-          </div>
-          <div class="comm-step" data-scroll-reveal="card">
-            <div class="comm-step_num"><h4 class="h4 text-dark">03</h4></div>
-            <h5 class="h6 text-dark">Our team deep cleans</h5>
-            <p class="p6 text-dark">Trained, verified staff with professional machines and eco-friendly products.</p>
-          </div>
-          <div class="comm-step" data-scroll-reveal="card">
-            <div class="comm-step_num"><h4 class="h4 text-dark">04</h4></div>
-            <h5 class="h6 text-dark">Enjoy your space</h5>
-            <p class="p6 text-dark">Not completely satisfied? We return and fix it — at no extra charge.</p>
-          </div>
-        </div>
-        <div class="comm-s_btn" data-scroll-reveal="ctn">
-          <a class="btn" href="book.html" hover-btn>
-            <div class="btn_label"><div class="btn_label_text"><div class="p6 text-light">Book your clean</div></div></div>
-            <div class="btn_hover" hover="hover"></div>
-            <div class="btn_bg" hover="bg"></div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ WHY / TRUST ============ -->
-<section id="why" bg="dark" class="section bg-light theme_on-dark">
-  <div class="container">
-    <div class="fin-w">
-      <div class="fin-s">
-        <div class="fin-s_title">
-          <div class="divider"><div class="line-l"></div><div class="line-s"></div></div>
-          <div class="fin-s_title_marquee">
-            <div class="fin-s_title_marquee_list" data-marquee>
-              <h2 class="h5 text-dark">CleanNest — CleanNest — CleanNest — CleanNest — CleanNest — CleanNest —</h2>
-              <h2 class="h5 text-dark" aria-hidden="true">CleanNest — CleanNest — CleanNest — CleanNest — CleanNest — CleanNest —</h2>
-            </div>
-          </div>
-          <div class="divider"><div class="line-l"></div><div class="line-s"></div></div>
-        </div>
-        <div class="fin-s_body">
-          <div class="grid">
-            <div class="fin-s_left">
-              <h3 class="p6 text-dark" data-scroll-reveal="p">Why CleanNest</h3>
-              <h4 class="h3 text-dark" data-scroll-reveal="h">The trust factors, stated plainly</h4>
-              <div class="u-32"></div>
-              <p class="p5 text-dark" data-scroll-reveal="p">Real employees. Real accountability. Eco-friendly products and professional machines — that's been CleanNest's thing since day one.</p>
-            </div>
-            <div class="fin-s_right">
-              <div class="data" data-scroll-reveal="ctn">
-                <div class="data-list">
-                  <div class="data-card">
-                    <div class="data-card_title">
-                      <h3 class="p6 text-dark">Free quote</h3>
-                      <div class="data-card_title_info">
-                        <div class="btn-info"><div class="btn-info_label"><h1 class="p6 text-dark">✓</h1></div></div>
-                      </div>
-                    </div>
-                    <div class="data-card_data"><p class="p3 text-dark">Exact price on WhatsApp before we start. No hidden charges, ever.</p></div>
-                  </div>
-                  <div class="data-card">
-                    <div class="data-card_title">
-                      <h3 class="p6 text-dark">No booking fee</h3>
-                      <div class="data-card_title_info">
-                        <div class="btn-info"><div class="btn-info_label"><h1 class="p6 text-dark">✓</h1></div></div>
-                      </div>
-                    </div>
-                    <div class="data-card_data"><p class="p3 text-dark">You only pay after the job is done and you're happy with it.</p></div>
-                  </div>
-                  <div class="data-card">
-                    <div class="data-card_title">
-                      <h3 class="p6 text-dark">No advance payment</h3>
-                      <div class="data-card_title_info">
-                        <div class="btn-info"><div class="btn-info_label"><h1 class="p6 text-dark">✓</h1></div></div>
-                      </div>
-                    </div>
-                    <div class="data-card_data"><p class="p3 text-dark">Approve the work first. We earn your trust with results, not deposits.</p></div>
-                  </div>
-                  <div class="data-card">
-                    <div class="data-card_title">
-                      <h3 class="p6 text-dark">Satisfaction guaranteed</h3>
-                      <div class="data-card_title_info">
-                        <div class="btn-info"><div class="btn-info_label"><h1 class="p6 text-dark">✓</h1></div></div>
-                      </div>
-                    </div>
-                    <div class="data-card_data"><p class="p3 text-dark">Not happy with the cleaning? We return and resolve it at no extra charge.</p></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="fin-s_table">
-          <div class="grid">
-            <div class="fin-s_left">
-              <div class="table">
-                <h2 class="p4 text-dark" data-scroll-reveal="p">Our numbers</h2>
-                <div class="line-s bg-dark"></div>
-                <div class="table_list">
-                  <div class="table-card">
-                    <div class="table-card_info">
-                      <div class="table-card_info_title"><p class="p6 text-dark">Google rating</p></div>
-                      <div class="table-card_info_data"><p class="p6 text-dark a-right"><span data-count="4.9" data-decimals="1">0</span>★</p></div>
-                    </div>
-                    <div class="line-s"></div>
-                  </div>
-                  <div class="table-card">
-                    <div class="table-card_info">
-                      <div class="table-card_info_title"><p class="p6 text-dark">Verified reviews</p></div>
-                      <div class="table-card_info_data"><p class="p6 text-dark a-right"><span data-count="219">0</span></p></div>
-                    </div>
-                    <div class="line-s"></div>
-                  </div>
-                  <div class="table-card">
-                    <div class="table-card_info">
-                      <div class="table-card_info_title"><p class="p6 text-dark">Happy customers</p></div>
-                      <div class="table-card_info_data"><p class="p6 text-dark a-right"><span data-count="1000">0</span>+</p></div>
-                    </div>
-                    <div class="line-s"></div>
-                  </div>
-                  <div class="table-card">
-                    <div class="table-card_info">
-                      <div class="table-card_info_title"><p class="p6 text-dark">Cities served</p></div>
-                      <div class="table-card_info_data"><p class="p6 text-dark a-right"><span data-count="12">0</span>+</p></div>
-                    </div>
-                    <div class="line-s"></div>
-                  </div>
-                  <div class="table-card">
-                    <div class="table-card_info">
-                      <div class="table-card_info_title"><p class="p6 text-dark">Days a week</p></div>
-                      <div class="table-card_info_data"><p class="p6 text-dark a-right"><span data-count="7">0</span></p></div>
-                    </div>
-                    <div class="line-s"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="fin-s_right">
-              <div class="table">
-                <h2 class="p4 text-dark" data-scroll-reveal="p">Our commitment</h2>
-                <div class="line-s bg-dark"></div>
-                <div class="table_list">
-                  <div class="table-card">
-                    <div class="table-card_info">
-                      <div class="table-card_info_title"><p class="p6 text-dark">Products</p></div>
-                      <div class="table-card_info_data"><p class="p6 text-dark a-right">Eco-friendly, safe for kids &amp; pets</p></div>
-                    </div>
-                    <div class="line-s"></div>
-                  </div>
-                  <div class="table-card">
-                    <div class="table-card_info">
-                      <div class="table-card_info_title"><p class="p6 text-dark">Equipment</p></div>
-                      <div class="table-card_info_data"><p class="p6 text-dark a-right">Professional machines, not mops</p></div>
-                    </div>
-                    <div class="line-s"></div>
-                  </div>
-                  <div class="table-card">
-                    <div class="table-card_info">
-                      <div class="table-card_info_title"><p class="p6 text-dark">Team</p></div>
-                      <div class="table-card_info_data"><p class="p6 text-dark a-right">Trained &amp; verified, in-house</p></div>
-                    </div>
-                    <div class="line-s"></div>
-                  </div>
-                  <div class="table-card">
-                    <div class="table-card_info">
-                      <div class="table-card_info_title"><p class="p6 text-dark">Scheduling</p></div>
-                      <div class="table-card_info_data"><p class="p6 text-dark a-right">7 days a week, flexible slots</p></div>
-                    </div>
-                    <div class="line-s"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ EXTRA BENEFITS ============ -->
-<section bg="dark" class="section bg-light theme_on-dark">
-  <div class="container">
-    <div class="extra-w">
-      <div class="extra-s">
-        <div class="extra-s_title">
-          <div class="grid">
-            <div class="extra-s_title_c">
-              <div class="title">
-                <div class="title_stars text-dark">
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                </div>
-                <h2 class="p6 text-dark a-center" data-scroll-reveal="p">Additional advantages</h2>
-                <div class="title_stars text-dark">
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                </div>
-              </div>
-              <div class="u-32"></div>
-              <h3 class="h3 text-dark a-center" data-scroll-reveal="h">Built for real life — that's the only clean we know</h3>
-            </div>
-          </div>
-        </div>
-        <div class="extra-s_list">
-          <div class="extra-card" data-scroll-reveal="card">
-            <div class="extra-card_icon"><img src="assets/img/logo-emblem.png" alt=""></div>
-            <h5 class="h6 text-dark">Free re-clean guarantee</h5>
-            <p class="p6 text-dark">If anything's missed, we come back and fix it — free of charge.</p>
-          </div>
-          <div class="extra-card" data-scroll-reveal="card">
-            <div class="extra-card_icon"><img src="assets/img/logo-emblem.png" alt=""></div>
-            <h5 class="h6 text-dark">Works all year round</h5>
-            <p class="p6 text-dark">Deep cleans, festivals, post-renovation and move-out — we're there 7 days a week.</p>
-          </div>
-          <div class="extra-card" data-scroll-reveal="card">
-            <div class="extra-card_icon"><img src="assets/img/logo-emblem.png" alt=""></div>
-            <h5 class="h6 text-dark">Your home, respected</h5>
-            <p class="p6 text-dark">Verified, trained staff who treat your belongings with care and respect.</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FACT-TICKER ============ -->
-<section id="factoids" bg="dark" class="section bg-light theme_on-dark">
-  <div class="container">
-    <div class="factoids-w">
-      <div class="factoids-s">
-        <div class="factoids-s_list">
-          <div class="factoid" data-scroll-reveal="p"><p class="p6 text-dark">Advanced Machines</p></div>
-          <div class="factoid" data-scroll-reveal="p"><p class="p6 text-dark">Trained &amp; Verified Team</p></div>
-          <div class="factoid" data-scroll-reveal="p"><p class="p6 text-dark">Eco-Friendly Products</p></div>
-          <div class="factoid" data-scroll-reveal="p"><p class="p6 text-dark">Satisfaction Guaranteed</p></div>
-          <div class="factoid" data-scroll-reveal="p"><p class="p6 text-dark">Rated 4.9★ on Google</p></div>
-          <div class="factoid" data-scroll-reveal="p"><p class="p6 text-dark">7 Days a Week</p></div>
-          <div class="factoid" data-scroll-reveal="p"><p class="p6 text-dark">Transparent Pricing</p></div>
-          <div class="factoid" data-scroll-reveal="p"><p class="p6 text-dark">Real Employees</p></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ GALLERY ============ -->
-<section id="gallery" bg="dark" class="section">
-  <div class="container">
-    <div class="gallery-w">
-      <div class="gallery-s">
-        <div class="gallery-s_title">
-          <div class="grid">
-            <div class="gallery-s_title_c">
-              <div class="title">
-                <div class="title_stars text-dark">
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                </div>
-                <h2 class="p6 text-dark a-center" data-scroll-reveal="p">Gallery</h2>
-                <div class="title_stars text-dark">
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                </div>
-              </div>
-              <div class="u-32"></div>
-              <h3 class="h3 text-dark a-center" data-scroll-reveal="h">CleanNest, in pictures</h3>
-            </div>
-          </div>
-        </div>
-        <div class="gallery-s_slider" data-slider-reveal="true">
-          <div class="swiper gallery-swiper" data-gallery-swiper>
-            <div class="swiper-wrapper">
-              <div class="swiper-slide"><div class="gallery-slide"><img src="assets/img/gallery/work-1.jpeg" alt="CleanNest deep cleaning work"></div></div>
-              <div class="swiper-slide"><div class="gallery-slide"><img src="assets/img/gallery/work-2.jpeg" alt="CleanNest deep cleaning work"></div></div>
-              <div class="swiper-slide"><div class="gallery-slide"><img src="assets/img/gallery/work-3.jpg" alt="CleanNest deep cleaning work"></div></div>
-              <div class="swiper-slide"><div class="gallery-slide"><img src="assets/img/gallery/work-4.jpeg" alt="CleanNest deep cleaning work"></div></div>
-              <div class="swiper-slide"><div class="gallery-slide"><img src="assets/img/gallery/work-5.jpg" alt="CleanNest deep cleaning work"></div></div>
-            </div>
-            <div class="swiper-pagination"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ BLOG ============ -->
-<section id="blog" bg="dark" class="section bg-light theme_on-dark clip">
-  <div class="container">
-    <div class="blog-w">
-      <div class="blog-s">
-        <div class="blog-s_title">
-          <div class="grid">
-            <div class="blog-s_title_c">
-              <div class="title">
-                <div class="title_stars text-dark">
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                </div>
-                <h2 class="p6 text-dark a-center" data-scroll-reveal="p">Blog</h2>
-                <div class="title_stars text-dark">
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                </div>
-              </div>
-              <div class="u-32"></div>
-              <h3 class="h3 text-dark a-center" data-scroll-reveal="h">Practical cleaning guides</h3>
-            </div>
-          </div>
-        </div>
-        <div class="blog-s_list">
-          <a class="blog-card" href="blog/house-deep-cleaning-cost-jalandhar.html" data-scroll-reveal="card">
-            <div class="blog-card_img"><img src="assets/img/blog/cleaning-team.jpg" alt="Cleaning team" loading="lazy"></div>
-            <div class="blog-card_info">
-              <p class="p6 text-dark">Guide</p>
-              <h4 class="h6 text-dark">How Much Does House Deep Cleaning Cost in Jalandhar?</h4>
-              <p class="p6 text-dark">What affects the price, typical ranges by home size, and how to get an exact free quote.</p>
-            </div>
-          </a>
-          <a class="blog-card" href="blog/how-often-deep-clean-home.html" data-scroll-reveal="card">
-            <div class="blog-card_img"><img src="assets/img/blog/window-cleaning.jpg" alt="Window cleaning" loading="lazy"></div>
-            <div class="blog-card_info">
-              <p class="p6 text-dark">Guide</p>
-              <h4 class="h6 text-dark">How Often Should You Deep Clean Your Home?</h4>
-              <p class="p6 text-dark">A room-by-room schedule for kitchens, bathrooms, sofas, carpets and ACs.</p>
-            </div>
-          </a>
-          <a class="blog-card" href="blog/sofa-dry-cleaning-vs-steam-cleaning.html" data-scroll-reveal="card">
-            <div class="blog-card_img"><img src="assets/img/blog/cleaning-products.jpg" alt="Cleaning products" loading="lazy"></div>
-            <div class="blog-card_info">
-              <p class="p6 text-dark">Guide</p>
-              <h4 class="h6 text-dark">Sofa Dry Cleaning vs Steam Cleaning: Which Is Better?</h4>
-              <p class="p6 text-dark">Drying time, stain removal and what's safest for your fabric — compared honestly.</p>
-            </div>
-          </a>
-        </div>
-        <div class="blog-s_btn" data-scroll-reveal="ctn">
-          <a class="btn" href="blog.html" hover-btn>
-            <div class="btn_label"><div class="btn_label_text"><div class="p6 text-light">View all 30 guides →</div></div></div>
-            <div class="btn_hover" hover="hover"></div>
-            <div class="btn_bg" hover="bg"></div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ CTA ============ -->
-<section id="cta" bg="color" class="section theme_on-color">
-  <div class="container">
-    <div class="cta-w">
-      <div class="cta-s">
-        <div class="cta-s_title">
-          <div class="grid">
-            <div class="cta-s_title_c">
-              <h2 class="h2 text-dark a-center" data-scroll-reveal="h">Get your free quote today</h2>
-              <div class="u-32"></div>
-              <p class="p5 text-dark a-center" data-scroll-reveal="p">Free quote on WhatsApp — no booking fee, no advance payment.</p>
-            </div>
-          </div>
-        </div>
-        <div class="cta-s_contacts" data-scroll-reveal="ctn">
-          <a class="cta-contact" href="tel:+917610000654">
-            <div class="cta-contact_ico"><svg viewBox="0 0 20 20" width="20" height="20" fill="currentColor"><path d="M6.6 2.8c.3-.9 1.5-.9 2 .1l1.5 3c.3.7 0 1.5-.7 1.8l-1.2.6c.6 1.6 1.7 2.7 3.3 3.3l.6-1.2c.3-.7 1.1-1 1.8-.7l3 1.5c1 .5 1 1.7.1 2l-1.6.6c-1.4.5-2.9.1-4-1-2-2-3.3-3.3-4.3-5.3-.9-1.7-.6-3.7-.5-3.7 0 0 0-.1 0 0z"/></svg></div>
-            <p class="p5 text-dark">+91 76100 00654</p>
-          </a>
-          <a class="cta-contact" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20free%20quote.">
-            <div class="cta-contact_ico"><svg viewBox="0 0 20 20" width="20" height="20" fill="currentColor"><path d="M10 2a8 8 0 0 0-6.9 12L2 18l4.1-1A8 8 0 1 0 10 2zm3.6 11.2c-.2.5-1 1-1.5 1s-.9.2-3-.6c-2.5-1-4.1-3.5-4.2-3.7-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4-.1.6.4l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.3.4-.1.7.2.3.8 1.4 1.8 2.2 1.3 1.1 2.3 1.4 2.7 1.6.3.1.5.1.7-.1l.9-1c.2-.3.4-.2.7-.1l1.9.9c.3.2.5.3.6.4 0 .2 0 .8-.2 1.2z"/></svg></div>
-            <p class="p5 text-dark">WhatsApp us</p>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FAQ ============ -->
-<section id="faq" bg="dark" class="section bg-light theme_on-dark">
-  <div class="container">
-    <div class="faq-w">
-      <div class="faq-s">
-        <div class="faq-s_title">
-          <div class="grid">
-            <div class="faq-s_title_c">
-              <div class="title">
-                <div class="title_stars text-dark">
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                </div>
-                <h2 class="p6 text-dark a-center" data-scroll-reveal="p">FAQ</h2>
-                <div class="title_stars text-dark">
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                  <div class="ico-8-12"><div class="ico"><svg viewBox="0 0 8 12"><path d="M4 0L8 12H0L4 0Z" fill="currentColor"/></svg></div></div>
-                </div>
-              </div>
-              <div class="u-32"></div>
-              <h3 class="h3 text-dark a-center" data-scroll-reveal="h">Everything you should know</h3>
-            </div>
-          </div>
-        </div>
-        <div class="faq-s_cms">
-          <div class="faq-cms">
-            <div class="faq-cms_list">
-
-              <div class="faq-cms_list_item" data-faq-item>
-                <a class="faq-card" data-faq-trigger href="#">
-                  <div class="grid _8-columns">
-                    <div class="faq-card_index"><div class="p4 text-dark">01</div></div>
-                    <div class="faq-card_title"><h4 class="p4 text-dark">Are your cleaning products safe for my family and pets?</h4></div>
-                    <div class="faq-card_ico text-dark">
-                      <div class="faq-card_ico_hor"><div class="ico"><svg viewBox="0 0 16 16"><path d="M0 7h16v2H0z" fill="currentColor"/></svg></div></div>
-                      <div class="faq-card_ico_ver"><div class="ico"><svg viewBox="0 0 16 16"><path d="M7 0h2v16H7z" fill="currentColor"/></svg></div></div>
-                    </div>
-                  </div>
-                  <div class="grid _8-columns">
-                    <div class="faq-card_desc"><p class="p6 text-dark">Yes. At CleanNest we use eco-friendly products that are safe for your home and the environment. This ensures a thorough clean without compromising on health — ideal for families and pet owners.</p></div>
-                  </div>
-                  <div class="faq-card_divider"><div class="divider"><div class="line-l"></div><div class="line-s"></div></div></div>
-                </a>
-              </div>
-
-              <div class="faq-cms_list_item" data-faq-item>
-                <a class="faq-card" data-faq-trigger href="#">
-                  <div class="grid _8-columns">
-                    <div class="faq-card_index"><div class="p4 text-dark">02</div></div>
-                    <div class="faq-card_title"><h4 class="p4 text-dark">What if I'm not happy with the cleaning?</h4></div>
-                    <div class="faq-card_ico text-dark">
-                      <div class="faq-card_ico_hor"><div class="ico"><svg viewBox="0 0 16 16"><path d="M0 7h16v2H0z" fill="currentColor"/></svg></div></div>
-                      <div class="faq-card_ico_ver"><div class="ico"><svg viewBox="0 0 16 16"><path d="M7 0h2v16H7z" fill="currentColor"/></svg></div></div>
-                    </div>
-                  </div>
-                  <div class="grid _8-columns">
-                    <div class="faq-card_desc"><p class="p6 text-dark">We pride ourselves on our commitment to customer satisfaction. If for any reason you're not completely satisfied with our service, we will return to resolve the issue at no extra charge.</p></div>
-                  </div>
-                  <div class="faq-card_divider"><div class="divider"><div class="line-l"></div><div class="line-s"></div></div></div>
-                </a>
-              </div>
-
-              <div class="faq-cms_list_item" data-faq-item>
-                <a class="faq-card" data-faq-trigger href="#">
-                  <div class="grid _8-columns">
-                    <div class="faq-card_index"><div class="p4 text-dark">03</div></div>
-                    <div class="faq-card_title"><h4 class="p4 text-dark">Which cities do you serve?</h4></div>
-                    <div class="faq-card_ico text-dark">
-                      <div class="faq-card_ico_hor"><div class="ico"><svg viewBox="0 0 16 16"><path d="M0 7h16v2H0z" fill="currentColor"/></svg></div></div>
-                      <div class="faq-card_ico_ver"><div class="ico"><svg viewBox="0 0 16 16"><path d="M7 0h2v16H7z" fill="currentColor"/></svg></div></div>
-                    </div>
-                  </div>
-                  <div class="grid _8-columns">
-                    <div class="faq-card_desc"><p class="p6 text-dark">We serve Jalandhar, Phagwara, Kapurthala, Hoshiarpur, Nakodar, Goraya, Adampur, Kartarpur, Sultanpur Lodhi, Nawanshahr, Phillaur and Ludhiana, plus nearby cities across Punjab. Message us on WhatsApp with your location and we'll confirm availability right away.</p></div>
-                  </div>
-                  <div class="faq-card_divider"><div class="divider"><div class="line-l"></div><div class="line-s"></div></div></div>
-                </a>
-              </div>
-
-              <div class="faq-cms_list_item" data-faq-item>
-                <a class="faq-card" data-faq-trigger href="#">
-                  <div class="grid _8-columns">
-                    <div class="faq-card_index"><div class="p4 text-dark">04</div></div>
-                    <div class="faq-card_title"><h4 class="p4 text-dark">How do I book and pay?</h4></div>
-                    <div class="faq-card_ico text-dark">
-                      <div class="faq-card_ico_hor"><div class="ico"><svg viewBox="0 0 16 16"><path d="M0 7h16v2H0z" fill="currentColor"/></svg></div></div>
-                      <div class="faq-card_ico_ver"><div class="ico"><svg viewBox="0 0 16 16"><path d="M7 0h2v16H7z" fill="currentColor"/></svg></div></div>
-                    </div>
-                  </div>
-                  <div class="grid _8-columns">
-                    <div class="faq-card_desc"><p class="p6 text-dark">Message us on WhatsApp, call us, or use the booking form. We'll send an exact quote, agree on a time, and you approve before we start. No booking fee and no advance payment required.</p></div>
-                  </div>
-                  <div class="faq-card_divider"><div class="divider"><div class="line-l"></div><div class="line-s"></div></div></div>
-                </a>
-              </div>
-
-              <div class="faq-cms_list_item" data-faq-item>
-                <a class="faq-card" data-faq-trigger href="#">
-                  <div class="grid _8-columns">
-                    <div class="faq-card_index"><div class="p4 text-dark">05</div></div>
-                    <div class="faq-card_title"><h4 class="p4 text-dark">What's included in a deep clean?</h4></div>
-                    <div class="faq-card_ico text-dark">
-                      <div class="faq-card_ico_hor"><div class="ico"><svg viewBox="0 0 16 16"><path d="M0 7h16v2H0z" fill="currentColor"/></svg></div></div>
-                      <div class="faq-card_ico_ver"><div class="ico"><svg viewBox="0 0 16 16"><path d="M7 0h2v16H7z" fill="currentColor"/></svg></div></div>
-                    </div>
-                  </div>
-                  <div class="grid _8-columns">
-                    <div class="faq-card_desc"><p class="p6 text-dark">A deep clean goes top to bottom: walls, fans, windows, furniture and floors, plus kitchen degreasing and bathroom sanitisation. Tell us your space on WhatsApp and we'll confirm exactly what's covered for your home.</p></div>
-                  </div>
-                  <div class="faq-card_divider"><div class="divider"><div class="line-l"></div><div class="line-s"></div></div></div>
-                </a>
-              </div>
-
-              <div class="faq-cms_list_item" data-faq-item>
-                <a class="faq-card" data-faq-trigger href="#">
-                  <div class="grid _8-columns">
-                    <div class="faq-card_index"><div class="p4 text-dark">06</div></div>
-                    <div class="faq-card_title"><h4 class="p4 text-dark">Do I need to provide products or equipment?</h4></div>
-                    <div class="faq-card_ico text-dark">
-                      <div class="faq-card_ico_hor"><div class="ico"><svg viewBox="0 0 16 16"><path d="M0 7h16v2H0z" fill="currentColor"/></svg></div></div>
-                      <div class="faq-card_ico_ver"><div class="ico"><svg viewBox="0 0 16 16"><path d="M7 0h2v16H7z" fill="currentColor"/></svg></div></div>
-                    </div>
-                  </div>
-                  <div class="grid _8-columns">
-                    <div class="faq-card_desc"><p class="p6 text-dark">No. We bring the professional equipment and eco-friendly cleaning products needed for the job. You don't need to arrange anything.</p></div>
-                  </div>
-                  <div class="faq-card_divider"><div class="divider"><div class="line-l"></div><div class="line-s"></div></div></div>
-                </a>
-              </div>
-
-              <div class="faq-cms_list_item" data-faq-item>
-                <a class="faq-card" data-faq-trigger href="#">
-                  <div class="grid _8-columns">
-                    <div class="faq-card_index"><div class="p4 text-dark">07</div></div>
-                    <div class="faq-card_title"><h4 class="p4 text-dark">Is carpet &amp; steam cleaning safe for kids and pets?</h4></div>
-                    <div class="faq-card_ico text-dark">
-                      <div class="faq-card_ico_hor"><div class="ico"><svg viewBox="0 0 16 16"><path d="M0 7h16v2H0z" fill="currentColor"/></svg></div></div>
-                      <div class="faq-card_ico_ver"><div class="ico"><svg viewBox="0 0 16 16"><path d="M7 0h2v16H7z" fill="currentColor"/></svg></div></div>
-                    </div>
-                  </div>
-                  <div class="grid _8-columns">
-                    <div class="faq-card_desc"><p class="p6 text-dark">Yes. Our advanced hot-water extraction steam cleaning removes 99% of bacteria, dust mites and deep-set dirt, and is safe for children, pets and sensitive skin. Carpets dry quickly too.</p></div>
-                  </div>
-                  <div class="faq-card_divider"><div class="divider"><div class="line-l"></div><div class="line-s"></div></div></div>
-                </a>
-              </div>
-
-              <div class="faq-cms_list_item" data-faq-item>
-                <a class="faq-card" data-faq-trigger href="#">
-                  <div class="grid _8-columns">
-                    <div class="faq-card_index"><div class="p4 text-dark">08</div></div>
-                    <div class="faq-card_title"><h4 class="p4 text-dark">When can you come?</h4></div>
-                    <div class="faq-card_ico text-dark">
-                      <div class="faq-card_ico_hor"><div class="ico"><svg viewBox="0 0 16 16"><path d="M0 7h16v2H0z" fill="currentColor"/></svg></div></div>
-                      <div class="faq-card_ico_ver"><div class="ico"><svg viewBox="0 0 16 16"><path d="M7 0h2v16H7z" fill="currentColor"/></svg></div></div>
-                    </div>
-                  </div>
-                  <div class="grid _8-columns">
-                    <div class="faq-card_desc"><p class="p6 text-dark">We offer flexible scheduling to accommodate your busy lifestyle — one-time deep clean or regular maintenance, available 7 days a week, including before or after office hours for commercial spaces.</p></div>
-                  </div>
-                  <div class="faq-card_divider"><div class="divider"><div class="line-l"></div><div class="line-s"></div></div></div>
-                </a>
-              </div>
-
-              <div class="faq-cms_list_item" data-faq-item>
-                <a class="faq-card" data-faq-trigger href="#">
-                  <div class="grid _8-columns">
-                    <div class="faq-card_index"><div class="p4 text-dark">09</div></div>
-                    <div class="faq-card_title"><h4 class="p4 text-dark">How is the price decided?</h4></div>
-                    <div class="faq-card_ico text-dark">
-                      <div class="faq-card_ico_hor"><div class="ico"><svg viewBox="0 0 16 16"><path d="M0 7h16v2H0z" fill="currentColor"/></svg></div></div>
-                      <div class="faq-card_ico_ver"><div class="ico"><svg viewBox="0 0 16 16"><path d="M7 0h2v16H7z" fill="currentColor"/></svg></div></div>
-                    </div>
-                  </div>
-                  <div class="grid _8-columns">
-                    <div class="faq-card_desc"><p class="p6 text-dark">Every home is different, so every job is quoted individually — based on the size of the space, its condition and the services you need. You get an exact price on WhatsApp and approve it before we start. No hidden charges, ever.</p></div>
-                  </div>
-                  <div class="faq-card_divider"><div class="divider"><div class="line-l"></div><div class="line-s"></div></div></div>
-                </a>
-              </div>
-
-            </div>
-          </div>
-        </div>
-        <div class="faq-s_btn" data-scroll-reveal="ctn">
-          <p class="p6 text-dark a-center">Still have a question?</p>
-          <div class="u-16"></div>
-          <a class="btn" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%20have%20a%20question." hover-btn>
-            <div class="btn_label"><div class="btn_label_text"><div class="p6 text-light">Ask us on WhatsApp</div></div></div>
-            <div class="btn_hover" hover="hover"></div>
-            <div class="btn_bg" hover="bg"></div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============ FOOTER ============ -->
-<section class="section bg-light theme_on-dark">
-  <div class="container">
-    <div class="footer_scroll-area">
-      <div class="footer-w">
-        <div class="footer-s">
-          <div class="footer-s_c">
-            <div class="footer-s_top">
-              <div class="grid">
-                <div class="footer-s_top_desc">
-                  <div class="footer-s_top_info_address-l">
-                    <h3 class="p6 text-gray">Address</h3>
-                    <div class="unit-4"></div>
-                    <a class="nav-item" href="https://www.google.com/maps/search/?api=1&query=CleanNest+Wadala+Rd+Jalandhar+144003">
-                      <div class="nav-item_label"><div class="nav-item_label_text"><p class="p6 text-dark">Shop 3, Wadala Rd<br>Jalandhar, Punjab 144003</p></div><div class="nav-item_line"></div></div>
-                    </a>
-                  </div>
-                  <div class="btn-list">
-                    <div class="social-cms_list">
-                      <div class="btn-ico">
-                        <a class="btn-ico_link w-inline-block" href="https://wa.me/917610000654" aria-label="WhatsApp"></a>
-                        <div class="ico-16"><div class="btn-ico_icon text-dark"><div class="ico"><svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor"><path d="M10 2a8 8 0 0 0-6.9 12L2 18l4.1-1A8 8 0 1 0 10 2zm3.6 11.2c-.2.5-1 1-1.5 1s-.9.2-3-.6c-2.5-1-4.1-3.5-4.2-3.7-.1-.2-1-1.4-1-2.6 0-1.2.6-1.8.9-2.1.2-.2.5-.3.7-.3h.5c.2 0 .4-.1.6.4l.8 1.9c.1.2.1.4 0 .6l-.4.6c-.1.2-.3.4-.1.7.2.3.8 1.4 1.8 2.2 1.3 1.1 2.3 1.4 2.7 1.6.3.1.5.1.7-.1l.9-1c.2-.3.4-.2.7-.1l1.9.9c.3.2.5.3.6.4 0 .2 0 .8-.2 1.2z"/></svg></div></div>
-                        <div class="btn-ico_bg sec"><div class="btn-ico_bg_fill prim"></div></div>
-                      </div>
-                      <div class="btn-ico">
-                        <a class="btn-ico_link w-inline-block" href="https://www.instagram.com/cleannest.co" aria-label="Instagram"></a>
-                        <div class="ico-16"><div class="btn-ico_icon text-dark"><div class="ico"><svg viewBox="0 0 20 20" width="16" height="16" fill="currentColor"><path d="M10 3c2.4 0 2.7 0 3.7.1 1 .1 1.5.2 1.9.3.5.2.8.4 1.2.8.4.4.6.7.8 1.2.1.4.3.9.3 1.9.1 1 .1 1.3.1 3.7s0 2.7-.1 3.7c-.1 1-.2 1.5-.3 1.9-.2.5-.4.8-.8 1.2-.4.4-.7.6-1.2.8-.4.1-.9.3-1.9.3-1 .1-1.3.1-3.7.1s-2.7 0-3.7-.1c-1-.1-1.5-.2-1.9-.3-.5-.2-.8-.4-1.2-.8-.4-.4-.6-.7-.8-1.2-.1-.4-.3-.9-.3-1.9C3 12.7 3 12.4 3 10s0-2.7.1-3.7c.1-1 .2-1.5.3-1.9.2-.5.4-.8.8-1.2.4-.4.7-.6 1.2-.8.4-.1.9-.3 1.9-.3C7.3 3 7.6 3 10 3zm0 1.7c-2.4 0-2.6 0-3.6.1-.9 0-1.3.2-1.6.3-.4.2-.7.3-1 .6-.3.3-.5.6-.6 1-.1.3-.3.7-.3 1.6-.1 1-.1 1.2-.1 3.6s0 2.6.1 3.6c0 .9.2 1.3.3 1.6.2.4.3.7.6 1 .3.3.6.5 1 .6.3.1.7.3 1.6.3 1 .1 1.2.1 3.6.1s2.6 0 3.6-.1c.9 0 1.3-.2 1.6-.3.4-.2.7-.3 1-.6.3-.3.5-.6.6-1 .1-.3.3-.7.3-1.6.1-1 .1-1.2.1-3.6s0-2.6-.1-3.6c0-.9-.2-1.3-.3-1.6-.2-.4-.3-.7-.6-1-.3-.3-.6-.5-1-.6-.3-.1-.7-.3-1.6-.3-1-.1-1.2-.1-3.6-.1zm0 2.9a2.4 2.4 0 1 1 0 4.8 2.4 2.4 0 0 1 0-4.8zm0 1.7a.7.7 0 1 0 0 1.4.7.7 0 0 0 0-1.4zm3.9-1.8a.6.6 0 1 1 0 1.2.6.6 0 0 1 0-1.2z"/></svg></div></div>
-                        <div class="btn-ico_bg sec"><div class="btn-ico_bg_fill prim"></div></div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <div class="footer-s_top_info">
-                  <div class="footer-s_top_info_address-r a-right">
-                    <h3 class="p6 text-gray">Contacts</h3>
-                    <div class="unit-4"></div>
-                    <a class="nav-item" href="tel:+917610000654">
-                      <div class="nav-item_label"><div class="nav-item_label_text"><p class="p6 text-dark">+91 76100 00654</p></div><div class="nav-item_line"></div></div>
-                    </a>
-                    <div class="unit-4"></div>
-                    <a class="nav-item" href="mailto:cleannestclub@gmail.com">
-                      <div class="nav-item_label"><div class="nav-item_label_text"><p class="p6 text-dark">cleannestclub@gmail.com</p></div><div class="nav-item_line"></div></div>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="footer-s_center">
-              <div class="contact-cms_list">
-                <a class="nav-item" href="index.html">
-                  <div class="nav-item_label"><div class="nav-item_label_text"><div class="p2 text-dark">Home</div></div><div class="nav-item_line"></div></div>
-                </a>
-                <a class="nav-item" href="services.html">
-                  <div class="nav-item_label"><div class="nav-item_label_text"><div class="p2 text-dark">Services</div></div><div class="nav-item_line"></div></div>
-                </a>
-                <a class="nav-item" href="about.html">
-                  <div class="nav-item_label"><div class="nav-item_label_text"><div class="p2 text-dark">About</div></div><div class="nav-item_line"></div></div>
-                </a>
-                <a class="nav-item" href="blog.html">
-                  <div class="nav-item_label"><div class="nav-item_label_text"><div class="p2 text-dark">Blog</div></div><div class="nav-item_line"></div></div>
-                </a>
-                <a class="nav-item" href="faq.html">
-                  <div class="nav-item_label"><div class="nav-item_label_text"><div class="p2 text-dark">FAQ</div></div><div class="nav-item_line"></div></div>
-                </a>
-                <a class="nav-item" href="book.html">
-                  <div class="nav-item_label"><div class="nav-item_label_text"><div class="p2 text-dark">Book Online</div></div><div class="nav-item_line"></div></div>
-                </a>
-                <a class="nav-item" href="contact.html">
-                  <div class="nav-item_label"><div class="nav-item_label_text"><div class="p2 text-dark">Contact</div></div><div class="nav-item_line"></div></div>
-                </a>
-              </div>
-            </div>
-            <div class="footer-s_bot theme_on-light">
-              <div class="nav-item-list">
-                <p class="p6 text-dark">© <span class="year">2026</span> CleanNest, Jalandhar. All rights reserved.</p>
-              </div>
-              <div class="nav-item-list">
-                <a class="nav-item" href="privacy.html"><div class="nav-item_label"><div class="nav-item_label_text"><p class="p6 text-dark">Privacy Policy</p></div><div class="nav-item_line"></div></div></a>
-                <a class="nav-item" href="terms.html"><div class="nav-item_label"><div class="nav-item_label_text"><p class="p6 text-dark">Terms</p></div><div class="nav-item_line"></div></div></a>
-                <a class="nav-item" href="refund.html"><div class="nav-item_label"><div class="nav-item_label_text"><p class="p6 text-dark">Refund Policy</p></div><div class="nav-item_line"></div></div></a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="footer-w_bg">
-          <div class="footer-w_bg_scene">
-            <img class="footer-w_bg_img" src="assets/img/logo.svg" alt="" aria-hidden="true">
-          </div>
-        </div>
-      </div>
-      <div class="footer_scroll-trigger" id="footer"></div>
-    </div>
-  </div>
-</section>
-
-</main>
-
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/CustomEase.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/lenis@1.3.15/dist/lenis.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script src="assets/js/landing.js"></script>
+<script src="assets/js/app.js"></script>
 </body>
 </html>
