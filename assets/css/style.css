@@ -798,7 +798,6 @@ h4{font-size:.95rem;font-weight:700}
 /* ---------- Responsive ---------- */
 @media (max-width:1024px){
   .feature-grid,.steps{grid-template-columns:repeat(2,1fr)}
-  .why-grid{grid-template-columns:repeat(2,1fr)}
   .services-grid,.plan-grid{grid-template-columns:repeat(2,1fr)}
   .review-grid{grid-template-columns:repeat(2,1fr)}
   .pricing-grid{grid-template-columns:repeat(2,1fr)}
