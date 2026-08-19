@@ -40,16 +40,18 @@
   }
 
   /* ---------- split text helpers ---------- */
-  function splitHeading(el) {
-    // fall back if SplitText missing
+  // store the SplitText instance on the element so initial + reveal share ONE split
+  function getSplit(el, force) {
+    if (el.__cnSplit && !force) return el.__cnSplit;
     try {
       var st = new SplitText(el, { type: 'lines,words,chars', linesClass: 'split-line', wordsClass: 'split-word', charsClass: 'split-char' });
+      el.__cnSplit = st;
       return st;
     } catch (e) { return null; }
   }
 
   function animateTextH(el, state) {
-    var st = splitHeading(el);
+    var st = getSplit(el);
     if (!st) { gsap.set(el, { autoAlpha: 1 }); return; }
     var lines = st.lines || [el];
     if (state === 'initial') {
@@ -64,7 +66,7 @@
   }
 
   function animateTextP(el, state) {
-    var st = splitHeading(el);
+    var st = getSplit(el);
     if (!st) { gsap.set(el, { autoAlpha: 1 }); return; }
     var lines = st.lines || [el];
     if (state === 'initial') {
@@ -459,6 +461,20 @@
   }
 
   /* ---------- init ---------- */
+  var resizeT = null;
+  function onResize() {
+    clearTimeout(resizeT);
+    resizeT = setTimeout(function () {
+      // re-split cached elements so lines re-wrap for the new width
+      document.querySelectorAll('[data-scroll-reveal="h"], [data-scroll-reveal="p"]').forEach(function (el) {
+        var st = el.__cnSplit;
+        if (st) { st.revert(); el.__cnSplit = null; }
+      });
+      initScrollElementsReveal();
+      ScrollTrigger.refresh();
+    }, 250);
+  }
+
   function init() {
     gsap.set('[data-prevent-flicker="true"]', { visibility: 'visible' });
     initPreloader();
@@ -476,6 +492,7 @@
     initHeader();
 
     ScrollTrigger.refresh();
+    window.addEventListener('resize', onResize);
 
     // year
     document.querySelectorAll('.year').forEach(function (el) {
