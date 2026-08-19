@@ -125,13 +125,39 @@
     }
   }
 
-  /* ---------- Before & After: tap to reveal on touch devices ---------- */
-  function initBaReveal() {
-    var cards = document.querySelectorAll(".ba-card");
-    for (var i = 0; i < cards.length; i++) {
-      cards[i].addEventListener("click", function () {
-        this.classList.toggle("tapped");
-      });
+  /* ---------- Before & After: draggable comparison slider ---------- */
+  function initBaSlider() {
+    var sliders = document.querySelectorAll("[data-slider]");
+    for (var i = 0; i < sliders.length; i++) {
+      (function (sl) {
+        var pos = 50;
+        var dragging = false;
+        function setPos(p) {
+          pos = Math.max(3, Math.min(97, p));
+          sl.style.setProperty("--pos", pos + "%");
+          if (sl.hasAttribute("aria-valuenow")) sl.setAttribute("aria-valuenow", String(Math.round(pos)));
+        }
+        function fromEvent(e) {
+          var r = sl.getBoundingClientRect();
+          var x = (e.clientX || (e.touches && e.touches[0] && e.touches[0].clientX) || 0) - r.left;
+          return (x / r.width) * 100;
+        }
+        sl.addEventListener("pointerdown", function (e) {
+          dragging = true;
+          setPos(fromEvent(e));
+        });
+        window.addEventListener("pointermove", function (e) {
+          if (!dragging) return;
+          setPos(fromEvent(e));
+        });
+        window.addEventListener("pointerup", function () { dragging = false; });
+        window.addEventListener("pointercancel", function () { dragging = false; });
+        sl.addEventListener("keydown", function (e) {
+          if (e.key === "ArrowLeft") { setPos(pos - 5); e.preventDefault(); }
+          if (e.key === "ArrowRight") { setPos(pos + 5); e.preventDefault(); }
+        });
+        setPos(50);
+      })(sliders[i]);
     }
   }
 
@@ -163,7 +189,7 @@
     initForms();
     initHeroQuote();
     initServiceFilter();
-    initBaReveal();
+    initBaSlider();
     initYear();
     initServicePrefill();
   });
