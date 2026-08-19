@@ -1,8 +1,8 @@
 /* ============================================================
-   CleanNest APP SHELL — layered on top of style.css
-   Turns the site into an app-looking experience:
-   sticky app bar, bottom tab bar, app-style cards, page feel.
-   Mobile-first; desktop gets a floating centered dock.
+   CleanNest APP SHELL v2 — layered on top of style.css
+   App-looking experience: sticky navy app bar, bottom tab bar,
+   app-style cards. Vibrant accents: coral active tab + FAB,
+   sunny greeting chip.
    ============================================================ */
 
 :root{
@@ -15,11 +15,11 @@
 
 /* ---------- body: room for the tab bar ---------- */
 body{
-  padding-bottom:calc(84px + env(safe-area-inset-bottom,0px));
+  padding-bottom:calc(100px + env(safe-area-inset-bottom,0px));
   background:var(--cyan-softest, #F2F6F9);
 }
 
-/* ---------- app bar (existing .site-header becomes app-style) ---------- */
+/* ---------- app bar (navy) ---------- */
 .site-header{
   position:sticky;top:0;z-index:80;
   background:rgba(11,67,100,.92);
@@ -38,11 +38,11 @@ body{
 
 /* mobile: hide inline CTA in app bar (actions live in tab bar) */
 @media (max-width:1023px){
-  .site-header .header-cta .btn-wa{display:none}
+  .site-header .header-cta .btn{display:none}
   .site-header .header-inner{padding-top:10px;padding-bottom:10px}
 }
 
-/* ---------- bottom TAB BAR (the app signature) ---------- */
+/* ---------- bottom TAB BAR ---------- */
 .tabbar{
   position:fixed;left:50%;transform:translateX(-50%);
   bottom:calc(12px + env(safe-area-inset-bottom,0px));
@@ -67,20 +67,20 @@ body{
 .tab svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .tab .ic-fill{fill:currentColor;stroke:none}
 .tab:active{transform:scale(.93)}
-.tab:focus-visible{outline:3px solid var(--cyan,#0CD7E5);outline-offset:2px;border-radius:16px}
-.tab.on{color:var(--navy,#0B4364)}
-.tab.on svg{stroke:var(--cyan,#0CD7E5)}
-.tab.on .ic-fill{fill:var(--cyan,#0CD7E5);stroke:none}
-.tab.on::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--cyan);margin-bottom:1px}
+.tab:focus-visible{outline:3px solid var(--coral,#FF5A4E);outline-offset:2px;border-radius:16px}
+.tab.on{color:var(--coral-deep,#E8453A)}
+.tab.on svg{stroke:var(--coral,#FF5A4E)}
+.tab.on .ic-fill{fill:var(--coral,#FF5A4E);stroke:none}
+.tab.on::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--coral,#FF5A4E);margin-bottom:1px}
 
-/* center FAB — Call */
+/* center FAB — Call (coral) */
 .tab-call{
   flex:0 0 auto;margin:-26px 2px 0;
   width:56px;height:56px;border-radius:50%;
-  background:linear-gradient(135deg,#0E5C88,#0B4364);
+  background:var(--coral-grad,linear-gradient(135deg,#FF7A6B,#F04A3C));
   color:#fff !important;
   display:flex;align-items:center;justify-content:center;
-  box-shadow:0 10px 24px rgba(11,67,100,.45);
+  box-shadow:0 10px 24px rgba(240,74,60,.5);
   border:3px solid #fff;
 }
 .tab-call svg{width:24px;height:24px;stroke:#fff !important;fill:none}
@@ -106,9 +106,9 @@ body{
 .app-greet .greet-title{font-family:var(--font-d);font-size:22px;font-weight:800;color:var(--ink,#0B3A55);line-height:1.2}
 .app-greet p{font-size:13px;color:var(--muted);margin-top:2px}
 .app-greet .chip{
-  background:var(--cyan,#0CD7E5);color:#04303f;
+  background:linear-gradient(135deg,#FFD968,#F5AC17);color:#5B3A00;
   font-size:12px;font-weight:800;padding:7px 12px;border-radius:999px;
-  box-shadow:0 6px 14px rgba(12,215,229,.35);white-space:nowrap;
+  box-shadow:0 6px 14px rgba(240,165,0,.35);white-space:nowrap;
 }
 
 /* ---------- hero becomes an app card ---------- */
@@ -120,6 +120,17 @@ body[data-page="home"] .hero{
   max-width:640px;
 }
 body[data-page="home"] .hero .container{padding:26px 22px}
+/* app-style home: hero stacks in one column below 1024px (mobile-app feel) */
+@media (max-width:1023px){
+  body[data-page="home"] .hero-grid{grid-template-columns:1fr;gap:6px}
+}
+/* desktop: give the home hero room to breathe — 2-col, unclipped scene */
+@media (min-width:1024px){
+  body[data-page="home"] .hero{max-width:960px;padding:56px 0}
+  body[data-page="home"] .hero .container{padding:0 34px}
+  body[data-page="home"] .hero-grid{grid-template-columns:1.12fr .88fr;gap:40px}
+  body[data-page="home"] .hero-scene{max-width:430px}
+}
 
 /* ---------- app cards for sections ---------- */
 .app-card{
@@ -132,7 +143,7 @@ body[data-page="home"] .hero .container{padding:26px 22px}
 .section{padding-top:14px}
 .section .container, .section-head{padding-left:0;padding-right:0}
 
-/* service cards → photo cards (app look) */
+/* service cards → app cards */
 .services-grid{grid-template-columns:repeat(2,1fr);gap:14px}
 @media (min-width:768px){.services-grid{grid-template-columns:repeat(3,1fr)}}
 .service-card{
@@ -150,6 +161,14 @@ body[data-page="home"] .hero .container{padding:26px 22px}
 .service-card .card-actions{padding:0 14px 14px}
 .service-card .card-actions .btn{width:100%;justify-content:center}
 
+/* icon-card variant: 3D icon centered in a pastel tile */
+.service-card.icon-card .icon{height:118px;display:flex;align-items:center;justify-content:center}
+.service-card.icon-card .icon a{display:flex;align-items:center;justify-content:center;width:100%;height:100%}
+.service-card.icon-card .icon svg{width:76px;height:76px}
+.service-card.icon-card h3{font-size:14.5px;padding-top:12px}
+.service-card.icon-card .card-actions{padding-top:8px}
+.service-card.icon-card .card-actions .pill-link{width:100%;justify-content:center;margin:0}
+
 /* chip filters → app chips */
 .svc-chips{display:flex;gap:8px;overflow-x:auto;padding:4px 2px 10px;scrollbar-width:none}
 .svc-chips::-webkit-scrollbar{display:none}
@@ -158,7 +177,7 @@ body[data-page="home"] .hero .container{padding:26px 22px}
   border-radius:999px;padding:8px 15px;font-size:12.5px;font-weight:700;
   white-space:nowrap;cursor:pointer;flex:0 0 auto;
 }
-.svc-chip.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.svc-chip.active{background:var(--coral-grad,linear-gradient(135deg,#FF7A6B,#F04A3C));color:#fff;border-color:transparent}
 
 /* reviews → app cards */
 .review-mini{
@@ -171,10 +190,9 @@ body[data-page="home"] .hero .container{padding:26px 22px}
 main#main{animation:appIn .28s ease both}
 
 /* ---------- misc polish ---------- */
-.btn{border-radius:14px}
+.btn{border-radius:999px}
 .btn-wa{background:#25D366}
-/* floating WhatsApp: base CSS hides it <=720px (sticky-bar era); the tab bar
-   replaces the sticky bar, so restore one-tap WhatsApp above the tab bar */
+/* floating WhatsApp: restore above the tab bar */
 @media (max-width:720px){
   .wa-float{display:flex !important}
 }
