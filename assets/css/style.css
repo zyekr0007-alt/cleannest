@@ -311,6 +311,29 @@ h4{font-size:.95rem;font-weight:700}
 .card-actions{padding:0 20px 20px;display:flex;gap:10px}
 .card-label{font-size:.9rem;font-weight:700;color:var(--navy)}
 
+/* ---------- UC-inspired: Why CleanNest strip ---------- */
+.why-strip{padding:56px 0 8px}
+.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.why-item{display:flex;gap:16px;align-items:flex-start;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px 20px;box-shadow:var(--shadow-sm)}
+.why-item .wi-icon{width:46px;height:46px;border-radius:12px;background:var(--cyan-soft);color:var(--navy);display:flex;align-items:center;justify-content:center;flex:none}
+.why-item .wi-icon svg{width:22px;height:22px}
+.why-item h3{font-size:1rem;margin-bottom:4px}
+.why-item p{font-size:.88rem;color:var(--muted);margin:0}
+
+/* ---------- UC-inspired: service category chips ---------- */
+.svc-chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:30px}
+.svc-chip{background:#fff;border:1.5px solid var(--line);border-radius:var(--radius-pill);padding:9px 18px;font-family:var(--font-b);font-size:.9rem;font-weight:600;color:var(--text);cursor:pointer;transition:all .15s ease}
+.svc-chip:hover{border-color:var(--navy);color:var(--navy)}
+.svc-chip.active{background:var(--navy-grad);color:#fff;border-color:transparent}
+.service-card.hidden{display:none}
+
+/* ---------- UC-inspired: quality assured band ---------- */
+.qual-band{background:var(--cyan-soft);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.qual-band .container{display:flex;align-items:center;gap:18px;padding:22px 24px;flex-wrap:wrap;justify-content:center;text-align:center}
+.qual-band .qb-logo{flex:none}
+.qual-band p{font-size:1.02rem;color:var(--text);flex:1;min-width:260px;margin:0}
+.qual-band p b{color:var(--ink);font-family:var(--font-d)}
+
 .plan-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
 .plan-card{
   background:#fff;border:1px solid var(--line);border-radius:var(--radius);
@@ -756,6 +779,7 @@ h4{font-size:.95rem;font-weight:700}
   .hw-row{flex-direction:column}
   .hw-row select,.hw-row .btn{width:100%}
   .services-grid,.plan-grid,.review-grid,.pricing-grid,.feature-grid,.steps{grid-template-columns:1fr}
+  .why-grid{grid-template-columns:1fr}
   .blog-grid{grid-template-columns:1fr}
   .blog-featured h2{font-size:1.25rem}
   .blog-featured .bf-body{padding:22px}

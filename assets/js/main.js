@@ -105,6 +105,26 @@
     }
   }
 
+  /* ---------- UC-inspired: service category filter ---------- */
+  function initServiceFilter() {
+    var chips = document.querySelectorAll(".svc-chip");
+    if (!chips.length) return;
+    for (var i = 0; i < chips.length; i++) {
+      chips[i].addEventListener("click", function () {
+        var f = this.getAttribute("data-filter");
+        for (var j = 0; j < chips.length; j++) {
+          var on = chips[j] === this;
+          chips[j].classList.toggle("active", on);
+          chips[j].setAttribute("aria-pressed", on ? "true" : "false");
+        }
+        var cards = document.querySelectorAll(".service-card");
+        for (var k = 0; k < cards.length; k++) {
+          cards[k].classList.toggle("hidden", f !== "all" && cards[k].getAttribute("data-cat") !== f);
+        }
+      });
+    }
+  }
+
   /* ---------- footer year ---------- */
   function initYear() {
     var y = document.getElementById("year");
@@ -132,6 +152,7 @@
     initReveal();
     initForms();
     initHeroQuote();
+    initServiceFilter();
     initYear();
     initServicePrefill();
   });
