@@ -357,7 +357,21 @@
       if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
     }, { passive: true });
     onScroll();
-    if (wa) setTimeout(function () { wa.classList.add("in"); }, 700);
+    // Floating WhatsApp: appear only after the user starts scrolling past the
+    // hero (avoids colliding with the hero CTA on load); hard fallback at 6s.
+    if (wa) {
+      var revealWa = function () { wa.classList.add("in"); };
+      var waScrolled = false;
+      var onWaScroll = function () {
+        if (window.scrollY > 240 && !waScrolled) {
+          waScrolled = true;
+          revealWa();
+          window.removeEventListener("scroll", onWaScroll);
+        }
+      };
+      window.addEventListener("scroll", onWaScroll, { passive: true });
+      setTimeout(revealWa, 6000);
+    }
   }
 
   /* ---------- conversion event tracking (GoatCounter events, cookieless) ----------
