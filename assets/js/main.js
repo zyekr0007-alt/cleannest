@@ -67,7 +67,13 @@
 
   /* ---------- WhatsApp forms ---------- */
   /* Inline, accessible validation: per-field errors (aria-invalid + aria-describedby),
-     valid Indian mobile check, live status on success, popup-blocked fallback link. */
+     valid Indian mobile check, live status on success, popup-blocked fallback link.
+     Spam protection: hidden honeypot ("company") — bots fill it, humans can't see it.
+     Bot submissions get a silent "thanks" and never open WhatsApp or fire analytics. */
+  function isBot(form) {
+    var hp = form && form.querySelector ? form.querySelector("[name=company]") : null;
+    return !!(hp && hp.value && hp.value.trim());
+  }
   function validPhone(v) {
     var d = (v || "").replace(/[^\d]/g, "");
     if (d.length === 12 && d.indexOf("91") === 0) d = d.slice(2);
@@ -121,15 +127,28 @@
       var nameIn = f.querySelector("[name=name]");
       var phoneIn = f.querySelector("[name=phone]");
       var serviceIn = f.querySelector("[name=service]");
-      [nameIn, phoneIn, serviceIn].forEach(function (inp) {
-        if (inp) inp.addEventListener("input", function () { fieldOk(inp); });
+      var dateIn = f.querySelector("[name=date]");
+      [nameIn, phoneIn, serviceIn, dateIn].forEach(function (inp) {
+        if (inp) inp.addEventListener(inp === dateIn ? "change" : "input", function () { fieldOk(inp); });
       });
+      if (dateIn) {
+        // Never allow past dates in the picker; JS re-checks on submit.
+        var now = new Date();
+        var mm = String(now.getMonth() + 1).padStart(2, "0");
+        var dd = String(now.getDate()).padStart(2, "0");
+        dateIn.min = now.getFullYear() + "-" + mm + "-" + dd;
+      }
       f.addEventListener("submit", function (e) {
         e.preventDefault();
         var form = e.target;
+        if (isBot(form)) {
+          formStatus(form, "Thank you! Your request has been received &mdash; we&rsquo;ll reply on WhatsApp shortly.");
+          return;
+        }
         var name = nameIn ? nameIn.value.trim() : "";
         var phone = phoneIn ? phoneIn.value.trim() : "";
         var service = serviceIn ? serviceIn.value : "";
+        var date = dateIn ? dateIn.value : "";
         var ok = true;
         if (!name) { fieldError(nameIn, "Please enter your name."); ok = false; }
         else fieldOk(nameIn);
@@ -137,8 +156,17 @@
         else fieldOk(phoneIn);
         if (serviceIn && !service) { fieldError(serviceIn, "Please select a service."); ok = false; }
         else fieldOk(serviceIn);
+        if (date) {
+          var pick = new Date(date + "T00:00:00");
+          var today = new Date(); today.setHours(0, 0, 0, 0);
+          if (pick < today) { fieldError(dateIn, "Please choose a date from today onwards."); ok = false; }
+          else fieldOk(dateIn);
+        }
         if (!ok) {
-          var first = (!name && nameIn) ? nameIn : ((!phone || !validPhone(phone)) && phoneIn) ? phoneIn : serviceIn;
+          var first = (!name && nameIn) ? nameIn
+            : ((!phone || !validPhone(phone)) && phoneIn) ? phoneIn
+            : (serviceIn && !service) ? serviceIn
+            : (date && dateIn) ? dateIn : null;
           if (first) first.focus();
           return;
         }
@@ -171,6 +199,10 @@
       f.addEventListener("submit", function (e) {
         e.preventDefault();
         var form = e.target;
+        if (isBot(form)) {
+          formStatus(form, "Thank you! Your request has been received &mdash; we&rsquo;ll reply on WhatsApp shortly.");
+          return;
+        }
         var phone = phoneIn ? phoneIn.value.trim() : "";
         if (!phone || !validPhone(phone)) {
           fieldError(phoneIn, "Please enter a valid phone number.");
@@ -427,6 +459,7 @@
     document.addEventListener("submit", function (e) {
       var f = e.target;
       if (!f || !f.matches || !f.matches("form[data-wa-form], form[data-hero-quote]")) return;
+      if (isBot(f)) return; // bot submissions are never tracked
       var kind = formKind(f);
       track(kind === "contact" ? "contact-form-submit" : "quote-form-submit", { form: kind });
     }, true);

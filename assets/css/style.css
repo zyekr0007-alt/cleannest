@@ -773,8 +773,9 @@ h4{font-size:.95rem;font-weight:700}
 .field label{font-size:.85rem;font-weight:700;color:var(--ink)}
 .field input,.field select,.field textarea{
   padding:12px 14px;border:1.5px solid var(--line);border-radius:12px;
-  font-family:var(--font-b);font-size:.95rem;color:var(--ink);background:#fff;
+  font-family:var(--font-b);font-size:1rem;color:var(--ink);background:#fff;
 }
+.hp-field{position:absolute !important;left:-9999px !important;width:1px;height:1px;opacity:0;pointer-events:none;z-index:-1}
 .field input:focus,.field select:focus,.field textarea:focus{
   outline:3px solid var(--cyan);outline-offset:1px;border-color:var(--navy);
 }
