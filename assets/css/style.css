@@ -37,7 +37,7 @@ html{
 }
 
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
 body{
   font-family:var(--font-b);
   font-size:16px;line-height:1.66;
@@ -122,7 +122,9 @@ h4{font-size:.95rem;font-weight:700}
   position:sticky;top:0;z-index:100;
   background:rgba(255,255,255,.86);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
   border-bottom:1px solid var(--line);
+  transition:box-shadow .25s ease,background .25s ease;
 }
+.site-header.scrolled{background:rgba(255,255,255,.95);box-shadow:0 8px 26px rgba(11,67,100,.10)}
 .header-inner{display:flex;align-items:center;justify-content:space-between;gap:18px;height:72px}
 .brand{display:flex;align-items:center;gap:10px;flex:none}
 .brand-emblem{height:44px;width:44px;border-radius:50%;object-fit:cover}
@@ -857,6 +859,20 @@ h4{font-size:.95rem;font-weight:700}
 }
 
 /* ---------- Sticky mobile bar ---------- */
+.wa-float{
+  position:fixed;right:22px;bottom:22px;z-index:85;
+  width:56px;height:56px;border-radius:50%;
+  background:#25D366;color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 10px 26px rgba(37,211,102,.42);
+  opacity:0;transform:translateY(14px) scale(.92);
+  transition:opacity .45s ease,transform .45s ease,box-shadow .2s ease,background .2s ease;
+}
+.wa-float svg{width:28px;height:28px}
+.wa-float.in{opacity:1;transform:none}
+.wa-float:hover{transform:translateY(-3px);background:#1fb959;box-shadow:0 14px 32px rgba(37,211,102,.5)}
+.wa-float:focus-visible{outline:3px solid var(--cyan);outline-offset:3px}
+@media (max-width:720px){.wa-float{display:none}}
 .sticky-bar{
   display:none;position:fixed;bottom:0;left:0;right:0;z-index:90;
   background:rgba(255,255,255,.95);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);

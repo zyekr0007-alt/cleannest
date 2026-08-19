@@ -16,6 +16,16 @@
     nav.addEventListener("click", function (e) {
       if (e.target.tagName === "A") nav.classList.remove("open");
     });
+    function closeNav() {
+      nav.classList.remove("open");
+      toggle.setAttribute("aria-expanded", "false");
+    }
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && nav.classList.contains("open")) closeNav();
+    });
+    document.addEventListener("click", function (e) {
+      if (nav.classList.contains("open") && !nav.contains(e.target) && !toggle.contains(e.target)) closeNav();
+    });
   }
 
   /* ---------- scroll reveal ---------- */
@@ -221,6 +231,22 @@
     if (!reduceMotion) raf = requestAnimationFrame(step);
   }
 
+  /* ---------- header scrolled state + floating WhatsApp entrance ---------- */
+  function initHeaderFx() {
+    var header = document.querySelector(".site-header");
+    var wa = document.querySelector(".wa-float");
+    var ticking = false;
+    function onScroll() {
+      if (header) header.classList.toggle("scrolled", window.scrollY > 10);
+      ticking = false;
+    }
+    window.addEventListener("scroll", function () {
+      if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
+    }, { passive: true });
+    onScroll();
+    if (wa) setTimeout(function () { wa.classList.add("in"); }, 700);
+  }
+
   /* ---------- footer year ---------- */
   function initYear() {
     var y = document.getElementById("year");
@@ -251,6 +277,7 @@
     initServiceFilter();
     initBaSlider();
     initRevMarquee();
+    initHeaderFx();
     initYear();
     initServicePrefill();
   });
