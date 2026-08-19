@@ -256,6 +256,40 @@
     if (wa) setTimeout(function () { wa.classList.add("in"); }, 700);
   }
 
+  /* ---------- conversion event tracking (GoatCounter events, cookieless) ---------- */
+  function initTracking() {
+    function track(name) {
+      try {
+        if (window.goatcounter && goatcounter.count) {
+          goatcounter.count({ path: "/event/" + name, event: true });
+        }
+      } catch (e) { /* tracking must never break the site */ }
+    }
+    // ONE delegated listener for all CTA clicks — fires once per click, never duplicates
+    document.addEventListener("click", function (e) {
+      var a = e.target && e.target.closest ? e.target.closest("a") : null;
+      if (!a) return;
+      var h = (a.getAttribute("href") || "").toLowerCase();
+      if (h.indexOf("tel:") === 0) track("call");
+      else if (h.indexOf("wa.me") !== -1 || h.indexOf("api.whatsapp.com") !== -1) track("whatsapp");
+      else if (h.indexOf("book.html") !== -1) track("get-quote");
+      else if (h.indexOf("service-page/") !== -1) track("service-click");
+    }, true);
+    // quote/contact form start — first interaction inside the form (once per visit)
+    document.addEventListener("focusin", function (e) {
+      var f = e.target && e.target.closest ? e.target.closest("form[data-wa-form], form[data-hero-quote]") : null;
+      if (!f || f.dataset.trackedStart) return;
+      f.dataset.trackedStart = "1";
+      track(/contact\.html/.test(location.pathname) ? "contact-form-start" : "quote-form-start");
+    }, true);
+    // form submission — fires in addition to the functional handler, no duplicates
+    document.addEventListener("submit", function (e) {
+      var f = e.target;
+      if (!f || !f.matches || !f.matches("form[data-wa-form], form[data-hero-quote]")) return;
+      track(/contact\.html/.test(location.pathname) ? "contact-form-submit" : "quote-form-submit");
+    }, true);
+  }
+
   /* ---------- footer year ---------- */
   function initYear() {
     var y = document.getElementById("year");
@@ -287,6 +321,7 @@
     initBaSlider();
     initRevMarquee();
     initHeaderFx();
+    initTracking();
     initYear();
     initServicePrefill();
   });
