@@ -188,6 +188,8 @@
       var r = group.getBoundingClientRect();
       return r.width;
     }
+    var gw = groupWidth();
+    window.addEventListener("resize", function () { gw = groupWidth(); });
     function pause() { paused = true; }
     function resume(delay) { paused = false; pauseUntil = delay ? Date.now() + delay : 0; }
     function step(ts) {
@@ -195,13 +197,20 @@
       var dt = Math.min(120, ts - last);
       last = ts;
       if (!paused && Date.now() >= pauseUntil) {
-        var w = groupWidth();
         pos += speed * dt / 1000;
-        if (pos >= w) pos -= w; // seamless loop — content at pos-w is identical
+        if (pos >= gw) pos -= gw; // seamless loop — content at pos-gw is identical
         var t = Math.round(pos); // write whole pixels only (sub-pixel writes round to 0 on mobile)
         if (t !== wrap.scrollLeft) { wrap.scrollLeft = t; lastWritten = t; }
       }
       raf = requestAnimationFrame(step);
+    }
+
+    // Stop the rAF loop while the marquee is off-screen (saves mobile CPU/battery)
+    if ("IntersectionObserver" in window) {
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { en.isIntersecting ? resume(0) : pause(); });
+      }, { rootMargin: "200px" });
+      io.observe(wrap);
     }
 
     // Any scroll NOT caused by this loop (swipe, trackpad, arrows) resets the
