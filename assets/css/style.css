@@ -320,6 +320,39 @@ h4{font-size:.95rem;font-weight:700}
 .why-item h3{font-size:1rem;margin-bottom:4px}
 .why-item p{font-size:.88rem;color:var(--muted);margin:0}
 
+/* ---------- Hero photo (professional visual) ---------- */
+.hero-photo{position:relative;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow)}
+.hero-photo img{width:100%;aspect-ratio:5/4;object-fit:cover;display:block}
+.hp-card{position:absolute;background:#fff;border-radius:var(--radius);padding:11px 16px;box-shadow:var(--shadow);font-weight:700;font-size:.88rem;color:var(--ink);display:flex;align-items:center;gap:8px}
+.hp-card .stars{color:var(--cyan-ink);letter-spacing:1.5px;font-size:.8rem}
+.hp-card svg{width:16px;height:16px;color:var(--navy);flex:none}
+.hp-card-1{top:16px;left:16px}
+.hp-card-2{bottom:16px;right:16px}
+
+/* ---------- Before & After (real work photos, hover/tap reveal) ---------- */
+.ba-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.ba-card{position:relative;border-radius:var(--radius);overflow:hidden;margin:0;box-shadow:var(--shadow-sm);cursor:pointer;background:#0B3A55}
+.ba-card img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;filter:grayscale(1) brightness(.88);transition:filter .5s ease,transform .7s ease}
+.ba-card:hover img,.ba-card.tapped img{filter:grayscale(0) brightness(1);transform:scale(1.05)}
+.ba-card figcaption{position:absolute;left:0;right:0;bottom:0;background:linear-gradient(transparent,rgba(11,67,100,.9));color:#fff;padding:30px 14px 12px;font-size:.85rem;font-weight:600}
+.ba-hint{position:absolute;top:10px;right:10px;background:rgba(255,255,255,.92);color:var(--navy);font-size:.7rem;font-weight:800;padding:5px 11px;border-radius:99px;text-transform:uppercase;letter-spacing:.07em}
+
+/* ---------- How it works (3 steps) ---------- */
+.steps-3{grid-template-columns:repeat(3,1fr)}
+
+/* ---------- Reviews marquee (real Google reviews) ---------- */
+.rev-marquee{overflow:hidden;border-top:1px solid var(--line);padding:8px 0 34px;background:transparent}
+.rev-track{display:flex;width:max-content;animation:marquee 42s linear infinite}
+.rev-marquee:hover .rev-track{animation-play-state:paused}
+.rev-group{display:flex;gap:18px;padding-right:18px}
+.review-mini{width:350px;flex:none;background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:20px 22px;box-shadow:var(--shadow-sm);display:flex;flex-direction:column}
+.review-mini p{font-size:.9rem;color:var(--text);flex:1}
+.g-tag{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:.76rem;font-weight:700;color:var(--muted)}
+.g-tag::before{content:"G";width:16px;height:16px;border-radius:50%;background:var(--navy-grad);color:#fff;font-size:.62rem;font-weight:800;display:inline-flex;align-items:center;justify-content:center}
+
+/* ---------- Service areas (compact) ---------- */
+.areas-compact{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:780px;margin:0 auto}
+
 /* ---------- UC-inspired: service category chips ---------- */
 .svc-chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:30px}
 .svc-chip{background:#fff;border:1.5px solid var(--line);border-radius:var(--radius-pill);padding:9px 18px;font-family:var(--font-b);font-size:.9rem;font-weight:600;color:var(--text);cursor:pointer;transition:all .15s ease}
@@ -510,19 +543,20 @@ h4{font-size:.95rem;font-weight:700}
 .seo-cols ul{list-style:none}
 .seo-cols li{padding:4px 0;font-size:.9rem}
 
-/* ---------- Trust marquee ---------- */
+/* ---------- Trust marquee (subtle) ---------- */
 .marquee{
-  background:var(--navy-grad);overflow:hidden;padding:15px 0;
-  border-top:1px solid rgba(12,215,229,.22);border-bottom:1px solid rgba(12,215,229,.22);
+  background:#fff;overflow:hidden;padding:14px 0;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
 }
-.marquee-track{display:flex;width:max-content;animation:marquee 30s linear infinite}
+.marquee-track{display:flex;width:max-content;animation:marquee 36s linear infinite}
 .marquee:hover .marquee-track{animation-play-state:paused}
-.marquee-group{display:flex;align-items:center;gap:34px;padding-right:34px;flex:none}
+.marquee-group{display:flex;align-items:center;gap:30px;padding-right:30px;flex:none}
 .marquee span{
-  color:#EAF6FB;font-family:var(--font-d);font-weight:600;font-size:.95rem;
-  letter-spacing:.05em;white-space:nowrap;
+  color:var(--text);font-family:var(--font-d);font-weight:600;font-size:.92rem;
+  letter-spacing:.04em;white-space:nowrap;
 }
-.marquee i{color:var(--cyan);font-style:normal;font-size:.85rem}
+.marquee span b{color:var(--cyan-ink)}
+.marquee i{color:var(--line);font-style:normal;font-size:1rem}
 @keyframes marquee{to{transform:translateX(-50%)}}
 @media (prefers-reduced-motion:reduce){.marquee-track{animation:none}}
 
@@ -723,6 +757,7 @@ h4{font-size:.95rem;font-weight:700}
 /* ---------- Responsive ---------- */
 @media (max-width:1024px){
   .feature-grid,.steps{grid-template-columns:repeat(2,1fr)}
+  .why-grid{grid-template-columns:repeat(2,1fr)}
   .services-grid,.plan-grid{grid-template-columns:repeat(2,1fr)}
   .review-grid{grid-template-columns:repeat(2,1fr)}
   .pricing-grid{grid-template-columns:repeat(2,1fr)}
@@ -780,6 +815,11 @@ h4{font-size:.95rem;font-weight:700}
   .hw-row select,.hw-row .btn{width:100%}
   .services-grid,.plan-grid,.review-grid,.pricing-grid,.feature-grid,.steps{grid-template-columns:1fr}
   .why-grid{grid-template-columns:1fr}
+  .ba-grid{grid-template-columns:repeat(2,1fr)}
+  .review-mini{width:300px}
+  .hp-card{padding:8px 12px;font-size:.78rem}
+  .hp-card-1{top:10px;left:10px}
+  .hp-card-2{bottom:10px;right:10px}
   .blog-grid{grid-template-columns:1fr}
   .blog-featured h2{font-size:1.25rem}
   .blog-featured .bf-body{padding:22px}

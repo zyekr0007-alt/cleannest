@@ -125,6 +125,16 @@
     }
   }
 
+  /* ---------- Before & After: tap to reveal on touch devices ---------- */
+  function initBaReveal() {
+    var cards = document.querySelectorAll(".ba-card");
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].addEventListener("click", function () {
+        this.classList.toggle("tapped");
+      });
+    }
+  }
+
   /* ---------- footer year ---------- */
   function initYear() {
     var y = document.getElementById("year");
@@ -153,6 +163,7 @@
     initForms();
     initHeroQuote();
     initServiceFilter();
+    initBaReveal();
     initYear();
     initServicePrefill();
   });
