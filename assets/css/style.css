@@ -95,7 +95,7 @@ h4{font-size:.95rem;font-weight:700}
 }
 .btn svg{width:19px;height:19px;flex:none}
 .btn:hover{transform:translateY(-2px)}
-.btn:active{transform:translateY(0)}
+.btn:active{transform:translateY(0) scale(.985)}
 .btn-primary{background:var(--navy-grad);color:#fff;box-shadow:0 8px 20px rgba(11,67,100,.28)}
 .btn-primary:hover{background:linear-gradient(135deg,#0E4E75,#072538);box-shadow:0 12px 26px rgba(11,67,100,.38)}
 .btn-wa{background:#25D366;color:#fff}
@@ -328,6 +328,20 @@ h4{font-size:.95rem;font-weight:700}
 .hp-card svg{width:16px;height:16px;color:var(--navy);flex:none}
 .hp-card-1{top:16px;left:16px}
 .hp-card-2{bottom:16px;right:16px}
+.hero-wa{margin-top:12px}
+
+/* Hero entrance (fast, subtle, once) */
+.hero .eyebrow,.hero h1,.hero .sub,.hero .rating-badge,.hero .hero-widget,.hero .hero-photo{animation:heroUp .5s cubic-bezier(.22,.61,.36,1) both}
+.hero .eyebrow{animation-delay:.04s}
+.hero h1{animation-delay:.1s}
+.hero .sub{animation-delay:.17s}
+.hero .rating-badge{animation-delay:.24s}
+.hero .hero-widget{animation-delay:.32s}
+.hero .hero-photo{animation-delay:.18s}
+@keyframes heroUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){
+  .hero .eyebrow,.hero h1,.hero .sub,.hero .rating-badge,.hero .hero-widget,.hero .hero-photo{animation:none}
+}
 
 /* ---------- Before & After (real work photos, hover/tap reveal) ---------- */
 .ba-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
@@ -820,6 +834,7 @@ h4{font-size:.95rem;font-weight:700}
   .hp-card{padding:8px 12px;font-size:.78rem}
   .hp-card-1{top:10px;left:10px}
   .hp-card-2{bottom:10px;right:10px}
+  .hero-widget .hero-wa{width:100%}
   .blog-grid{grid-template-columns:1fr}
   .blog-featured h2{font-size:1.25rem}
   .blog-featured .bf-body{padding:22px}
@@ -847,4 +862,5 @@ h4{font-size:.95rem;font-weight:700}
 .service-card .card-actions{display:flex;gap:8px;flex-wrap:wrap}
 @media (max-width:520px){
   .service-card .card-actions .btn{flex:1;min-width:0}
+  .hero h1{font-size:clamp(1.45rem,7vw,1.8rem);line-height:1.2}
 }
