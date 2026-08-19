@@ -161,24 +161,20 @@
             </div>
             <div class="hero-widget reveal">
               <p class="hw-label">Get your free quote &mdash; in minutes</p>
-              <div class="hw-row">
-                <select id="hero-service" aria-label="Service needed" onchange="if(this.value){window.open('https://wa.me/917610000654?text='+encodeURIComponent('Hi CleanNest! I\'d like a quote for ' + this.value + '.'),'_blank');this.value='';}">
-                  <option value="">Choose a service…</option>
-                  <option>Full House Cleaning</option>
-                  <option>Kitchen Deep Cleaning</option>
-                  <option>Bathroom Deep Cleaning</option>
-                  <option>Sofa Dry Cleaning</option>
-                  <option>Carpet &amp; Steam Cleaning</option>
-                  <option>Floor Renew</option>
-                  <option>AC Services</option>
-                  <option>Chimney Cleaning</option>
-                  <option>Commercial Cleaning</option>
-                </select>
-                <a class="btn btn-primary" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20free%20quote%20for%20cleaning." target="_blank" rel="noopener">Get Quote <span class="arr">→</span></a>
-              </div>
+              <form class="hero-quote-form" data-hero-quote>
+                <div class="field">
+                  <label for="hq-name">Your name <span class="opt">(optional)</span></label>
+                  <input type="text" id="hq-name" name="name" placeholder="e.g. Gurpreet Kaur" autocomplete="name">
+                </div>
+                <div class="field">
+                  <label for="hq-phone">WhatsApp number <span class="req">*</span></label>
+                  <input type="tel" id="hq-phone" name="phone" placeholder="e.g. 98765 43210" required autocomplete="tel" inputmode="tel">
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Get a free quote now! <span class="arr">→</span></button>
+              </form>
               <p class="form-note" style="margin-top:12px">
                 <svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="var(--cyan-soft)" stroke="none"/><path d="M8 12.5l2.5 2.5L16 9" stroke="var(--navy)"/></svg>
-                Opens WhatsApp &mdash; no booking fee, no advance payment.
+                Opens WhatsApp with your details pre-filled &mdash; no booking fee, no advance payment.
               </p>
             </div>
         </div>
@@ -195,58 +191,58 @@
         </div>
         <div class="services-grid">
           <div class="service-card reveal">
-            <div class="icon"><img src="assets/img/services/full-house-cleaning.jpg" alt="Full House Cleaning" loading="lazy"></div>
-            <h3>Full House Cleaning</h3>
+            <a class="icon" href="service-page/full-house-cleaning.html" aria-label="Full House Cleaning details"><img src="assets/img/services/full-house-cleaning.jpg" alt="Full House Cleaning" loading="lazy"></a>
+            <h3><a href="service-page/full-house-cleaning.html">Full House Cleaning</a></h3>
             <p>Every room cleaned &mdash; dusting, vacuuming, mopping, kitchens and bathrooms included.</p>
-            <div class="card-actions"><a class="btn btn-line btn-sm" href="service-page/full-house-cleaning.html">Details</a><a class="btn btn-wa btn-sm" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Full%20House%20Cleaning." target="_blank" rel="noopener">Get a price</a></div>
+            <div class="card-actions"><a class="btn btn-wa btn-sm" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Full%20House%20Cleaning.">Get a price</a></div>
           </div>
           <div class="service-card reveal">
-            <div class="icon"><img src="assets/img/services/kitchen-deep-cleaning.jpg" alt="Kitchen Deep Cleaning" loading="lazy"></div>
-            <h3>Kitchen Deep Cleaning</h3>
+            <a class="icon" href="service-page/kitchen-deep-clean.html" aria-label="Kitchen Deep Cleaning details"><img src="assets/img/services/kitchen-deep-cleaning.jpg" alt="Kitchen Deep Cleaning" loading="lazy"></a>
+            <h3><a href="service-page/kitchen-deep-clean.html">Kitchen Deep Cleaning</a></h3>
             <p>Degreasing, surface sanitisation and detail work &mdash; a spotless, safe cooking environment.</p>
-            <div class="card-actions"><a class="btn btn-line btn-sm" href="service-page/kitchen-deep-clean.html">Details</a><a class="btn btn-wa btn-sm" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Kitchen%20Deep%20Cleaning." target="_blank" rel="noopener">Get a price</a></div>
+            <div class="card-actions"><a class="btn btn-wa btn-sm" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Kitchen%20Deep%20Cleaning.">Get a price</a></div>
           </div>
           <div class="service-card reveal">
-            <div class="icon"><img src="assets/img/services/bathroom-deep-cleaning.jpg" alt="Bathroom Deep Cleaning" loading="lazy"></div>
-            <h3>Bathroom Deep Cleaning</h3>
+            <a class="icon" href="service-page/bathroom-deep-cleaning.html" aria-label="Bathroom Deep Cleaning details"><img src="assets/img/services/bathroom-deep-cleaning.jpg" alt="Bathroom Deep Cleaning" loading="lazy"></a>
+            <h3><a href="service-page/bathroom-deep-cleaning.html">Bathroom Deep Cleaning</a></h3>
             <p>Thorough cleaning and sanitisation with professional equipment &mdash; hygiene and freshness guaranteed.</p>
-            <div class="card-actions"><a class="btn btn-line btn-sm" href="service-page/bathroom-deep-cleaning.html">Details</a><a class="btn btn-wa btn-sm" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Bathroom%20Deep%20Cleaning." target="_blank" rel="noopener">Get a price</a></div>
+            <div class="card-actions"><a class="btn btn-wa btn-sm" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Bathroom%20Deep%20Cleaning.">Get a price</a></div>
           </div>
           <div class="service-card reveal">
-            <div class="icon"><img src="assets/img/services/sofa-dry-cleaning.jpg" alt="Sofa Dry Cleaning" loading="lazy"></div>
-            <h3>Sofa Dry Cleaning</h3>
+            <a class="icon" href="service-page/sofa-dry-cleaning.html" aria-label="Sofa Dry Cleaning details"><img src="assets/img/services/sofa-dry-cleaning.jpg" alt="Sofa Dry Cleaning" loading="lazy"></a>
+            <h3><a href="service-page/sofa-dry-cleaning.html">Sofa Dry Cleaning</a></h3>
             <p>Dust, stains and odours lifted from fabric upholstery &mdash; fresh and revived.</p>
-            <div class="card-actions"><a class="btn btn-line btn-sm" href="service-page/sofa-dry-cleaning.html">Details</a><a class="btn btn-wa btn-sm" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Sofa%20Dry%20Cleaning." target="_blank" rel="noopener">Get a price</a></div>
+            <div class="card-actions"><a class="btn btn-wa btn-sm" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Sofa%20Dry%20Cleaning.">Get a price</a></div>
           </div>
           <div class="service-card reveal">
-            <div class="icon"><img src="assets/img/services/carpet-steam-cleaning.jpg" alt="Carpet &amp; Steam Cleaning" loading="lazy"></div>
-            <h3>Carpet &amp; Steam Cleaning</h3>
+            <a class="icon" href="service-page/carpet-steam-cleaning.html" aria-label="Carpet &amp; Steam Cleaning details"><img src="assets/img/services/carpet-steam-cleaning.jpg" alt="Carpet &amp; Steam Cleaning" loading="lazy"></a>
+            <h3><a href="service-page/carpet-steam-cleaning.html">Carpet &amp; Steam Cleaning</a></h3>
             <p>Hot-water extraction that removes 99% of bacteria, dust mites and deep-set dirt. Safe for kids &amp; pets.</p>
-            <div class="card-actions"><a class="btn btn-line btn-sm" href="service-page/carpet-steam-cleaning.html">Details</a><a class="btn btn-wa btn-sm" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Carpet%20and%20Steam%20Cleaning." target="_blank" rel="noopener">Get a price</a></div>
+            <div class="card-actions"><a class="btn btn-wa btn-sm" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Carpet%20and%20Steam%20Cleaning.">Get a price</a></div>
           </div>
           <div class="service-card reveal">
-            <div class="icon"><img src="assets/img/services/floor-renew.jpg" alt="Floor Renew" loading="lazy"></div>
-            <h3>Floor Renew</h3>
+            <a class="icon" href="service-page/floor-renew.html" aria-label="Floor Renew details"><img src="assets/img/services/floor-renew.jpg" alt="Floor Renew" loading="lazy"></a>
+            <h3><a href="service-page/floor-renew.html">Floor Renew</a></h3>
             <p>Deep floor cleaning and renewal that restores the shine of tiles, marble and wooden floors.</p>
-            <div class="card-actions"><a class="btn btn-line btn-sm" href="service-page/floor-renew.html">Details</a><a class="btn btn-wa btn-sm" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Floor%20Renew." target="_blank" rel="noopener">Get a price</a></div>
+            <div class="card-actions"><a class="btn btn-wa btn-sm" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Floor%20Renew.">Get a price</a></div>
           </div>
           <div class="service-card reveal">
-            <div class="icon"><img src="assets/img/services/ac-services.jpg" alt="AC Services" loading="lazy"></div>
-            <h3>AC Services</h3>
+            <a class="icon" href="service-page/ac-services.html" aria-label="AC Services details"><img src="assets/img/services/ac-services.jpg" alt="AC Services" loading="lazy"></a>
+            <h3><a href="service-page/ac-services.html">AC Services</a></h3>
             <p>AC cleaning and servicing &mdash; filters, coils and units cleaned so cooling stays efficient and air stays fresh.</p>
-            <div class="card-actions"><a class="btn btn-line btn-sm" href="service-page/ac-services.html">Details</a><a class="btn btn-wa btn-sm" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20AC%20Services." target="_blank" rel="noopener">Get a price</a></div>
+            <div class="card-actions"><a class="btn btn-wa btn-sm" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20AC%20Services.">Get a price</a></div>
           </div>
           <div class="service-card reveal">
-            <div class="icon"><img src="assets/img/services/commercial-cleaning.jpg" alt="Commercial Cleaning" loading="lazy"></div>
-            <h3>Commercial Cleaning</h3>
+            <a class="icon" href="service-page/commercial-cleaning.html" aria-label="Commercial Cleaning details"><img src="assets/img/services/commercial-cleaning.jpg" alt="Commercial Cleaning" loading="lazy"></a>
+            <h3><a href="service-page/commercial-cleaning.html">Commercial Cleaning</a></h3>
             <p>Offices, shops, schools and restaurants &mdash; professional deep cleaning with high-quality machines.</p>
-            <div class="card-actions"><a class="btn btn-line btn-sm" href="service-page/commercial-cleaning.html">Details</a><a class="btn btn-wa btn-sm" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Commercial%20Cleaning." target="_blank" rel="noopener">Get a price</a></div>
+            <div class="card-actions"><a class="btn btn-wa btn-sm" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Commercial%20Cleaning.">Get a price</a></div>
           </div>
           <div class="service-card reveal">
-            <div class="icon"><img src="assets/img/services/chimney-cleaning.jpg" alt="Chimney Cleaning" loading="lazy"></div>
-            <h3>Chimney Cleaning</h3>
+            <a class="icon" href="service-page/chimney-cleaning.html" aria-label="Chimney Cleaning details"><img src="assets/img/services/chimney-cleaning.jpg" alt="Chimney Cleaning" loading="lazy"></a>
+            <h3><a href="service-page/chimney-cleaning.html">Chimney Cleaning</a></h3>
             <p>Deep degreasing of kitchen chimneys &mdash; filters, exhaust and ducts cleaned for a safe, fresh kitchen.</p>
-            <div class="card-actions"><a class="btn btn-line btn-sm" href="service-page/chimney-cleaning.html">Details</a><a class="btn btn-wa btn-sm" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Chimney%20Cleaning." target="_blank" rel="noopener">Get a price</a></div>
+            <div class="card-actions"><a class="btn btn-wa btn-sm" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20quote%20for%20Chimney%20Cleaning.">Get a price</a></div>
           </div>
         </div>
         <p class="price-note reveal" style="margin-top:32px;text-align:center">

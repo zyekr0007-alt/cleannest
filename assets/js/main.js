@@ -84,6 +84,27 @@
     }
   }
 
+  /* ---------- Homepage quick quote (name optional, phone required) ---------- */
+  function initHeroQuote() {
+    var forms = document.querySelectorAll("form[data-hero-quote]");
+    for (var i = 0; i < forms.length; i++) {
+      forms[i].addEventListener("submit", function (e) {
+        e.preventDefault();
+        var f = e.target;
+        var phone = f.querySelector("[name=phone]").value.trim();
+        if (!phone) {
+          f.querySelector("[name=phone]").focus();
+          return;
+        }
+        var name = f.querySelector("[name=name]").value.trim();
+        var lines = ["Hi CleanNest! I'd like a free quote."];
+        if (name) lines.push("Name: " + name);
+        lines.push("Phone: " + phone);
+        window.open("https://wa.me/" + PHONE_INTL + "?text=" + encodeURIComponent(lines.join("\n")), "_blank");
+      });
+    }
+  }
+
   /* ---------- footer year ---------- */
   function initYear() {
     var y = document.getElementById("year");
@@ -110,6 +131,7 @@
     initNav();
     initReveal();
     initForms();
+    initHeroQuote();
     initYear();
     initServicePrefill();
   });
