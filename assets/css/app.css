@@ -141,7 +141,7 @@ ul, ol { list-style: none; }
   scrollbar-width: thin;
   scrollbar-color: var(--cyan-mid) transparent;
 }
-.screen-pad { padding: 14px 20px 110px; }
+.screen-pad { padding: 14px 20px 150px; }
 .app-screen { display: none; animation: screenIn 0.4s var(--ease); }
 .app-screen.is-active { display: block; }
 @keyframes screenIn {
