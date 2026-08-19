@@ -68,6 +68,24 @@ for p in ba:
     check(f"BA on homepage: {p['role']}", p["before"].split("/")[-1] in idx)
 check("BA slider present", 'data-slider' in idx and 'role="slider"' in idx)
 
+# ---------- BLOG ----------
+blog = json.load(open(ROOT + "/content/blog.json", encoding="utf-8"))["posts"]
+for p in blog:
+    pf = ROOT + "/" + p["url"]
+    exists = os.path.isfile(pf)
+    check(f"blog file exists: {p['slug']}", exists, p["url"])
+    if not exists:
+        continue
+    pt = open(pf, encoding="utf-8").read()
+    check(f"blog canonical: {p['slug']}", p["canonical"] in pt)
+    check(f"blog datePublished: {p['slug']}", f'"datePublished": "{p["date"]}"' in pt)
+    check(f"blog article schema: {p['slug']}", '"@type": "Article"' in pt)
+    check(f"blog featured image: {p['slug']}", p["image"] in pt or "../" + p["image"] in pt)
+    check(f"blog image file exists: {p['slug']}", os.path.isfile(ROOT + "/" + p["image"]))
+    check(f"blog title in file: {p['slug']}", p["title"][:40] in pt)
+check("blog listing has 30 cards", html("blog.html").count("blog-card") >= 30)
+check("blog cards have dates", html("blog.html").count("bc-date") >= 30)
+
 # ---------- BRAND ----------
 brand = json.load(open(ROOT + "/content/brand.json", encoding="utf-8"))
 css = read("assets/css/style.css")

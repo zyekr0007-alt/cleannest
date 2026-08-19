@@ -905,6 +905,10 @@ h4{font-size:.95rem;font-weight:700}
 /* section rhythm: one vertical step */
 .section{padding:88px 0}
 
+
+.bc-date{color:var(--muted);font-size:.8rem;font-weight:600}
+.blog-featured-img{margin:0 0 26px}
+.blog-featured-img img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:var(--radius);box-shadow:var(--shadow-sm);display:block}
 /* ---------- Responsive ---------- */
 @media (max-width:1024px){
   .feature-grid,.steps{grid-template-columns:repeat(2,1fr)}
