@@ -29,7 +29,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=11">
+  <link rel="stylesheet" href="assets/css/style.css?v=25">
   <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
 
   <script type="application/ld+json">
@@ -84,7 +84,7 @@
           <div class="form-card reveal">
             <h2 style="font-size:1.4rem;margin-bottom:4px">Booking details</h2>
             <p style="color:var(--muted);font-size:.96rem;margin-bottom:22px">Fields marked * are required.</p>
-            <form data-wa-form>
+            <form data-wa-form novalidate>
               <div class="form-grid">
                 <div class="field">
                   <label for="b-name">Your name *</label>
@@ -119,6 +119,10 @@
                   <input type="date" id="b-date" name="date">
                 </div>
                 <div class="field full">
+                  <label for="b-area">Your area</label>
+                  <input type="text" id="b-area" name="area" placeholder="e.g. Model Town, Jalandhar" autocomplete="address-level2">
+                </div>
+                <div class="field full">
                   <label for="b-notes">Anything we should know?</label>
                   <textarea id="b-notes" name="notes" placeholder="Stubborn stains, pets at home, parking, gate code…"></textarea>
                 </div>
@@ -131,6 +135,7 @@
                 <svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="var(--cyan-soft)" stroke="none"/><path d="M8 12.5l2.5 2.5L16 9" stroke="var(--navy)"/></svg>
                 This opens WhatsApp with your details pre-filled &mdash; you review and send. No booking fee, no payment needed now.
               </p>
+              <p class="form-trust"><span class="stars" aria-hidden="true">★★★★★</span> 4.9 on Google &middot; 219 customer reviews</p>
             </form>
           </div>
 
@@ -259,6 +264,6 @@
   </div>
 
   <script data-goatcounter="https://cleannest.goatcounter.com/count" async src="https://gc.zgo.at/count.js"></script>
-  <script src="assets/js/main.js?v=11"></script>
+  <script src="assets/js/main.js?v=25"></script>
 </body>
 </html>

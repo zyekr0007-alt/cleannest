@@ -12,6 +12,7 @@
     toggle.addEventListener("click", function () {
       var open = nav.classList.toggle("open");
       toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      toggle.setAttribute("aria-label", open ? "Close menu" : "Open menu");
     });
     nav.addEventListener("click", function (e) {
       if (e.target.tagName === "A") nav.classList.remove("open");
@@ -65,52 +66,123 @@
   }
 
   /* ---------- WhatsApp forms ---------- */
+  /* Inline, accessible validation: per-field errors (aria-invalid + aria-describedby),
+     valid Indian mobile check, live status on success, popup-blocked fallback link. */
+  function validPhone(v) {
+    var d = (v || "").replace(/[^\d]/g, "");
+    if (d.length === 12 && d.indexOf("91") === 0) d = d.slice(2);
+    return /^[6-9]\d{9}$/.test(d);
+  }
+  function fieldError(input, msg) {
+    if (!input) return;
+    var field = input.closest ? input.closest(".field") : null;
+    var err = field ? field.querySelector(".form-error") : null;
+    if (!err) {
+      err = document.createElement("p");
+      err.className = "form-error";
+      err.id = (input.id || "f") + "-error";
+      (field || input.parentNode).appendChild(err);
+    }
+    err.textContent = msg;
+    input.setAttribute("aria-invalid", "true");
+    input.setAttribute("aria-describedby", err.id);
+  }
+  function fieldOk(input) {
+    if (!input) return;
+    input.removeAttribute("aria-invalid");
+    var field = input.closest ? input.closest(".field") : null;
+    var err = field ? field.querySelector(".form-error") : null;
+    if (err) err.remove();
+  }
+  function formStatus(form, html) {
+    // Safe: html is either a static string or a wa.me URL built via
+    // encodeURIComponent (all & < > " ' are percent-encoded, so no injection).
+    var s = form.querySelector(".form-status");
+    if (!s) {
+      s = document.createElement("p");
+      s.className = "form-status";
+      s.setAttribute("role", "status");
+      form.appendChild(s);
+    }
+    s.innerHTML = html;
+  }
+  function openWa(form, lines) {
+    var url = "https://wa.me/" + PHONE_INTL + "?text=" + encodeURIComponent(lines.join("\n"));
+    formStatus(form, "Opening WhatsApp with your request&hellip;");
+    var win = window.open(url, "_blank");
+    if (!win) {
+      formStatus(form, "WhatsApp didn't open automatically &mdash; <a class=\"retry-link\" href=\"" + url + "\" target=\"_blank\" rel=\"noopener\">tap here to continue</a>.");
+    }
+  }
   function initForms() {
     var forms = document.querySelectorAll("form[data-wa-form]");
     for (var i = 0; i < forms.length; i++) {
-      forms[i].addEventListener("submit", function (e) {
+      var f = forms[i];
+      var nameIn = f.querySelector("[name=name]");
+      var phoneIn = f.querySelector("[name=phone]");
+      var serviceIn = f.querySelector("[name=service]");
+      [nameIn, phoneIn, serviceIn].forEach(function (inp) {
+        if (inp) inp.addEventListener("input", function () { fieldOk(inp); });
+      });
+      f.addEventListener("submit", function (e) {
         e.preventDefault();
-        var f = e.target;
-        var name = f.querySelector("[name=name]").value.trim();
-        var phone = f.querySelector("[name=phone]").value.trim();
-        if (!name || !phone) {
-          alert("Please fill in your name and phone number.");
+        var form = e.target;
+        var name = nameIn ? nameIn.value.trim() : "";
+        var phone = phoneIn ? phoneIn.value.trim() : "";
+        var service = serviceIn ? serviceIn.value : "";
+        var ok = true;
+        if (!name) { fieldError(nameIn, "Please enter your name."); ok = false; }
+        else fieldOk(nameIn);
+        if (!phone || !validPhone(phone)) { fieldError(phoneIn, "Please enter a valid phone number."); ok = false; }
+        else fieldOk(phoneIn);
+        if (serviceIn && !service) { fieldError(serviceIn, "Please select a service."); ok = false; }
+        else fieldOk(serviceIn);
+        if (!ok) {
+          var first = (!name && nameIn) ? nameIn : ((!phone || !validPhone(phone)) && phoneIn) ? phoneIn : serviceIn;
+          if (first) first.focus();
           return;
         }
         var lines = ["Hi CleanNest! I'd like to book a cleaning."];
         lines.push("Name: " + name);
         lines.push("Phone: " + phone);
-        var service = f.querySelector("[name=service]");
-        if (service && service.value) lines.push("Service: " + service.value);
-        var size = f.querySelector("[name=size]");
-        if (size && size.value) lines.push("Home / size: " + size.value);
-        var date = f.querySelector("[name=date]");
+        var svc = form.querySelector("[name=service]");
+        if (svc && svc.value) lines.push("Service: " + svc.value);
+        var area = form.querySelector("[name=area]");
+        if (area && area.value.trim()) lines.push("Area: " + area.value.trim());
+        var size = form.querySelector("[name=size]");
+        if (size && size.value.trim()) lines.push("Home / size: " + size.value.trim());
+        var date = form.querySelector("[name=date]");
         if (date && date.value) lines.push("Preferred date: " + date.value);
-        var notes = f.querySelector("[name=notes]");
+        var notes = form.querySelector("[name=notes]");
         if (notes && notes.value.trim()) lines.push("Notes: " + notes.value.trim());
-        var msg = encodeURIComponent(lines.join("\n"));
-        window.open("https://wa.me/" + PHONE_INTL + "?text=" + msg, "_blank");
+        openWa(form, lines);
       });
     }
   }
 
-  /* ---------- Homepage quick quote (name optional, phone required) ---------- */
+  /* ---------- Homepage quick quote (name optional, phone required, validated) ---------- */
   function initHeroQuote() {
     var forms = document.querySelectorAll("form[data-hero-quote]");
     for (var i = 0; i < forms.length; i++) {
-      forms[i].addEventListener("submit", function (e) {
+      var f = forms[i];
+      var phoneIn = f.querySelector("[name=phone]");
+      var nameIn = f.querySelector("[name=name]");
+      if (phoneIn) phoneIn.addEventListener("input", function () { fieldOk(phoneIn); });
+      f.addEventListener("submit", function (e) {
         e.preventDefault();
-        var f = e.target;
-        var phone = f.querySelector("[name=phone]").value.trim();
-        if (!phone) {
-          f.querySelector("[name=phone]").focus();
+        var form = e.target;
+        var phone = phoneIn ? phoneIn.value.trim() : "";
+        if (!phone || !validPhone(phone)) {
+          fieldError(phoneIn, "Please enter a valid phone number.");
+          if (phoneIn) phoneIn.focus();
           return;
         }
-        var name = f.querySelector("[name=name]").value.trim();
-        var lines = ["Hi CleanNest! I'd like a free quote."];
+        fieldOk(phoneIn);
+        var name = nameIn ? nameIn.value.trim() : "";
+        var lines = ["Hi CleanNest! I'd like a free quote for cleaning."];
         if (name) lines.push("Name: " + name);
         lines.push("Phone: " + phone);
-        window.open("https://wa.me/" + PHONE_INTL + "?text=" + encodeURIComponent(lines.join("\n")), "_blank");
+        openWa(form, lines);
       });
     }
   }
@@ -234,8 +306,8 @@
       var gap = parseFloat(getComputedStyle(group).gap) || 18;
       return (c ? c.getBoundingClientRect().width : 350) + gap;
     }
-    if (prev) prev.addEventListener("click", function () { resume(8000); wrap.scrollBy({ left: -cardStep(), behavior: "smooth" }); });
-    if (next) next.addEventListener("click", function () { resume(8000); wrap.scrollBy({ left: cardStep(), behavior: "smooth" }); });
+    if (prev) prev.addEventListener("click", function () { resume(8000); wrap.scrollBy({ left: -cardStep(), behavior: reduceMotion ? "auto" : "smooth" }); });
+    if (next) next.addEventListener("click", function () { resume(8000); wrap.scrollBy({ left: cardStep(), behavior: reduceMotion ? "auto" : "smooth" }); });
 
     if (!reduceMotion) raf = requestAnimationFrame(step);
   }
