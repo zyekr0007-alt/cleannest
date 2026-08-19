@@ -445,8 +445,20 @@ h4{font-size:.95rem;font-weight:700}
 .g-tag{display:inline-flex;align-items:center;gap:6px;margin-top:12px;font-size:.76rem;font-weight:700;color:var(--muted)}
 .g-tag::before{content:"G";width:16px;height:16px;border-radius:50%;background:var(--navy-grad);color:#fff;font-size:.62rem;font-weight:800;display:inline-flex;align-items:center;justify-content:center}
 
-/* ---------- Service areas (compact) ---------- */
+/* ---------- Service areas (compact location pills) ---------- */
+#areas{padding:64px 0}
 .areas-compact{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;max-width:780px;margin:0 auto}
+.area-pill{
+  display:inline-flex;align-items:center;gap:7px;padding:10px 18px;
+  border:1px solid var(--line);border-radius:999px;background:#fff;
+  color:var(--navy);font-size:.88rem;font-weight:600;text-decoration:none;
+  transition:border-color .2s ease,transform .2s ease,box-shadow .2s ease;
+}
+.area-pill svg{width:14px;height:14px;color:var(--cyan-ink);flex:none}
+.area-pill:hover{border-color:rgba(12,215,229,.6);transform:translateY(-1px);box-shadow:var(--shadow-sm)}
+.areas-cta{display:flex;justify-content:center;margin-top:26px}
+@media (max-width:720px){#areas{padding:48px 0}}
+@media (max-width:520px){.area-pill{padding:9px 14px;font-size:.84rem}}
 
 /* ---------- UC-inspired: service category chips ---------- */
 .svc-chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-bottom:30px}
