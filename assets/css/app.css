@@ -67,20 +67,20 @@ body{
 .tab svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
 .tab .ic-fill{fill:currentColor;stroke:none}
 .tab:active{transform:scale(.93)}
-.tab:focus-visible{outline:3px solid var(--coral,#FF5A4E);outline-offset:2px;border-radius:16px}
-.tab.on{color:var(--coral-deep,#E8453A)}
-.tab.on svg{stroke:var(--coral,#FF5A4E)}
-.tab.on .ic-fill{fill:var(--coral,#FF5A4E);stroke:none}
-.tab.on::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--coral,#FF5A4E);margin-bottom:1px}
+.tab:focus-visible{outline:3px solid var(--coral,#0CD7E5);outline-offset:2px;border-radius:16px}
+.tab.on{color:var(--coral-deep,#067A86)}
+.tab.on svg{stroke:var(--coral,#0CD7E5)}
+.tab.on .ic-fill{fill:var(--coral,#0CD7E5);stroke:none}
+.tab.on::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--coral,#0CD7E5);margin-bottom:1px}
 
-/* center FAB — Call (coral) */
+/* center FAB — Call (cyan, was coral) */
 .tab-call{
   flex:0 0 auto;margin:-26px 2px 0;
   width:56px;height:56px;border-radius:50%;
-  background:var(--coral-grad,linear-gradient(135deg,#FF7A6B,#F04A3C));
+  background:var(--coral-grad,linear-gradient(135deg,#22D3E2,#087F8C));
   color:#fff !important;
   display:flex;align-items:center;justify-content:center;
-  box-shadow:0 10px 24px rgba(240,74,60,.5);
+  box-shadow:0 10px 24px rgba(8,127,140,.5);
   border:3px solid #fff;
 }
 .tab-call svg{width:24px;height:24px;stroke:#fff !important;fill:none}
@@ -177,7 +177,7 @@ body[data-page="home"] .hero .container{padding:26px 22px}
   border-radius:999px;padding:8px 15px;font-size:12.5px;font-weight:700;
   white-space:nowrap;cursor:pointer;flex:0 0 auto;
 }
-.svc-chip.active{background:var(--coral-grad,linear-gradient(135deg,#FF7A6B,#F04A3C));color:#fff;border-color:transparent}
+.svc-chip.active{background:var(--coral-grad,linear-gradient(135deg,#22D3E2,#087F8C));color:#fff;border-color:transparent}
 
 /* reviews → app cards */
 .review-mini{
