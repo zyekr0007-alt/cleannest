@@ -188,14 +188,14 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 }
 
 .hero-title .acc-yellow {
-  background: linear-gradient(92deg, #E0A116 0%, #F3C64A 50%, #D9970F 100%);
+  background: linear-gradient(92deg, var(--navy) 0%, var(--navy-dark) 40%, #1476A8 70%, var(--navy) 100%);
   background-size: 220% auto;
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
   color: transparent;
   background-position: 0% center;
-  animation: goldShine 3s ease-in-out infinite;
+  animation: navyWave 4.5s ease-in-out infinite;
 }
 
 /* Cyan "Done Right." — slow, smooth back-and-forth wave */
@@ -204,8 +204,8 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   50%      { background-position: 100% center; }
 }
 
-/* Gold "Professional Cleaning." — gentle pulsing shimmer */
-@keyframes goldShine {
+/* Navy "Professional Cleaning." — slow, smooth back-and-forth wave */
+@keyframes navyWave {
   0%, 100% { background-position: 0% center; }
   50%      { background-position: -220% center; }
 }
@@ -1070,13 +1070,11 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 .menu-btn {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  padding: 11px 18px 11px 15px;
-  border-radius: 999px;
-  font-family: 'Sora', sans-serif;
-  font-size: 0.84rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border-radius: 50%;
   color: var(--navy);
   background: rgba(255, 255, 255, 0.75);
   border: 1px solid rgba(11, 67, 100, 0.22);
@@ -1088,10 +1086,6 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
   transition: transform 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
-}
-
-.menu-btn-label {
-  line-height: 1;
 }
 
 /* Modern hamburger icon — three horizontal lines */

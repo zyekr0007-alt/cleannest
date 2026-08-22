@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=40">
+  <link rel="stylesheet" href="style.css?v=42">
   <style>
     /* Critical preloader shell: keep it full-screen off-white instantly so
        nothing flashes before style.css loads. (Full styling lives in style.css.) */
@@ -49,13 +49,12 @@
     <span class="brand-glow" aria-hidden="true"></span>
   </header>
 
-  <!-- Always-visible top-right menu button (hamburger icon) -->
+  <!-- Always-visible top-right menu button (hamburger icon only) -->
   <div class="topbar">
     <button class="menu-btn" id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu-panel">
       <span class="menu-btn-icon" aria-hidden="true">
         <span></span><span></span><span></span>
       </span>
-      <span class="menu-btn-label">Menu</span>
     </button>
   </div>
 
@@ -555,7 +554,6 @@
       const overlay = document.getElementById('menu-overlay');
       const btn = document.getElementById('menu-btn');
       const close = document.getElementById('menu-close');
-      const label = btn ? btn.querySelector('.menu-btn-label') : null;
       if (!panel || !overlay || !btn) return;
 
       function openMenu() {
@@ -566,14 +564,12 @@
           overlay.classList.add('show');
         });
         btn.setAttribute('aria-expanded', 'true');
-        if (label) label.textContent = 'Close';
         document.body.classList.add('sheet-open');
       }
       function closeMenu() {
         panel.classList.remove('open');
         overlay.classList.remove('show');
         btn.setAttribute('aria-expanded', 'false');
-        if (label) label.textContent = 'Menu';
         document.body.classList.remove('sheet-open');
         setTimeout(() => { panel.hidden = true; overlay.hidden = true; }, 320);
       }
