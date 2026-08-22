@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=42">
+  <link rel="stylesheet" href="style.css?v=43">
   <style>
     /* Critical preloader shell: keep it full-screen off-white instantly so
        nothing flashes before style.css loads. (Full styling lives in style.css.) */
@@ -330,13 +330,13 @@
     <form class="quote-form" id="quote-form" novalidate>
       <label class="q-field">
         <span class="q-label">Your name</span>
-        <input type="text" name="name" id="q-name" class="q-input" placeholder="e.g. Gurlal" autocomplete="name" maxlength="60" aria-describedby="q-err-name" required>
-        <span class="q-error" id="q-err-name" role="alert" hidden>Please enter your name.</span>
+        <input type="text" name="name" class="q-input" placeholder="e.g. Gurlal" autocomplete="name" required>
+        <span class="q-error" hidden>Please enter your name.</span>
       </label>
       <label class="q-field">
         <span class="q-label">Phone number</span>
-        <input type="tel" name="phone" id="q-phone" class="q-input" inputmode="tel" autocomplete="tel" placeholder="10-digit mobile" maxlength="10" aria-describedby="q-err-phone" required>
-        <span class="q-error" id="q-err-phone" role="alert" hidden>Enter a valid 10-digit mobile number.</span>
+        <input type="tel" name="phone" class="q-input" inputmode="tel" autocomplete="tel" placeholder="10-digit mobile" required>
+        <span class="q-error" hidden>Enter a valid 10-digit mobile number.</span>
       </label>
       <label class="q-field">
         <span class="q-label">Area / City</span>
@@ -353,7 +353,6 @@
       <textarea name="message" class="q-input hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" hidden></textarea>
       <button class="btn btn-primary q-submit" type="submit">Send via WhatsApp</button>
     </form>
-    <p class="quote-trust">No booking fee · No advance payment — we reply on WhatsApp within minutes.</p>
   </aside>
 
   <script>
@@ -613,15 +612,7 @@
       const form = document.getElementById('quote-form');
       if (!panel || !overlay || !open || !close || !form) return;
 
-      // Prevent past dates (computed at open time so it never goes stale).
-      const dateField = form.querySelector('[name="date"]');
-      if (dateField) dateField.min = new Date().toISOString().slice(0, 10);
-
-      // Remember the trigger so focus can be restored on close (a11y).
-      let lastFocused = null;
-
       function openPanel() {
-        lastFocused = document.activeElement;
         panel.hidden = false;
         overlay.hidden = false;
         requestAnimationFrame(() => {
@@ -635,11 +626,7 @@
         panel.classList.remove('open');
         overlay.classList.remove('show');
         document.body.classList.remove('sheet-open');
-        setTimeout(() => {
-          panel.hidden = true;
-          overlay.hidden = true;
-          if (lastFocused && document.contains(lastFocused)) lastFocused.focus();
-        }, 360);
+        setTimeout(() => { panel.hidden = true; overlay.hidden = true; }, 360);
       }
 
       open.addEventListener('click', openPanel);
@@ -647,37 +634,18 @@
       overlay.addEventListener('click', closePanel);
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePanel(); });
 
-      // Trap Tab/Shift+Tab within the open modal (a11y).
-      panel.addEventListener('keydown', (e) => {
-        if (e.key !== 'Tab') return;
-        const focusables = Array.from(panel.querySelectorAll('button, input, textarea, select'))
-          .filter(el => !el.hidden && el.getAttribute('tabindex') !== '-1');
-        if (!focusables.length) return;
-        const first = focusables[0];
-        const last = focusables[focusables.length - 1];
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
-      });
-
       const nameField = form.querySelector('[name="name"]');
       const phoneField = form.querySelector('[name="phone"]');
 
       function markInvalid(field, invalid) {
         const wrap = field.closest('.q-field');
         wrap.classList.toggle('invalid', invalid);
-        field.setAttribute('aria-invalid', invalid ? 'true' : 'false');
         const err = wrap.querySelector('.q-error');
         if (err) err.hidden = !invalid;
       }
       function clearInvalid(field) {
         const wrap = field.closest('.q-field');
         wrap.classList.remove('invalid');
-        field.setAttribute('aria-invalid', 'false');
         const err = wrap.querySelector('.q-error');
         if (err) err.hidden = true;
       }
