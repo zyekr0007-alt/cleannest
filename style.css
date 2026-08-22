@@ -123,10 +123,16 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 .brand-wordmark {
   font-family: 'Ultima' !important;
   font-weight: 400;
-  font-size: clamp(1.8rem, 5vw, 2.4rem);
+  font-size: clamp(1.7rem, 4.5vw, 2.4rem);
   letter-spacing: 0.02em;
   color: var(--navy);
   text-shadow: 0 2px 16px rgba(11, 67, 100, 0.10);
+}
+
+/* On small screens, scale the centered wordmark down so it stays clearly
+   clear of the top-right menu button and reads balanced. */
+@media (max-width: 480px) {
+  .brand-wordmark { font-size: 1.65rem; }
 }
 
 @keyframes brandIn {
