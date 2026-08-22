@@ -386,8 +386,8 @@
       });
     }
 
-    // ===== Premium preloader: logo + wordmark appear TOGETHER, then the mark
-    // departs while the wordmark stays, then wordmark flies up into the header =====
+    // ===== Preloader: brand lockup appears, logo dissolves, tagline fades, and
+    // the wordmark flies up to LAND on the header (seamless — same style) =====
     (function initPreloader() {
       const pre = document.getElementById('preloader');
       if (!pre) return;
@@ -395,8 +395,8 @@
       const word = pre.querySelector('.preloader-wordmark');
       const tagline = pre.querySelector('.preloader-tagline');
       const brandWord = document.querySelector('.brand-wordmark');
-      const markLeave = 560;   // smoke dissolve of the logo mark
-      const flightDur = 640;   // wordmark travel into header
+      const markLeave = 520;   // dissolve of the logo mark
+      const flightDur = 700;   // wordmark travel into the header
 
       // Reduced motion / no-WAAPI: skip the animation, land content instantly.
       if (!('animate' in pre) || window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -447,24 +447,26 @@
       Promise.all([markIn.finished, wordIn.finished].concat(tagIn ? [tagIn.finished] : [])).then(() => {
         // 2) Brief pause with the full brand lockup together.
         setTimeout(() => {
-          // 3) Logo mark dissolves into SMOKE (drifts up-right, expands, blurs
-          //    out) — the wordmark and tagline stay.
+          // 3) Logo mark dissolves (drifts up-right, expands, blurs out) —
+          //    the wordmark stays put.
           mark.animate([
             { opacity: 1, transform: 'translate(0px, 0px) scale(1) rotate(0deg)', filter: 'blur(0px)' },
-            { opacity: 0.9, transform: 'translate(14px, -14px) scale(1.1) rotate(6deg)', filter: 'blur(6px)' },
-            { opacity: 0, transform: 'translate(30px, -42px) scale(1.32) rotate(16deg)', filter: 'blur(22px)' }
+            { opacity: 0, transform: 'translate(26px, -36px) scale(1.22) rotate(12deg)', filter: 'blur(20px)' }
           ], { duration: markLeave, easing: 'ease-out', fill: 'forwards' }).finished
             .then(() => { mark.remove(); })
 
-          // 4) Tagline fades away as the wordmark flies up (the header has no tagline).
+          // 4) Tagline fades away (the header has no tagline).
           .then(() => {
             if (tagline) {
               tagline.animate([{ opacity: 1 }, { opacity: 0 }],
-                { duration: 320, easing: 'ease-out', fill: 'forwards' });
+                { duration: 300, easing: 'ease-out', fill: 'forwards' });
             }
           })
 
-          // 5) Wordmark flies up to land precisely on the header wordmark.
+          // 5) Wordmark flies up and LANDS on the header wordmark.
+          //    Because the header wordmark is styled identically (solid navy,
+          //    same Ultima font), the flight reads as the preloader wordmark
+          //    becoming the header wordmark — a seamless transition.
           .then(() => {
             const w = word.getBoundingClientRect();
             const b = brandWord.getBoundingClientRect();
@@ -480,17 +482,17 @@
             return flight.finished;
           })
 
-          // 5) Wordmark settled → reveal the header (crossfades with the flown
-          //    wordmark), then fade the whole overlay away.
+          // 6) Wordmark landed → reveal the header (it now IS the header wordmark,
+          //    so crossfade the flying copy out), then remove the overlay.
           .then(() => {
-            document.body.classList.add('loaded');      // header fades in
+            document.body.classList.add('loaded');      // header wordmark fades in
             word.animate([{ opacity: 1 }, { opacity: 0 }],
-              { duration: 240, easing: 'ease-out', fill: 'forwards' });
+              { duration: 220, easing: 'ease-out', fill: 'forwards' });
             return pre.animate([{ opacity: 1 }, { opacity: 0 }],
               { duration: 280, easing: 'ease-out', fill: 'forwards' }).finished;
           })
 
-          // 6) Content rises in only after the wordmark has settled into place.
+          // 7) Content rises in once the wordmark has settled.
           .then(finish);
         }, 260);
       });

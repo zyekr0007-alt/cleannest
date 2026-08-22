@@ -118,22 +118,15 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   }
 }
 
+/* Header wordmark styled IDENTICALLY to the preloader wordmark (solid navy) so
+   the flying preloader wordmark lands seamlessly and IS the header wordmark. */
 .brand-wordmark {
   font-family: 'Ultima' !important;
-  font-weight: 700;
-  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  font-weight: 400;
+  font-size: clamp(1.8rem, 5vw, 2.4rem);
   letter-spacing: 0.02em;
   color: var(--navy);
-  text-shadow: 0 4px 20px rgba(11, 67, 100, 0.10);
-  background: linear-gradient(92deg, var(--navy) 0%, #1476A8 45%, var(--cyan) 90%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  background-size: 200% auto;
-  background-position: 0% center;
-  animation: brandIn 1.1s cubic-bezier(0.22, 1, 0.36, 1) 0.15s both, brandShine 6s ease-in-out 1.2s infinite;
-  filter: drop-shadow(0 4px 16px rgba(12, 215, 229, 0.20));
+  text-shadow: 0 2px 16px rgba(11, 67, 100, 0.10);
 }
 
 @keyframes brandIn {
