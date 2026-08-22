@@ -1427,6 +1427,26 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 
 .q-submit { margin-top: 4px; }
 
+.quote-trust {
+  margin-top: 18px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(11, 67, 100, 0.08);
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
+.q-input:-webkit-autofill,
+.q-input:-webkit-autofill:hover,
+.q-input:-webkit-autofill:focus {
+  -webkit-box-shadow: 0 0 0 1000px #ffffff inset;
+  -webkit-text-fill-color: var(--ink);
+  transition: background-color 9999s ease-in-out 0s;
+}
+
+.q-input[type="date"] { min-height: 48px; }
+
 /* ---------- Mobile hero (stacked) ---------- */
 @media (max-width: 860px) {
   .hero { padding: 150px 20px 120px; }
