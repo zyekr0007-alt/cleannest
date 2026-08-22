@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=39">
+  <link rel="stylesheet" href="style.css?v=40">
   <style>
     /* Critical preloader shell: keep it full-screen off-white instantly so
        nothing flashes before style.css loads. (Full styling lives in style.css.) */
@@ -29,13 +29,14 @@
 </head>
 <body class="preloading">
 
-  <!-- Premium preloader: logo mark + CleanNest wordmark appear together,
-       the mark leaves, then the wordmark flies up into the header -->
+  <!-- Premium preloader: brand lockup stacked vertically (logo mark on top,
+       CleanNest wordmark below, tagline below) exactly like the brand image -->
   <div class="preloader" id="preloader" aria-hidden="true">
     <div class="preloader-glow" aria-hidden="true"></div>
     <div class="preloader-stage">
       <img class="preloader-mark" src="assets/img/logo.png" alt="" width="82" height="82">
       <span class="preloader-wordmark">CleanNest</span>
+      <span class="preloader-tagline">From Dust to Shine Every time!</span>
     </div>
   </div>
 
@@ -48,12 +49,13 @@
     <span class="brand-glow" aria-hidden="true"></span>
   </header>
 
-  <!-- Always-visible top-left menu button -->
+  <!-- Always-visible top-right menu button (hamburger icon) -->
   <div class="topbar">
     <button class="menu-btn" id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu-panel">
       <span class="menu-btn-icon" aria-hidden="true">
         <span></span><span></span><span></span>
       </span>
+      <span class="menu-btn-label">Menu</span>
     </button>
   </div>
 
@@ -285,10 +287,16 @@
     <p class="footer-phone">📞 <a href="tel:+917610000654">+91 76100 00654</a> · WhatsApp: <a href="https://wa.me/917610000654" target="_blank" rel="noopener">+91 76100 00654</a></p>
   </footer>
 
-  <!-- Top-left dropdown menu panel -->
+  <!-- Top-right sliding menu drawer -->
   <div class="menu-overlay" id="menu-overlay" hidden></div>
   <nav class="menu-panel" id="menu-panel" role="dialog" aria-modal="true" aria-label="Menu" hidden>
-    <p class="menu-title">Menu</p>
+    <div class="menu-panel-head">
+      <span class="menu-brand">
+        <img class="menu-brand-mark" src="assets/img/logo.png" alt="" width="36" height="36">
+        <span class="menu-brand-name">CleanNest</span>
+      </span>
+      <button class="menu-close" id="menu-close" type="button" aria-label="Close menu">&times;</button>
+    </div>
     <a class="menu-item" href="#services">
       <span class="menu-ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4 4h6.5a1 1 0 0 1 1 1v6.5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1Zm9.5 0H20a1 1 0 0 1 1 1v6.5a1 1 0 0 1-1 1h-6.5a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1ZM4 13.5h6.5a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-5.5a1 1 0 0 1 1-1Zm9.5 0H20a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1h-6.5a1 1 0 0 1-1-1v-5.5a1 1 0 0 1 1-1Z"/></svg></span>
       <span>Services</span>
@@ -305,10 +313,12 @@
       <span class="menu-ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm-1.2 6.1a2.9 2.9 0 0 1 5.1 1.9c0 1.6-1.5 2.5-2.7 3-.4.2-.6.4-.6.8v.6a1 1 0 1 1-2 0v-.5c0-1.5.9-2.4 2.2-3 .8-.4 1.1-.7 1.1-1.3a.9.9 0 0 0-1.6-.6 1 1 0 0 1-1.4-1.5Z"/><circle cx="12" cy="17.5" r="1.25"/></svg></span>
       <span>FAQs</span>
     </a>
-    <a class="menu-item menu-quote" href="#contact">
-      <span class="menu-ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Zm9 6.1L4.6 6h14.8L12 11.1Z"/></svg></span>
-      <span>Get a Quote</span>
-    </a>
+    <div class="menu-footer">
+      <a class="menu-item menu-quote" href="#contact">
+        <span class="menu-ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3 5a1 1 0 0 1 1-1h16a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5Zm9 6.1L4.6 6h14.8L12 11.1Z"/></svg></span>
+        <span>Get a Quote</span>
+      </a>
+    </div>
   </nav>
 
   <!-- Quote modal (opens upward) -->
@@ -383,6 +393,7 @@
       if (!pre) return;
       const mark = pre.querySelector('.preloader-mark');
       const word = pre.querySelector('.preloader-wordmark');
+      const tagline = pre.querySelector('.preloader-tagline');
       const brandWord = document.querySelector('.brand-wordmark');
       const markLeave = 560;   // smoke dissolve of the logo mark
       const flightDur = 640;   // wordmark travel into header
@@ -417,7 +428,7 @@
         runHeroReveal();
       };
 
-      // 1) Logo mark AND wordmark appear together (rise + soft blur).
+      // 1) Logo mark, wordmark AND tagline appear together (rise + soft blur).
       const markIn = mark.animate([
         { opacity: 0, transform: 'translateY(30px) scale(0.9)', filter: 'blur(10px)' },
         { opacity: 1, transform: 'translateY(0) scale(1)', filter: 'blur(0)' }
@@ -428,11 +439,16 @@
         { opacity: 1, transform: 'translateY(0) scale(1)', filter: 'blur(0)' }
       ], { duration: 420, easing: EASE, fill: 'forwards' });
 
-      Promise.all([markIn.finished, wordIn.finished]).then(() => {
-        // 2) Brief pause with logo + wordmark together.
+      const tagIn = tagline ? tagline.animate([
+        { opacity: 0, transform: 'translateY(22px) scale(0.94)', filter: 'blur(8px)' },
+        { opacity: 1, transform: 'translateY(0) scale(1)', filter: 'blur(0)' }
+      ], { duration: 420, delay: 120, easing: EASE, fill: 'forwards' }) : null;
+
+      Promise.all([markIn.finished, wordIn.finished].concat(tagIn ? [tagIn.finished] : [])).then(() => {
+        // 2) Brief pause with the full brand lockup together.
         setTimeout(() => {
-          // 3) Logo mark dissolves into SMOKE: drifts up-right, expands,
-          //    blurs out to nothing, faint roll.
+          // 3) Logo mark dissolves into SMOKE (drifts up-right, expands, blurs
+          //    out) — the wordmark and tagline stay.
           mark.animate([
             { opacity: 1, transform: 'translate(0px, 0px) scale(1) rotate(0deg)', filter: 'blur(0px)' },
             { opacity: 0.9, transform: 'translate(14px, -14px) scale(1.1) rotate(6deg)', filter: 'blur(6px)' },
@@ -440,7 +456,15 @@
           ], { duration: markLeave, easing: 'ease-out', fill: 'forwards' }).finished
             .then(() => { mark.remove(); })
 
-          // 4) Wordmark flies up to land precisely on the header wordmark.
+          // 4) Tagline fades away as the wordmark flies up (the header has no tagline).
+          .then(() => {
+            if (tagline) {
+              tagline.animate([{ opacity: 1 }, { opacity: 0 }],
+                { duration: 320, easing: 'ease-out', fill: 'forwards' });
+            }
+          })
+
+          // 5) Wordmark flies up to land precisely on the header wordmark.
           .then(() => {
             const w = word.getBoundingClientRect();
             const b = brandWord.getBoundingClientRect();
@@ -528,6 +552,8 @@
       const panel = document.getElementById('menu-panel');
       const overlay = document.getElementById('menu-overlay');
       const btn = document.getElementById('menu-btn');
+      const close = document.getElementById('menu-close');
+      const label = btn ? btn.querySelector('.menu-btn-label') : null;
       if (!panel || !overlay || !btn) return;
 
       function openMenu() {
@@ -538,18 +564,21 @@
           overlay.classList.add('show');
         });
         btn.setAttribute('aria-expanded', 'true');
+        if (label) label.textContent = 'Close';
         document.body.classList.add('sheet-open');
       }
       function closeMenu() {
         panel.classList.remove('open');
         overlay.classList.remove('show');
         btn.setAttribute('aria-expanded', 'false');
+        if (label) label.textContent = 'Menu';
         document.body.classList.remove('sheet-open');
-        setTimeout(() => { panel.hidden = true; overlay.hidden = true; }, 280);
+        setTimeout(() => { panel.hidden = true; overlay.hidden = true; }, 320);
       }
       btn.addEventListener('click', () => {
         panel.hidden || overlay.hidden ? openMenu() : closeMenu();
       });
+      if (close) close.addEventListener('click', closeMenu);
       overlay.addEventListener('click', closeMenu);
       panel.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
