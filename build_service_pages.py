@@ -163,6 +163,8 @@ SERVICES = [
         related=["full-house-cleaning", "ac-services"]),
 ]
 
+BY_SLUG = {s["slug"]: s for s in SERVICES}
+
 def enc(text):
     return str(text).replace("%", "%25").replace(" ", "%20").replace("'", "%27").replace("&", "%26")
 
@@ -186,8 +188,8 @@ def build_main(s):
     wa = wa_prefill(s["label"])
     related_links = "".join(
         '\n      <a class="service-tile" href="%s.html">\n        <img src="assets/img/services/%s.jpg" alt="%s" width="640" height="400" loading="lazy">\n        <span class="service-tag">%s</span>\n      </a>' %
-        (each, each, each.replace("-", " ").title(), each.replace("-", " ").title())
-        for each in s["related"])
+        (r["slug"], r["img"].split("/")[-1][:-4], r["label"], r["label"])
+        for r in (BY_SLUG[x] for x in s["related"]))
 
     why = "".join("\n      <li>%s</li>" % w for w in STD_WHY)
     return (

@@ -1579,3 +1579,17 @@ body.loaded .brand-strip { opacity: 1; transition: opacity 0.3s ease; }
   .menu-item { opacity: 1 !important; transform: none !important; }
   body.loaded .brand-strip { transition: none !important; }
 }
+
+/* ---------- Service detail pages ---------- */
+.srv-hero-media { max-width: 960px; margin: 26px auto 0; }
+.srv-hero-media img { width: 100%; border-radius: var(--radius); box-shadow: var(--shadow); }
+.srv-included {
+  list-style: none; padding: 0; margin: 20px auto 0; max-width: 960px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px 24px;
+}
+.srv-included li {
+  position: relative; padding-left: 28px; color: var(--muted); font-size: 0.98rem; line-height: 1.6;
+}
+.srv-included li::before {
+  content: '✓'; position: absolute; left: 0; top: 0; color: var(--cyan); font-weight: 800;
+}
