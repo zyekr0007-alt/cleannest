@@ -31,8 +31,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preload" as="image" href="assets/img/hero-cleaning.jpg" type="image/jpeg" fetchpriority="high">
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=32">
-  <link rel="stylesheet" href="assets/css/app.css?v=4">
+  <link rel="stylesheet" href="assets/css/style.css?v=33">
+  <link rel="stylesheet" href="assets/css/app.css?v=5">
   <noscript><style>.reveal{opacity:1;transform:none}</style></noscript>
   <script type="application/ld+json">
   {
@@ -149,8 +149,17 @@
   }
   </script>
 </head>
-<body data-page="home">
+<body data-page="home" class="preloading">
   <a class="skip-link" href="#main">Skip to content</a>
+
+  <!-- Premium preloader: logo alone → departs → wordmark appears → flies to header -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader-glow" aria-hidden="true"></div>
+    <div class="preloader-stage">
+      <img class="preloader-mark" src="assets/img/logo-emblem.png" alt="" width="82" height="82">
+      <span class="preloader-wordmark">CleanNest</span>
+    </div>
+  </div>
 
   <!-- Header -->
   <header class="site-header">
@@ -661,5 +670,84 @@
   </nav>
   <script src="assets/js/main.js?v=30"></script>
   <script src="assets/js/app.js?v=1"></script>
+  <script>
+    // ===== Premium preloader: logo appears alone, departs, then the CleanNest
+    // wordmark appears and flies up into the header, then content reveals =====
+    (function initPreloader(){
+      var pre = document.getElementById('preloader');
+      if (!pre) return;
+      var mark = pre.querySelector('.preloader-mark');
+      var word = pre.querySelector('.preloader-wordmark');
+      var brandWord = document.querySelector('.brand-name');
+      var markLeave = 820, flightDur = 900;
+      var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      function landContent(){
+        document.body.classList.remove('preloading');
+        document.body.classList.add('loaded');
+      }
+      // Skip animation for reduced motion / no Web Animations API / missing target
+      if (reduceMotion || !('animate' in pre) || !brandWord){
+        landContent();
+        pre.remove();
+        return;
+      }
+
+      var EASE = 'cubic-bezier(0.22, 1, 0.36, 1)';
+      // Hide the wordmark initially so the logo stands centered on its own.
+      word.style.display = 'none';
+
+      // 1) Logo appears alone (rise + soft blur).
+      var markIn = mark.animate([
+        { opacity: 0, transform: 'translateY(30px) scale(0.9)', filter: 'blur(10px)' },
+        { opacity: 1, transform: 'translateY(0) scale(1)', filter: 'blur(0)' }
+      ], { duration: 620, easing: EASE, fill: 'forwards' });
+
+      markIn.finished.then(function(){
+        // 2) Brief elegant pause, then the logo departs: spin, scale-down, fade.
+        setTimeout(function(){
+          mark.animate([
+            { opacity: 1, transform: 'translateY(0) scale(1) rotate(0deg)', filter: 'blur(0)' },
+            { opacity: 0, transform: 'translateY(-18px) scale(0.44) rotate(220deg)', filter: 'blur(6px)' }
+          ], { duration: markLeave, easing: 'cubic-bezier(0.5, 0, 0.15, 1)', fill: 'forwards' }).finished
+            .then(function(){ mark.remove(); word.style.display = ''; })
+
+          // 3) Wordmark appears where the logo was.
+          .then(function(){
+            return word.animate([
+              { opacity: 0, transform: 'translateY(28px) scale(0.9)', filter: 'blur(10px)' },
+              { opacity: 1, transform: 'translateY(0) scale(1)', filter: 'blur(0)' }
+            ], { duration: 620, easing: EASE, fill: 'forwards' }).finished;
+          })
+
+          // 4) Wordmark flies up to land precisely on the header wordmark.
+          .then(function(){
+            var w = word.getBoundingClientRect();
+            var b = brandWord.getBoundingClientRect();
+            var dx = b.left + b.width/2 - (w.left + w.width/2);
+            var dy = b.top + b.height/2 - (w.top + w.height/2);
+            var scale = b.width / w.width;
+            return word.animate([
+              { transform: 'translate(0px, 0px) scale(1)', opacity: 1 },
+              { transform: 'translate(' + dx + 'px, ' + dy + 'px) scale(' + scale + ')', opacity: 1 }
+            ], { duration: flightDur, easing: EASE, fill: 'forwards' }).finished;
+          })
+
+          // 5) Wordmark settled -> reveal the header (CSS .loaded fades it in),
+          //    then fade the whole overlay away.
+          .then(function(){
+            landContent();
+            word.animate([{ opacity: 1 }, { opacity: 0 }],
+              { duration: 320, easing: 'ease-out', fill: 'forwards' });
+            return pre.animate([{ opacity: 1 }, { opacity: 0 }],
+              { duration: 360, easing: 'ease-out', fill: 'forwards' }).finished;
+          })
+
+          // 6) Remove the overlay for good.
+          .then(function(){ pre.remove(); });
+        }, 480);
+      });
+    })();
+  </script>
 </body>
 </html>

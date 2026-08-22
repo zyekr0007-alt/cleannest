@@ -35,6 +35,7 @@ html{
   --sky:#2E93D8;
   --sky-soft:#E3F1FB;
   --white:#FFFFFF;
+  --page:#F6F8FB;          /* soft off-white page background */
   --ink:#0B3A55;           /* headings — navy-tinted */
   --text:#45586A;          /* body — slate */
   --muted:#647480;
@@ -57,7 +58,7 @@ html{scroll-behavior:smooth;scroll-padding-top:88px}
 body{
   font-family:var(--font-b);
   font-size:16px;line-height:1.66;
-  color:var(--text);background:var(--white);
+  color:var(--text);background:var(--page);
   overflow-x:clip;
   -webkit-font-smoothing:antialiased;
 }
@@ -965,4 +966,51 @@ h4{font-size:.95rem;font-weight:700}
 @media (max-width:560px){
   .footer-grid{grid-template-columns:1fr;gap:28px;padding:48px 0 32px}
   .site-footer li{padding:7px 0}
+}
+
+/* ============================================================
+   Premium preloader — logo appears alone, departs, then the
+   CleanNest wordmark appears and flies up into the header.
+   Soft off-white backdrop matching the light theme.
+   ============================================================ */
+.preloader{
+  position:fixed;inset:0;z-index:2100;display:flex;align-items:center;justify-content:center;
+  background:
+    radial-gradient(120% 80% at 50% 0%, rgba(12,215,229,.10), transparent 55%),
+    linear-gradient(160deg,#F8FAFC 0%,#EEF2F7 60%,#E7EDF4 100%);
+  overflow:hidden;
+}
+.preloader-glow{
+  position:absolute;top:50%;left:50%;width:min(80vw,520px);height:min(60vw,300px);
+  transform:translate(-50%,-50%);pointer-events:none;border-radius:50%;
+  background:radial-gradient(ellipse at center, rgba(12,215,229,.30) 0%, rgba(12,215,229,.10) 45%, transparent 72%);
+  filter:blur(18px);animation:preloaderGlow 4.5s ease-in-out infinite;
+}
+@keyframes preloaderGlow{
+  0%,100%{opacity:.65;transform:translate(-50%,-50%) scale(.96)}
+  50%{opacity:1;transform:translate(-50%,-50%) scale(1.08)}
+}
+.preloader-stage{position:relative;display:flex;align-items:center;gap:clamp(12px,2.5vw,22px)}
+.preloader-mark{
+  width:clamp(56px,9vw,82px);height:clamp(56px,9vw,82px);border-radius:50%;flex-shrink:0;
+  transform-origin:50% 50%;
+  box-shadow:0 0 0 2px rgba(11,67,100,.10), 0 10px 26px rgba(11,67,100,.16), 0 0 40px rgba(12,215,229,.30);
+}
+.preloader-wordmark{
+  font-family:'Ultima Pro','Ultima Bold Pro',var(--font-d)!important;font-weight:700;
+  font-size:clamp(2.4rem,9vw,4rem);letter-spacing:.02em;
+  background:linear-gradient(92deg,var(--navy) 0%,#1476A8 45%,var(--cyan) 95%);
+  background-size:200% auto;background-position:0% center;
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;
+  filter:drop-shadow(0 4px 18px rgba(12,215,229,.22));
+  transform-origin:50% 50%;
+}
+/* Hold the page while the preloader runs; hide the header until it lands */
+body.preloading{overflow:hidden}
+body.preloading .site-header{opacity:0}
+body.loaded .site-header{opacity:1;transition:opacity .3s ease}
+@media (prefers-reduced-motion:reduce){
+  .preloader-glow{animation:none!important}
+  .preloader-mark,.preloader-wordmark{filter:none!important}
+  body.loaded .site-header{transition:none!important}
 }

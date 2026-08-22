@@ -16,7 +16,7 @@
 /* ---------- body: room for the tab bar ---------- */
 body{
   padding-bottom:calc(100px + env(safe-area-inset-bottom,0px));
-  background:var(--cyan-softest, #F2F6F9);
+  background:var(--page, #F6F8FB);
 }
 
 /* ---------- app bar (navy) ---------- */
