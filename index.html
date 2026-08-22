@@ -39,10 +39,10 @@
     </div>
   </div>
 
-  <!-- Brand lockup: logo mark + wordmark (same mark as the preloader) -->
+  <!-- Brand lockup: wordmark only (the logo mark lives in the preloader; after it
+       departs, only the wordmark flies up and is seen on the page) -->
   <header class="brand-strip">
     <div class="brand-lockup">
-      <img class="brand-mark" src="assets/img/logo.png" alt="" width="44" height="44">
       <span class="brand-wordmark">CleanNest</span>
     </div>
     <span class="brand-glow" aria-hidden="true"></span>
@@ -376,16 +376,16 @@
       });
     }
 
-    // ===== Premium preloader: logo + wordmark, mark departs, wordmark flies
-    // up into the header, then content rises in =====
+    // ===== Premium preloader: logo + wordmark appear TOGETHER, then the mark
+    // departs while the wordmark stays, then wordmark flies up into the header =====
     (function initPreloader() {
       const pre = document.getElementById('preloader');
       if (!pre) return;
       const mark = pre.querySelector('.preloader-mark');
       const word = pre.querySelector('.preloader-wordmark');
       const brandWord = document.querySelector('.brand-wordmark');
-      const markLeave = 820;   // spin/scale/fade of the logo mark
-      const flightDur = 900;   // wordmark travel into header
+      const markLeave = 560;   // smoke dissolve of the logo mark
+      const flightDur = 640;   // wordmark travel into header
 
       // Reduced motion / no-WAAPI: skip the animation, land content instantly.
       if (!('animate' in pre) || window.matchMedia('(prefers-reduced-motion: reduce)').matches
@@ -399,39 +399,49 @@
 
       const EASE = 'cubic-bezier(0.22, 1, 0.36, 1)';
 
-      // Preloader: LOGO appears alone first, departs, then the wordmark
-      // appears and flies up into the header, then content rises in.
-      // Hide the wordmark initially so the logo stands centered on its own.
-      word.style.display = 'none';
+      // Safety net: never let the preloader block the page. If the animation
+      // chain stalls for any reason (e.g. a paused tab, reduced motion edge, or
+      // a browser that doesn't tick WAAPI), force-reveal after the max runtime.
+      const hardTimeout = setTimeout(() => {
+        document.body.classList.remove('preloading');
+        document.body.classList.add('loaded');
+        const el = document.getElementById('preloader');
+        if (el) el.remove();
+        runHeroReveal();
+      }, 2600);
 
-      // 1) Logo appears alone (rise + soft blur).
+      const finish = () => {
+        clearTimeout(hardTimeout);
+        document.body.classList.remove('preloading');
+        pre.remove();
+        runHeroReveal();
+      };
+
+      // 1) Logo mark AND wordmark appear together (rise + soft blur).
       const markIn = mark.animate([
         { opacity: 0, transform: 'translateY(30px) scale(0.9)', filter: 'blur(10px)' },
         { opacity: 1, transform: 'translateY(0) scale(1)', filter: 'blur(0)' }
-      ], { duration: 620, easing: EASE, fill: 'forwards' });
+      ], { duration: 420, easing: EASE, fill: 'forwards' });
 
-      markIn.finished.then(() => {
-        // Brief elegant pause with just the logo centered.
+      const wordIn = word.animate([
+        { opacity: 0, transform: 'translateY(30px) scale(0.9)', filter: 'blur(10px)' },
+        { opacity: 1, transform: 'translateY(0) scale(1)', filter: 'blur(0)' }
+      ], { duration: 420, easing: EASE, fill: 'forwards' });
+
+      Promise.all([markIn.finished, wordIn.finished]).then(() => {
+        // 2) Brief pause with logo + wordmark together.
         setTimeout(() => {
-          // 2) Logo mark departs: subtle spin, scale-down, fade.
+          // 3) Logo mark dissolves into SMOKE: drifts up-right, expands,
+          //    blurs out to nothing, faint roll.
           mark.animate([
-            { opacity: 1, transform: 'translateY(0) scale(1) rotate(0deg)', filter: 'blur(0)' },
-            { opacity: 0, transform: 'translateY(-18px) scale(0.44) rotate(220deg)', filter: 'blur(6px)' }
-          ], { duration: markLeave, easing: 'cubic-bezier(0.5, 0, 0.15, 1)', fill: 'forwards' }).finished
-            .then(() => { mark.remove(); word.style.display = ''; })
-
-          // 3) Wordmark appears where the logo was.
-          .then(() => {
-            return word.animate([
-              { opacity: 0, transform: 'translateY(28px) scale(0.9)', filter: 'blur(10px)' },
-              { opacity: 1, transform: 'translateY(0) scale(1)', filter: 'blur(0)' }
-            ], { duration: 620, easing: EASE, fill: 'forwards' }).finished;
-          })
+            { opacity: 1, transform: 'translate(0px, 0px) scale(1) rotate(0deg)', filter: 'blur(0px)' },
+            { opacity: 0.9, transform: 'translate(14px, -14px) scale(1.1) rotate(6deg)', filter: 'blur(6px)' },
+            { opacity: 0, transform: 'translate(30px, -42px) scale(1.32) rotate(16deg)', filter: 'blur(22px)' }
+          ], { duration: markLeave, easing: 'ease-out', fill: 'forwards' }).finished
+            .then(() => { mark.remove(); })
 
           // 4) Wordmark flies up to land precisely on the header wordmark.
           .then(() => {
-            // The header wordmark is styled by the brand (Ultima, gradient) and
-            // currently hidden under body.preloading. Measure its final box.
             const w = word.getBoundingClientRect();
             const b = brandWord.getBoundingClientRect();
             const dx = b.left + b.width / 2 - (w.left + w.width / 2);
@@ -451,18 +461,14 @@
           .then(() => {
             document.body.classList.add('loaded');      // header fades in
             word.animate([{ opacity: 1 }, { opacity: 0 }],
-              { duration: 320, easing: 'ease-out', fill: 'forwards' });
+              { duration: 240, easing: 'ease-out', fill: 'forwards' });
             return pre.animate([{ opacity: 1 }, { opacity: 0 }],
-              { duration: 360, easing: 'ease-out', fill: 'forwards' }).finished;
+              { duration: 280, easing: 'ease-out', fill: 'forwards' }).finished;
           })
 
           // 6) Content rises in only after the wordmark has settled into place.
-          .then(() => {
-            document.body.classList.remove('preloading');
-            pre.remove();
-            runHeroReveal();
-          });
-        }, 480);
+          .then(finish);
+        }, 260);
       });
     })();
 
