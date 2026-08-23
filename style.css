@@ -1363,40 +1363,35 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 
 /* ---------- Booking process flow (A → B → C) ---------- */
 .booking-flow {
-  margin-top: 34px;
+  margin-top: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 18px;
-  flex-wrap: wrap;
+  gap: 10px;
+  flex-wrap: nowrap;
 }
 .booking-step {
   display: flex;
-  flex-direction: column;
   align-items: center;
   gap: 10px;
-  text-align: center;
-  padding: 18px 20px;
-  border-radius: var(--radius);
+  padding: 9px 14px;
+  border-radius: 999px;
   background: rgba(255, 255, 255, 0.12);
   border: 1px solid rgba(255, 255, 255, 0.28);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  min-width: 150px;
-  max-width: 190px;
 }
 .booking-num {
   font-family: 'Sora', sans-serif;
   font-weight: 800;
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.75);
-  text-transform: uppercase;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.85);
 }
 .booking-ico {
   position: relative;
-  width: 56px;
-  height: 56px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1405,28 +1400,30 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   background: rgba(12, 215, 229, 0.28);
   border: 1px solid rgba(255, 255, 255, 0.35);
   overflow: hidden;
+  flex-shrink: 0;
 }
-.booking-ico svg { width: 26px; height: 26px; position: relative; z-index: 1; }
-/* animated swirling glow */
+.booking-ico svg { width: 20px; height: 20px; position: relative; z-index: 1; }
+/* Same swirl animation as the "Why Choose Us" icon */
 .booking-ico::before {
   content: "";
   position: absolute;
-  inset: -45%;
-  background: conic-gradient(from 0deg, transparent 0 40%, rgba(12, 215, 229, 0.5) 50%, transparent 60% 100%);
-  animation: bookingSwirl 3s linear infinite;
+  inset: -40%;
+  background: conic-gradient(from 0deg, transparent 0 40%, rgba(12, 215, 229, 0.35) 50%, transparent 60% 100%);
+  animation: whyIcoSwirl 3.2s linear infinite;
 }
-@keyframes bookingSwirl { to { transform: rotate(360deg); } }
 .booking-title {
   font-family: 'Sora', sans-serif;
   font-weight: 700;
-  font-size: 0.95rem;
-  line-height: 1.25;
+  font-size: 0.86rem;
+  line-height: 1.15;
   color: #fff;
+  white-space: nowrap;
 }
 .booking-arrow {
   color: rgba(255, 255, 255, 0.6);
-  font-size: 1.6rem;
+  font-size: 1.3rem;
   line-height: 1;
+  flex-shrink: 0;
   animation: bookingArrowPulse 1.6s ease-in-out infinite;
 }
 @keyframes bookingArrowPulse {
@@ -1434,11 +1431,13 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   50%      { opacity: 1; transform: translateX(4px); }
 }
 @media (max-width: 640px) {
-  .booking-flow { gap: 12px; }
-  .booking-step { min-width: 132px; padding: 14px 14px; }
-  .booking-ico { width: 50px; height: 50px; }
-  .booking-ico svg { width: 23px; height: 23px; }
-  .booking-title { font-size: 0.88rem; }
+  .booking-flow { gap: 6px; }
+  .booking-step { gap: 7px; padding: 7px 10px; }
+  .booking-ico { width: 36px; height: 36px; }
+  .booking-ico svg { width: 17px; height: 17px; }
+  .booking-title { font-size: 0.76rem; }
+  .booking-num { font-size: 0.64rem; }
+  .booking-arrow { font-size: 1.1rem; }
 }
 
 /* ---------- Footer ---------- */
