@@ -45,7 +45,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=114">
+  <link rel="stylesheet" href="style.css?v=115">
   <style>
     /* Critical preloader shell: keep it full-screen off-white instantly so
        nothing flashes before style.css loads. (Full styling lives in style.css.) */
@@ -65,12 +65,11 @@
 </head>
 <body class="preloading">
 
-  <!-- Premium preloader: CleanNest wordmark (no logo mark) + tagline -->
+  <!-- Premium preloader: CleanNest wordmark only -->
   <div class="preloader" id="preloader" aria-hidden="true">
     <div class="preloader-glow" aria-hidden="true"></div>
     <div class="preloader-stage">
       <span class="preloader-wordmark">CleanNest</span>
-      <span class="preloader-tagline">From Dust to Shine Every time!</span>
     </div>
   </div>
 
@@ -637,43 +636,31 @@
         runHeroReveal();
       };
 
-      // 1) Wordmark AND tagline appear together (rise + soft blur).
+      // 1) Wordmark rises in with a soft, effortless fade (no abrupt pop).
       const wordIn = word.animate([
-        { opacity: 0, transform: 'translateY(30px) scale(0.9)', filter: 'blur(10px)' },
+        { opacity: 0, transform: 'translateY(26px) scale(0.94)', filter: 'blur(6px)' },
         { opacity: 1, transform: 'translateY(0) scale(1)', filter: 'blur(0)' }
-      ], { duration: 420, easing: EASE, fill: 'forwards' });
+      ], { duration: 620, easing: EASE, fill: 'forwards' });
 
-      const tagIn = tagline ? tagline.animate([
-        { opacity: 0, transform: 'translateY(22px) scale(0.94)', filter: 'blur(8px)' },
-        { opacity: 1, transform: 'translateY(0) scale(1)', filter: 'blur(0)' }
-      ], { duration: 420, delay: 120, easing: EASE, fill: 'forwards' }) : null;
-
-      Promise.all([wordIn.finished].concat(tagIn ? [tagIn.finished] : [])).then(() => {
-        // 2) Brief pause with the brand together.
+      Promise.all([wordIn.finished]).then(() => {
+        // 2) Brief pause with the brand settled.
         setTimeout(() => {
-          // 3) Tagline fades away (the header has no tagline).
-          (tagline ? tagline.animate([{ opacity: 1 }, { opacity: 0 }],
-            { duration: 300, easing: 'ease-out', fill: 'forwards' }).finished : Promise.resolve())
-
-          // 4) Wordmark flies up and LANDS on the header wordmark.
+          // 3) Wordmark flies up and LANDS on the header wordmark.
           //    Because the header wordmark is styled identically (solid navy,
           //    same Ultima font), the flight reads as the preloader wordmark
           //    becoming the header wordmark — a seamless transition.
-          .then(() => {
-            const w = word.getBoundingClientRect();
-            const b = brandWord.getBoundingClientRect();
-            const dx = b.left + b.width / 2 - (w.left + w.width / 2);
-            const dy = b.top + b.height / 2 - (w.top + w.height / 2);
-            const scale = b.width / w.width;
+          const w = word.getBoundingClientRect();
+          const b = brandWord.getBoundingClientRect();
+          const dx = b.left + b.width / 2 - (w.left + w.width / 2);
+          const dy = b.top + b.height / 2 - (w.top + w.height / 2);
+          const scale = b.width / w.width;
 
-            const flight = word.animate([
-              { transform: 'translate(0px, 0px) scale(1)', opacity: 1 },
-              { transform: `translate(${dx}px, ${dy}px) scale(${scale})`, opacity: 1 }
-            ], { duration: flightDur, easing: EASE, fill: 'forwards' });
+          const flight = word.animate([
+            { transform: 'translate(0px, 0px) scale(1)', opacity: 1 },
+            { transform: `translate(${dx}px, ${dy}px) scale(${scale})`, opacity: 1 }
+          ], { duration: flightDur, easing: EASE, fill: 'forwards' });
 
-            return flight.finished;
-          })
-
+          flight.finished
           // 5) Wordmark landed → reveal the header (it now IS the header wordmark,
           //    so crossfade the flying copy out), then remove the overlay.
           .then(() => {

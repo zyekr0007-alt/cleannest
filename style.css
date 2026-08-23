@@ -2337,15 +2337,6 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   paint-order: stroke fill;
 }
 
-.preloader-tagline {
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  font-size: clamp(0.82rem, 2.4vw, 1.05rem);
-  letter-spacing: 0.01em;
-  color: var(--navy);
-  margin-top: 4px;
-}
-
 /* Hold the page (no scroll) while the preloader runs; hide the header so the
    preloader wordmark flies in without a duplicate. */
 body.preloading { overflow: hidden; }
@@ -2363,7 +2354,7 @@ body.loaded .brand-strip { opacity: 1; transition: opacity 0.3s ease; }
 @media (prefers-reduced-motion: reduce) {
   .preloader-glow { animation: none !important; }
   .brand-wordmark, .brand-lockup, .brand-glow { animation: none !important; }
-  .preloader-wordmark, .preloader-tagline { filter: none !important; }
+  .preloader-wordmark { filter: none !important; }
   .menu-panel.open .menu-item { animation: none !important; opacity: 1 !important; transform: none !important; }
   .menu-item { opacity: 1 !important; transform: none !important; }
   body.loaded .brand-strip { transition: none !important; }
