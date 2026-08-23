@@ -1721,10 +1721,6 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   .hero-media img { max-height: none; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .menu-btn, .menu-panel, .menu-item, .menu-overlay, .hero-cta, .bubble, .bub, .aurora, .flow, .hero-media, .hero-title .accent, .hero-title .acc-yellow, .brand-wordmark, .brand-glow, .brand-lockup, .hero::before, .proof-stars .star, .btn-primary, .quote-panel, .quote-overlay { animation: none !important; transition: none !important; }
-}
-
 /* ==================== Premium preloader ==================== */
 .preloader {
   position: fixed;
@@ -1804,11 +1800,29 @@ body.loaded .brand-strip { opacity: 1; transition: opacity 0.3s ease; }
 
 @media (prefers-reduced-motion: reduce) {
   .preloader-glow { animation: none !important; }
-  .brand-wordmark, .brand-lockup { animation: none !important; }
+  .brand-wordmark, .brand-lockup, .brand-glow { animation: none !important; }
   .preloader-wordmark, .preloader-tagline { filter: none !important; }
   .menu-panel.open .menu-item { animation: none !important; opacity: 1 !important; transform: none !important; }
   .menu-item { opacity: 1 !important; transform: none !important; }
   body.loaded .brand-strip { transition: none !important; }
+  /* Disable all decorative / looping motion */
+  .hero .flow, .hero .bubble-field .bub, .hero::before, .hero::after,
+  .acc-yellow, .accent, .proof-stars .star, .btn-primary, .btn-quote,
+  .preloader-glow, .quote-panel, .quote-overlay, .lightbox .lightbox-full {
+    animation: none !important;
+    transition: none !important;
+  }
+  .hero-title .hero-line, .hero-copy .reveal, .service-tile, .svc-section, .svc-head {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+  /* No auto-advancing carousel */
+  #reviews-track { transition: none !important; }
+  /* Instant page reveal */
+  .preloader { display: none !important; }
+  body.preloading { overflow: auto !important; }
+  body.preloading .brand-strip { opacity: 1 !important; }
 }
 
 /* ============================================================
