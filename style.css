@@ -731,17 +731,29 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   padding: 80px 22px;
 }
 
-.gallery-grid {
+.gallery-carousel {
+  position: relative;
+  max-width: 640px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.gallery-track {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 18px;
+  transition: transform 0.55s cubic-bezier(0.32, 0.72, 0, 1);
+  touch-action: pan-y;
+}
+
+.gallery-slide {
+  flex: 0 0 100%;
+  min-width: 100%;
+  padding: 3px;
 }
 
 .gallery-card {
   position: relative;
   display: block;
-  flex: 0 1 280px;
+  width: 100%;
   padding: 0;
   border: none;
   background: none;
@@ -752,7 +764,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 
 .gallery-card img {
   width: 100%;
-  height: 240px;
+  height: min(64vw, 440px);
   object-fit: cover;
   border-radius: 14px;
   display: block;
@@ -772,7 +784,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 .gallery-label {
   position: absolute;
   left: 12px;
-  bottom: 12px;
+  top: 12px;
   padding: 5px 12px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.85);
@@ -783,6 +795,28 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   font-weight: 700;
   font-size: 0.85rem;
   box-shadow: 0 4px 14px rgba(11, 67, 100, 0.16);
+}
+
+.gallery-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 22px;
+}
+.gallery-dots button {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  padding: 0;
+  background: rgba(11, 67, 100, 0.22);
+  cursor: pointer;
+  transition: width 0.3s ease, background 0.3s ease;
+}
+.gallery-dots button.active {
+  width: 24px;
+  border-radius: 999px;
+  background: var(--cyan);
 }
 
 /* ---------- Gallery lightbox (before / after) ---------- */
@@ -861,7 +895,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 
 .reviews-head {
   text-align: center;
-  margin-bottom: 44px;
+  margin-bottom: 24px;
 }
 
 .reviews-badge {
@@ -885,12 +919,6 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 }
 
 .reviews-title .star { color: var(--cyan); }
-
-.reviews-count {
-  margin-top: 8px;
-  color: var(--muted);
-  font-size: 1rem;
-}
 
 /* Swipeable reviews carousel */
 .reviews-carousel {
@@ -916,7 +944,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   background: var(--glass-bg);
   border: var(--glass-border);
   border-radius: var(--radius);
-  padding: 26px;
+  padding: 20px 22px;
   box-shadow: var(--glass-shadow);
   backdrop-filter: var(--glass-backdrop);
   -webkit-backdrop-filter: var(--glass-backdrop);
@@ -958,8 +986,8 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 }
 
 .review-avatar {
-  width: 48px;
-  height: 48px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--navy), var(--cyan));
   color: var(--white);
@@ -969,9 +997,16 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   font-weight: 700;
   font-family: 'Sora', sans-serif;
   flex-shrink: 0;
+  font-size: 0.85rem;
 }
 
-.avatar-g { background: #4285F4; }
+.av-nv   { background: linear-gradient(135deg, #0B4364, #14A6CC); }
+.av-blue { background: #4285F4; }
+.av-green{ background: #34A853; }
+.av-red  { background: #EA4335; }
+.av-gold { background: #F9AB00; }
+.av-purple{ background: #8A56D6; }
+.av-pink { background: #E052A0; }
 
 .review-meta { display: flex; flex-direction: column; }
 
@@ -989,8 +1024,8 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 
 .review-text {
   color: var(--ink);
-  font-size: 0.98rem;
-  line-height: 1.6;
+  font-size: 0.92rem;
+  line-height: 1.55;
 }
 
 .review-tag {
@@ -1004,15 +1039,32 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   font-weight: 600;
 }
 
-.reviews-all {
-  display: inline-block;
-  margin-top: 36px;
-  color: var(--navy);
-  font-weight: 700;
-  text-decoration: none;
-  font-family: 'Sora', sans-serif;
+.reviews-actions {
+  text-align: center;
+  margin-top: 24px;
 }
-.reviews-all:hover { color: var(--cyan); }
+.reviews-all {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 13px 26px;
+  border-radius: 999px;
+  background: var(--glass-bg-strong);
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+  color: var(--navy);
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.reviews-all:hover {
+  transform: translateY(-1px);
+  background: rgba(12, 215, 229, 0.16);
+}
 
 /* ---------- About ---------- */
 .about {
@@ -1492,6 +1544,56 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   transform: translateY(16px);
 }
 .menu-panel.open .menu-note { animation: menuItemIn 0.5s ease 0.34s forwards; }
+
+/* In-menu FAQ (collapsible accordion inside the menu) */
+.menu-faq-toggle { cursor: pointer; width: 100%; text-align: left; }
+.menu-faq-toggle .menu-faq-arrow {
+  margin-left: auto;
+  transition: transform 0.25s ease;
+  color: var(--muted);
+}
+.menu-faq-toggle.open .menu-faq-arrow { transform: rotate(90deg); color: var(--cyan); }
+
+.menu-faq {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 6px 8px 12px 16px;
+}
+.menu-faq-item {
+  background: var(--glass-bg);
+  border: var(--glass-border);
+  border-radius: 12px;
+  padding: 0 14px;
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+}
+.menu-faq-item summary {
+  cursor: pointer;
+  padding: 12px 0;
+  font-weight: 600;
+  color: var(--navy);
+  list-style: none;
+  position: relative;
+}
+.menu-faq-item summary::-webkit-details-marker { display: none; }
+.menu-faq-item summary::after {
+  content: "+";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--cyan);
+  font-weight: 700;
+}
+.menu-faq-item[open] summary::after { content: "–"; }
+.menu-faq-item p {
+  padding: 0 0 12px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
 
 /* Absorb leftover space so the menu content isn't left with a big dead gap
    above the footer CTA. */

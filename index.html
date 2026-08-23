@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=66">
+  <link rel="stylesheet" href="style.css?v=68">
   <style>
     /* Critical preloader shell: keep it full-screen off-white instantly so
        nothing flashes before style.css loads. (Full styling lives in style.css.) */
@@ -154,35 +154,52 @@
       <h2 class="section-title">See the <span class="star">Results</span></h2>
       <p class="section-sub">Tap any job to see the before &amp; after.</p>
     </div>
-    <div class="gallery-grid">
-      <button class="gallery-card" type="button" data-full="assets/img/results/toilet-bathroom.jpg" aria-label="View bathroom and toilet before and after">
-        <img src="assets/img/results/toilet-bathroom.jpg" alt="Bathroom and toilet deep cleaning before and after" width="640" height="640" loading="lazy">
-        <span class="gallery-label">Bathroom &amp; Toilet</span>
-      </button>
-      <button class="gallery-card" type="button" data-full="assets/img/results/bathroom-floor-tiles.jpg" aria-label="View bathroom floor tiles before and after">
-        <img src="assets/img/results/bathroom-floor-tiles.jpg" alt="Bathroom floor tiles cleaning before and after" width="640" height="640" loading="lazy">
-        <span class="gallery-label">Bathroom Floor</span>
-      </button>
-      <button class="gallery-card" type="button" data-full="assets/img/results/sink-vanity.jpg" aria-label="View sink vanity before and after">
-        <img src="assets/img/results/sink-vanity.jpg" alt="Sink vanity cleaning before and after" width="640" height="640" loading="lazy">
-        <span class="gallery-label">Sink &amp; Vanity</span>
-      </button>
-      <button class="gallery-card" type="button" data-full="assets/img/results/pedestal-sink.jpg" aria-label="View pedestal sink before and after">
-        <img src="assets/img/results/pedestal-sink.jpg" alt="Pedestal washbasin cleaning before and after" width="640" height="640" loading="lazy">
-        <span class="gallery-label">Washbasin</span>
-      </button>
-      <button class="gallery-card" type="button" data-full="assets/img/results/bathroom-taps.jpg" aria-label="View bathroom wall tiles and taps before and after">
-        <img src="assets/img/results/bathroom-taps.jpg" alt="Bathroom wall tiles and taps cleaning before and after" width="640" height="640" loading="lazy">
-        <span class="gallery-label">Wall Tiles &amp; Taps</span>
-      </button>
-      <button class="gallery-card" type="button" data-full="assets/img/results/living-room-floor.jpg" aria-label="View living room floor before and after">
-        <img src="assets/img/results/living-room-floor.jpg" alt="Living room marble floor cleaning before and after" width="640" height="640" loading="lazy">
-        <span class="gallery-label">Living Room</span>
-      </button>
-      <button class="gallery-card" type="button" data-full="assets/img/results/balcony-floor.jpg" aria-label="View balcony floor before and after">
-        <img src="assets/img/results/balcony-floor.jpg" alt="Balcony marble floor cleaning before and after" width="640" height="640" loading="lazy">
-        <span class="gallery-label">Balcony</span>
-      </button>
+    <div class="gallery-carousel" id="gallery-carousel">
+      <div class="gallery-track" id="gallery-track">
+        <div class="gallery-slide">
+          <button class="gallery-card" type="button" data-full="assets/img/results/toilet-bathroom.jpg" aria-label="View bathroom and toilet before and after">
+            <img src="assets/img/results/toilet-bathroom.jpg" alt="Bathroom and toilet deep cleaning before and after" width="640" height="640" loading="lazy">
+            <span class="gallery-label">Bathroom &amp; Toilet</span>
+          </button>
+        </div>
+        <div class="gallery-slide">
+          <button class="gallery-card" type="button" data-full="assets/img/results/bathroom-floor-tiles.jpg" aria-label="View bathroom floor tiles before and after">
+            <img src="assets/img/results/bathroom-floor-tiles.jpg" alt="Bathroom floor tiles cleaning before and after" width="640" height="640" loading="lazy">
+            <span class="gallery-label">Bathroom Floor</span>
+          </button>
+        </div>
+        <div class="gallery-slide">
+          <button class="gallery-card" type="button" data-full="assets/img/results/sink-vanity.jpg" aria-label="View sink vanity before and after">
+            <img src="assets/img/results/sink-vanity.jpg" alt="Sink vanity cleaning before and after" width="640" height="640" loading="lazy">
+            <span class="gallery-label">Sink &amp; Vanity</span>
+          </button>
+        </div>
+        <div class="gallery-slide">
+          <button class="gallery-card" type="button" data-full="assets/img/results/pedestal-sink.jpg" aria-label="View pedestal sink before and after">
+            <img src="assets/img/results/pedestal-sink.jpg" alt="Pedestal washbasin cleaning before and after" width="640" height="640" loading="lazy">
+            <span class="gallery-label">Washbasin</span>
+          </button>
+        </div>
+        <div class="gallery-slide">
+          <button class="gallery-card" type="button" data-full="assets/img/results/bathroom-taps.jpg" aria-label="View bathroom wall tiles and taps before and after">
+            <img src="assets/img/results/bathroom-taps.jpg" alt="Bathroom wall tiles and taps cleaning before and after" width="640" height="640" loading="lazy">
+            <span class="gallery-label">Wall Tiles &amp; Taps</span>
+          </button>
+        </div>
+        <div class="gallery-slide">
+          <button class="gallery-card" type="button" data-full="assets/img/results/living-room-floor.jpg" aria-label="View living room floor before and after">
+            <img src="assets/img/results/living-room-floor.jpg" alt="Living room marble floor cleaning before and after" width="640" height="640" loading="lazy">
+            <span class="gallery-label">Living Room</span>
+          </button>
+        </div>
+        <div class="gallery-slide">
+          <button class="gallery-card" type="button" data-full="assets/img/results/balcony-floor.jpg" aria-label="View balcony floor before and after">
+            <img src="assets/img/results/balcony-floor.jpg" alt="Balcony marble floor cleaning before and after" width="640" height="640" loading="lazy">
+            <span class="gallery-label">Balcony</span>
+          </button>
+        </div>
+      </div>
+      <div class="gallery-dots" id="gallery-dots" role="tablist" aria-label="Result slides"></div>
     </div>
   </section>
 
@@ -197,15 +214,14 @@
   <section class="reviews" id="reviews">
     <div class="reviews-head">
       <span class="reviews-badge">Reviews</span>
-      <h2 class="reviews-title">Rated <span class="star">4.9/5</span> on Google</h2>
-      <p class="reviews-count">From real customers in Jalandhar &amp; nearby</p>
+      <h2 class="reviews-title">Google <span class="star">Reviews</span></h2>
     </div>
     <div class="reviews-carousel" id="reviews-carousel">
       <div class="reviews-track" id="reviews-track">
         <div class="review-slide">
           <div class="review-card">
             <div class="review-top">
-              <span class="review-avatar">NV</span>
+              <span class="review-avatar av-nv">NV</span>
               <div class="review-meta">
                 <span class="review-name">Neha Verma</span>
                 <span class="review-stars" aria-label="5 out of 5 stars">★★★★★</span>
@@ -218,7 +234,7 @@
         <div class="review-slide">
           <div class="review-card">
             <div class="review-top">
-              <span class="review-avatar avatar-g">G</span>
+              <span class="review-avatar av-blue">G</span>
               <div class="review-meta">
                 <span class="review-name">gurjit bhangu</span>
                 <span class="review-stars" aria-label="5 out of 5 stars">★★★★★</span>
@@ -231,7 +247,7 @@
         <div class="review-slide">
           <div class="review-card">
             <div class="review-top">
-              <span class="review-avatar avatar-g">K</span>
+              <span class="review-avatar av-green">K</span>
               <div class="review-meta">
                 <span class="review-name">Kamal Jeet</span>
                 <span class="review-stars" aria-label="5 out of 5 stars">★★★★★</span>
@@ -244,7 +260,7 @@
         <div class="review-slide">
           <div class="review-card">
             <div class="review-top">
-              <span class="review-avatar avatar-g">S</span>
+              <span class="review-avatar av-red">S</span>
               <div class="review-meta">
                 <span class="review-name">Shelly Bajwa</span>
                 <span class="review-stars" aria-label="5 out of 5 stars">★★★★★</span>
@@ -257,7 +273,7 @@
         <div class="review-slide">
           <div class="review-card">
             <div class="review-top">
-              <span class="review-avatar avatar-g">H</span>
+              <span class="review-avatar av-gold">H</span>
               <div class="review-meta">
                 <span class="review-name">Harshalipreet Kaur Bhangu</span>
                 <span class="review-stars" aria-label="5 out of 5 stars">★★★★★</span>
@@ -270,8 +286,11 @@
       </div>
       <div class="reviews-dots" id="reviews-dots" role="tablist" aria-label="Review slides"></div>
     </div>
-    <div style="text-align:center">
-      <a class="reviews-all" href="https://search.google.com/local/writereview?placeid=ChIJ1zZzOUtbaR4RXbMy1OZsKsI" target="_blank" rel="noopener">Write a review on Google →</a>
+    <div class="reviews-actions">
+      <a class="reviews-all" href="https://www.google.com/maps/place/?q=place_id:ChIJ1zZzOUtbaR4RXbMy1OZsKsI" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" aria-hidden="true" style="width:18px;height:18px;vertical-align:-3px;margin-right:8px;"><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.6v3h3.9c2.3-2.1 3.5-5.2 3.5-8.8Z"/><path fill="#34A853" d="M12 24c3.2 0 6-1.1 8-2.9l-3.9-3c-1.1.7-2.5 1.2-4.1 1.2-3.1 0-5.8-2.1-6.7-5H1.3v3.1C3.3 21.3 7.3 24 12 24Z"/><path fill="#FBBC05" d="M5.3 14.3c-.2-.7-.4-1.5-.4-2.3s.1-1.6.4-2.3V6.6H1.3C.5 8.2 0 10 0 12s.5 3.8 1.3 5.4l4-3.1Z"/><path fill="#EA4335" d="M12 4.8c1.8 0 3.4.6 4.6 1.8l3.5-3.5C18 1.1 15.2 0 12 0 7.3 0 3.3 2.7 1.3 6.6l4 3.1c.9-3 3.6-4.9 6.7-4.9Z"/></svg>
+        See all reviews on Google
+      </a>
     </div>
   </section>
 
@@ -304,35 +323,6 @@
   </section>
 
   <!-- FAQs -->
-  <section class="faqs" id="faqs">
-    <div class="section-head">
-      <span class="section-badge">FAQs</span>
-      <h2 class="section-title">Common questions, <span class="star">answered</span></h2>
-    </div>
-    <div class="faq-list">
-      <details class="faq-item">
-        <summary>How do I get a quote?</summary>
-        <p>Message us on WhatsApp — we reply quickly with a free, no-obligation quote for your home or office.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Do I need to pay in advance?</summary>
-        <p>No. There is no booking fee and no advance payment — you only pay after the job is done.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Which areas do you cover?</summary>
-        <p>We serve Jalandhar and nearby cities: Phagwara, Kapurthala, Hoshiarpur, Nakodar, Goraya, Adampur, Kartarpur, Sultanpur Lodhi, Nawanshahr, Phillaur and Ludhiana.</p>
-      </details>
-      <details class="faq-item">
-        <summary>What services do you offer?</summary>
-        <p>Full house cleaning, kitchen and bathroom deep cleaning, sofa dry cleaning, carpet &amp; steam cleaning, AC services, chimney cleaning and commercial cleaning.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Are your products safe for kids and pets?</summary>
-        <p>Yes — we use professional, eco-friendly products that leave no harsh smells and are safe for your family and pets.</p>
-      </details>
-    </div>
-  </section>
-
   <!-- Contact / CTA -->
   <section class="cta-band" id="contact">
     <h2 class="cta-title">Ready for a <span class="star">spotless home?</span></h2>
@@ -406,10 +396,33 @@
       <span class="menu-ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.5l2.6 5.3 5.9.86-4.3 4.15 1.02 5.86L12 15.9l-5.22 2.77 1.02-5.86-4.3-4.15 5.9-.86L12 2.5Z"/></svg></span>
       <span>Reviews</span>
     </a>
-    <a class="menu-item" href="#faqs">
+    <button class="menu-item menu-faq-toggle" type="button" id="menu-faq-toggle" aria-expanded="false" aria-controls="menu-faq">
       <span class="menu-ico"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20Zm-1.2 6.1a2.9 2.9 0 0 1 5.1 1.9c0 1.6-1.5 2.5-2.7 3-.4.2-.6.4-.6.8v.6a1 1 0 1 1-2 0v-.5c0-1.5.9-2.4 2.2-3 .8-.4 1.1-.7 1.1-1.3a.9.9 0 0 0-1.6-.6 1 1 0 0 1-1.4-1.5Z"/><circle cx="12" cy="17.5" r="1.25"/></svg></span>
       <span>FAQs</span>
-    </a>
+      <span class="menu-faq-arrow" aria-hidden="true">›</span>
+    </button>
+    <div class="menu-faq" id="menu-faq" hidden>
+      <details class="menu-faq-item">
+        <summary>How do I get a quote?</summary>
+        <p>Message us on WhatsApp — we reply quickly with a free, no-obligation quote for your home or office.</p>
+      </details>
+      <details class="menu-faq-item">
+        <summary>Do I need to pay in advance?</summary>
+        <p>No. There is no booking fee and no advance payment — you only pay after the job is done.</p>
+      </details>
+      <details class="menu-faq-item">
+        <summary>Which areas do you cover?</summary>
+        <p>We serve Jalandhar and nearby cities: Phagwara, Kapurthala, Hoshiarpur, Nakodar, Goraya, Adampur, Kartarpur, Sultanpur Lodhi, Nawanshahr, Phillaur and Ludhiana.</p>
+      </details>
+      <details class="menu-faq-item">
+        <summary>What services do you offer?</summary>
+        <p>Full house cleaning, kitchen and bathroom deep cleaning, sofa dry cleaning, carpet &amp; steam cleaning, AC services, chimney cleaning and commercial cleaning.</p>
+      </details>
+      <details class="menu-faq-item">
+        <summary>Are your products safe for kids and pets?</summary>
+        <p>Yes — we use professional, eco-friendly products that leave no harsh smells and are safe for your family and pets.</p>
+      </details>
+    </div>
     <div class="menu-nav">
       <p class="menu-note">Serving Jalandhar &amp; nearby cities — 7 days a week.</p>
     </div>
@@ -631,23 +644,24 @@
     })();
 
     // Swipeable reviews carousel — auto-advance + touch swipe + dot navigation
-    (function initReviewsCarousel() {
-      const carousel = document.getElementById('reviews-carousel');
-      const track = document.getElementById('reviews-track');
-      const dotsWrap = document.getElementById('reviews-dots');
+    // Reusable swipeable carousel (used for reviews + results gallery)
+    function makeCarousel(opts) {
+      const carousel = document.getElementById(opts.carouselId);
+      const track = document.getElementById(opts.trackId);
+      const dotsWrap = document.getElementById(opts.dotsId);
       if (!carousel || !track || !dotsWrap) return;
+      const label = opts.label || 'slide';
 
       const slides = Array.from(track.children);
       const count = slides.length;
       let index = 0;
       let timer = null;
-      const INTERVAL = 5000;
+      const INTERVAL = opts.interval || 5000;
 
-      // Build dots
       slides.forEach((_, i) => {
         const dot = document.createElement('button');
         dot.type = 'button';
-        dot.setAttribute('aria-label', 'Show review ' + (i + 1));
+        dot.setAttribute('aria-label', 'Show ' + label + ' ' + (i + 1));
         dot.addEventListener('click', () => { goTo(i); resetTimer(); });
         dotsWrap.appendChild(dot);
       });
@@ -658,15 +672,12 @@
         track.style.transform = 'translateX(-' + (index * 100) + '%)';
         dots.forEach((d, di) => d.classList.toggle('active', di === index));
       }
-
       function next() { goTo(index + 1); }
-
       function resetTimer() {
         clearInterval(timer);
         timer = setInterval(next, INTERVAL);
       }
 
-      // Touch swipe (drag left/right)
       let startX = 0;
       let dragging = false;
       const onStart = (e) => {
@@ -698,17 +709,17 @@
       window.addEventListener('mousemove', onMove);
       window.addEventListener('mouseup', onEnd);
 
-      // Pause auto-advance while hovering (desktop)
       carousel.addEventListener('mouseenter', () => clearInterval(timer));
       carousel.addEventListener('mouseleave', resetTimer);
 
-      // Respect reduced motion: no auto-advance (manual swipe still works)
       if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         resetTimer();
       }
-
       goTo(0);
-    })();
+    }
+
+    makeCarousel({ carouselId: 'reviews-carousel', trackId: 'reviews-track', dotsId: 'reviews-dots', label: 'review', interval: 5000 });
+    makeCarousel({ carouselId: 'gallery-carousel', trackId: 'gallery-track', dotsId: 'gallery-dots', label: 'result', interval: 4500 });
 
     // Gallery lightbox: open before/after composite popup on card click
     (function initLightbox() {
@@ -773,6 +784,20 @@
       overlay.addEventListener('click', closeMenu);
       panel.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
       document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeMenu(); });
+
+      // In-menu FAQ accordion toggle
+      const faqToggle = document.getElementById('menu-faq-toggle');
+      const faq = document.getElementById('menu-faq');
+      if (faqToggle && faq) {
+        faqToggle.addEventListener('click', () => {
+          const open = faq.hidden;
+          faq.hidden = !open;
+          faqToggle.setAttribute('aria-expanded', String(open));
+          faqToggle.classList.toggle('open', open);
+          // scroll FAQ into view within the menu
+          if (open) setTimeout(() => faq.scrollIntoView({ block: 'nearest', behavior: 'smooth' }), 250);
+        });
+      }
     })();
 
     // Auto-hide the floating menu button while scrolling down so it doesn't
