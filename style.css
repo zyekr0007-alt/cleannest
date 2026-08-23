@@ -545,55 +545,49 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   100% { transform: translate3d(0, 0, 0) rotate(0deg); }
 }
 
-/* Compact Google review recap under the CTA */
+/* Google review recap under the CTA — text outside the pill, centered */
 .hero-rating {
   display: inline-flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  column-gap: 10px;
-  row-gap: 4px;
+  gap: 6px;
   margin-top: 18px;
-  padding: 9px 16px;
-  border-radius: 999px;
-  background: var(--glass-bg);
-  border: var(--glass-border);
-  box-shadow: var(--glass-shadow);
-  backdrop-filter: var(--glass-backdrop);
-  -webkit-backdrop-filter: var(--glass-backdrop);
   text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.25s ease;
+  transition: transform 0.2s ease;
 }
-.hero-rating:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 14px 32px rgba(11, 67, 100, 0.18);
+.hero-rating:hover { transform: translateY(-2px); }
+.hero-score {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 5px;
 }
 .hero-num {
   font-family: 'Sora', sans-serif;
   font-weight: 800;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   line-height: 1;
   color: var(--navy);
   letter-spacing: -0.01em;
 }
-.hero-out {
+.hero-unit {
   font-family: 'Sora', sans-serif;
   font-weight: 600;
-  font-size: 0.8rem;
+  font-size: 0.85rem;
   color: var(--muted);
 }
+/* Pill holds ONLY the stars */
 .hero-pill {
   display: inline-flex;
   align-items: center;
-  gap: 2px;
-  padding: 4px 10px;
+  gap: 3px;
+  padding: 5px 12px;
   border-radius: 999px;
   background: radial-gradient(120% 140% at 50% 0%, #FFF7E0 0%, #FFEFC2 100%);
   border: 1px solid #F4D285;
   box-shadow: 0 3px 10px rgba(249, 171, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 .hero-star {
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   line-height: 1;
   color: #F9AB00;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
@@ -606,14 +600,14 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 .hero-count {
   font-family: 'Sora', sans-serif;
   font-weight: 600;
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   color: var(--muted);
 }
 .hero-count span { font-weight: 800; color: var(--navy); }
 @media (max-width: 640px) {
-  .hero-rating { padding: 8px 14px; column-gap: 8px; margin-top: 16px; }
-  .hero-num { font-size: 1.15rem; }
-  .hero-star { font-size: 0.88rem; }
+  .hero-rating { margin-top: 16px; gap: 5px; }
+  .hero-num { font-size: 1.4rem; }
+  .hero-star { font-size: 1rem; }
 }
 
 /* 10 — Animated wave divider into the next section */

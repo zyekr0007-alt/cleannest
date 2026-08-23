@@ -45,7 +45,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=108">
+  <link rel="stylesheet" href="style.css?v=109">
   <style>
     /* Critical preloader shell: keep it full-screen off-white instantly so
        nothing flashes before style.css loads. (Full styling lives in style.css.) */
@@ -105,8 +105,10 @@
           <button class="btn btn-primary btn-quote" id="open-quote" type="button">Get Free Quote <span class="btn-icon" aria-hidden="true">→</span></button>
         </div>
         <a class="hero-rating reveal" href="https://www.google.com/maps/place/?q=place_id:ChIJ1zZzOUtbaR4RXbMy1OZsKsI" target="_blank" rel="noopener" aria-label="See our Google reviews">
-          <span class="hero-num" data-count="4.9" data-decimals="1">0</span>
-          <span class="hero-out">/5</span>
+          <span class="hero-score">
+            <span class="hero-num" data-count="4.9" data-decimals="1">0</span>
+            <span class="hero-unit">Rating</span>
+          </span>
           <span class="hero-pill">
             <span class="hero-star" aria-hidden="true">★</span>
             <span class="hero-star" aria-hidden="true">★</span>
@@ -738,9 +740,17 @@
         nums.forEach(el => { el.textContent = parseFloat(el.dataset.count).toFixed(el.dataset.decimals ? el.dataset.decimals : 0); });
         return;
       }
+      // Hero counters sit in view at load but are hidden behind the preloader;
+      // delay their start so the count-up is actually visible.
+      const HERO_DELAY = 2400; // roughly matches preloader reveal
       const io = new IntersectionObserver((entries) => {
         entries.forEach(e => {
-          if (e.isIntersecting) { animate(e.target); io.unobserve(e.target); }
+          if (e.isIntersecting) {
+            const inView = (e.target.getBoundingClientRect().top < window.innerHeight);
+            const el = e.target;
+            io.unobserve(el);
+            setTimeout(() => animate(el), inView ? HERO_DELAY : 0);
+          }
         });
       }, { threshold: 0.4 });
       nums.forEach(el => io.observe(el));
