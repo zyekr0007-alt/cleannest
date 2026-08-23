@@ -1476,6 +1476,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   padding: 22px 24px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   transition: transform 0.45s cubic-bezier(0.32, 0.72, 0, 1);
 }
 .menu-panel.open { transform: translateY(0); }
@@ -1523,12 +1524,12 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 18px 18px;
-  border-radius: 18px;
+  padding: 14px 20px;
+  border-radius: 999px;
   text-decoration: none;
   color: var(--ink);
   font-weight: 700;
-  font-size: 1.25rem;
+  font-size: 1.1rem;
   background: var(--glass-bg);
   border: var(--glass-border);
   box-shadow: var(--glass-shadow);
@@ -1565,10 +1566,10 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
+  width: 40px;
+  height: 40px;
   flex-shrink: 0;
-  border-radius: 14px;
+  border-radius: 50%;
   color: var(--cyan);
   background: var(--glass-bg-strong);
   border: var(--glass-border);
@@ -1649,14 +1650,10 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   line-height: 1.5;
 }
 
-/* Absorb leftover space so the menu content isn't left with a big dead gap
-   above the footer CTA. */
+/* Note sits right under the menu items; the panel centers the whole group
+   so there's no giant empty gap (CTA footer was removed). */
 .menu-nav {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 0;
+  margin-top: 22px;
 }
 
 .menu-footer {
