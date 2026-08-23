@@ -652,7 +652,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 .services {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 80px 22px;
+  padding: 64px 22px;
 }
 
 /* Compact service grid — image + name only, animated tiles.
@@ -728,7 +728,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 .gallery {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 80px 22px;
+  padding: 64px 22px;
 }
 
 .gallery-carousel {
@@ -891,7 +891,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 .reviews {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 80px 22px;
+  padding: 64px 22px;
 }
 
 .reviews-head {
@@ -1071,7 +1071,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 .about {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 80px 22px;
+  padding: 64px 22px;
 }
 
 /* "Why Choose Us" — compact pill-shaped icon cards that toggle open */
@@ -1240,7 +1240,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 
 /* ---------- CTA band ---------- */
 .cta-band {
-  padding: 80px 22px 120px;
+  padding: 64px 22px 100px;
   background:
     radial-gradient(110% 90% at 50% 0%, rgba(12, 215, 229, 0.12), transparent 55%),
     linear-gradient(160deg, var(--navy) 0%, var(--navy-dark) 55%, var(--navy-deep) 100%);
@@ -1308,7 +1308,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
    How It Works
    ============================================================ */
 .how {
-  padding: 80px 22px;
+  padding: 64px 22px;
 }
 .how-grid {
   display: grid;
@@ -2012,6 +2012,19 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 .hp-field { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 
 .q-submit { margin-top: 4px; }
+
+/* ---------- Tighten excess vertical spacing on mobile ---------- */
+@media (max-width: 860px) {
+  .services, .gallery, .reviews, .about, .how { padding: 52px 22px; }
+  .cta-band { padding: 52px 22px 100px; }
+  .section-head { margin-bottom: 28px; }
+  .svc-section { padding: 48px 22px; }
+}
+@media (max-width: 640px) {
+  .services, .gallery, .reviews, .about, .how { padding: 44px 22px; }
+  .cta-band { padding: 44px 22px 92px; }
+  .section-head { margin-bottom: 24px; }
+}
 
 /* ---------- Mobile hero (stacked) ---------- */
 @media (max-width: 860px) {
