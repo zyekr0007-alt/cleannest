@@ -553,24 +553,6 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   100% { transform: translate3d(0, 0, 0) rotate(0deg); }
 }
 
-/* 9 — Mouse-follow soft glow */
-.hero-glow {
-  position: absolute;
-  width: 460px;
-  height: 460px;
-  border-radius: 50%;
-  z-index: 1;
-  top: -160px;
-  left: -160px;
-  background: radial-gradient(circle, rgba(12, 215, 229, 0.30), rgba(12, 215, 229, 0) 70%);
-  filter: blur(40px);
-  opacity: 0;
-  transition: opacity 0.4s ease, transform 0.5s ease-out;
-  will-change: transform, opacity;
-  pointer-events: none;
-}
-.hero-glow.active { opacity: 1; }
-
 /* 6 — Stat counters */
 .hero-stats {
   margin-top: 26px;
@@ -669,34 +651,6 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   0%   { transform: translate(0, 0) scale(1); filter: blur(70px); }
   50%  { transform: translate(-50px, 70px) scale(1.2); filter: blur(90px); }
   100% { transform: translate(60px, 20px) scale(0.95); filter: blur(66px); }
-}
-
-/* Rising cleaning-bubble field */
-.bubble-field {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-}
-
-.bub {
-  position: absolute;
-  bottom: -60px;
-  left: var(--x);
-  width: var(--s);
-  height: var(--s);
-  border-radius: 50%;
-  background: radial-gradient(circle at 32% 30%, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.4) 42%, rgba(12, 215, 229, 0.12) 70%, rgba(12, 215, 229, 0.02));
-  box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.8), 0 0 10px rgba(12, 215, 229, 0.16);
-  will-change: transform;
-  animation: bubbleRise var(--d) linear infinite;
-  opacity: 0.55;
-}
-
-@keyframes bubbleRise {
-  0%   { transform: translateY(0) scale(0.6); opacity: 0; }
-  12%  { opacity: 0.7; }
-  60%  { opacity: 0.5; }
-  100% { transform: translateY(calc(-100vh - 120px)) scale(1.05); opacity: 0; }
 }
 
 /* Subtle glow grid for depth */
@@ -2328,7 +2282,7 @@ body.loaded .brand-strip { opacity: 1; transition: opacity 0.3s ease; }
   .menu-item { opacity: 1 !important; transform: none !important; }
   body.loaded .brand-strip { transition: none !important; }
   /* Disable all decorative / looping motion */
-  .hero .flow, .hero .bubble-field .bub, .hero::before, .hero::after,
+  .hero .flow, .hero::before, .hero::after,
   .acc-yellow, .accent, .proof-stars .star, .btn-primary, .btn-quote,
   .preloader-glow, .quote-panel, .quote-overlay, .lightbox .lightbox-full {
     animation: none !important;
@@ -2336,7 +2290,6 @@ body.loaded .brand-strip { opacity: 1; transition: opacity 0.3s ease; }
   }
   .booking-ico::before, .booking-arrow { animation: none !important; }
   .hero-aurora, .hero-divider svg { animation: none !important; }
-  .hero-glow { display: none !important; }
   .hero-title .hero-line, .hero-copy .reveal, .service-tile, .svc-section, .svc-head {
     opacity: 1 !important;
     transform: none !important;

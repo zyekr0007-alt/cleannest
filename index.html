@@ -45,7 +45,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=104">
+  <link rel="stylesheet" href="style.css?v=105">
   <style>
     /* Critical preloader shell: keep it full-screen off-white instantly so
        nothing flashes before style.css loads. (Full styling lives in style.css.) */
@@ -113,20 +113,9 @@
     </div>
     <div class="hero-visual" aria-hidden="true">
       <div class="hero-aurora" aria-hidden="true"></div>
-      <div class="hero-glow" aria-hidden="true"></div>
       <div class="flow flow-1"></div>
       <div class="flow flow-2"></div>
       <div class="flow flow-3"></div>
-      <div class="bubble-field">
-        <span class="bub" style="--x:8%;--s:26px;--d:9s;--t:18%"></span>
-        <span class="bub" style="--x:18%;--s:16px;--d:12s;--t:34%"></span>
-        <span class="bub" style="--x:29%;--s:34px;--d:7.5s;--t:22%"></span>
-        <span class="bub" style="--x:44%;--s:20px;--d:14s;--t:40%"></span>
-        <span class="bub" style="--x:56%;--s:30px;--d:10s;--t:26%"></span>
-        <span class="bub" style="--x:68%;--s:18px;--d:8s;--t:36%"></span>
-        <span class="bub" style="--x:78%;--s:28px;--d:13s;--t:20%"></span>
-        <span class="bub" style="--x:90%;--s:22px;--d:11s;--t:32%"></span>
-      </div>
       <div class="grid-overlay"></div>
     </div>
   </main>
@@ -716,22 +705,6 @@
         content.style.transform = '';
         visual.style.transform = '';
       });
-    })();
-
-    // Mouse-follow soft glow on the hero (9)
-    (function initHeroGlow() {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      const hero = document.querySelector('.hero');
-      const glow = document.querySelector('.hero-glow');
-      if (!hero || !glow) return;
-      hero.addEventListener('mousemove', (e) => {
-        const r = hero.getBoundingClientRect();
-        const x = e.clientX - r.left;
-        const y = e.clientY - r.top;
-        glow.classList.add('active');
-        glow.style.transform = `translate(${x - 230}px, ${y - 230}px)`;
-      });
-      hero.addEventListener('mouseleave', () => glow.classList.remove('active'));
     })();
 
     // Animated stat counters (6) — count up when the hero stats come into view
