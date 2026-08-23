@@ -1513,32 +1513,33 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   display: none;
   justify-content: center;
   align-items: center;
-  gap: 12px;
-  padding: 0 16px 14px;
+  gap: 10px;
+  padding: 0 16px 12px;
   pointer-events: none; /* let taps pass through empty space */
 }
 @media (max-width: 640px) {
   .sticky-contact { display: flex; }
 }
 
-/* Pill-shaped floating buttons */
+/* Pill-shaped floating buttons — slim */
 .sticky-btn {
   pointer-events: auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 9px;
-  padding: 14px 26px;
+  gap: 8px;
+  padding: 11px 22px;
   border-radius: 999px;
   font-family: 'Sora', sans-serif;
   font-weight: 700;
-  font-size: 0.95rem;
+  font-size: 0.92rem;
+  line-height: 1;
   text-decoration: none;
-  box-shadow: 0 10px 26px rgba(11, 67, 100, 0.28);
+  box-shadow: 0 8px 22px rgba(11, 67, 100, 0.26);
   transition: transform 0.16s ease, box-shadow 0.16s ease, filter 0.16s ease;
 }
 .sticky-btn:active { transform: scale(0.96); filter: brightness(0.94); }
-.sticky-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+.sticky-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
 
 .sticky-msg {
   color: #fff;
