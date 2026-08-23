@@ -1406,73 +1406,57 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   font-size: 0.92rem;
 }
 
-/* Two balanced columns */
-.footer-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  text-align: left;
-  align-items: start;
-}
-
-.footer-col {
+/* Contact buttons — centered, tappable */
+.footer-contact-grid {
   display: flex;
   flex-direction: column;
-  gap: 10px;
-}
-
-.footer-h {
-  font-family: 'Sora', sans-serif;
-  font-weight: 700;
-  font-size: 0.8rem;
-  color: var(--navy);
-  margin-bottom: 8px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-/* Explore links — single clean vertical list */
-.footer-links {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-.footer-links a,
-.footer-contact-col .footer-contact {
-  color: var(--muted);
-  text-decoration: none;
-  font-size: 0.95rem;
-  line-height: 1.4;
-  transition: color 0.18s ease;
-}
-.footer-links a:hover,
-.footer-contact:hover { color: var(--cyan); }
-
-/* Contact rows — icon + text aligned in a clean column */
-.footer-col .footer-contact {
-  display: flex;
   align-items: center;
+  gap: 14px;
+}
+
+.footer-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   gap: 10px;
-}
-.fc-ico {
-  width: 20px;
-  flex-shrink: 0;
-  text-align: center;
-  color: var(--cyan);
-}
-.fc-txt {
-  flex: 1 1 auto;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.footer-contact-col .footer-call .fc-txt {
+  width: 100%;
+  max-width: 340px;
+  padding: 14px 22px;
+  border-radius: 999px;
   font-family: 'Sora', sans-serif;
   font-weight: 700;
-  font-size: 1.08rem;
-  color: var(--navy);
+  font-size: 1rem;
+  text-decoration: none;
+  color: #fff;
+  transition: transform 0.16s ease, filter 0.16s ease, box-shadow 0.16s ease;
+  box-shadow: 0 8px 22px rgba(11, 67, 100, 0.22);
 }
-.footer-contact-col .footer-call .fc-ico { color: var(--navy); }
+.footer-btn:active { transform: scale(0.97); }
+.footer-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+
+.footer-btn-wa { background: #25D366; }
+.footer-btn-wa:hover { background: #1fb857; }
+.footer-btn-call { background: var(--navy); }
+.footer-btn-call:hover { background: var(--navy-dark); }
+.footer-btn-mail { background: #1476A8; }
+.footer-btn-mail:hover { background: #0f6795; }
+
+/* Location + timings — organized info row */
+.footer-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 20px;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+.footer-info-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.fi-ico { color: var(--cyan); }
 
 /* Bottom copyright bar */
 .footer-bottom {
@@ -1493,9 +1477,10 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 @media (max-width: 640px) {
   .footer { padding: 44px 22px 130px; }
   .footer-brand-block { margin-bottom: 28px; }
-  .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
-  .footer-contact-col .footer-call .fc-txt { font-size: 1rem; }
+  .footer-btn { padding: 13px 20px; }
+  .footer-info { font-size: 0.85rem; }
 }
+
 
 /* ---------- Sticky mobile floating pill buttons ---------- */
 /* Give the page bottom breathing room on mobile so the buttons don't cover the footer */
@@ -1726,7 +1711,9 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   transition: box-shadow 0.22s ease, color 0.2s ease, transform 0.2s ease, background 0.2s ease;
   margin-bottom: 12px;
 }
-.menu-item:last-of-type { margin-bottom: 0; }
+/* Uniform spacing for every menu item (last item gets the same gap; the
+   body is vertically centered so it stays balanced). */
+.menu-faq-toggle { margin-bottom: 12px; }
 .menu-item:hover,
 .menu-item:focus-visible {
   color: var(--navy);
