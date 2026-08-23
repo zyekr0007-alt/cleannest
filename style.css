@@ -328,9 +328,8 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 /* Two pill-shaped proof cards side by side */
 .hero-proof {
   margin-top: 26px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
   max-width: 520px;
   margin-left: auto;
@@ -340,19 +339,22 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 
 .proof-card {
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 12px 18px;
+  gap: 3px;
+  padding: 11px 10px;
   border-radius: 999px;
   background: var(--glass-bg-strong);
   border: var(--glass-border);
+  width: 100%;
+  min-height: 60px;
+  text-align: center;
   backdrop-filter: var(--glass-backdrop);
   -webkit-backdrop-filter: var(--glass-backdrop);
   box-shadow: var(--glass-shadow);
   flex: 0 0 auto;
   max-width: 100%;
-  white-space: nowrap;
 }
 
 .proof-rating {
@@ -1503,7 +1505,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   .hero-proof {
     margin-left: auto;
     margin-right: auto;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     max-width: 420px;
     width: 100%;
   }
