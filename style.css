@@ -1152,9 +1152,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   transform: translateY(-102%);
   width: 100%;
   height: 100dvh;
-  background:
-    radial-gradient(120% 70% at 50% 0%, rgba(12, 215, 229, 0.10), transparent 55%),
-    linear-gradient(160deg, var(--surface) 0%, var(--surface-2) 60%, #E6EDF3 100%);
+  background: var(--menu-bg, #E7EDF3);
   padding: 22px 24px;
   display: flex;
   flex-direction: column;
@@ -1187,11 +1185,11 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 }
 
 .menu-close {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: none;
-  background: rgba(11, 67, 100, 0.08);
+  background: var(--menu-bg, #E7EDF3);
   color: var(--navy);
   font-size: 1.5rem;
   line-height: 1;
@@ -1199,24 +1197,42 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  transition: background 0.2s ease, transform 0.2s ease;
+  /* inset = pressed into the surface */
+  box-shadow: inset 4px 4px 8px rgba(11, 67, 100, 0.14),
+              inset -4px -4px 8px rgba(255, 255, 255, 0.75);
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
-.menu-close:hover { background: rgba(11, 67, 100, 0.16); transform: rotate(90deg); }
+.menu-close:hover { transform: rotate(90deg); }
 
-/* Staggered item reveals — tall, centered, thumb-friendly rows */
+/* Staggered item reveals — tall neumorphic raised rows */
 .menu-item {
   display: flex;
   align-items: center;
   gap: 16px;
-  padding: 18px 16px;
+  padding: 18px 18px;
   border-radius: 18px;
   text-decoration: none;
   color: var(--ink);
   font-weight: 700;
   font-size: 1.25rem;
+  background: var(--menu-bg, #E7EDF3);
+  /* raised off the surface */
+  box-shadow: 6px 6px 14px rgba(11, 67, 100, 0.16),
+              -5px -5px 12px rgba(255, 255, 255, 0.85);
   opacity: 0;
   transform: translateY(24px);
-  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+  transition: box-shadow 0.22s ease, color 0.2s ease, transform 0.2s ease;
+  margin-bottom: 12px;
+}
+.menu-item:last-of-type { margin-bottom: 0; }
+.menu-item:hover,
+.menu-item:focus-visible {
+  color: var(--navy);
+  outline: none;
+  transform: translateY(1px);
+  /* pressed in on hover */
+  box-shadow: inset 5px 5px 10px rgba(11, 67, 100, 0.16),
+              inset -5px -5px 10px rgba(255, 255, 255, 0.8);
 }
 .menu-panel.open .menu-item {
   animation: menuItemIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
@@ -1230,15 +1246,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   to { opacity: 1; transform: translateY(0); }
 }
 
-.menu-item:hover,
-.menu-item:focus-visible {
-  background: var(--cyan-soft);
-  color: var(--navy);
-  outline: none;
-  transform: translateX(4px);
-}
-
-/* Modern icon chip — rounded-square tile behind each icon */
+/* Neumorphic icon chip — soft inset well holding each icon */
 .menu-ico {
   display: inline-flex;
   align-items: center;
@@ -1246,10 +1254,12 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   width: 44px;
   height: 44px;
   flex-shrink: 0;
-  border-radius: 13px;
+  border-radius: 14px;
   color: var(--cyan);
-  background: linear-gradient(145deg, rgba(12, 215, 229, 0.14), rgba(11, 67, 100, 0.08));
-  transition: background 0.2s ease, color 0.2s ease;
+  background: var(--menu-bg, #E7EDF3);
+  box-shadow: inset 3px 3px 7px rgba(11, 67, 100, 0.13),
+              inset -3px -3px 7px rgba(255, 255, 255, 0.8);
+  transition: color 0.2s ease, box-shadow 0.2s ease;
 }
 .menu-ico svg {
   width: 22px;
@@ -1258,8 +1268,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 }
 .menu-item:hover .menu-ico,
 .menu-item:focus-visible .menu-ico {
-  color: #fff;
-  background: linear-gradient(145deg, #2EE1EE, var(--cyan) 45%, #0AA9C9);
+  color: var(--navy);
 }
 
 .menu-note {
@@ -1279,35 +1288,37 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   gap: 12px;
 }
 
-/* Prominent CTA at the bottom of the full-screen menu */
+/* Prominent CTA at the bottom of the full-screen menu — neumorphic raised */
 .menu-quote {
   justify-content: center;
-  padding: 17px 16px;
-  background: linear-gradient(145deg, #2EE1EE 0%, var(--cyan) 45%, #0AA9C9 100%);
-  color: var(--navy-dark);
+  padding: 18px 16px;
+  background: var(--menu-bg, #E7EDF3);
+  color: var(--navy);
   border: none;
   border-radius: 18px;
   font-family: 'Sora', sans-serif;
   font-weight: 700;
   font-size: 1.05rem;
+  box-shadow: 6px 6px 14px rgba(11, 67, 100, 0.18),
+              -5px -5px 12px rgba(255, 255, 255, 0.85);
   opacity: 0;
   transform: translateY(16px);
-  box-shadow: 0 8px 20px rgba(12, 215, 229, 0.35);
 }
 .menu-panel.open .menu-quote { animation: menuItemIn 0.5s ease 0.40s forwards; }
 .menu-quote:hover,
 .menu-quote:focus-visible {
-  color: var(--navy-dark);
-  background: linear-gradient(145deg, #2EE1EE 0%, var(--cyan) 45%, #0AA9C9 100%);
-  transform: translateY(-1px);
-  box-shadow: 0 12px 26px rgba(12, 215, 229, 0.45);
+  color: var(--navy);
+  transform: translateY(1px);
+  box-shadow: inset 5px 5px 10px rgba(11, 67, 100, 0.16),
+              inset -5px -5px 10px rgba(255, 255, 255, 0.8);
 }
 .menu-quote .menu-ico {
-  color: var(--navy-dark);
-  background: rgba(255, 255, 255, 0.34);
+  color: var(--navy);
+  background: var(--menu-bg, #E7EDF3);
   border-radius: 50%;
+  box-shadow: inset 3px 3px 6px rgba(11, 67, 100, 0.13),
+              inset -3px -3px 6px rgba(255, 255, 255, 0.8);
 }
-.menu-quote:hover .menu-ico { background: rgba(255, 255, 255, 0.5); }
 .menu-quote .menu-ico svg { width: 20px; height: 20px; }
 
 /* ============================================================
@@ -1578,18 +1589,4 @@ body.loaded .brand-strip { opacity: 1; transition: opacity 0.3s ease; }
   .menu-panel.open .menu-item { animation: none !important; opacity: 1 !important; transform: none !important; }
   .menu-item { opacity: 1 !important; transform: none !important; }
   body.loaded .brand-strip { transition: none !important; }
-}
-
-/* ---------- Service detail pages ---------- */
-.srv-hero-media { max-width: 960px; margin: 26px auto 0; }
-.srv-hero-media img { width: 100%; border-radius: var(--radius); box-shadow: var(--shadow); }
-.srv-included {
-  list-style: none; padding: 0; margin: 20px auto 0; max-width: 960px;
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px 24px;
-}
-.srv-included li {
-  position: relative; padding-left: 28px; color: var(--muted); font-size: 0.98rem; line-height: 1.6;
-}
-.srv-included li::before {
-  content: '✓'; position: absolute; left: 0; top: 0; color: var(--cyan); font-weight: 800;
 }
