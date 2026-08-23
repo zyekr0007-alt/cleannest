@@ -522,14 +522,6 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   pointer-events: none;
   background: linear-gradient(125deg, #EAF1F7 0%, #F3F9FC 30%, #E7F3F8 52%, #E2F4F7 78%, #EAF1F7 100%);
   background-size: 300% 300%;
-  will-change: transform;
-  animation: gradFlow 22s ease-in-out infinite;
-}
-
-@keyframes gradFlow {
-  0%   { transform: translate3d(0, 0, 0); }
-  50%  { transform: translate3d(-33.3%, 0, 0); }
-  100% { transform: translate3d(0, 0, 0); }
 }
 
 /* 1 — Aurora nebula gradient drift behind the hero */
