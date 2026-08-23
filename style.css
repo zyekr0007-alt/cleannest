@@ -163,9 +163,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   display: flex;
   align-items: center;
   padding: 170px 22px 140px;
-  background: rgba(255, 255, 255, 0.25);
-  backdrop-filter: var(--glass-backdrop);
-  -webkit-backdrop-filter: var(--glass-backdrop);
+  background-color: #F6F7F9;
   overflow: hidden;
 }
 
@@ -510,9 +508,9 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 
 .hero {
   background:
-    radial-gradient(120% 80% at 50% 0%, rgba(12, 215, 229, 0.08), transparent 55%),
-    linear-gradient(160deg, var(--surface) 0%, var(--surface-2) 60%, #E6EDF3 100%);
-  background-color: var(--surface);
+    radial-gradient(120% 80% at 50% 0%, rgba(12, 215, 229, 0.06), transparent 55%),
+    linear-gradient(160deg, #F7F8FA 0%, #F2F4F7 60%, #ECF0F4 100%);
+  background-color: #F6F7F9;
 }
 .hero::before {
   content: "";
@@ -520,7 +518,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   inset: -20%;
   z-index: 0;
   pointer-events: none;
-  background: linear-gradient(125deg, #EAF1F7 0%, #F3F9FC 30%, #E7F3F8 52%, #E2F4F7 78%, #EAF1F7 100%);
+  background: linear-gradient(125deg, #F7F9FB 0%, #F4F8FA 30%, #F0F5F8 52%, #EDF3F7 78%, #F7F9FB 100%);
   background-size: 300% 300%;
 }
 
@@ -529,11 +527,12 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   position: absolute;
   inset: -15%;
   z-index: 0;
+  opacity: 0.5;
   background:
-    radial-gradient(45% 55% at 20% 25%, rgba(12, 215, 229, 0.30), transparent 60%),
-    radial-gradient(40% 50% at 80% 20%, rgba(20, 118, 168, 0.28), transparent 60%),
-    radial-gradient(50% 60% at 70% 80%, rgba(11, 67, 100, 0.22), transparent 62%),
-    radial-gradient(40% 45% at 30% 75%, rgba(46, 225, 238, 0.20), transparent 60%);
+    radial-gradient(45% 55% at 20% 25%, rgba(12, 215, 229, 0.22), transparent 60%),
+    radial-gradient(40% 50% at 80% 20%, rgba(20, 118, 168, 0.20), transparent 60%),
+    radial-gradient(50% 60% at 70% 80%, rgba(11, 67, 100, 0.16), transparent 62%),
+    radial-gradient(40% 45% at 30% 75%, rgba(46, 225, 238, 0.14), transparent 60%);
   filter: blur(46px);
   animation: auroraDrift 26s ease-in-out infinite;
   will-change: transform;
