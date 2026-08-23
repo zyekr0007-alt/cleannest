@@ -1304,76 +1304,6 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   border-color: rgba(12, 215, 229, 0.6);
 }
 
-/* ============================================================
-   How It Works
-   ============================================================ */
-.how {
-  padding: 64px 22px;
-}
-.how-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-.how-step {
-  position: relative;
-  text-align: center;
-  padding: 30px 22px;
-  border-radius: var(--radius);
-  background: var(--glass-bg);
-  border: var(--glass-border);
-  box-shadow: var(--glass-shadow);
-  backdrop-filter: var(--glass-backdrop);
-  -webkit-backdrop-filter: var(--glass-backdrop);
-  overflow: hidden;
-}
-.how-num {
-  position: absolute;
-  top: 14px;
-  right: 18px;
-  font-family: 'Sora', sans-serif;
-  font-weight: 800;
-  font-size: 2.4rem;
-  line-height: 1;
-  color: var(--cyan-soft);
-}
-.how-ico {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 60px;
-  height: 60px;
-  margin: 0 auto 16px;
-  border-radius: 50%;
-  background: var(--cyan-soft);
-  color: var(--navy);
-}
-.how-ico svg { width: 28px; height: 28px; }
-.how-title {
-  font-family: 'Sora', sans-serif;
-  font-weight: 700;
-  font-size: 1.1rem;
-  color: var(--navy);
-  margin-bottom: 8px;
-}
-.how-body {
-  color: var(--muted);
-  font-size: 0.92rem;
-  line-height: 1.55;
-  margin: 0;
-}
-@media (max-width: 800px) {
-  .how-grid { grid-template-columns: 1fr; gap: 16px; }
-  .how-step { display: flex; text-align: left; align-items: flex-start; gap: 16px; padding: 22px 20px; }
-  .how-step .how-ico { margin: 0; flex-shrink: 0; width: 52px; height: 52px; order: -1; }
-  .how-step .how-ico svg { width: 24px; height: 24px; }
-  .how-num { top: auto; right: 14px; position: absolute; font-size: 1.3rem; color: var(--cyan); }
-  .how-txt { flex: 1 1 auto; min-width: 0; }
-}
-@media (max-width: 640px) {
-  .how { padding: 64px 22px; }
-}
-
 /* ---------- Footer ---------- */
 .footer {
   padding: 52px 22px 140px;
@@ -2015,13 +1945,13 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 
 /* ---------- Tighten excess vertical spacing on mobile ---------- */
 @media (max-width: 860px) {
-  .services, .gallery, .reviews, .about, .how { padding: 52px 22px; }
+  .services, .gallery, .reviews, .about { padding: 52px 22px; }
   .cta-band { padding: 52px 22px 100px; }
   .section-head { margin-bottom: 28px; }
   .svc-section { padding: 48px 22px; }
 }
 @media (max-width: 640px) {
-  .services, .gallery, .reviews, .about, .how { padding: 44px 22px; }
+  .services, .gallery, .reviews, .about { padding: 44px 22px; }
   .cta-band { padding: 44px 22px 92px; }
   .section-head { margin-bottom: 24px; }
 }
