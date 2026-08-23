@@ -452,10 +452,10 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 .reveal { opacity: 0; }
 /* Base opacity:1 so content is never stuck invisible if animations are
    disabled (reduced motion / no-JS), while the animation still runs normally. */
-.reveal.in { opacity: 1; animation: riseIn 0.9s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0s) both; }
+.reveal.in { opacity: 1; animation: riseIn 0.55s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0s) both; }
 
 @keyframes riseIn {
-  from { opacity: 0; transform: translateY(26px); }
+  from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
@@ -468,7 +468,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   display: inline-block;
 }
 .hero-title .hero-line.reveal.in {
-  animation: lineMaskIn 0.85s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0s) both;
+  animation: lineMaskIn 0.6s cubic-bezier(0.22, 1, 0.36, 1) var(--d, 0s) both;
 }
 @keyframes lineMaskIn {
   from { opacity: 0; transform: translateY(100%); }
@@ -680,7 +680,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   box-shadow: var(--glass-shadow);
   opacity: 0;
   transform: translateY(20px);
-  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
+  transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.25s ease;
 }
 .service-tile.in {
   opacity: 1;
@@ -1529,7 +1529,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   padding: 22px 24px;
   display: flex;
   flex-direction: column;
-  transition: transform 0.45s cubic-bezier(0.32, 0.72, 0, 1);
+  transition: transform 0.32s cubic-bezier(0.32, 0.72, 0, 1);
 }
 .menu-panel.open { transform: translateY(0); }
 
@@ -1611,7 +1611,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   box-shadow: 0 16px 40px rgba(11, 67, 100, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.8);
 }
 .menu-panel.open .menu-item {
-  animation: menuItemIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: menuItemIn 0.38s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 .menu-panel.open .menu-item:nth-child(1) { animation-delay: 0.10s; }
 .menu-panel.open .menu-item:nth-child(2) { animation-delay: 0.16s; }
