@@ -532,6 +532,95 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   100% { transform: translate3d(0, 0, 0); }
 }
 
+/* 1 — Aurora nebula gradient drift behind the hero */
+.hero-aurora {
+  position: absolute;
+  inset: -15%;
+  z-index: 0;
+  background:
+    radial-gradient(45% 55% at 20% 25%, rgba(12, 215, 229, 0.30), transparent 60%),
+    radial-gradient(40% 50% at 80% 20%, rgba(20, 118, 168, 0.28), transparent 60%),
+    radial-gradient(50% 60% at 70% 80%, rgba(11, 67, 100, 0.22), transparent 62%),
+    radial-gradient(40% 45% at 30% 75%, rgba(46, 225, 238, 0.20), transparent 60%);
+  filter: blur(46px);
+  animation: auroraDrift 26s ease-in-out infinite;
+  will-change: transform;
+}
+@keyframes auroraDrift {
+  0%   { transform: translate3d(0, 0, 0) rotate(0deg); }
+  33%  { transform: translate3d(3%, -4%, 0) rotate(5deg); }
+  66%  { transform: translate3d(-3%, 3%, 0) rotate(-4deg); }
+  100% { transform: translate3d(0, 0, 0) rotate(0deg); }
+}
+
+/* 9 — Mouse-follow soft glow */
+.hero-glow {
+  position: absolute;
+  width: 460px;
+  height: 460px;
+  border-radius: 50%;
+  z-index: 1;
+  top: -160px;
+  left: -160px;
+  background: radial-gradient(circle, rgba(12, 215, 229, 0.30), rgba(12, 215, 229, 0) 70%);
+  filter: blur(40px);
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.5s ease-out;
+  will-change: transform, opacity;
+  pointer-events: none;
+}
+.hero-glow.active { opacity: 1; }
+
+/* 6 — Stat counters */
+.hero-stats {
+  margin-top: 26px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px 30px;
+}
+.stat {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+}
+.stat-num {
+  font-family: 'Sora', sans-serif;
+  font-weight: 800;
+  font-size: 1.7rem;
+  color: var(--navy);
+  line-height: 1;
+}
+.stat-sfx { font-size: 1.1rem; color: var(--cyan); font-weight: 700; }
+.stat-label {
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.78rem;
+  margin-top: 2px;
+}
+
+/* 10 — Animated wave divider into the next section */
+.hero-divider {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  line-height: 0;
+  margin-top: -1px;
+  background: transparent;
+}
+.hero-divider svg {
+  display: block;
+  width: 100%;
+  height: 70px;
+  animation: dividerWave 8s ease-in-out infinite;
+}
+@keyframes dividerWave {
+  0%, 100% { transform: translateX(0); }
+  50%      { transform: translateX(-8px); }
+}
+
 /* Morphing color blobs */
 .flow {
   position: absolute;
@@ -2246,6 +2335,8 @@ body.loaded .brand-strip { opacity: 1; transition: opacity 0.3s ease; }
     transition: none !important;
   }
   .booking-ico::before, .booking-arrow { animation: none !important; }
+  .hero-aurora, .hero-divider svg { animation: none !important; }
+  .hero-glow { display: none !important; }
   .hero-title .hero-line, .hero-copy .reveal, .service-tile, .svc-section, .svc-head {
     opacity: 1 !important;
     transform: none !important;

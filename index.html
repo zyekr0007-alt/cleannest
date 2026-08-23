@@ -45,7 +45,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=103">
+  <link rel="stylesheet" href="style.css?v=104">
   <style>
     /* Critical preloader shell: keep it full-screen off-white instantly so
        nothing flashes before style.css loads. (Full styling lives in style.css.) */
@@ -104,9 +104,16 @@
         <div class="hero-ctas reveal">
           <button class="btn btn-primary btn-quote" id="open-quote" type="button">Get Free Quote <span class="btn-icon" aria-hidden="true">→</span></button>
         </div>
+        <div class="hero-stats reveal">
+          <span class="stat"><span class="stat-num" data-count="4.9" data-decimals="1">0</span><span class="stat-sfx">★</span><span class="stat-label">Rating</span></span>
+          <span class="stat"><span class="stat-num" data-count="500">0</span><span class="stat-sfx">+</span><span class="stat-label">Homes Cleaned</span></span>
+          <span class="stat"><span class="stat-num" data-count="7">0</span><span class="stat-sfx">days</span><span class="stat-label">A Week</span></span>
+        </div>
       </div>
     </div>
     <div class="hero-visual" aria-hidden="true">
+      <div class="hero-aurora" aria-hidden="true"></div>
+      <div class="hero-glow" aria-hidden="true"></div>
       <div class="flow flow-1"></div>
       <div class="flow flow-2"></div>
       <div class="flow flow-3"></div>
@@ -123,6 +130,11 @@
       <div class="grid-overlay"></div>
     </div>
   </main>
+
+  <!-- Animated wave divider into the next section -->
+  <div class="hero-divider" aria-hidden="true">
+    <svg viewBox="0 0 1440 90" preserveAspectRatio="none"><path d="M0,50 C240,95 480,5 720,50 C960,95 1200,5 1440,50 L1440,90 L0,90 Z" fill="#f4f8fb"/></svg>
+  </div>
 
   <!-- Services -->
   <section class="services" id="services">
@@ -704,6 +716,53 @@
         content.style.transform = '';
         visual.style.transform = '';
       });
+    })();
+
+    // Mouse-follow soft glow on the hero (9)
+    (function initHeroGlow() {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const hero = document.querySelector('.hero');
+      const glow = document.querySelector('.hero-glow');
+      if (!hero || !glow) return;
+      hero.addEventListener('mousemove', (e) => {
+        const r = hero.getBoundingClientRect();
+        const x = e.clientX - r.left;
+        const y = e.clientY - r.top;
+        glow.classList.add('active');
+        glow.style.transform = `translate(${x - 230}px, ${y - 230}px)`;
+      });
+      hero.addEventListener('mouseleave', () => glow.classList.remove('active'));
+    })();
+
+    // Animated stat counters (6) — count up when the hero stats come into view
+    (function initCounters() {
+      const nums = document.querySelectorAll('.stat-num');
+      if (!nums.length) return;
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const animate = (el) => {
+        const target = parseFloat(el.dataset.count);
+        const decimals = parseInt(el.dataset.decimals || '0', 10);
+        const dur = 1400;
+        const start = performance.now();
+        const ease = (t) => 1 - Math.pow(1 - t, 3);
+        const step = (now) => {
+          const p = Math.min((now - start) / dur, 1);
+          const val = target * ease(p);
+          el.textContent = decimals ? val.toFixed(decimals) : Math.round(val).toString();
+          if (p < 1) requestAnimationFrame(step);
+        };
+        requestAnimationFrame(step);
+      };
+      if (reduced || !('IntersectionObserver' in window)) {
+        nums.forEach(el => { el.textContent = parseFloat(el.dataset.count).toFixed(el.dataset.decimals ? el.dataset.decimals : 0); });
+        return;
+      }
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) { animate(e.target); io.unobserve(e.target); }
+        });
+      }, { threshold: 0.4 });
+      nums.forEach(el => io.observe(el));
     })();
 
     // Scroll-reveal for below-fold sections — bidirectional (animates on
