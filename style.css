@@ -1304,6 +1304,76 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   border-color: rgba(12, 215, 229, 0.6);
 }
 
+/* ============================================================
+   How It Works
+   ============================================================ */
+.how {
+  padding: 80px 22px;
+}
+.how-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+.how-step {
+  position: relative;
+  text-align: center;
+  padding: 30px 22px;
+  border-radius: var(--radius);
+  background: var(--glass-bg);
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+  overflow: hidden;
+}
+.how-num {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-family: 'Sora', sans-serif;
+  font-weight: 800;
+  font-size: 2.4rem;
+  line-height: 1;
+  color: var(--cyan-soft);
+}
+.how-ico {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  margin: 0 auto 16px;
+  border-radius: 50%;
+  background: var(--cyan-soft);
+  color: var(--navy);
+}
+.how-ico svg { width: 28px; height: 28px; }
+.how-title {
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--navy);
+  margin-bottom: 8px;
+}
+.how-body {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  margin: 0;
+}
+@media (max-width: 800px) {
+  .how-grid { grid-template-columns: 1fr; gap: 16px; }
+  .how-step { display: flex; text-align: left; align-items: flex-start; gap: 16px; padding: 22px 20px; }
+  .how-step .how-ico { margin: 0; flex-shrink: 0; width: 52px; height: 52px; order: -1; }
+  .how-step .how-ico svg { width: 24px; height: 24px; }
+  .how-num { top: auto; right: 14px; position: absolute; font-size: 1.3rem; color: var(--cyan); }
+  .how-txt { flex: 1 1 auto; min-width: 0; }
+}
+@media (max-width: 640px) {
+  .how { padding: 64px 22px; }
+}
+
 /* ---------- Footer ---------- */
 .footer {
   padding: 52px 22px 140px;
@@ -1426,6 +1496,60 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 24px; }
   .footer-contact-col .footer-call .fc-txt { font-size: 1rem; }
 }
+
+/* ---------- Sticky mobile contact bar ---------- */
+/* Give the page bottom breathing room on mobile so the bar doesn't cover the footer */
+@media (max-width: 640px) {
+  body { padding-bottom: 64px; }
+}
+
+.sticky-contact {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 90;
+  display: none;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+  padding: 0;
+  background: rgba(240, 245, 250, 0.88);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  border-top: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 -8px 24px rgba(11, 67, 100, 0.12);
+}
+@media (max-width: 640px) {
+  .sticky-contact { display: grid; }
+}
+
+.sticky-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 15px 10px;
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: filter 0.15s ease;
+}
+.sticky-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
+.sticky-btn:active { filter: brightness(0.92); }
+
+.sticky-msg {
+  color: #fff;
+  background: #25D366;
+}
+.sticky-msg:hover { background: #1fb857; }
+.sticky-call {
+  color: #fff;
+  background: var(--navy);
+}
+.sticky-call:hover { background: var(--navy-dark); }
+
+/* Reserve space only on mobile so desktop stays clean */
 
 /* ============================================================
    Top-left menu button (always visible)
