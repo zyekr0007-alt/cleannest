@@ -45,7 +45,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=94">
+  <link rel="stylesheet" href="style.css?v=95">
   <style>
     /* Critical preloader shell: keep it full-screen off-white instantly so
        nothing flashes before style.css loads. (Full styling lives in style.css.) */
@@ -705,19 +705,42 @@
       });
     })();
 
-    // Scroll-reveal for below-fold sections
+    // Scroll-reveal for below-fold sections — bidirectional (animates on
+    // scroll up AND down) with a large, noticeable slide+scale motion.
     (function initScrollReveal() {
       const els = document.querySelectorAll('.services, .gallery, .reviews, .about, .faqs, .cta-band');
-      if (!('IntersectionObserver' in window)) { els.forEach(el => el.style.opacity = 1); return; }
-      els.forEach(el => { el.style.opacity = 0; el.style.transition = 'opacity 0.7s ease'; });
+      if (!('IntersectionObserver' in window)) return;
+      els.forEach(el => el.classList.add('scroll-reveal'));
+      let lastDir = 'down';
       const io = new IntersectionObserver((entries) => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.style.opacity = 1; io.unobserve(e.target); } });
-      }, { threshold: 0.06 });
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('scroll-in');
+          } else if (e.target.classList.contains('scroll-in') && e.intersectionRatio === 0) {
+            // Left viewport — reset so it re-animates (from the right side)
+            e.target.classList.remove('scroll-in', 'from-top');
+          }
+        });
+      }, { threshold: [0, 0.12] });
       els.forEach(el => io.observe(el));
-      setTimeout(() => els.forEach(el => el.style.opacity = 1), 4000);
+      // Pick slide direction based on scroll direction once
+      let lastY = window.scrollY;
+      window.addEventListener('scroll', () => {
+        const y = window.scrollY;
+        const dir = y > lastY ? 'down' : 'up';
+        if (dir !== lastDir) {
+          lastDir = dir;
+          els.forEach(el => {
+            if (!el.classList.contains('scroll-in')) {
+              el.classList.toggle('from-top', dir === 'up');
+            }
+          });
+        }
+        lastY = y;
+      }, { passive: true });
     })();
 
-    // Staggered entrance for service tiles
+    // Staggered entrance for service tiles — big, noticeable slide-up
     (function initTileReveal() {
       const tiles = document.querySelectorAll('.service-tile');
       if (!tiles.length) return;
@@ -726,7 +749,7 @@
         entries.forEach(e => {
           if (e.isIntersecting) {
             const i = Array.from(tiles).indexOf(e.target);
-            e.target.style.transitionDelay = ((i % 8) * 0.06) + 's';
+            e.target.style.transitionDelay = ((i % 8) * 0.08) + 's';
             e.target.classList.add('in');
             io.unobserve(e.target);
           }
