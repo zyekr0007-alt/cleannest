@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=49">
+  <link rel="stylesheet" href="style.css?v=50">
   <style>
     /* Critical preloader shell: keep it full-screen off-white instantly so
        nothing flashes before style.css loads. (Full styling lives in style.css.) */
@@ -29,12 +29,10 @@
 </head>
 <body class="preloading">
 
-  <!-- Premium preloader: brand lockup stacked vertically (logo mark on top,
-       CleanNest wordmark below, tagline below) exactly like the brand image -->
+  <!-- Premium preloader: CleanNest wordmark (no logo mark) + tagline -->
   <div class="preloader" id="preloader" aria-hidden="true">
     <div class="preloader-glow" aria-hidden="true"></div>
     <div class="preloader-stage">
-      <img class="preloader-mark" src="assets/img/logo.png" alt="" width="82" height="82">
       <span class="preloader-wordmark">CleanNest</span>
       <span class="preloader-tagline">From Dust to Shine Every time!</span>
     </div>
@@ -291,7 +289,6 @@
   <nav class="menu-panel" id="menu-panel" role="dialog" aria-modal="true" aria-label="Menu" hidden>
     <div class="menu-panel-head">
       <span class="menu-brand">
-        <img class="menu-brand-mark" src="assets/img/logo.png" alt="" width="36" height="36">
         <span class="menu-brand-name">CleanNest</span>
       </span>
       <button class="menu-close" id="menu-close" type="button" aria-label="Close menu">&times;</button>
@@ -391,11 +388,9 @@
     (function initPreloader() {
       const pre = document.getElementById('preloader');
       if (!pre) return;
-      const mark = pre.querySelector('.preloader-mark');
       const word = pre.querySelector('.preloader-wordmark');
       const tagline = pre.querySelector('.preloader-tagline');
       const brandWord = document.querySelector('.brand-wordmark');
-      const markLeave = 520;   // dissolve of the logo mark
       const flightDur = 700;   // wordmark travel into the header
 
       // Reduced motion / no-WAAPI: skip the animation, land content instantly.
@@ -428,12 +423,7 @@
         runHeroReveal();
       };
 
-      // 1) Logo mark, wordmark AND tagline appear together (rise + soft blur).
-      const markIn = mark.animate([
-        { opacity: 0, transform: 'translateY(30px) scale(0.9)', filter: 'blur(10px)' },
-        { opacity: 1, transform: 'translateY(0) scale(1)', filter: 'blur(0)' }
-      ], { duration: 420, easing: EASE, fill: 'forwards' });
-
+      // 1) Wordmark AND tagline appear together (rise + soft blur).
       const wordIn = word.animate([
         { opacity: 0, transform: 'translateY(30px) scale(0.9)', filter: 'blur(10px)' },
         { opacity: 1, transform: 'translateY(0) scale(1)', filter: 'blur(0)' }
@@ -444,26 +434,14 @@
         { opacity: 1, transform: 'translateY(0) scale(1)', filter: 'blur(0)' }
       ], { duration: 420, delay: 120, easing: EASE, fill: 'forwards' }) : null;
 
-      Promise.all([markIn.finished, wordIn.finished].concat(tagIn ? [tagIn.finished] : [])).then(() => {
-        // 2) Brief pause with the full brand lockup together.
+      Promise.all([wordIn.finished].concat(tagIn ? [tagIn.finished] : [])).then(() => {
+        // 2) Brief pause with the brand together.
         setTimeout(() => {
-          // 3) Logo mark dissolves (drifts up-right, expands, blurs out) —
-          //    the wordmark stays put.
-          mark.animate([
-            { opacity: 1, transform: 'translate(0px, 0px) scale(1) rotate(0deg)', filter: 'blur(0px)' },
-            { opacity: 0, transform: 'translate(26px, -36px) scale(1.22) rotate(12deg)', filter: 'blur(20px)' }
-          ], { duration: markLeave, easing: 'ease-out', fill: 'forwards' }).finished
-            .then(() => { mark.remove(); })
+          // 3) Tagline fades away (the header has no tagline).
+          (tagline ? tagline.animate([{ opacity: 1 }, { opacity: 0 }],
+            { duration: 300, easing: 'ease-out', fill: 'forwards' }).finished : Promise.resolve())
 
-          // 4) Tagline fades away (the header has no tagline).
-          .then(() => {
-            if (tagline) {
-              tagline.animate([{ opacity: 1 }, { opacity: 0 }],
-                { duration: 300, easing: 'ease-out', fill: 'forwards' });
-            }
-          })
-
-          // 5) Wordmark flies up and LANDS on the header wordmark.
+          // 4) Wordmark flies up and LANDS on the header wordmark.
           //    Because the header wordmark is styled identically (solid navy,
           //    same Ultima font), the flight reads as the preloader wordmark
           //    becoming the header wordmark — a seamless transition.
@@ -482,7 +460,7 @@
             return flight.finished;
           })
 
-          // 6) Wordmark landed → reveal the header (it now IS the header wordmark,
+          // 5) Wordmark landed → reveal the header (it now IS the header wordmark,
           //    so crossfade the flying copy out), then remove the overlay.
           .then(() => {
             document.body.classList.add('loaded');      // header wordmark fades in
@@ -492,7 +470,7 @@
               { duration: 280, easing: 'ease-out', fill: 'forwards' }).finished;
           })
 
-          // 7) Content rises in once the wordmark has settled.
+          // 6) Content rises in once the wordmark has settled.
           .then(finish);
         }, 260);
       });

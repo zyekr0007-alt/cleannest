@@ -138,7 +138,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
    the flying preloader wordmark lands seamlessly and IS the header wordmark. */
 .brand-wordmark {
   font-family: 'Ultima' !important;
-  font-weight: 400;
+  font-weight: 700;
   font-size: clamp(1.7rem, 4.5vw, 2.4rem);
   letter-spacing: 0.02em;
   color: var(--navy);
@@ -1201,12 +1201,6 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   align-items: center;
   gap: 10px;
 }
-.menu-brand-mark {
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  display: block;
-}
 .menu-brand-name {
   font-family: 'Ultima' !important;
   font-size: 1.3rem;
@@ -1578,20 +1572,10 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   text-align: center;
 }
 
-.preloader-mark {
-  width: clamp(58px, 10vw, 88px);
-  height: clamp(58px, 10vw, 88px);
-  border-radius: 50%;
-  flex-shrink: 0;
-  transform-origin: 50% 50%;
-  margin-bottom: 8px;
-  box-shadow: 0 0 0 2px rgba(11, 67, 100, 0.10), 0 10px 26px rgba(11, 67, 100, 0.12), 0 0 30px rgba(12, 215, 229, 0.18);
-}
-
 /* Solid navy rounded wordmark — matches the brand image (no gradient). */
 .preloader-wordmark {
   font-family: 'Ultima' !important;
-  font-weight: 400;
+  font-weight: 700;
   font-size: clamp(2.4rem, 9vw, 3.6rem);
   letter-spacing: 0.02em;
   color: var(--navy);
@@ -1625,7 +1609,7 @@ body.loaded .brand-strip { opacity: 1; transition: opacity 0.3s ease; }
 @media (prefers-reduced-motion: reduce) {
   .preloader-glow { animation: none !important; }
   .brand-wordmark, .brand-lockup { animation: none !important; }
-  .preloader-mark, .preloader-wordmark, .preloader-tagline { filter: none !important; }
+  .preloader-wordmark, .preloader-tagline { filter: none !important; }
   .menu-panel.open .menu-item { animation: none !important; opacity: 1 !important; transform: none !important; }
   .menu-item { opacity: 1 !important; transform: none !important; }
   body.loaded .brand-strip { transition: none !important; }
