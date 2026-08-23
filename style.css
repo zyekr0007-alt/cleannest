@@ -729,14 +729,16 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 }
 
 .gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 18px;
 }
 
 .gallery-card {
   position: relative;
   display: block;
+  flex: 0 1 280px;
   padding: 0;
   border: none;
   background: none;
