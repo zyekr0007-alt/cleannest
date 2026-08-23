@@ -764,8 +764,9 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 
 .gallery-card img {
   width: 100%;
-  height: min(64vw, 440px);
-  object-fit: cover;
+  aspect-ratio: 1 / 1;
+  height: auto;
+  object-fit: contain;
   border-radius: 14px;
   display: block;
   border: var(--glass-border);
