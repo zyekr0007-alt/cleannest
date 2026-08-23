@@ -13,8 +13,8 @@
   --muted: #4E606E;
   --white: #FFFFFF;
   --card: #FFFFFF;
-  --surface: #F5F7FA;      /* off-white page background */
-  --surface-2: #ECF1F6;    /* slightly deeper off-white */
+  --surface: #F6F7F9;      /* uniform off-white page background */
+  --surface-2: #F6F7F9;    /* uniform off-white page background */
   --shadow: 0 10px 30px rgba(11, 67, 100, 0.12);
   --radius: 16px;
 
