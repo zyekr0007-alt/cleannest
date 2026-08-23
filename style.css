@@ -26,18 +26,11 @@
   --glass-backdrop: blur(18px) saturate(160%);
 }
 
-/* Ultima font — the CleanNest brand typeface */
+/* Ultima font — the CleanNest brand typeface (single file only) */
 @font-face {
   font-family: 'Ultima';
   src: url('assets/fonts/Ultima.ttf') format('truetype');
   font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'Ultima';
-  src: url('assets/fonts/UltimaBold.ttf') format('truetype');
-  font-weight: 700;
   font-style: normal;
   font-display: swap;
 }
@@ -138,11 +131,13 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
    the flying preloader wordmark lands seamlessly and IS the header wordmark. */
 .brand-wordmark {
   font-family: 'Ultima' !important;
-  font-weight: 700;
+  font-weight: 400;
   font-size: clamp(1.7rem, 4.5vw, 2.4rem);
   letter-spacing: 0.02em;
   color: var(--navy);
   text-shadow: 0 2px 16px rgba(11, 67, 100, 0.10);
+  -webkit-text-stroke: 0.4px currentColor;
+  paint-order: stroke fill;
 }
 
 /* On small screens, scale the centered wordmark down so it stays clearly
@@ -1575,12 +1570,14 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 /* Solid navy rounded wordmark — matches the brand image (no gradient). */
 .preloader-wordmark {
   font-family: 'Ultima' !important;
-  font-weight: 700;
+  font-weight: 400;
   font-size: clamp(2.4rem, 9vw, 3.6rem);
   letter-spacing: 0.02em;
   color: var(--navy);
   text-shadow: 0 2px 16px rgba(11, 67, 100, 0.10);
   transform-origin: 50% 50%;
+  -webkit-text-stroke: 0.5px currentColor;
+  paint-order: stroke fill;
 }
 
 .preloader-tagline {
