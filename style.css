@@ -562,18 +562,14 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   gap: 5px;
 }
 .hero-num {
-  font-family: 'Sora', sans-serif;
-  font-weight: 800;
-  font-size: 1.5rem;
+  font-family: 'Ultima', sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
   line-height: 1;
   color: var(--navy);
-  letter-spacing: -0.01em;
-}
-.hero-unit {
-  font-family: 'Sora', sans-serif;
-  font-weight: 600;
-  font-size: 0.85rem;
-  color: var(--muted);
+  letter-spacing: 0.01em;
+  -webkit-text-stroke: 0.5px currentColor;
+  paint-order: stroke fill;
 }
 /* Pill holds ONLY the stars */
 .hero-pill {
@@ -604,9 +600,16 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   color: var(--muted);
 }
 .hero-count span { font-weight: 800; color: var(--navy); }
+.hero-sources {
+  font-family: 'Sora', sans-serif;
+  font-weight: 500;
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+}
 @media (max-width: 640px) {
   .hero-rating { margin-top: 16px; gap: 5px; }
-  .hero-num { font-size: 1.4rem; }
+  .hero-num { font-size: 1.75rem; }
   .hero-star { font-size: 1rem; }
 }
 
