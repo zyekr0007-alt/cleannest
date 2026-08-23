@@ -1074,21 +1074,27 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   padding: 80px 22px;
 }
 
-/* "Why Choose Us" — pill-shaped icon cards that toggle open */
+/* "Why Choose Us" — compact pill-shaped icon cards that toggle open */
 .why-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 18px;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.why-cell {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
 }
 
 .why-card {
   position: relative;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 12px;
   width: 100%;
   text-align: left;
-  padding: 18px 20px;
+  padding: 13px 16px;
   border-radius: 999px;
   background: var(--glass-bg);
   border: var(--glass-border);
@@ -1103,8 +1109,8 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 
 .why-ico {
   flex-shrink: 0;
-  width: 46px;
-  height: 46px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -1112,50 +1118,56 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   background: var(--cyan-soft);
   color: var(--navy);
 }
-.why-ico svg { width: 22px; height: 22px; }
+.why-ico svg { width: 19px; height: 19px; }
 
 .why-name {
   font-weight: 700;
   color: var(--navy);
-  font-size: 1rem;
+  font-size: 0.92rem;
+  line-height: 1.15;
 }
 .why-snip {
   display: block;
   color: var(--muted);
-  font-size: 0.85rem;
-  margin-top: 2px;
+  font-size: 0.78rem;
+  margin-top: 1px;
 }
 
 .why-arrow {
   margin-left: auto;
   color: var(--muted);
-  font-size: 1.3rem;
+  font-size: 1.1rem;
   transition: transform 0.25s ease, color 0.25s ease;
   flex-shrink: 0;
 }
 .why-card[aria-expanded="true"] .why-arrow { transform: rotate(90deg); color: var(--cyan); }
 
-/* Expanding description revealed on toggle */
+/* Expanding description revealed on toggle (inside the cell) */
 .why-more {
-  grid-column: 1 / -1;
   overflow: hidden;
   max-height: 0;
   opacity: 0;
   transition: max-height 0.4s ease, opacity 0.3s ease;
-  border-radius: 0 0 18px 18px;
-  margin-top: -6px;
 }
 .why-more.open { max-height: 320px; opacity: 1; }
 .why-more p {
   margin: 0;
-  padding: 6px 22px 20px;
+  padding: 8px 6px 2px;
   color: var(--ink);
-  font-size: 0.95rem;
-  line-height: 1.6;
+  font-size: 0.9rem;
+  line-height: 1.55;
 }
 
+/* Compact 2-per-row layout on mobile so the space is used, not wasted */
 @media (max-width: 640px) {
-  .why-grid { grid-template-columns: 1fr; }
+  .why-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .why-card { flex-direction: column; align-items: flex-start; gap: 8px; padding: 14px; border-radius: 18px; }
+  .why-ico { width: 34px; height: 34px; }
+  .why-ico svg { width: 17px; height: 17px; }
+  .why-name { font-size: 0.85rem; }
+  .why-snip { font-size: 0.72rem; }
+  .why-arrow { display: none; }
+  .why-more p { font-size: 0.82rem; }
 }
 
 /* ---------- FAQs ---------- */

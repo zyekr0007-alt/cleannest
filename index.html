@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=71">
+  <link rel="stylesheet" href="style.css?v=73">
   <style>
     /* Critical preloader shell: keep it full-screen off-white instantly so
        nothing flashes before style.css loads. (Full styling lives in style.css.) */
@@ -301,53 +301,65 @@
       <h2 class="section-title">Why choose <span class="star">us</span>?</h2>
     </div>
     <div class="why-grid" id="why-grid">
-      <button class="why-card" type="button" aria-expanded="false">
-        <span class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3Z"/><path d="M9.5 12l2 2 3.5-3.5"/></svg></span>
-        <span class="why-name">Eco-safe products</span>
-        <span class="why-snip">Professional, family &amp; pet-safe</span>
-        <span class="why-arrow" aria-hidden="true">›</span>
-      </button>
-      <div class="why-more"><p>We use professional, eco-friendly products that leave no harsh smells — safe for your family and pets.</p></div>
+      <div class="why-cell">
+        <button class="why-card" type="button" aria-expanded="false">
+          <span class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3Z"/><path d="M9.5 12l2 2 3.5-3.5"/></svg></span>
+          <span class="why-name">Eco-safe products</span>
+          <span class="why-snip">Professional, family &amp; pet-safe</span>
+          <span class="why-arrow" aria-hidden="true">›</span>
+        </button>
+        <div class="why-more"><p>We use professional, eco-friendly products that leave no harsh smells — safe for your family and pets.</p></div>
+      </div>
 
-      <button class="why-card" type="button" aria-expanded="false">
-        <span class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M21 21v-2a4 4 0 0 0-3-3.8"/><path d="M16 3.2a4 4 0 0 1 0 7.6"/></svg></span>
-        <span class="why-name">Verified &amp; trained</span>
-        <span class="why-snip">Uniformed pro cleaners</span>
-        <span class="why-arrow" aria-hidden="true">›</span>
-      </button>
-      <div class="why-more"><p>Every cleaner is verified, trained and uniformed — so you always get a trusted professional at your door.</p></div>
+      <div class="why-cell">
+        <button class="why-card" type="button" aria-expanded="false">
+          <span class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M21 21v-2a4 4 0 0 0-3-3.8"/><path d="M16 3.2a4 4 0 0 1 0 7.6"/></svg></span>
+          <span class="why-name">Verified &amp; trained</span>
+          <span class="why-snip">Uniformed pro cleaners</span>
+          <span class="why-arrow" aria-hidden="true">›</span>
+        </button>
+        <div class="why-more"><p>Every cleaner is verified, trained and uniformed — so you always get a trusted professional at your door.</p></div>
+      </div>
 
-      <button class="why-card" type="button" aria-expanded="false">
-        <span class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
-        <span class="why-name">On-time, every time</span>
-        <span class="why-snip">We arrive when we say</span>
-        <span class="why-arrow" aria-hidden="true">›</span>
-      </button>
-      <div class="why-more"><p>We value your time. Our team arrives on schedule and stays until the job is done right.</p></div>
+      <div class="why-cell">
+        <button class="why-card" type="button" aria-expanded="false">
+          <span class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>
+          <span class="why-name">On-time, every time</span>
+          <span class="why-snip">We arrive when we say</span>
+          <span class="why-arrow" aria-hidden="true">›</span>
+        </button>
+        <div class="why-more"><p>We value your time. Our team arrives on schedule and stays until the job is done right.</p></div>
+      </div>
 
-      <button class="why-card" type="button" aria-expanded="false">
-        <span class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16M6 12h12M8 16h8"/></svg></span>
-        <span class="why-name">Honest pricing</span>
-        <span class="why-snip">Clear quotes, no surprises</span>
-        <span class="why-arrow" aria-hidden="true">›</span>
-      </button>
-      <div class="why-more"><p>Transparent, upfront quotes. The price we agree is the price you pay — no hidden charges.</p></div>
+      <div class="why-cell">
+        <button class="why-card" type="button" aria-expanded="false">
+          <span class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16M6 12h12M8 16h8"/></svg></span>
+          <span class="why-name">Honest pricing</span>
+          <span class="why-snip">Clear quotes, no surprises</span>
+          <span class="why-arrow" aria-hidden="true">›</span>
+        </button>
+        <div class="why-more"><p>Transparent, upfront quotes. The price we agree is the price you pay — no hidden charges.</p></div>
+      </div>
 
-      <button class="why-card" type="button" aria-expanded="false">
-        <span class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
-        <span class="why-name">Free quote, no fees</span>
-        <span class="why-snip">No booking or advance</span>
-        <span class="why-arrow" aria-hidden="true">›</span>
-      </button>
-      <div class="why-more"><p>Get a free quote in minutes. No booking fee and no advance payment — you only pay after the job is done.</p></div>
+      <div class="why-cell">
+        <button class="why-card" type="button" aria-expanded="false">
+          <span class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <span class="why-name">Free quote, no fees</span>
+          <span class="why-snip">No booking or advance</span>
+          <span class="why-arrow" aria-hidden="true">›</span>
+        </button>
+        <div class="why-more"><p>Get a free quote in minutes. No booking fee and no advance payment — you only pay after the job is done.</p></div>
+      </div>
 
-      <button class="why-card" type="button" aria-expanded="false">
-        <span class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10Z"/><circle cx="12" cy="11" r="2.5"/></svg></span>
-        <span class="why-name">Serves your city</span>
-        <span class="why-snip">Jalandhar &amp; nearby areas</span>
-        <span class="why-arrow" aria-hidden="true">›</span>
-      </button>
-      <div class="why-more"><p>We serve Jalandhar, Phagwara, Kapurthala, Hoshiarpur, Nakodar, Goraya, Adampur, Kartarpur, Sultanpur Lodhi, Nawanshahr, Phillaur and Ludhiana.</p></div>
+      <div class="why-cell">
+        <button class="why-card" type="button" aria-expanded="false">
+          <span class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-4.5-7-10a7 7 0 0 1 14 0c0 5.5-7 10-7 10Z"/><circle cx="12" cy="11" r="2.5"/></svg></span>
+          <span class="why-name">Serves your city</span>
+          <span class="why-snip">Jalandhar &amp; nearby areas</span>
+          <span class="why-arrow" aria-hidden="true">›</span>
+        </button>
+        <div class="why-more"><p>We serve Jalandhar, Phagwara, Kapurthala, Hoshiarpur, Nakodar, Goraya, Adampur, Kartarpur, Sultanpur Lodhi, Nawanshahr, Phillaur and Ludhiana.</p></div>
+      </div>
     </div>
   </section>
 
@@ -834,8 +846,8 @@
       const cards = document.querySelectorAll('.why-card');
       if (!cards.length) return;
       cards.forEach((card) => {
-        const more = card.nextElementSibling && card.nextElementSibling.classList.contains('why-more')
-          ? card.nextElementSibling : null;
+        const cell = card.closest('.why-cell');
+        const more = cell ? cell.querySelector('.why-more') : null;
         if (!more) return;
         card.addEventListener('click', () => {
           const open = more.classList.toggle('open');
