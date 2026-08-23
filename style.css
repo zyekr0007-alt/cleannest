@@ -1075,9 +1075,10 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 }
 
 /* "Why Choose Us" — compact pill-shaped icon cards that toggle open */
+/* 6 cards in a clean 3x2 grid (symmetric, no orphan column) */
 .why-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 12px;
 }
 
@@ -1093,6 +1094,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   align-items: center;
   gap: 12px;
   width: 100%;
+  height: 100%;
   text-align: left;
   padding: 13px 16px;
   border-radius: 999px;
@@ -1104,6 +1106,13 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   cursor: pointer;
   font-family: 'Sora', sans-serif;
   transition: transform 0.2s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+/* Name + subtitle stack vertically in the card so text wraps cleanly
+   without stretching the card taller than its row-mates */
+.why-txt {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
 }
 .why-card:hover { transform: translateY(-2px); background: var(--glass-bg-strong); }
 
@@ -1117,8 +1126,28 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   justify-content: center;
   background: var(--cyan-soft);
   color: var(--navy);
+  position: relative;
+  overflow: hidden;
 }
-.why-ico svg { width: 19px; height: 19px; }
+/* Animated swirl glow behind the icon */
+.why-ico::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: conic-gradient(from 0deg, transparent 0 40%, rgba(12, 215, 229, 0.35) 50%, transparent 60% 100%);
+  animation: whyIcoSwirl 3.2s linear infinite;
+}
+.why-ico svg {
+  width: 19px;
+  height: 19px;
+  position: relative;
+  z-index: 1;
+}
+@keyframes whyIcoSwirl {
+  to { transform: rotate(360deg); }
+}
+/* Soft pulsing ring on hover */
+.why-card:hover .why-ico::before { animation-duration: 1.4s; }
 
 .why-name {
   font-weight: 700;
@@ -1177,6 +1206,16 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   .why-snip { font-size: 0.73rem; margin-top: 2px; }
   .why-arrow { display: none; }
   .why-more p { font-size: 0.82rem; }
+}
+
+/* Tablet: 2 columns so cards stay roomy between 640-880px */
+@media (max-width: 880px) {
+  .why-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* Respect reduced-motion: stop looping icon animation */
+@media (prefers-reduced-motion: reduce) {
+  .why-ico::before { animation: none; }
 }
 
 /* ---------- FAQs ---------- */
