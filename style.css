@@ -62,6 +62,10 @@ body {
 
 body.sheet-open { overflow: hidden; }
 
+/* When the full-screen menu is open, hide the top-right hamburger so it
+   doesn't sit on top of the menu's own close button. */
+body.sheet-open .topbar { opacity: 0; pointer-events: none; }
+
 h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 
 /* ---------- Brand lockup: wordmark logotype (no capsule) ---------- */
