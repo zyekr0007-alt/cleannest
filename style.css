@@ -549,8 +549,8 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 5px;
-  margin-top: 34px;
+  gap: 6px;
+  margin-top: 42px;
   text-decoration: none;
   transition: transform 0.2s ease;
 }
@@ -561,16 +561,14 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   gap: 5px;
 }
 .hero-num {
-  font-family: 'Ultima', sans-serif;
-  font-weight: 700;
-  font-size: 2rem;
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 800;
+  font-size: 2.1rem;
   line-height: 1;
-  color: var(--gold, #F9AB00);
-  letter-spacing: 0.01em;
-  -webkit-text-stroke: 0.5px currentColor;
-  paint-order: stroke fill;
-  transform: scale(1.12);
-  transform-origin: center;
+  color: #F9AB00;
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 12px rgba(249, 171, 0, 0.3);
+  animation: starShine 1.8s ease-in-out infinite;
 }
 /* Pill holds ONLY the stars */
 .hero-pill {
@@ -596,24 +594,27 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 .hero-star:nth-child(5) { animation-delay: 0.72s; }
 .hero-count {
   font-family: 'Sora', sans-serif;
-  font-weight: 600;
-  font-size: 0.95rem;
-  line-height: 1;
+  font-weight: 700;
+  font-size: 0.92rem;
+  line-height: 1.2;
   color: var(--navy);
   letter-spacing: 0.01em;
-  white-space: nowrap;
 }
 .hero-count span { font-weight: 800; color: var(--navy); }
 .hero-sources {
   font-family: 'Sora', sans-serif;
   font-weight: 500;
+  font-size: 0.8rem;
   color: var(--muted);
+  letter-spacing: 0.01em;
+  margin-top: -2px;
 }
 @media (max-width: 640px) {
-  .hero-rating { margin-top: 28px; gap: 4px; }
-  .hero-num { font-size: 1.75rem; }
+  .hero-rating { margin-top: 36px; gap: 5px; }
+  .hero-num { font-size: 1.85rem; }
   .hero-star { font-size: 1rem; }
   .hero-count { font-size: 0.88rem; }
+  .hero-sources { font-size: 0.76rem; }
 }
 
 /* Morphing color blobs */
