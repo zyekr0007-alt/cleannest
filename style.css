@@ -1074,50 +1074,88 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   padding: 80px 22px;
 }
 
-.about-grid {
+/* "Why Choose Us" — pill-shaped icon cards that toggle open */
+.why-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 22px;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 18px;
 }
 
-.about-card {
+.why-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  text-align: left;
+  padding: 18px 20px;
+  border-radius: 999px;
   background: var(--glass-bg);
   border: var(--glass-border);
-  border-radius: var(--radius);
-  padding: 28px;
   box-shadow: var(--glass-shadow);
   backdrop-filter: var(--glass-backdrop);
   -webkit-backdrop-filter: var(--glass-backdrop);
-}
-
-.about-title {
+  cursor: pointer;
   font-family: 'Sora', sans-serif;
-  font-size: 1.1rem;
+  transition: transform 0.2s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+.why-card:hover { transform: translateY(-2px); background: var(--glass-bg-strong); }
+
+.why-ico {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cyan-soft);
+  color: var(--navy);
+}
+.why-ico svg { width: 22px; height: 22px; }
+
+.why-name {
   font-weight: 700;
   color: var(--navy);
-  margin-bottom: 14px;
+  font-size: 1rem;
+}
+.why-snip {
+  display: block;
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: 2px;
 }
 
-.about-list {
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.why-arrow {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 1.3rem;
+  transition: transform 0.25s ease, color 0.25s ease;
+  flex-shrink: 0;
 }
+.why-card[aria-expanded="true"] .why-arrow { transform: rotate(90deg); color: var(--cyan); }
 
-.about-list li {
-  padding-left: 26px;
-  position: relative;
+/* Expanding description revealed on toggle */
+.why-more {
+  grid-column: 1 / -1;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+  border-radius: 0 0 18px 18px;
+  margin-top: -6px;
+}
+.why-more.open { max-height: 320px; opacity: 1; }
+.why-more p {
+  margin: 0;
+  padding: 6px 22px 20px;
   color: var(--ink);
   font-size: 0.95rem;
+  line-height: 1.6;
 }
 
-.about-list li::before {
-  content: "✓";
-  position: absolute;
-  left: 0;
-  color: var(--cyan);
-  font-weight: 700;
+@media (max-width: 640px) {
+  .why-grid { grid-template-columns: 1fr; }
 }
 
 /* ---------- FAQs ---------- */
@@ -1561,6 +1599,9 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   gap: 8px;
   padding: 6px 8px 12px 16px;
 }
+/* The `hidden` attribute must win over display:flex so the questions stay
+   collapsed until "FAQs" is tapped. */
+.menu-faq[hidden] { display: none !important; }
 .menu-faq-item {
   background: var(--glass-bg);
   border: var(--glass-border);
