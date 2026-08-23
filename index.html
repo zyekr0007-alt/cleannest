@@ -45,7 +45,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=105">
+  <link rel="stylesheet" href="style.css?v=106">
   <style>
     /* Critical preloader shell: keep it full-screen off-white instantly so
        nothing flashes before style.css loads. (Full styling lives in style.css.) */
@@ -236,6 +236,22 @@
     <div class="reviews-head">
       <span class="reviews-badge">Reviews</span>
       <h2 class="reviews-title">Google <span class="star">Reviews</span></h2>
+    </div>
+
+    <!-- Aggregate rating summary -->
+    <div class="rating-summary">
+      <div class="rating-score">
+        <span class="rating-num" data-count="4.9" data-decimals="1">0</span>
+        <span class="rating-out">/5</span>
+      </div>
+      <div class="rating-pill">
+        <span class="rating-star" aria-hidden="true">★</span>
+        <span class="rating-star" aria-hidden="true">★</span>
+        <span class="rating-star" aria-hidden="true">★</span>
+        <span class="rating-star" aria-hidden="true">★</span>
+        <span class="rating-star" aria-hidden="true">★</span>
+      </div>
+      <span class="rating-count"><span class="rating-count-num" data-count="221">0</span> live ratings</span>
     </div>
     <div class="reviews-carousel" id="reviews-carousel">
       <div class="reviews-track" id="reviews-track">
@@ -707,9 +723,9 @@
       });
     })();
 
-    // Animated stat counters (6) — count up when the hero stats come into view
+    // Animated stat counters — count up when they come into view
     (function initCounters() {
-      const nums = document.querySelectorAll('.stat-num');
+      const nums = document.querySelectorAll('.stat-num, .rating-num, .rating-count-num');
       if (!nums.length) return;
       const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const animate = (el) => {
