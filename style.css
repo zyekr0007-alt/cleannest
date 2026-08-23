@@ -1810,3 +1810,131 @@ body.loaded .brand-strip { opacity: 1; transition: opacity 0.3s ease; }
   .menu-item { opacity: 1 !important; transform: none !important; }
   body.loaded .brand-strip { transition: none !important; }
 }
+
+/* ============================================================
+   Service detail pages
+   ============================================================ */
+.svc-kicker {
+  display: inline-block;
+  margin-bottom: 10px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--glass-bg-strong);
+  border: var(--glass-border);
+  color: var(--navy);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+}
+
+.svc-hero .hero-inner { grid-template-columns: 1.15fr 0.85fr; }
+
+.svc-title {
+  font-size: clamp(2.2rem, 4.6vw, 3.3rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+  color: var(--navy);
+}
+.svc-title .star { color: var(--cyan); }
+
+/* Description + includes */
+.svc-section {
+  background: transparent;
+  padding: 60px 22px;
+}
+.svc-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+.svc-block { text-align: left; }
+.svc-badge {
+  display: inline-block;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--cyan-soft);
+  color: var(--navy);
+  font-weight: 600;
+  font-size: 0.8rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.svc-h2 {
+  margin-top: 14px;
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 800;
+  color: var(--navy);
+  letter-spacing: -0.02em;
+}
+.svc-h2 .star { color: var(--cyan); }
+.svc-body {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 1.02rem;
+  line-height: 1.7;
+}
+.svc-list {
+  margin-top: 16px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.svc-list li {
+  padding-left: 30px;
+  position: relative;
+  color: var(--ink);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+.svc-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: var(--cyan);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+/* Secondary / outline buttons for service pages */
+.btn-secondary,
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 30px;
+  border-radius: 999px;
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.btn-secondary {
+  color: var(--navy);
+  background: var(--glass-bg-strong);
+  border: var(--glass-border);
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+  box-shadow: var(--glass-shadow);
+}
+.btn-outline {
+  color: var(--white);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+}
+.btn-outline:hover { background: rgba(255, 255, 255, 0.12); }
+.btn-secondary:hover { transform: translateY(-1px); }
+
+@media (max-width: 860px) {
+  .svc-hero .hero-inner { grid-template-columns: 1fr; }
+  .svc-section { padding: 48px 22px; }
+  .svc-container { grid-template-columns: 1fr; gap: 32px; }
+}
