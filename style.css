@@ -1083,7 +1083,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
    ============================================================ */
 .topbar {
   position: fixed;
-  top: 18px;
+  top: 13px;
   right: 18px;
   z-index: 96;
   transition: opacity 0.25s ease, transform 0.25s ease;
@@ -1101,8 +1101,8 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
+  width: 44px;
+  height: 44px;
   padding: 0;
   border-radius: 50%;
   color: var(--navy);
