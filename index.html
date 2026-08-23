@@ -45,7 +45,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=107">
+  <link rel="stylesheet" href="style.css?v=108">
   <style>
     /* Critical preloader shell: keep it full-screen off-white instantly so
        nothing flashes before style.css loads. (Full styling lives in style.css.) */
@@ -104,11 +104,18 @@
         <div class="hero-ctas reveal">
           <button class="btn btn-primary btn-quote" id="open-quote" type="button">Get Free Quote <span class="btn-icon" aria-hidden="true">→</span></button>
         </div>
-        <div class="hero-stats reveal">
-          <span class="stat"><span class="stat-num" data-count="4.9" data-decimals="1">0</span><span class="stat-sfx">★</span><span class="stat-label">Rating</span></span>
-          <span class="stat"><span class="stat-num" data-count="500">0</span><span class="stat-sfx">+</span><span class="stat-label">Homes Cleaned</span></span>
-          <span class="stat"><span class="stat-num" data-count="7">0</span><span class="stat-sfx">days</span><span class="stat-label">A Week</span></span>
-        </div>
+        <a class="hero-rating reveal" href="https://www.google.com/maps/place/?q=place_id:ChIJ1zZzOUtbaR4RXbMy1OZsKsI" target="_blank" rel="noopener" aria-label="See our Google reviews">
+          <span class="hero-num" data-count="4.9" data-decimals="1">0</span>
+          <span class="hero-out">/5</span>
+          <span class="hero-pill">
+            <span class="hero-star" aria-hidden="true">★</span>
+            <span class="hero-star" aria-hidden="true">★</span>
+            <span class="hero-star" aria-hidden="true">★</span>
+            <span class="hero-star" aria-hidden="true">★</span>
+            <span class="hero-star" aria-hidden="true">★</span>
+          </span>
+          <span class="hero-count"><span data-count="221">0</span> live ratings</span>
+        </a>
       </div>
     </div>
     <div class="hero-visual" aria-hidden="true">
@@ -238,21 +245,6 @@
       <h2 class="reviews-title">Google <span class="star">Reviews</span></h2>
     </div>
 
-    <!-- Aggregate rating summary -->
-    <div class="rating-summary">
-      <div class="rating-score">
-        <span class="rating-num" data-count="4.9" data-decimals="1">0</span>
-        <span class="rating-out">/5</span>
-      </div>
-      <div class="rating-pill">
-        <span class="rating-star" aria-hidden="true">★</span>
-        <span class="rating-star" aria-hidden="true">★</span>
-        <span class="rating-star" aria-hidden="true">★</span>
-        <span class="rating-star" aria-hidden="true">★</span>
-        <span class="rating-star" aria-hidden="true">★</span>
-      </div>
-      <span class="rating-count"><span class="rating-count-num" data-count="221">0</span> live ratings</span>
-    </div>
     <div class="reviews-carousel" id="reviews-carousel">
       <div class="reviews-track" id="reviews-track">
         <div class="review-slide">
@@ -725,7 +717,7 @@
 
     // Animated stat counters — count up when they come into view
     (function initCounters() {
-      const nums = document.querySelectorAll('.stat-num, .rating-num, .rating-count-num');
+      const nums = document.querySelectorAll('.stat-num, .rating-num, .rating-count-num, .hero-num, .hero-count span[data-count]');
       if (!nums.length) return;
       const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const animate = (el) => {
