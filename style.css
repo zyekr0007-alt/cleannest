@@ -1361,6 +1361,86 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   border-color: rgba(12, 215, 229, 0.6);
 }
 
+/* ---------- Booking process flow (A → B → C) ---------- */
+.booking-flow {
+  margin-top: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+.booking-step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  padding: 18px 20px;
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  min-width: 150px;
+  max-width: 190px;
+}
+.booking-num {
+  font-family: 'Sora', sans-serif;
+  font-weight: 800;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  color: rgba(255, 255, 255, 0.75);
+  text-transform: uppercase;
+}
+.booking-ico {
+  position: relative;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  background: rgba(12, 215, 229, 0.28);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  overflow: hidden;
+}
+.booking-ico svg { width: 26px; height: 26px; position: relative; z-index: 1; }
+/* animated swirling glow */
+.booking-ico::before {
+  content: "";
+  position: absolute;
+  inset: -45%;
+  background: conic-gradient(from 0deg, transparent 0 40%, rgba(12, 215, 229, 0.5) 50%, transparent 60% 100%);
+  animation: bookingSwirl 3s linear infinite;
+}
+@keyframes bookingSwirl { to { transform: rotate(360deg); } }
+.booking-title {
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  line-height: 1.25;
+  color: #fff;
+}
+.booking-arrow {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.6rem;
+  line-height: 1;
+  animation: bookingArrowPulse 1.6s ease-in-out infinite;
+}
+@keyframes bookingArrowPulse {
+  0%, 100% { opacity: 0.4; transform: translateX(0); }
+  50%      { opacity: 1; transform: translateX(4px); }
+}
+@media (max-width: 640px) {
+  .booking-flow { gap: 12px; }
+  .booking-step { min-width: 132px; padding: 14px 14px; }
+  .booking-ico { width: 50px; height: 50px; }
+  .booking-ico svg { width: 23px; height: 23px; }
+  .booking-title { font-size: 0.88rem; }
+}
+
 /* ---------- Footer ---------- */
 .footer {
   padding: 52px 22px 140px;
@@ -2157,6 +2237,7 @@ body.loaded .brand-strip { opacity: 1; transition: opacity 0.3s ease; }
     animation: none !important;
     transition: none !important;
   }
+  .booking-ico::before, .booking-arrow { animation: none !important; }
   .hero-title .hero-line, .hero-copy .reveal, .service-tile, .svc-section, .svc-head {
     opacity: 1 !important;
     transform: none !important;
