@@ -58,7 +58,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=121">
+  <link rel="stylesheet" href="style.css?v=122">
   <style>
     /* Critical preloader shell: keep it full-screen off-white instantly so
        nothing flashes before style.css loads. (Full styling lives in style.css.) */
@@ -542,35 +542,80 @@
   <div class="quote-overlay" id="quote-overlay" hidden></div>
   <aside class="quote-panel" id="quote-panel" role="dialog" aria-modal="true" aria-label="Get a free quote" hidden>
     <button class="quote-close" id="quote-close" type="button" aria-label="Close">&times;</button>
-    <span class="quote-badge">Free Quote</span>
-    <h3 class="quote-title">Get your free quote</h3>
-    <p class="quote-sub">Tell us a little about your cleaning and we'll reply on WhatsApp.</p>
-    <form class="quote-form" id="quote-form" novalidate>
-      <label class="q-field">
-        <span class="q-label">Your name</span>
-        <input type="text" name="name" class="q-input" placeholder="e.g. Gurlal" autocomplete="name" required>
-        <span class="q-error" hidden>Please enter your name.</span>
-      </label>
-      <label class="q-field">
-        <span class="q-label">Phone number</span>
-        <input type="tel" name="phone" class="q-input" inputmode="tel" autocomplete="tel" placeholder="10-digit mobile" required>
-        <span class="q-error" hidden>Enter a valid 10-digit mobile number.</span>
-      </label>
-      <label class="q-field">
-        <span class="q-label">Area / City</span>
-        <input type="text" name="area" class="q-input" placeholder="e.g. Jalandhar" autocomplete="address-level2">
-      </label>
-      <label class="q-field">
-        <span class="q-label">Preferred date</span>
-        <input type="date" name="date" class="q-input">
-      </label>
-      <label class="q-field">
-        <span class="q-label">Anything else</span>
-        <textarea name="notes" class="q-input q-textarea" rows="2" placeholder="e.g. 3BHK, deep cleaning for kitchen"></textarea>
-      </label>
-      <textarea name="message" class="q-input hp-field" tabindex="-1" autocomplete="off" aria-hidden="true" hidden></textarea>
-      <button class="btn btn-primary q-submit" type="submit">Send via WhatsApp</button>
-    </form>
+    <span class="quote-badge" id="quote-badge">Free Quote</span>
+
+    <!-- Progress dots -->
+    <div class="q-progress" id="q-progress" role="tablist" aria-label="Quote steps"></div>
+
+    <div class="q-slides" id="q-slides">
+
+      <!-- Slide 0: Services -->
+      <div class="q-slide" data-slide="services">
+        <h3 class="quote-title">What do you need cleaned?</h3>
+        <p class="quote-sub">Tap any service — you can pick more than one.</p>
+        <div class="q-options q-options-grid" id="q-services"></div>
+        <div class="q-nav">
+          <span class="q-selected" id="q-sel-services"></span>
+          <button class="btn btn-primary q-next" type="button" data-next="details" disabled>Next →</button>
+        </div>
+      </div>
+
+      <!-- Slide 1: Smart follow-ups -->
+      <div class="q-slide" data-slide="details" hidden>
+        <h3 class="quote-title" id="q-details-title">Almost there</h3>
+        <p class="quote-sub" id="q-details-sub">A couple of quick questions.</p>
+        <div class="q-questions" id="q-questions"></div>
+        <div class="q-nav">
+          <button class="btn btn-ghost q-back" type="button" data-back="services">← Back</button>
+          <button class="btn btn-primary q-next" type="button" data-next="when" id="q-details-next" disabled>Next →</button>
+        </div>
+      </div>
+
+      <!-- Slide 2: When -->
+      <div class="q-slide" data-slide="when" hidden>
+        <h3 class="quote-title">When do you need it?</h3>
+        <p class="quote-sub">Pick a timeframe — no exact date needed.</p>
+        <div class="q-options" id="q-when"></div>
+        <div class="q-nav">
+          <button class="btn btn-ghost q-back" type="button" data-back="details">← Back</button>
+          <button class="btn btn-primary q-next" type="button" data-next="contact" id="q-when-next" disabled>Next →</button>
+        </div>
+      </div>
+
+      <!-- Slide 3: Contact -->
+      <div class="q-slide" data-slide="contact" hidden>
+        <h3 class="quote-title">Where can we reach you?</h3>
+        <p class="quote-sub">Just your name and phone — we'll reply on WhatsApp.</p>
+        <form class="quote-form" id="quote-form" novalidate>
+          <label class="q-field">
+            <span class="q-label">Your name</span>
+            <input type="text" name="name" class="q-input" placeholder="e.g. Gurlal" autocomplete="name" required>
+            <span class="q-error" hidden>Please enter your name.</span>
+          </label>
+          <label class="q-field">
+            <span class="q-label">Phone number</span>
+            <input type="tel" name="phone" class="q-input" inputmode="tel" autocomplete="tel" placeholder="10-digit mobile" required>
+            <span class="q-error" hidden>Enter a valid 10-digit mobile number.</span>
+          </label>
+          <div class="q-nav">
+            <button class="btn btn-ghost q-back" type="button" data-back="when">← Back</button>
+            <button class="btn btn-primary q-submit" type="submit">Review request →</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Slide 4: Summary & Send -->
+      <div class="q-slide" data-slide="send" hidden>
+        <h3 class="quote-title">Your request</h3>
+        <p class="quote-sub">Check everything looks right.</p>
+        <div class="q-summary" id="q-summary"></div>
+        <div class="q-nav">
+          <button class="btn btn-ghost q-back" type="button" data-back="contact">← Back</button>
+          <button class="btn btn-primary q-send" type="button" id="q-send">Send via WhatsApp</button>
+        </div>
+      </div>
+
+    </div>
   </aside>
 
   <script>
@@ -987,40 +1032,158 @@
       }, { passive: true });
     })();
 
-    // Quote modal (opens upward) + WhatsApp submit
+    // Quote panel — conversational multi-step flow
     (function initQuote() {
       const panel = document.getElementById('quote-panel');
       const overlay = document.getElementById('quote-overlay');
       const open = document.getElementById('open-quote');
       const close = document.getElementById('quote-close');
       const form = document.getElementById('quote-form');
+      const slidesEl = document.getElementById('q-slides');
+      const progressEl = document.getElementById('q-progress');
+      const servicesEl = document.getElementById('q-services');
+      const whenEl = document.getElementById('q-when');
+      const questionsEl = document.getElementById('q-questions');
+      const summaryEl = document.getElementById('q-summary');
+      const selServices = document.getElementById('q-sel-services');
+      const detailsTitle = document.getElementById('q-details-title');
+      const detailsSub = document.getElementById('q-details-sub');
+      const detailsNext = document.getElementById('q-details-next');
+      const whenNext = document.getElementById('q-when-next');
       if (!panel || !overlay || !open || !close || !form) return;
 
-      function openPanel() {
-        panel.hidden = false;
-        overlay.hidden = false;
-        requestAnimationFrame(() => {
-          panel.classList.add('open');
-          overlay.classList.add('show');
+      const SERVICES = [
+        { id: 'full-house', label: 'Full House', q: 'How many bedrooms?', opts: ['1 BHK', '2 BHK', '3 BHK', '4+ BHK'], key: 'house' },
+        { id: 'kitchen', label: 'Kitchen', q: 'Which kitchen cleaning?', opts: ['Deep clean', 'Chimney + kitchen', 'Tiles & platform'], key: 'kitchen' },
+        { id: 'bathroom', label: 'Bathroom', q: 'How many bathrooms?', opts: ['1', '2', '3+'], key: 'bath' },
+        { id: 'sofa', label: 'Sofa', q: 'How many sofas?', opts: ['1', '2', '3+'], key: 'sofa' },
+        { id: 'carpet', label: 'Carpet', q: 'How many carpets?', opts: ['1', '2', '3+'], key: 'carpet' },
+        { id: 'ac', label: 'AC', q: 'How many ACs?', opts: ['1', '2', '3', '4+'], key: 'ac' },
+        { id: 'chimney', label: 'Chimney', q: 'Chimney type?', opts: ['Kitchen hood', 'Split chimney', 'Not sure'], key: 'chimney' },
+        { id: 'commercial', label: 'Commercial', q: 'What kind of space?', opts: ['Office', 'Shop', 'Clinic', 'Other'], key: 'commercial' }
+      ];
+      const WHEN = ['Today', 'Tomorrow', 'This week', 'Flexible'];
+
+      const state = {
+        services: new Set(),
+        details: {},   // serviceId -> chosen option
+        when: '',
+        name: '',
+        phone: ''
+      };
+      let slide = 'services';
+
+      function allSlides() { return Array.from(slidesEl.querySelectorAll('.q-slide')); }
+      function go(to) {
+        allSlides().forEach(s => { s.hidden = s.dataset.slide !== to; });
+        slide = to;
+        renderProgress();
+        if (to === 'details') buildDetails();
+        if (to === 'send') buildSummary();
+        if (to === 'contact') setTimeout(() => form.querySelector('[name="name"]').focus(), 250);
+        panel.scrollTop = 0;
+      }
+
+      function renderProgress() {
+        const order = ['services', 'details', 'when', 'contact', 'send'];
+        const idx = order.indexOf(slide);
+        progressEl.innerHTML = order.map((o, i) =>
+          `<span class="q-dot${i === idx ? ' active' : ''}${i < idx ? ' done' : ''}" aria-hidden="true"></span>`
+        ).join('');
+      }
+
+      // ---- Services slide ----
+      function buildServices() {
+        servicesEl.innerHTML = SERVICES.map(s =>
+          `<button type="button" class="q-opt${state.services.has(s.id) ? ' chosen' : ''}" data-svc="${s.id}">
+             <span class="q-opt-label">${s.label}</span>
+           </button>`
+        ).join('');
+      }
+      function updateSelServices() {
+        const n = state.services.size;
+        selServices.textContent = n ? (n + ' selected') : '';
+        const btn = servicesEl.closest('.q-slide').querySelector('.q-next');
+        btn.disabled = n === 0;
+      }
+      servicesEl.addEventListener('click', (e) => {
+        const btn = e.target.closest('.q-opt');
+        if (!btn) return;
+        const id = btn.dataset.svc;
+        if (state.services.has(id)) state.services.delete(id); else state.services.add(id);
+        btn.classList.toggle('chosen', state.services.has(id));
+        updateSelServices();
+      });
+
+      // ---- Details (smart follow-ups) slide ----
+      function buildDetails() {
+        const list = SERVICES.filter(s => state.services.has(s.id));
+        detailsTitle.textContent = 'Almost there';
+        detailsSub.textContent = list.length > 1
+          ? 'A quick question for each service.'
+          : 'One quick question.';
+        questionsEl.innerHTML = '';
+        list.forEach((s, i) => {
+          const wrap = document.createElement('div');
+          wrap.className = 'q-question';
+          wrap.innerHTML = `
+            <span class="q-label">${s.q}</span>
+            <div class="q-options q-options-row" data-q="${s.id}">
+              ${s.opts.map(o => `<button type="button" class="q-opt q-opt-pill" data-val="${o}">${o}</button>`).join('')}
+            </div>`;
+          questionsEl.appendChild(wrap);
         });
-        document.body.classList.add('sheet-open');
-        setTimeout(() => form.querySelector('[name="name"]').focus(), 360);
+        // Restore previous selections
+        list.forEach(s => {
+          const chosen = state.details[s.id];
+          if (!chosen) return;
+          const group = questionsEl.querySelector(`[data-q="${s.id}"]`);
+          const btn = group && group.querySelector(`[data-val="${CSS.escape(chosen)}"]`);
+          if (btn) btn.classList.add('chosen');
+        });
+        updateDetailsNext();
       }
-      function closePanel() {
-        panel.classList.remove('open');
-        overlay.classList.remove('show');
-        document.body.classList.remove('sheet-open');
-        setTimeout(() => { panel.hidden = true; overlay.hidden = true; }, 360);
+      function updateDetailsNext() {
+        const missing = SERVICES.some(s => state.services.has(s.id) && !state.details[s.id]);
+        detailsNext.disabled = missing;
       }
+      questionsEl.addEventListener('click', (e) => {
+        const btn = e.target.closest('.q-opt');
+        if (!btn) return;
+        const group = btn.closest('.q-options');
+        group.querySelectorAll('.q-opt').forEach(b => b.classList.remove('chosen'));
+        btn.classList.add('chosen');
+        const svcId = group.dataset.q;
+        state.details[svcId] = btn.dataset.val;
+        updateDetailsNext();
+      });
 
-      open.addEventListener('click', openPanel);
-      close.addEventListener('click', closePanel);
-      overlay.addEventListener('click', closePanel);
-      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePanel(); });
+      // ---- When slide ----
+      function buildWhen() {
+        whenEl.innerHTML = WHEN.map(w =>
+          `<button type="button" class="q-opt q-opt-pill${state.when === w ? ' chosen' : ''}" data-val="${w}">${w}</button>`
+        ).join('');
+      }
+      whenEl.addEventListener('click', (e) => {
+        const btn = e.target.closest('.q-opt');
+        if (!btn) return;
+        whenEl.querySelectorAll('.q-opt').forEach(b => b.classList.remove('chosen'));
+        btn.classList.add('chosen');
+        state.when = btn.dataset.val;
+        whenNext.disabled = false;
+      });
 
+      // ---- Navigation ----
+      slidesEl.addEventListener('click', (e) => {
+        const next = e.target.closest('[data-next]');
+        const back = e.target.closest('[data-back]');
+        if (next && !next.disabled) go(next.dataset.next);
+        else if (back) go(back.dataset.back);
+      });
+
+      // ---- Contact form submit -> summary ----
       const nameField = form.querySelector('[name="name"]');
       const phoneField = form.querySelector('[name="phone"]');
-
       function markInvalid(field, invalid) {
         const wrap = field.closest('.q-field');
         wrap.classList.toggle('invalid', invalid);
@@ -1037,13 +1200,8 @@
 
       form.addEventListener('submit', (e) => {
         e.preventDefault();
-        const f = new FormData(form);
-        const name = (f.get('name') || '').trim();
-        const phone = (f.get('phone') || '').replace(/[^0-9]/g, '').replace(/^91/, '').replace(/^0/, '');
-        const area = (f.get('area') || '').trim();
-        const date = (f.get('date') || '').trim();
-        const notes = (f.get('notes') || '').trim();
-
+        const name = (nameField.value || '').trim();
+        const phone = (phoneField.value || '').replace(/[^0-9]/g, '').replace(/^91/, '').replace(/^0/, '');
         const nameInvalid = !name;
         const phoneInvalid = !/^[6-9]\d{9}$/.test(phone);
         markInvalid(nameField, nameInvalid);
@@ -1052,20 +1210,72 @@
           (nameInvalid ? nameField : phoneField).focus();
           return;
         }
+        state.name = name;
+        state.phone = phone;
+        go('send');
+      });
 
+      // ---- Summary ----
+      function buildSummary() {
+        const chosen = SERVICES.filter(s => state.services.has(s.id));
+        const rows = [];
+        chosen.forEach(s => {
+          const detail = state.details[s.id] ? ` — ${state.details[s.id]}` : '';
+          rows.push(`<div class="q-sum-row"><span>${s.label}</span><strong>${detail.replace(' — ', '') || 'Yes'}</strong></div>`);
+        });
+        rows.push(`<div class="q-sum-row"><span>When</span><strong>${state.when}</strong></div>`);
+        rows.push(`<div class="q-sum-row"><span>Name</span><strong>${state.name}</strong></div>`);
+        rows.push(`<div class="q-sum-row"><span>Phone</span><strong>+91 ${state.phone}</strong></div>`);
+        summaryEl.innerHTML = rows.join('');
+      }
+
+      // ---- Send via WhatsApp ----
+      document.getElementById('q-send').addEventListener('click', () => {
+        const chosen = SERVICES.filter(s => state.services.has(s.id));
         const lines = [
-          'Hi CleanNest! I am interested in deep cleaning.',
-          name ? 'Name: ' + name : '',
-          phone ? 'Phone: +91 ' + phone : '',
-          area ? 'Area: ' + area : '',
-          date ? 'Preferred date: ' + date : '',
-          notes ? 'Details: ' + notes : ''
-        ].filter(Boolean).join('\n');
-
-        window.open('https://wa.me/917610000654?text=' + encodeURIComponent(lines), '_blank');
+          'Hi CleanNest! I would like a quote.',
+          '',
+          'Services: ' + chosen.map(s => s.label + (state.details[s.id] ? ` (${state.details[s.id]})` : '')).join(', '),
+          'When: ' + state.when,
+          'Name: ' + state.name,
+          'Phone: +91 ' + state.phone
+        ];
+        window.open('https://wa.me/917610000654?text=' + encodeURIComponent(lines.join('\n')), '_blank');
         closePanel();
         form.reset();
+        state.services.clear();
+        state.details = {};
+        state.when = state.name = state.phone = '';
+        whenNext.disabled = true;
+        go('services');
+        updateSelServices();
       });
+
+      // ---- Open / close ----
+      function openPanel() {
+        panel.hidden = false;
+        overlay.hidden = false;
+        requestAnimationFrame(() => {
+          panel.classList.add('open');
+          overlay.classList.add('show');
+        });
+        document.body.classList.add('sheet-open');
+        buildServices();
+        buildWhen();
+        updateSelServices();
+        renderProgress();
+      }
+      function closePanel() {
+        panel.classList.remove('open');
+        overlay.classList.remove('show');
+        document.body.classList.remove('sheet-open');
+        setTimeout(() => { panel.hidden = true; overlay.hidden = true; }, 360);
+      }
+
+      open.addEventListener('click', openPanel);
+      close.addEventListener('click', closePanel);
+      overlay.addEventListener('click', closePanel);
+      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePanel(); });
     })();
   </script>
 </body>
