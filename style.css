@@ -2429,6 +2429,45 @@ body.loaded .brand-strip { opacity: 1; transition: opacity 0.3s ease; }
   align-items: start;
 }
 .svc-block { text-align: left; }
+
+/* Before & after results grid on service pages */
+.svc-results {
+  background: transparent;
+  padding: 60px 22px 10px;
+}
+.svc-results .svc-container {
+  display: block;
+  max-width: 1000px;
+}
+.svc-results-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 28px;
+}
+.svc-result {
+  display: block;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(11, 67, 100, 0.12);
+  background: #fff;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.svc-result img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+.svc-result:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 34px rgba(11, 67, 100, 0.14);
+}
+@media (max-width: 720px) {
+  .svc-results-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .svc-results { padding: 44px 22px 6px; }
+}
 .svc-badge {
   display: inline-block;
   padding: 6px 14px;
