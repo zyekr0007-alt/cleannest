@@ -45,7 +45,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=118">
+  <link rel="stylesheet" href="style.css?v=119">
   <style>
     /* Critical preloader shell: keep it full-screen off-white instantly so
        nothing flashes before style.css loads. (Full styling lives in style.css.) */
@@ -118,13 +118,6 @@
           <span class="hero-sources">across all sources</span>
         </a>
       </div>
-    </div>
-    <div class="hero-visual" aria-hidden="true">
-      <div class="hero-aurora" aria-hidden="true"></div>
-      <div class="flow flow-1"></div>
-      <div class="flow flow-2"></div>
-      <div class="flow flow-3"></div>
-      <div class="grid-overlay"></div>
     </div>
   </main>
 
@@ -683,18 +676,15 @@
       if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       const hero = document.querySelector('.hero');
       const content = document.querySelector('.hero-content');
-      const visual = document.querySelector('.hero-visual');
-      if (!hero || !content || !visual) return;
+      if (!hero || !content) return;
       hero.addEventListener('mousemove', (e) => {
         const r = hero.getBoundingClientRect();
         const x = (e.clientX - r.left) / r.width - 0.5;
         const y = (e.clientY - r.top) / r.height - 0.5;
         content.style.transform = `translate(${(x * 14).toFixed(1)}px, ${(y * 10).toFixed(1)}px)`;
-        visual.style.transform = `translate(${(x * -22).toFixed(1)}px, ${(y * -16).toFixed(1)}px) rotate(${(x * 1.2).toFixed(2)}deg)`;
       });
       hero.addEventListener('mouseleave', () => {
         content.style.transform = '';
-        visual.style.transform = '';
       });
     })();
 
