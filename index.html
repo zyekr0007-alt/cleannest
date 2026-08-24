@@ -58,7 +58,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=122">
+  <link rel="stylesheet" href="style.css?v=123">
   <style>
     /* Critical preloader shell: keep it full-screen off-white instantly so
        nothing flashes before style.css loads. (Full styling lives in style.css.) */
@@ -1050,7 +1050,7 @@
       const detailsSub = document.getElementById('q-details-sub');
       const detailsNext = document.getElementById('q-details-next');
       const whenNext = document.getElementById('q-when-next');
-      if (!panel || !overlay || !open || !close || !form) return;
+      if (!panel || !overlay || !open || !close || !form || !slidesEl || !progressEl || !servicesEl || !whenEl || !questionsEl || !summaryEl || !detailsNext || !whenNext) return;
 
       const SERVICES = [
         { id: 'full-house', label: 'Full House', q: 'How many bedrooms?', opts: ['1 BHK', '2 BHK', '3 BHK', '4+ BHK'], key: 'house' },
@@ -1138,7 +1138,8 @@
           const chosen = state.details[s.id];
           if (!chosen) return;
           const group = questionsEl.querySelector(`[data-q="${s.id}"]`);
-          const btn = group && group.querySelector(`[data-val="${CSS.escape(chosen)}"]`);
+          const esc = typeof CSS !== 'undefined' && CSS.escape ? CSS.escape(chosen) : chosen.replace(/["\\]/g, '');
+          const btn = group && group.querySelector(`[data-val="${esc}"]`);
           if (btn) btn.classList.add('chosen');
         });
         updateDetailsNext();
@@ -1252,7 +1253,11 @@
       });
 
       // ---- Open / close ----
+      // Keep the previously focused element so we can return focus on close.
+      let lastFocus = null;
+
       function openPanel() {
+        lastFocus = document.activeElement;
         panel.hidden = false;
         overlay.hidden = false;
         requestAnimationFrame(() => {
@@ -1264,18 +1269,43 @@
         buildWhen();
         updateSelServices();
         renderProgress();
+        // Move focus into the dialog for keyboard users.
+        setTimeout(() => close.focus(), 380);
       }
       function closePanel() {
         panel.classList.remove('open');
         overlay.classList.remove('show');
         document.body.classList.remove('sheet-open');
-        setTimeout(() => { panel.hidden = true; overlay.hidden = true; }, 360);
+        setTimeout(() => {
+          panel.hidden = true;
+          overlay.hidden = true;
+          // Return focus to the element that opened the panel.
+          if (lastFocus && lastFocus.focus) lastFocus.focus();
+        }, 360);
       }
+
+      // Simple focus trap: keep Tab/Shift+Tab cycling inside the open panel.
+      panel.addEventListener('keydown', (e) => {
+        if (e.key !== 'Tab' || panel.hidden) return;
+        const focusables = panel.querySelectorAll('button, input, textarea, select, [tabindex]:not([tabindex="-1"])');
+        if (!focusables.length) return;
+        const first = focusables[0];
+        const lastEl = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          lastEl.focus();
+        } else if (!e.shiftKey && document.activeElement === lastEl) {
+          e.preventDefault();
+          first.focus();
+        }
+      });
 
       open.addEventListener('click', openPanel);
       close.addEventListener('click', closePanel);
       overlay.addEventListener('click', closePanel);
-      document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closePanel(); });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !panel.hidden) closePanel();
+      });
     })();
   </script>
 </body>
