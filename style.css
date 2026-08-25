@@ -1863,11 +1863,15 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   bottom: 0;
   z-index: 90;
   display: none;
-  justify-content: center;
+  justify-content: space-between;
   align-items: flex-end;
-  gap: 10px;
   padding: 0 14px 16px;
   pointer-events: none; /* let taps pass through empty space */
+  /* Soft frosted backdrop so page content (e.g. the marquee) doesn't
+     visually bleed through the gap between the two buttons. */
+  background: linear-gradient(180deg, rgba(246, 247, 249, 0) 0%, rgba(246, 247, 249, 0.92) 55%, #F6F7F9 100%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 @media (max-width: 640px) {
   .sticky-contact { display: flex; }
@@ -1879,12 +1883,12 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 9px;
-  padding: 14px 22px;
+  gap: 10px;
+  padding: 16px 26px;
   border-radius: 999px;
   font-family: 'Nunito', sans-serif;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 1.05rem;
   line-height: 1;
   text-decoration: none;
   color: #fff;
@@ -1923,7 +1927,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 /* Hide the text label on very narrow screens, keep the icon */
 @media (max-width: 360px) {
   .sticky-label { display: none; }
-  .sticky-btn { padding: 13px 16px; }
+  .sticky-btn { padding: 14px 18px; }
 }
 
 /* ============================================================
