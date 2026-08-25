@@ -1550,36 +1550,50 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 }
 .menu-faq-all:hover { background: rgba(12, 215, 229, 0.25); }
 
-/* ---------- Cities we cover ---------- */
+/* ---------- Cities we cover (compact strip) ---------- */
 .cities {
-  padding: 60px 22px;
+  padding: 14px 22px 8px;
   text-align: center;
 }
-.cities-grid {
+.cities-inner {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
-  gap: 12px;
-  max-width: 820px;
-  margin: 28px auto 0;
+  gap: 8px 10px;
+  max-width: 860px;
+  margin: 0 auto;
+}
+.cities-label {
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: var(--muted);
+  letter-spacing: 0.02em;
+  margin-right: 2px;
+}
+.cities-grid {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 6px 8px;
 }
 .city-chip {
   display: inline-flex;
   align-items: center;
-  padding: 10px 20px;
+  padding: 4px 12px;
   border-radius: 999px;
-  background: var(--glass-bg);
-  border: var(--glass-border);
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(11, 67, 100, 0.10);
   color: var(--navy);
   font-family: 'Sora', sans-serif;
-  font-weight: 600;
-  font-size: 0.92rem;
-  transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+  font-weight: 500;
+  font-size: 0.78rem;
+  transition: border-color 0.2s ease, background 0.2s ease;
 }
 .city-chip:hover {
   border-color: rgba(12, 215, 229, 0.5);
   background: var(--cyan-soft);
-  transform: translateY(-2px);
 }
 
 /* ---------- CTA band ---------- */
