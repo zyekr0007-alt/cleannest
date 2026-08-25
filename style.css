@@ -129,11 +129,10 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 }
 
 /* Header wordmark styled IDENTICALLY to the preloader wordmark (solid navy) so
-   the flying preloader wordmark lands seamlessly and IS the header wordmark.
-   Replicates the footer wordmark's Ultima-700 look, but larger. */
+   the flying preloader wordmark lands seamlessly and IS the header wordmark. */
 .brand-wordmark {
   font-family: 'Ultima' !important;
-  font-weight: 700;
+  font-weight: 400;
   font-size: clamp(1.9rem, 4.8vw, 2.6rem);
   letter-spacing: 0.01em;
   color: var(--navy);
@@ -253,30 +252,29 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   align-items: center;
 }
 
-/* Small 'Follow us on Instagram' pill below the hero rating */
+/* Instagram pill below the hero rating — official gradient fill */
 .hero-follow {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
   margin: 22px auto 0;
-  padding: 9px 18px;
+  padding: 10px 22px;
   border-radius: 999px;
-  border: 1px solid rgba(11, 67, 100, 0.15);
-  background: rgba(255, 255, 255, 0.75);
-  color: var(--navy);
-  font-family: 'Sora', sans-serif;
-  font-weight: 600;
-  font-size: 0.85rem;
-  text-decoration: none;
-  transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
-}
-.hero-follow svg { width: 17px; height: 17px; }
-.hero-follow:hover {
-  background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF);
-  border-color: transparent;
+  background: linear-gradient(45deg, #F58529 0%, #DD2A7B 50%, #8134AF 100%);
   color: #fff;
+  font-family: 'Sora', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-decoration: none;
+  box-shadow: 0 8px 24px rgba(221, 42, 123, 0.3);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+}
+.hero-follow svg { width: 18px; height: 18px; }
+.hero-follow:hover {
   transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(221, 42, 123, 0.4);
+  filter: brightness(1.06);
 }
 
 .btn {
@@ -545,52 +543,50 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   display: inline-flex;
   flex-direction: column;
   align-items: center;
-  gap: 4px;
-  margin-top: 42px;
-  text-decoration: none;
-  transition: transform 0.2s ease;
-}
-.hero-rating:hover { transform: translateY(-2px); }
-/* Modern frosted-glass row: 4.9 + stars + live ratings in one bar */
-.hero-rating-row {
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  padding: 12px 22px;
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.65);
-  border: 1px solid rgba(11, 67, 100, 0.10);
-  box-shadow: 0 8px 28px rgba(11, 67, 100, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+  justify-content: center;
+  gap: 8px;
+  margin-top: 36px;
+  padding: 14px 26px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(11, 67, 100, 0.08);
+  box-shadow: 0 8px 28px rgba(11, 67, 100, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
+  text-decoration: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.hero-score {
+.hero-rating:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(11, 67, 100, 0.10); }
+/* Centered stack: 4.9 → stars → live ratings */
+.hero-rating-row {
   display: inline-flex;
-  align-items: baseline;
-  gap: 5px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 .hero-num {
   font-family: 'Inter', Arial, sans-serif;
   font-weight: 800;
-  font-size: 1.9rem;
+  font-size: 2.2rem;
   line-height: 1;
   color: #F9AB00;
   letter-spacing: -0.02em;
   text-shadow: 0 2px 12px rgba(249, 171, 0, 0.3);
   animation: starShine 1.8s ease-in-out infinite;
 }
-/* Stars on a soft gold disc — modern, subtle */
+/* Stars on a soft gold disc — centered, the hero of the block */
 .hero-pill {
   display: inline-flex;
   align-items: center;
-  gap: 2px;
-  padding: 7px 12px;
+  gap: 3px;
+  padding: 7px 14px;
   border-radius: 999px;
   background: radial-gradient(120% 140% at 50% 0%, #FFF7E0 0%, #FFEFC2 100%);
   border: 1px solid rgba(244, 210, 133, 0.8);
 }
 .hero-star {
-  font-size: 1rem;
+  font-size: 1.15rem;
   line-height: 1;
   color: #F9AB00;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
@@ -607,29 +603,21 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   line-height: 1.2;
   color: var(--navy);
   letter-spacing: 0.01em;
-  padding-left: 14px;
-  border-left: 1px solid rgba(11, 67, 100, 0.14);
 }
 .hero-count span { font-weight: 800; color: var(--navy); }
 .hero-sources {
   font-family: 'Sora', sans-serif;
   font-weight: 500;
-  font-size: 0.8rem;
+  font-size: 0.78rem;
   color: var(--muted);
   letter-spacing: 0.01em;
-  margin-top: 6px;
 }
 @media (max-width: 640px) {
-  .hero-rating { margin-top: 36px; gap: 4px; }
-  .hero-rating-row { gap: 10px; padding: 10px 16px; }
-  .hero-num { font-size: 1.7rem; }
-  .hero-star { font-size: 0.95rem; }
-  .hero-count { font-size: 0.85rem; padding-left: 10px; }
-  .hero-sources { font-size: 0.76rem; }
-}
-@media (max-width: 360px) {
-  .hero-rating-row { flex-wrap: wrap; justify-content: center; border-radius: 24px; }
-  .hero-count { border-left: none; padding-left: 0; }
+  .hero-rating { margin-top: 30px; padding: 12px 20px; }
+  .hero-num { font-size: 2rem; }
+  .hero-star { font-size: 1.05rem; }
+  .hero-count { font-size: 0.88rem; }
+  .hero-sources { font-size: 0.74rem; }
 }
 
 /* ---------- Section head (shared) ---------- */
@@ -2607,7 +2595,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 /* Solid navy rounded wordmark — matches the brand image (no gradient). */
 .preloader-wordmark {
   font-family: 'Ultima' !important;
-  font-weight: 700;
+  font-weight: 400;
   font-size: clamp(2.4rem, 9vw, 3.6rem);
   letter-spacing: 0.02em;
   color: var(--navy);
