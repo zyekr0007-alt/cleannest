@@ -1863,8 +1863,9 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   bottom: 0;
   z-index: 90;
   display: none;
-  justify-content: space-between;
+  justify-content: center;
   align-items: flex-end;
+  gap: 10px;
   padding: 0 14px 16px;
   pointer-events: none; /* let taps pass through empty space */
 }
@@ -1878,12 +1879,12 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 16px 26px;
+  gap: 9px;
+  padding: 14px 22px;
   border-radius: 999px;
   font-family: 'Nunito', sans-serif;
   font-weight: 700;
-  font-size: 1.05rem;
+  font-size: 1rem;
   line-height: 1;
   text-decoration: none;
   color: #fff;
@@ -1922,7 +1923,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 /* Hide the text label on very narrow screens, keep the icon */
 @media (max-width: 360px) {
   .sticky-label { display: none; }
-  .sticky-btn { padding: 14px 18px; }
+  .sticky-btn { padding: 13px 16px; }
 }
 
 /* ============================================================
