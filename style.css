@@ -1304,17 +1304,29 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 .faq-item {
   background: var(--glass-bg);
   border: var(--glass-border);
-  border-radius: 14px;
+  border-radius: 20px;
   box-shadow: var(--glass-shadow);
   backdrop-filter: var(--glass-backdrop);
   -webkit-backdrop-filter: var(--glass-backdrop);
   overflow: hidden;
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+}
+
+.faq-item:hover {
+  border-color: rgba(12, 215, 229, 0.45);
+  box-shadow: 0 10px 30px rgba(11, 67, 100, 0.10);
+  transform: translateY(-2px);
+}
+
+.faq-item[open] {
+  border-color: rgba(12, 215, 229, 0.55);
+  box-shadow: 0 14px 36px rgba(11, 67, 100, 0.12);
 }
 
 .faq-item summary {
   list-style: none;
   cursor: pointer;
-  padding: 18px 22px;
+  padding: 20px 24px;
   font-family: 'Sora', sans-serif;
   font-weight: 600;
   font-size: 1rem;
@@ -1329,20 +1341,94 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 
 .faq-item summary::after {
   content: "+";
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   font-weight: 400;
   color: var(--cyan);
   line-height: 1;
   transition: transform 0.25s ease;
   flex-shrink: 0;
+  background: rgba(12, 215, 229, 0.12);
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.faq-item[open] summary::after { transform: rotate(45deg); }
+.faq-item[open] summary::after { transform: rotate(45deg); background: rgba(12, 215, 229, 0.22); }
 
 .faq-item p {
-  padding: 0 22px 18px;
+  padding: 0 24px 22px;
   color: var(--muted);
   font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* Dedicated FAQ page */
+.faq-page .faq-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.faq-page {
+  padding-bottom: 120px;
+}
+.faq-hero .hero-inner {
+  max-width: 640px;
+  text-align: center;
+  justify-items: center;
+}
+.faq-hero .hero-copy { display: flex; flex-direction: column; align-items: center; }
+.faq-hero .hero-sub { margin-left: auto; margin-right: auto; }
+
+/* 'View all FAQs' button in the menu FAQ */
+.menu-faq-all {
+  display: block;
+  text-align: center;
+  margin-top: 12px;
+  padding: 12px 16px;
+  border-radius: 999px;
+  background: var(--cyan-soft);
+  color: var(--navy);
+  font-family: 'Sora', sans-serif;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: background 0.2s ease;
+}
+.menu-faq-all:hover { background: rgba(12, 215, 229, 0.25); }
+
+/* ---------- Cities we cover ---------- */
+.cities {
+  padding: 60px 22px;
+  text-align: center;
+}
+.cities-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  max-width: 820px;
+  margin: 28px auto 0;
+}
+.city-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 999px;
+  background: var(--glass-bg);
+  border: var(--glass-border);
+  color: var(--navy);
+  font-family: 'Sora', sans-serif;
+  font-weight: 600;
+  font-size: 0.92rem;
+  transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
+}
+.city-chip:hover {
+  border-color: rgba(12, 215, 229, 0.5);
+  background: var(--cyan-soft);
+  transform: translateY(-2px);
 }
 
 /* ---------- CTA band ---------- */
