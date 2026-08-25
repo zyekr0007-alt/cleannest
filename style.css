@@ -128,11 +128,12 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 }
 
 /* Header wordmark styled IDENTICALLY to the preloader wordmark (solid navy) so
-   the flying preloader wordmark lands seamlessly and IS the header wordmark. */
+   the flying preloader wordmark lands seamlessly and IS the header wordmark.
+   Replicates the footer wordmark's Ultima-700 look, but larger. */
 .brand-wordmark {
   font-family: 'Ultima' !important;
-  font-weight: 400;
-  font-size: clamp(1.9rem, 4.8vw, 2.6rem);
+  font-weight: 700;
+  font-size: clamp(2.1rem, 5.2vw, 2.9rem);
   letter-spacing: 0.01em;
   color: var(--navy);
   text-shadow: 0 2px 16px rgba(11, 67, 100, 0.10);
@@ -143,7 +144,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 /* On small screens, scale the centered wordmark down so it stays clearly
    clear of the top-right menu button and reads balanced. */
 @media (max-width: 480px) {
-  .brand-wordmark { font-size: 1.8rem; }
+  .brand-wordmark { font-size: 2rem; }
 }
 
 @keyframes brandIn {
@@ -248,6 +249,28 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
+  align-items: center;
+}
+
+/* Small round Instagram icon beside the hero CTA */
+.hero-ig {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(11, 67, 100, 0.18);
+  background: rgba(255, 255, 255, 0.8);
+  color: var(--navy);
+  transition: background 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+}
+.hero-ig svg { width: 22px; height: 22px; }
+.hero-ig:hover {
+  background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF);
+  border-color: transparent;
+  color: #fff;
+  transform: translateY(-2px);
 }
 
 .btn {
@@ -1533,6 +1556,12 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 .footer-btn-call:hover { background: var(--navy-dark); }
 .footer-btn-mail { background: #1476A8; }
 .footer-btn-mail:hover { background: #0f6795; }
+.footer-btn-ig {
+  background: linear-gradient(45deg, #F58529, #DD2A7B, #8134AF);
+}
+.footer-btn-ig:hover {
+  filter: brightness(1.08);
+}
 
 /* Location + timings — organized info row */
 .footer-info {
@@ -2325,7 +2354,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 /* Solid navy rounded wordmark — matches the brand image (no gradient). */
 .preloader-wordmark {
   font-family: 'Ultima' !important;
-  font-weight: 400;
+  font-weight: 700;
   font-size: clamp(2.4rem, 9vw, 3.6rem);
   letter-spacing: 0.02em;
   color: var(--navy);
