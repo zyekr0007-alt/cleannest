@@ -40,7 +40,7 @@
 html { scroll-behavior: smooth; }
 
 body {
-  font-family: 'Inter', -apple-system, sans-serif;
+  font-family: 'Nunito', -apple-system, sans-serif;
   color: var(--ink);
   background:
     radial-gradient(80% 60% at 15% 10%, rgba(12, 215, 229, 0.18), transparent 55%),
@@ -59,7 +59,7 @@ body.sheet-open { overflow: hidden; }
    doesn't sit on top of the menu's own close button. */
 body.sheet-open .topbar { opacity: 0; pointer-events: none; }
 
-h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
+h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 
 /* ---------- Brand lockup: wordmark logotype (no capsule) ---------- */
 .brand-strip {
@@ -263,7 +263,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   border-radius: 999px;
   background: linear-gradient(45deg, #F58529 0%, #DD2A7B 50%, #8134AF 100%);
   color: #fff;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 700;
   font-size: 0.9rem;
   text-decoration: none;
@@ -284,7 +284,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   gap: 8px;
   padding: 14px 32px;
   border-radius: 999px;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 700;
   font-size: 0.95rem;
   text-decoration: none;
@@ -431,7 +431,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 }
 
 .proof-main {
-  font-family: 'Sora', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 700;
   font-size: 0.9rem;
   color: var(--navy);
@@ -597,7 +597,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 .hero-star:nth-child(4) { animation-delay: 0.54s; }
 .hero-star:nth-child(5) { animation-delay: 0.72s; }
 .hero-count {
-  font-family: 'Sora', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 700;
   font-size: 0.92rem;
   line-height: 1.2;
@@ -606,7 +606,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 }
 .hero-count span { font-weight: 800; color: var(--navy); }
 .hero-sources {
-  font-family: 'Sora', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 500;
   font-size: 0.78rem;
   color: var(--muted);
@@ -685,7 +685,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   gap: 8px;
   white-space: nowrap;
   padding: 0 28px;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 600;
   font-size: 0.95rem;
   color: var(--navy);
@@ -762,7 +762,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   right: 0;
   bottom: 0;
   padding: 26px 12px 12px;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 700;
   font-size: 0.95rem;
   line-height: 1.2;
@@ -844,7 +844,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   color: var(--navy);
-  font-family: 'Sora', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 700;
   font-size: 0.85rem;
   box-shadow: 0 4px 14px rgba(11, 67, 100, 0.16);
@@ -1001,7 +1001,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   font-size: 1.05rem;
 }
 .agg-text {
-  font-family: 'Sora', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: 0.85rem;
   color: var(--muted);
   padding-left: 12px;
@@ -1038,7 +1038,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   gap: 4px;
 }
 .rating-num {
-  font-family: 'Sora', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 800;
   font-size: clamp(3rem, 8vw, 4.2rem);
   line-height: 1;
@@ -1046,7 +1046,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   letter-spacing: -0.02em;
 }
 .rating-out {
-  font-family: 'Sora', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 700;
   font-size: 1.2rem;
   color: var(--muted);
@@ -1078,7 +1078,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   50%      { transform: scale(1.18); filter: brightness(1.35); }
 }
 .rating-count {
-  font-family: 'Sora', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 600;
   font-size: 1rem;
   color: var(--muted);
@@ -1194,7 +1194,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Nunito', sans-serif;
   flex-shrink: 0;
   font-size: 0.9rem;
   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.9), 0 0 0 4px rgba(12, 215, 229, 0.35);
@@ -1212,7 +1212,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 
 .review-name {
   font-weight: 700;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Nunito', sans-serif;
   color: var(--ink);
 }
 
@@ -1263,7 +1263,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   color: var(--navy);
-  font-family: 'Sora', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 700;
   font-size: 0.95rem;
   text-decoration: none;
@@ -1311,7 +1311,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   backdrop-filter: var(--glass-backdrop);
   -webkit-backdrop-filter: var(--glass-backdrop);
   cursor: pointer;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Nunito', sans-serif;
   transition: transform 0.2s ease, box-shadow 0.25s ease, background 0.25s ease;
 }
 /* Name + subtitle stack vertically in the card so text wraps cleanly
@@ -1467,7 +1467,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   list-style: none;
   cursor: pointer;
   padding: 16px 22px;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 600;
   font-size: 1rem;
   color: var(--navy);
@@ -1531,7 +1531,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   border-radius: 999px;
   background: var(--cyan-soft);
   color: var(--navy);
-  font-family: 'Sora', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 600;
   font-size: 0.9rem;
   text-decoration: none;
@@ -1554,7 +1554,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   margin: 0 auto;
 }
 .cities-label {
-  font-family: 'Sora', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 700;
   font-size: 0.82rem;
   color: var(--muted);
@@ -1575,7 +1575,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   background: rgba(255, 255, 255, 0.7);
   border: 1px solid rgba(11, 67, 100, 0.10);
   color: var(--navy);
-  font-family: 'Sora', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 500;
   font-size: 0.78rem;
   transition: border-color 0.2s ease, background 0.2s ease;
@@ -1620,7 +1620,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   display: inline-block;
   padding: 15px 34px;
   border-radius: 999px;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 700;
   font-size: 1.02rem;
   text-decoration: none;
@@ -1671,7 +1671,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   -webkit-backdrop-filter: blur(10px);
 }
 .booking-num {
-  font-family: 'Sora', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 800;
   font-size: 0.72rem;
   letter-spacing: 0.08em;
@@ -1701,7 +1701,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   animation: whyIcoSwirl 3.2s linear infinite;
 }
 .booking-title {
-  font-family: 'Sora', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 700;
   font-size: 0.86rem;
   line-height: 1.15;
@@ -1779,7 +1779,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   gap: 8px;
   padding: 11px 20px;
   border-radius: 999px;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 700;
   font-size: 0.92rem;
   line-height: 1;
@@ -1878,7 +1878,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   gap: 10px;
   padding: 16px 26px;
   border-radius: 999px;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 700;
   font-size: 1.05rem;
   line-height: 1;
@@ -2232,7 +2232,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   color: var(--navy);
   border: var(--glass-border);
   border-radius: 18px;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 700;
   font-size: 1.05rem;
   backdrop-filter: var(--glass-backdrop);
@@ -2328,7 +2328,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 
 .quote-title {
   margin-top: 14px;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-size: 1.5rem;
   font-weight: 800;
   color: var(--navy);
@@ -2355,7 +2355,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
 }
 
 .q-label {
-  font-family: 'Sora', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 600;
   font-size: 0.82rem;
   color: var(--navy);
@@ -2436,7 +2436,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   border-radius: 14px;
   border: 1.5px solid rgba(11, 67, 100, 0.14);
   background: var(--glass-bg);
-  font-family: 'Sora', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 600;
   font-size: 0.9rem;
   color: var(--navy);
@@ -2471,7 +2471,7 @@ h1, h2, h3, .hero-cta { font-family: 'Sora', sans-serif; }
   border: 1.5px solid rgba(11, 67, 100, 0.18);
   background: transparent;
   color: var(--navy);
-  font-family: 'Sora', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 600;
   font-size: 0.9rem;
   cursor: pointer;
@@ -2794,7 +2794,7 @@ body.loaded .brand-strip { opacity: 1; transition: opacity 0.3s ease; }
   justify-content: center;
   padding: 14px 30px;
   border-radius: 999px;
-  font-family: 'Sora', sans-serif;
+  font-family: 'Nunito', sans-serif;
   font-weight: 700;
   font-size: 0.95rem;
   text-decoration: none;
