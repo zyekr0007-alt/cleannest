@@ -258,31 +258,6 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   align-items: center;
 }
 
-/* Instagram pill below the hero rating — official gradient fill */
-.hero-follow {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  margin: 22px auto 0;
-  padding: 10px 22px;
-  border-radius: 999px;
-  background: linear-gradient(45deg, #F58529 0%, #DD2A7B 50%, #8134AF 100%);
-  color: #fff;
-  font-family: 'Nunito', sans-serif;
-  font-weight: 700;
-  font-size: 0.9rem;
-  text-decoration: none;
-  box-shadow: 0 8px 24px rgba(221, 42, 123, 0.3);
-  transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
-}
-.hero-follow svg { width: 18px; height: 18px; }
-.hero-follow:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 30px rgba(221, 42, 123, 0.4);
-  filter: brightness(1.06);
-}
-
 .btn {
   display: inline-flex;
   align-items: center;
@@ -302,8 +277,8 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 /* Press feedback — subtle scale-down on press (Emil: 0.95–0.98, 160ms ease-out) */
 .btn:active,
 .cta-btn:active,
-.sticky-btn:active,
-.hero-follow:active,
+.ct-btn:active,
+.float-btn:active,
 .footer-btn:active,
 .menu-btn:active,
 .gallery-card:active,
@@ -1923,85 +1898,101 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 }
 
 
-/* ---------- Sticky mobile floating glass buttons ---------- */
-/* Give the page bottom breathing room on mobile so the buttons don't cover the footer */
-@media (max-width: 640px) {
-  body { padding-bottom: 72px; }
-}
-
-/* Floating container — WhatsApp pinned LEFT, Call pinned RIGHT */
-.sticky-contact {
+/* ---------- Floating contact buttons (WhatsApp left, Call right) ---------- */
+/* Slide in from the screen edges once the hero is scrolled past (body.hero-past). */
+.float-btn {
   position: fixed;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 90;
-  display: none;
-  justify-content: space-between;
-  align-items: flex-end;
-  padding: 0 14px 16px;
-  pointer-events: none; /* let taps pass through empty space */
-  /* Soft frosted backdrop so page content (e.g. the marquee) doesn't
-     visually bleed through the gap between the two buttons. */
-  background: linear-gradient(180deg, rgba(246, 247, 249, 0) 0%, rgba(246, 247, 249, 0.92) 55%, #F6F7F9 100%);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-}
-@media (max-width: 640px) {
-  .sticky-contact { display: flex; }
-}
-
-/* Glass floating buttons — vibrant, prominent, animated */
-.sticky-btn {
-  pointer-events: auto;
+  top: 50%;
+  z-index: 80;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
-  padding: 16px 26px;
-  border-radius: 999px;
-  font-family: 'Nunito', sans-serif;
-  font-weight: 700;
-  font-size: 1.05rem;
-  line-height: 1;
-  text-decoration: none;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
   color: #fff;
+  text-decoration: none;
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   border: 1.5px solid rgba(255, 255, 255, 0.65);
-  box-shadow: 0 12px 32px rgba(11, 67, 100, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  animation: stickyFloat 3s ease-in-out infinite;
-  transition: transform 0.16s ease, background 0.16s ease, box-shadow 0.16s ease;
+  box-shadow: 0 12px 32px rgba(11, 67, 100, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--dur-standard) var(--ease-out),
+              transform var(--dur-standard) var(--ease-out),
+              background var(--dur-quick) var(--ease-out);
 }
-.sticky-btn:hover { transform: translateY(-3px); }
-.sticky-btn:active { transform: scale(0.95); }
-.sticky-btn svg { width: 24px; height: 24px; flex-shrink: 0; }
-
-@keyframes stickyFloat {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-4px); }
-}
-
-/* WhatsApp — vibrant green glass with official look */
-.sticky-msg {
+.float-wa {
+  left: 18px;
+  transform: translate(-120%, -50%);
   background: rgba(37, 211, 102, 0.92);
-  border-color: rgba(255, 255, 255, 0.7);
-  box-shadow: 0 12px 32px rgba(37, 211, 102, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
-.sticky-msg:hover { background: rgba(31, 184, 87, 0.98); }
-
-/* Call — vibrant navy glass */
-.sticky-call {
+.float-call {
+  right: 18px;
+  transform: translate(120%, -50%);
   background: rgba(11, 67, 100, 0.92);
-  border-color: rgba(255, 255, 255, 0.7);
-  box-shadow: 0 12px 32px rgba(11, 67, 100, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
-.sticky-call:hover { background: rgba(8, 46, 70, 0.98); }
+.float-btn svg { width: 26px; height: 26px; }
+body.hero-past .float-wa,
+body.hero-past .float-call {
+  opacity: 1;
+  transform: translate(0, -50%);
+  pointer-events: auto;
+}
+.float-btn:hover { transform: translate(0, calc(-50% - 3px)) scale(1.05); }
+.float-wa:hover { background: rgba(31, 184, 87, 0.98); }
+.float-call:hover { background: rgba(8, 46, 70, 0.98); }
 
-/* Hide the text label on very narrow screens, keep the icon */
-@media (max-width: 360px) {
-  .sticky-label { display: none; }
-  .sticky-btn { padding: 14px 18px; }
+/* Hero contact trio — segmented glass bar (WhatsApp | Call | Instagram) */
+.contact-trio {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px;
+  border-radius: 999px;
+  background: var(--glass-bg);
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+}
+.ct-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  color: var(--navy);
+  text-decoration: none;
+  transition: transform var(--dur-quick) var(--ease-out),
+              color var(--dur-quick) var(--ease-out),
+              background var(--dur-quick) var(--ease-out);
+}
+.ct-btn:hover { transform: translateY(-2px); }
+.ct-btn svg { width: 22px; height: 22px; }
+.ct-wa:hover { color: #25D366; background: rgba(37, 211, 102, 0.12); }
+.ct-call:hover { color: var(--cyan); background: rgba(12, 215, 229, 0.12); }
+.ct-ig:hover { color: #DD2A7B; background: rgba(221, 42, 123, 0.1); }
+.ct-divider {
+  width: 1px;
+  height: 26px;
+  background: rgba(11, 67, 100, 0.14);
+  flex-shrink: 0;
+}
+/* Trio icons stamp in one after another as the CTA row lands */
+.hero-ctas.in .ct-btn { animation: ctPop 0.4s var(--ease-out) both; }
+.hero-ctas.in .ct-call { animation-delay: 0.08s; }
+.hero-ctas.in .ct-ig { animation-delay: 0.16s; }
+@keyframes ctPop {
+  from { opacity: 0; transform: translateY(8px) scale(0.9); }
+  to   { opacity: 1; transform: none; }
+}
+
+@media (max-width: 640px) {
+  .float-btn { width: 48px; height: 48px; }
+  .float-wa { left: 12px; }
+  .float-call { right: 12px; }
+  .ct-btn { width: 42px; height: 42px; }
 }
 
 /* ============================================================
@@ -2754,6 +2745,9 @@ body.loaded .brand-strip { opacity: 1; transition: opacity 0.3s ease; }
     opacity: 1 !important;
     transform: none !important;
   }
+  /* Floating buttons: appear instantly with no slide; trio: no stamp */
+  .float-btn { transition: opacity 0.2s ease; transform: translate(0, -50%) !important; }
+  .hero-ctas.in .ct-btn { animation: none !important; opacity: 1 !important; transform: none !important; }
   .hero-title .hero-line, .hero-copy .reveal, .service-tile, .svc-section, .svc-head {
     opacity: 1 !important;
     transform: none !important;
