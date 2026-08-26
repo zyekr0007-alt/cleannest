@@ -75,6 +75,7 @@
         <p class="hero-sub reveal">Everything you need to know about CleanNest cleaning services.</p>
         <div class="hero-ctas reveal">
           <button class="btn btn-primary btn-quote" id="open-quote" type="button">Get Free Quote <span class="btn-icon" aria-hidden="true">→</span></button>
+          <a class="btn btn-secondary" href="tel:+917610000654">Call 76100 00654</a>
         </div>
       </div>
     </div>
@@ -168,12 +169,18 @@
     </div>
   </nav>
 
+  <!-- Quote modal (opens upward) -->
   <div class="quote-overlay" id="quote-overlay" hidden></div>
   <aside class="quote-panel" id="quote-panel" role="dialog" aria-modal="true" aria-label="Get a free quote" hidden>
     <button class="quote-close" id="quote-close" type="button" aria-label="Close">&times;</button>
-    <span class="quote-badge" id="quote-badge">Free Quote</span>
+    <span class="quote-badge" id="quote-badge">Get Free Quote</span>
+
+    <!-- Progress dots -->
     <div class="q-progress" id="q-progress" role="tablist" aria-label="Quote steps"></div>
+
     <div class="q-slides" id="q-slides">
+
+      <!-- Slide 0: Services -->
       <div class="q-slide" data-slide="services">
         <h3 class="quote-title">What do you need cleaned?</h3>
         <p class="quote-sub">Tap any service — you can pick more than one.</p>
@@ -183,6 +190,8 @@
           <button class="btn btn-primary q-next" type="button" data-next="details" disabled>Next →</button>
         </div>
       </div>
+
+      <!-- Slide 1: Smart follow-ups -->
       <div class="q-slide" data-slide="details" hidden>
         <h3 class="quote-title" id="q-details-title">Almost there</h3>
         <p class="quote-sub" id="q-details-sub">A couple of quick questions.</p>
@@ -192,6 +201,8 @@
           <button class="btn btn-primary q-next" type="button" data-next="when" id="q-details-next" disabled>Next →</button>
         </div>
       </div>
+
+      <!-- Slide 2: When -->
       <div class="q-slide" data-slide="when" hidden>
         <h3 class="quote-title">When do you need it?</h3>
         <p class="quote-sub">Pick a timeframe — no exact date needed.</p>
@@ -201,6 +212,8 @@
           <button class="btn btn-primary q-next" type="button" data-next="contact" id="q-when-next" disabled>Next →</button>
         </div>
       </div>
+
+      <!-- Slide 3: Contact -->
       <div class="q-slide" data-slide="contact" hidden>
         <h3 class="quote-title">Where can we reach you?</h3>
         <p class="quote-sub">Just your name and phone — we'll reply on WhatsApp.</p>
@@ -221,6 +234,8 @@
           </div>
         </form>
       </div>
+
+      <!-- Slide 4: Summary & Send -->
       <div class="q-slide" data-slide="send" hidden>
         <h3 class="quote-title">Your request</h3>
         <p class="quote-sub">Check everything looks right.</p>
@@ -230,6 +245,17 @@
           <button class="btn btn-primary q-send" type="button" id="q-send">Send via WhatsApp</button>
         </div>
       </div>
+
+      <!-- Slide 5: Sent -->
+      <div class="q-slide" data-slide="sent" hidden>
+        <span class="q-sent-check" aria-hidden="true">✓</span>
+        <h3 class="quote-title">Request sent</h3>
+        <p class="quote-sub">We've opened WhatsApp — just press <strong>Send</strong> there. We'll reply with your quote shortly.</p>
+        <div class="q-nav">
+          <button class="btn btn-primary q-done" type="button" id="q-done">Done</button>
+        </div>
+      </div>
+
     </div>
   </aside>
 
@@ -270,6 +296,344 @@
       overlay.addEventListener('click', closeMenu);
       document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closeMenu(); });
     })();
-  </script>
+  
+    // Quote panel — conversational multi-step flow
+    (function initQuote() {
+      const panel = document.getElementById('quote-panel');
+      const overlay = document.getElementById('quote-overlay');
+      const open = document.getElementById('open-quote');
+      const close = document.getElementById('quote-close');
+      const form = document.getElementById('quote-form');
+      const slidesEl = document.getElementById('q-slides');
+      const progressEl = document.getElementById('q-progress');
+      const servicesEl = document.getElementById('q-services');
+      const whenEl = document.getElementById('q-when');
+      const questionsEl = document.getElementById('q-questions');
+      const summaryEl = document.getElementById('q-summary');
+      const selServices = document.getElementById('q-sel-services');
+      const detailsTitle = document.getElementById('q-details-title');
+      const detailsSub = document.getElementById('q-details-sub');
+      const detailsNext = document.getElementById('q-details-next');
+      const whenNext = document.getElementById('q-when-next');
+      if (!panel || !overlay || !open || !close || !form || !slidesEl || !progressEl || !servicesEl || !whenEl || !questionsEl || !summaryEl || !detailsNext || !whenNext) return;
+
+      const SERVICES = [
+        { id: 'full-house', label: 'Full House', q: 'How many bedrooms?', opts: ['1 BHK', '2 BHK', '3 BHK', '4+ BHK'], key: 'house' },
+        { id: 'kitchen', label: 'Kitchen', q: 'Which kitchen cleaning?', opts: ['Deep clean', 'Chimney + kitchen', 'Tiles & platform'], key: 'kitchen' },
+        { id: 'bathroom', label: 'Bathroom', q: 'How many bathrooms?', opts: ['1', '2', '3+'], key: 'bath' },
+        { id: 'sofa', label: 'Sofa', q: 'How many sofas?', opts: ['1', '2', '3+'], key: 'sofa' },
+        { id: 'carpet', label: 'Carpet', q: 'How many carpets?', opts: ['1', '2', '3+'], key: 'carpet' },
+        { id: 'ac', label: 'AC', q: 'How many ACs?', opts: ['1', '2', '3', '4+'], key: 'ac' },
+        { id: 'chimney', label: 'Chimney', q: 'Chimney type?', opts: ['Kitchen hood', 'Split chimney', 'Not sure'], key: 'chimney' },
+        { id: 'commercial', label: 'Commercial', q: 'What kind of space?', opts: ['Office', 'Shop', 'Clinic', 'Other'], key: 'commercial' }
+      ];
+      const WHEN = ['Today', 'Tomorrow', 'This week', 'Flexible'];
+
+      const LS_KEY = 'cleannest-quote-v1';
+      const SLIDES = ['services', 'details', 'when', 'contact', 'send'];
+
+      const state = {
+        services: new Set(),
+        details: {},   // serviceId -> chosen option
+        when: '',
+        name: '',
+        phone: ''
+      };
+      let slide = 'services';
+
+      // ---- Persist selections so a visitor who closes mid-flow can resume ----
+      function saveState() {
+        try {
+          localStorage.setItem(LS_KEY, JSON.stringify({
+            services: Array.from(state.services),
+            details: state.details,
+            when: state.when,
+            name: state.name,
+            phone: state.phone,
+            slide: SLIDES.includes(slide) ? slide : 'services'
+          }));
+        } catch (e) { /* storage blocked (private mode) — non-fatal */ }
+      }
+      function loadState() {
+        try {
+          const raw = localStorage.getItem(LS_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (e) { return null; }
+      }
+      function clearState() {
+        try { localStorage.removeItem(LS_KEY); } catch (e) {}
+      }
+
+      function allSlides() { return Array.from(slidesEl.querySelectorAll('.q-slide')); }
+      function go(to) {
+        allSlides().forEach(s => { s.hidden = s.dataset.slide !== to; });
+        slide = to;
+        renderProgress();
+        if (to === 'details') buildDetails();
+        if (to === 'send') buildSummary();
+        if (to === 'contact') setTimeout(() => form.querySelector('[name="name"]').focus(), 250);
+        panel.scrollTop = 0;
+        saveState();
+      }
+
+      function renderProgress() {
+        if (slide === 'sent') {
+          progressEl.innerHTML = SLIDES.map(() => '<span class="q-dot done" aria-hidden="true"></span>').join('');
+          return;
+        }
+        const idx = SLIDES.indexOf(slide);
+        progressEl.innerHTML = SLIDES.map((o, i) =>
+          `<span class="q-dot${i === idx ? ' active' : ''}${i < idx ? ' done' : ''}" aria-hidden="true"></span>`
+        ).join('');
+      }
+
+      // ---- Services slide ----
+      function buildServices() {
+        servicesEl.innerHTML = SERVICES.map(s =>
+          `<button type="button" class="q-opt${state.services.has(s.id) ? ' chosen' : ''}" data-svc="${s.id}">
+             <span class="q-opt-label">${s.label}</span>
+           </button>`
+        ).join('');
+      }
+      function updateSelServices() {
+        const n = state.services.size;
+        selServices.textContent = n ? (n + ' selected') : '';
+        const btn = servicesEl.closest('.q-slide').querySelector('.q-next');
+        btn.disabled = n === 0;
+      }
+      servicesEl.addEventListener('click', (e) => {
+        const btn = e.target.closest('.q-opt');
+        if (!btn) return;
+        const id = btn.dataset.svc;
+        if (state.services.has(id)) state.services.delete(id); else state.services.add(id);
+        btn.classList.toggle('chosen', state.services.has(id));
+        updateSelServices();
+        saveState();
+      });
+
+      // ---- Details (smart follow-ups) slide ----
+      function buildDetails() {
+        const list = SERVICES.filter(s => state.services.has(s.id));
+        detailsTitle.textContent = 'Almost there';
+        detailsSub.textContent = list.length > 1
+          ? 'A quick question for each service.'
+          : 'One quick question.';
+        questionsEl.innerHTML = '';
+        list.forEach((s, i) => {
+          const wrap = document.createElement('div');
+          wrap.className = 'q-question';
+          wrap.innerHTML = `
+            <span class="q-label">${s.q}</span>
+            <div class="q-options q-options-row" data-q="${s.id}">
+              ${s.opts.map(o => `<button type="button" class="q-opt q-opt-pill" data-val="${o}">${o}</button>`).join('')}
+            </div>`;
+          questionsEl.appendChild(wrap);
+        });
+        // Restore previous selections
+        list.forEach(s => {
+          const chosen = state.details[s.id];
+          if (!chosen) return;
+          const group = questionsEl.querySelector(`[data-q="${s.id}"]`);
+          const esc = typeof CSS !== 'undefined' && CSS.escape ? CSS.escape(chosen) : chosen.replace(/["\\]/g, '');
+          const btn = group && group.querySelector(`[data-val="${esc}"]`);
+          if (btn) btn.classList.add('chosen');
+        });
+        updateDetailsNext();
+      }
+      function updateDetailsNext() {
+        const missing = SERVICES.some(s => state.services.has(s.id) && !state.details[s.id]);
+        detailsNext.disabled = missing;
+      }
+      questionsEl.addEventListener('click', (e) => {
+        const btn = e.target.closest('.q-opt');
+        if (!btn) return;
+        const group = btn.closest('.q-options');
+        group.querySelectorAll('.q-opt').forEach(b => b.classList.remove('chosen'));
+        btn.classList.add('chosen');
+        const svcId = group.dataset.q;
+        state.details[svcId] = btn.dataset.val;
+        updateDetailsNext();
+        saveState();
+      });
+
+      // ---- When slide ----
+      function buildWhen() {
+        whenEl.innerHTML = WHEN.map(w =>
+          `<button type="button" class="q-opt q-opt-pill${state.when === w ? ' chosen' : ''}" data-val="${w}">${w}</button>`
+        ).join('');
+      }
+      whenEl.addEventListener('click', (e) => {
+        const btn = e.target.closest('.q-opt');
+        if (!btn) return;
+        whenEl.querySelectorAll('.q-opt').forEach(b => b.classList.remove('chosen'));
+        btn.classList.add('chosen');
+        state.when = btn.dataset.val;
+        whenNext.disabled = false;
+        saveState();
+      });
+
+      // ---- Navigation ----
+      slidesEl.addEventListener('click', (e) => {
+        const next = e.target.closest('[data-next]');
+        const back = e.target.closest('[data-back]');
+        if (next && !next.disabled) go(next.dataset.next);
+        else if (back) go(back.dataset.back);
+      });
+
+      // ---- Contact form submit -> summary ----
+      const nameField = form.querySelector('[name="name"]');
+      const phoneField = form.querySelector('[name="phone"]');
+      function markInvalid(field, invalid) {
+        const wrap = field.closest('.q-field');
+        wrap.classList.toggle('invalid', invalid);
+        const err = wrap.querySelector('.q-error');
+        if (err) err.hidden = !invalid;
+      }
+      function clearInvalid(field) {
+        const wrap = field.closest('.q-field');
+        wrap.classList.remove('invalid');
+        const err = wrap.querySelector('.q-error');
+        if (err) err.hidden = true;
+      }
+      [nameField, phoneField].forEach(field => field.addEventListener('input', () => {
+        clearInvalid(field);
+        state.name = (nameField.value || '').trim();
+        state.phone = (phoneField.value || '').trim();
+        saveState();
+      }));
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const name = (nameField.value || '').trim();
+        const phone = (phoneField.value || '').replace(/[^0-9]/g, '').replace(/^91/, '').replace(/^0/, '');
+        const nameInvalid = !name;
+        const phoneInvalid = !/^[6-9]\d{9}$/.test(phone);
+        markInvalid(nameField, nameInvalid);
+        markInvalid(phoneField, phoneInvalid);
+        if (nameInvalid || phoneInvalid) {
+          (nameInvalid ? nameField : phoneField).focus();
+          return;
+        }
+        state.name = name;
+        state.phone = phone;
+        saveState();
+        go('send');
+      });
+
+      // ---- Summary ----
+      function buildSummary() {
+        const chosen = SERVICES.filter(s => state.services.has(s.id));
+        const rows = [];
+        chosen.forEach(s => {
+          const detail = state.details[s.id] ? ` — ${state.details[s.id]}` : '';
+          rows.push(`<div class="q-sum-row"><span>${s.label}</span><strong>${detail.replace(' — ', '') || 'Yes'}</strong></div>`);
+        });
+        rows.push(`<div class="q-sum-row"><span>When</span><strong>${state.when}</strong></div>`);
+        rows.push(`<div class="q-sum-row"><span>Name</span><strong>${state.name}</strong></div>`);
+        rows.push(`<div class="q-sum-row"><span>Phone</span><strong>+91 ${state.phone}</strong></div>`);
+        summaryEl.innerHTML = rows.join('') +
+          '<p class="q-sum-note">No payment now — we\'ll send your exact quote on WhatsApp. 50% books, 50% after.</p>';
+      }
+
+      // ---- Send via WhatsApp -> confirmation ----
+      document.getElementById('q-send').addEventListener('click', () => {
+        const chosen = SERVICES.filter(s => state.services.has(s.id));
+        const lines = [
+          'Hi CleanNest! I would like a quote.',
+          '',
+          'Services: ' + chosen.map(s => s.label + (state.details[s.id] ? ` (${state.details[s.id]})` : '')).join(', '),
+          'When: ' + state.when,
+          'Name: ' + state.name,
+          'Phone: +91 ' + state.phone
+        ];
+        window.open('https://wa.me/917610000654?text=' + encodeURIComponent(lines.join('\n')), '_blank');
+        go('sent');
+        clearState();
+      });
+      function resetFlow() {
+        form.reset();
+        state.services.clear();
+        state.details = {};
+        state.when = state.name = state.phone = '';
+        whenNext.disabled = true;
+        slide = 'services';
+        allSlides().forEach(s => { s.hidden = s.dataset.slide !== 'services'; });
+        renderProgress();
+        updateSelServices();
+        clearState();
+      }
+      document.getElementById('q-done').addEventListener('click', () => {
+        resetFlow();
+        closePanel();
+      });
+
+      // ---- Open / close ----
+      // Keep the previously focused element so we can return focus on close.
+      let lastFocus = null;
+
+      function openPanel() {
+        lastFocus = document.activeElement;
+        const saved = loadState();
+        if (saved) {
+          state.services = new Set(saved.services || []);
+          state.details = saved.details || {};
+          state.when = saved.when || '';
+          state.name = saved.name || '';
+          state.phone = saved.phone || '';
+        }
+        nameField.value = state.name;
+        phoneField.value = state.phone;
+        panel.hidden = false;
+        overlay.hidden = false;
+        requestAnimationFrame(() => {
+          panel.classList.add('open');
+          overlay.classList.add('show');
+        });
+        document.body.classList.add('sheet-open');
+        buildServices();
+        buildWhen();
+        updateSelServices();
+        renderProgress();
+        // Resume where a returning visitor left off (unless they already sent).
+        go(saved && SLIDES.includes(saved.slide) ? saved.slide : 'services');
+        // Move focus into the dialog for keyboard users.
+        setTimeout(() => close.focus(), 380);
+      }
+      function closePanel() {
+        panel.classList.remove('open');
+        overlay.classList.remove('show');
+        document.body.classList.remove('sheet-open');
+        setTimeout(() => {
+          panel.hidden = true;
+          overlay.hidden = true;
+          // Return focus to the element that opened the panel.
+          if (lastFocus && lastFocus.focus) lastFocus.focus();
+        }, 360);
+      }
+
+      // Simple focus trap: keep Tab/Shift+Tab cycling inside the open panel.
+      panel.addEventListener('keydown', (e) => {
+        if (e.key !== 'Tab' || panel.hidden) return;
+        const focusables = panel.querySelectorAll('button, input, textarea, select, [tabindex]:not([tabindex="-1"])');
+        if (!focusables.length) return;
+        const first = focusables[0];
+        const lastEl = focusables[focusables.length - 1];
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault();
+          lastEl.focus();
+        } else if (!e.shiftKey && document.activeElement === lastEl) {
+          e.preventDefault();
+          first.focus();
+        }
+      });
+
+      open.addEventListener('click', openPanel);
+      close.addEventListener('click', closePanel);
+      overlay.addEventListener('click', closePanel);
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && !panel.hidden) closePanel();
+      });
+    })();
+</script>
 </body>
 </html>
