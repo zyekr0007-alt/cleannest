@@ -277,7 +277,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 /* Press feedback — subtle scale-down on press (Emil: 0.95–0.98, 160ms ease-out) */
 .btn:active,
 .cta-btn:active,
-.ct-btn:active,
+.hc-btn:active,
 .float-btn:active,
 .footer-btn:active,
 .menu-btn:active,
@@ -1943,48 +1943,44 @@ body.hero-past .float-call {
 .float-wa:hover { background: rgba(31, 184, 87, 0.98); }
 .float-call:hover { background: rgba(8, 46, 70, 0.98); }
 
-/* Hero contact trio — segmented glass bar (WhatsApp | Call | Instagram) */
-.contact-trio {
-  display: inline-flex;
-  align-items: center;
-  padding: 5px;
-  border-radius: 999px;
-  background: var(--glass-bg);
-  border: var(--glass-border);
-  box-shadow: var(--glass-shadow);
-  backdrop-filter: var(--glass-backdrop);
-  -webkit-backdrop-filter: var(--glass-backdrop);
+/* Hero contact buttons — three individual colored pills under the CTA */
+.hero-contact {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
 }
-.ct-btn {
+.hc-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 46px;
-  height: 46px;
+  gap: 8px;
+  padding: 11px 20px;
   border-radius: 999px;
-  color: var(--navy);
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 0.88rem;
+  line-height: 1;
+  color: #fff;
   text-decoration: none;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  box-shadow: 0 8px 22px rgba(11, 67, 100, 0.18);
   transition: transform var(--dur-quick) var(--ease-out),
-              color var(--dur-quick) var(--ease-out),
-              background var(--dur-quick) var(--ease-out);
+              box-shadow var(--dur-quick) var(--ease-out),
+              filter var(--dur-quick) var(--ease-out);
 }
-.ct-btn:hover { transform: translateY(-2px); }
-.ct-btn svg { width: 22px; height: 22px; }
-.ct-wa:hover { color: #25D366; background: rgba(37, 211, 102, 0.12); }
-.ct-call:hover { color: var(--cyan); background: rgba(12, 215, 229, 0.12); }
-.ct-ig:hover { color: #DD2A7B; background: rgba(221, 42, 123, 0.1); }
-.ct-divider {
-  width: 1px;
-  height: 26px;
-  background: rgba(11, 67, 100, 0.14);
-  flex-shrink: 0;
-}
-/* Trio icons stamp in one after another as the CTA row lands */
-.hero-ctas.in .ct-btn { animation: ctPop 0.4s var(--ease-out) both; }
-.hero-ctas.in .ct-call { animation-delay: 0.08s; }
-.hero-ctas.in .ct-ig { animation-delay: 0.16s; }
-@keyframes ctPop {
-  from { opacity: 0; transform: translateY(8px) scale(0.9); }
+.hc-btn:hover { transform: translateY(-2px); box-shadow: 0 12px 28px rgba(11, 67, 100, 0.26); filter: brightness(1.06); }
+.hc-btn svg { width: 19px; height: 19px; flex-shrink: 0; }
+/* Modern brand colors */
+.hc-wa { background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); }
+.hc-call { background: linear-gradient(135deg, #0B4364 0%, #082E46 100%); }
+.hc-ig { background: linear-gradient(45deg, #F58529 0%, #DD2A7B 55%, #8134AF 100%); }
+/* Buttons stamp in one after another as the row lands */
+.hero-contact.in .hc-btn { animation: hcPop 0.42s var(--ease-out) both; }
+.hero-contact.in .hc-call { animation-delay: 0.08s; }
+.hero-contact.in .hc-ig { animation-delay: 0.16s; }
+@keyframes hcPop {
+  from { opacity: 0; transform: translateY(10px) scale(0.92); }
   to   { opacity: 1; transform: none; }
 }
 
@@ -1992,7 +1988,8 @@ body.hero-past .float-call {
   .float-btn { width: 48px; height: 48px; }
   .float-wa { left: 12px; }
   .float-call { right: 12px; }
-  .ct-btn { width: 42px; height: 42px; }
+  .hero-contact { gap: 8px; margin-top: 14px; justify-content: center; }
+  .hc-btn { padding: 10px 16px; font-size: 0.82rem; }
 }
 
 /* ============================================================
@@ -2745,9 +2742,9 @@ body.loaded .brand-strip { opacity: 1; transition: opacity 0.3s ease; }
     opacity: 1 !important;
     transform: none !important;
   }
-  /* Floating buttons: appear instantly with no slide; trio: no stamp */
+  /* Floating buttons: appear instantly with no slide; contact pills: no stamp */
   .float-btn { transition: opacity 0.2s ease; transform: translate(0, -50%) !important; }
-  .hero-ctas.in .ct-btn { animation: none !important; opacity: 1 !important; transform: none !important; }
+  .hero-contact.in .hc-btn { animation: none !important; opacity: 1 !important; transform: none !important; }
   .hero-title .hero-line, .hero-copy .reveal, .service-tile, .svc-section, .svc-head {
     opacity: 1 !important;
     transform: none !important;
