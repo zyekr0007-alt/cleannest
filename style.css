@@ -1652,12 +1652,18 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 /* ---------- CTA band ---------- */
 .cta-band {
   padding: 56px 22px 56px;
-  background: #F6F7F9;
+  background: var(--surface);
   text-align: center;
   overflow: hidden;
 }
 
+.cta-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
 .cta-title {
+  margin-top: 16px;
   font-size: clamp(1.8rem, 4vw, 2.4rem);
   font-weight: 800;
   color: var(--navy);
@@ -1673,128 +1679,77 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 }
 
 .cta-actions {
-  margin-top: 30px;
+  margin-top: 26px;
   display: flex;
   gap: 14px;
   justify-content: center;
+  align-items: center;
   flex-wrap: wrap;
 }
 
 .cta-btn {
-  display: inline-block;
-  padding: 15px 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  height: 48px;
+  padding: 0 32px;
   border-radius: 999px;
   font-family: 'Nunito', sans-serif;
   font-weight: 700;
   font-size: 1.02rem;
+  line-height: 1;
   text-decoration: none;
-  transition: transform 0.18s, box-shadow 0.18s;
+  transition: transform 0.18s, box-shadow 0.18s, background 0.18s, border-color 0.18s;
 }
 
-.cta-wa {
-  background: linear-gradient(145deg, #2EE1EE 0%, var(--cyan) 45%, #0AA9C9 100%);
-  color: var(--navy-dark);
-  box-shadow: 0 8px 20px rgba(12, 215, 229, 0.3);
-}
-.cta-wa:hover {
-  transform: translateY(-2px);
-  background: linear-gradient(145deg, #35E9F5 0%, #2EE1EE 50%, #0ABBCF 100%);
-  box-shadow: 0 12px 28px rgba(12, 215, 229, 0.45);
-}
-
-.cta-call {
-  background: rgba(255, 255, 255, 0.75);
+/* Frosted-glass secondary CTA */
+.cta-glass {
+  background: rgba(255, 255, 255, 0.72);
   color: var(--navy);
-  border: 1px solid rgba(11, 67, 100, 0.28);
+  border: 1px solid rgba(11, 67, 100, 0.18);
+  box-shadow: 0 8px 22px rgba(11, 67, 100, 0.08);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
-.cta-call:hover {
+.cta-glass:hover {
   transform: translateY(-2px);
-  background: rgba(255, 255, 255, 0.95);
-  border-color: rgba(12, 215, 229, 0.6);
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(12, 215, 229, 0.55);
+  box-shadow: 0 12px 26px rgba(11, 67, 100, 0.12);
 }
 
-/* ---------- Booking process flow (A → B → C) ---------- */
-.booking-flow {
-  margin-top: 30px;
+/* Compact trust row — three facts, one line */
+.cta-perks {
+  margin: 22px auto 0;
+  padding: 0;
+  list-style: none;
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: center;
   gap: 10px;
-  flex-wrap: nowrap;
+  max-width: 760px;
 }
-.booking-step {
-  display: flex;
+.cta-perks li {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 9px 14px;
-  min-width: 108px;
+  gap: 7px;
+  padding: 7px 16px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.85);
-  border: 1px solid rgba(11, 67, 100, 0.12);
-  box-shadow: 0 10px 30px rgba(11, 67, 100, 0.08);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}
-.booking-num {
-  font-family: 'Nunito', sans-serif;
-  font-weight: 800;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-}
-.booking-ico {
-  position: relative;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--navy);
-  background: var(--cyan-soft);
+  background: rgba(255, 255, 255, 0.65);
   border: 1px solid rgba(11, 67, 100, 0.1);
-  overflow: hidden;
-  flex-shrink: 0;
-}
-.booking-ico svg { width: 20px; height: 20px; position: relative; z-index: 1; }
-/* Same swirl animation as the "Why Choose Us" icon */
-.booking-ico::before {
-  content: "";
-  position: absolute;
-  inset: -40%;
-  background: conic-gradient(from 0deg, transparent 0 40%, rgba(12, 215, 229, 0.35) 50%, transparent 60% 100%);
-  animation: whyIcoSwirl 3.2s linear infinite;
-}
-.booking-title {
-  font-family: 'Nunito', sans-serif;
-  font-weight: 700;
-  font-size: 0.86rem;
-  line-height: 1.15;
-  color: var(--navy);
+  color: var(--muted);
+  font-size: 0.84rem;
+  font-weight: 600;
   white-space: nowrap;
 }
-.booking-arrow {
-  color: var(--cyan);
-  opacity: 1;
-  font-size: 1.5rem;
-  font-weight: 700;
-  line-height: 1;
+.cta-perks li::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--cyan);
   flex-shrink: 0;
-  animation: bookingArrowPulse 1.6s ease-in-out infinite;
-}
-@keyframes bookingArrowPulse {
-  0%, 100% { opacity: 0.4; transform: translateX(0); }
-  50%      { opacity: 1; transform: translateX(4px); }
-}
-@media (max-width: 640px) {
-  .booking-flow { gap: 6px; }
-  .booking-step { gap: 7px; padding: 7px 10px; }
-  .booking-ico { width: 36px; height: 36px; }
-  .booking-ico svg { width: 17px; height: 17px; }
-  .booking-title { font-size: 0.76rem; }
-  .booking-num { font-size: 0.64rem; }
-  .booking-arrow { font-size: 1.3rem; }
 }
 
 /* ---------- Footer ---------- */
@@ -2767,7 +2722,7 @@ body.loaded .brand-strip { opacity: 1; transition: opacity 0.3s ease; }
     animation: none !important;
     transition: none !important;
   }
-  .booking-ico::before, .booking-arrow { animation: none !important; }
+  .cta-perks li::before { animation: none !important; }
   .rating-star { animation: none !important; }
   .q-slide { animation: none !important; }
   /* Rating card: the .lit choreography never runs under reduced motion,
