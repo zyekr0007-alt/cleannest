@@ -1978,7 +1978,11 @@ body.hero-past .float-call {
 .hc-wa { background: #25D366; }
 .hc-call { background: #0B4364; }
 .hc-ig { background: linear-gradient(45deg, #F58529 0%, #DD2A7B 55%, #8134AF 100%); }
-/* Buttons stamp in one after another, then float gently forever */
+/* Gentle float forever (independent of the entrance pop so it survives .in removal) */
+.hc-btn { animation: hcFloat 3.4s ease-in-out infinite; }
+.hc-call { animation-delay: 0.16s; }
+.hc-ig { animation-delay: 0.32s; }
+/* Buttons stamp in one after another, then keep floating */
 .hero-contact.in .hc-btn {
   animation: hcPop 0.42s var(--ease-out) both,
              hcFloat 3.4s ease-in-out 0.7s infinite;
