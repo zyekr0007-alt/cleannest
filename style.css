@@ -1919,10 +1919,11 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 
 
 /* ---------- Floating contact buttons (WhatsApp left, Call right) ---------- */
-/* Slide in from the screen edges once the hero is scrolled past (body.hero-past). */
+/* Slide in from the screen edges once the hero is scrolled past (body.hero-past).
+   Anchored to the BOTTOM corners so they never cover mid-page content. */
 .float-btn {
   position: fixed;
-  top: 50%;
+  bottom: 24px;
   z-index: 80;
   display: inline-flex;
   align-items: center;
@@ -1944,22 +1945,22 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 }
 .float-wa {
   left: 18px;
-  transform: translate(-120%, -50%);
+  transform: translateX(-130%);
   background: rgba(37, 211, 102, 0.92);
 }
 .float-call {
   right: 18px;
-  transform: translate(120%, -50%);
+  transform: translateX(130%);
   background: rgba(11, 67, 100, 0.92);
 }
 .float-btn svg { width: 26px; height: 26px; }
 body.hero-past .float-wa,
 body.hero-past .float-call {
   opacity: 1;
-  transform: translate(0, -50%);
+  transform: translateX(0);
   pointer-events: auto;
 }
-.float-btn:hover { transform: translate(0, calc(-50% - 3px)) scale(1.05); }
+.float-btn:hover { transform: translateY(-4px) scale(1.05); }
 .float-wa:hover { background: rgba(31, 184, 87, 0.98); }
 .float-call:hover { background: rgba(8, 46, 70, 0.98); }
 
@@ -2025,7 +2026,7 @@ body.hero-past .float-call {
 }
 
 @media (max-width: 640px) {
-  .float-btn { width: 48px; height: 48px; }
+  .float-btn { width: 48px; height: 48px; bottom: 18px; }
   .float-wa { left: 12px; }
   .float-call { right: 12px; }
   .hero-contact { gap: 12px; margin-top: 14px; justify-content: center; }
@@ -2784,7 +2785,7 @@ body.loaded .brand-strip { opacity: 1; transition: opacity 0.3s ease; }
     transform: none !important;
   }
   /* Floating buttons: appear instantly with no slide; contact pills: no stamp */
-  .float-btn { transition: opacity 0.2s ease; transform: translate(0, -50%) !important; }
+  .float-btn { transition: opacity 0.2s ease; transform: none !important; }
   .hero-contact.in .hc-btn { animation: none !important; opacity: 1 !important; transform: none !important; }
   .hero-title .hero-line, .hero-copy .reveal, .service-tile, .svc-section, .svc-head {
     opacity: 1 !important;
