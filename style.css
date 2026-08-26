@@ -1157,24 +1157,13 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   color: var(--navy);
 }
 
-/* Swipeable reviews carousel */
-.reviews-carousel {
-  position: relative;
-  max-width: 560px;
+/* Reviews — static grid, all reviews visible at once */
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+  gap: 18px;
+  max-width: 100%;
   margin: 0 auto;
-  overflow: hidden;
-}
-
-.reviews-track {
-  display: flex;
-  transition: transform 0.55s cubic-bezier(0.32, 0.72, 0, 1);
-  touch-action: pan-y;
-}
-
-.review-slide {
-  flex: 0 0 100%;
-  min-width: 100%;
-  padding: 4px;
 }
 
 .review-card {
@@ -1572,6 +1561,30 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   color: var(--muted);
   font-size: 0.95rem;
   line-height: 1.6;
+}
+
+/* Homepage FAQ — "see all" link */
+.faq-more {
+  text-align: center;
+  margin-top: 28px;
+}
+.faq-more a {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--navy);
+  text-decoration: none;
+  padding: 12px 22px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(11, 67, 100, 0.18);
+  transition: background 0.2s ease, border-color 0.2s ease;
+}
+.faq-more a:hover {
+  background: rgba(12, 215, 229, 0.1);
+  border-color: rgba(12, 215, 229, 0.5);
 }
 
 /* Dedicated FAQ page */
@@ -2590,7 +2603,7 @@ body.hero-past .float-call {
   transition: background 0.18s ease, border-color 0.18s ease;
 }
 .btn-ghost:hover { background: rgba(11, 67, 100, 0.06); }
-.q-next:disabled, .q-when-next:disabled { opacity: 0.45; cursor: not-allowed; }
+.q-next:disabled, .q-send:disabled { opacity: 0.45; cursor: not-allowed; }
 
 .q-summary {
   display: flex;
