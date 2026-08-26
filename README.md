@@ -23,8 +23,7 @@ Static site for **CleanNest — Deep Cleaning Services, Jalandhar** (Punjab, Ind
 ## Business facts on the site
 
 - Promo: **10% OFF with code CLEAN10**
-- WhatsApp / booking line: **+91 98151 12768** (`PHONE_INTL = "919815112768"` in `assets/js/main.js`)
-- GMB phone (secondary, listed on contact): +91 76100 00654 — NAP split unresolved; owner to pick one canonical number
+- WhatsApp / booking line: **+91 76100 00654** — single canonical number (old +91 98151 12768 removed)
 - Address: Shop 3, Wadala Rd, opp. Palm Royale Estate, Guru Teg Bahadur Nagar, Green Model Town, Jalandhar 144001
 - Hours: 9 AM – 8 PM, 7 days a week
 - Instagram: instagram.com/cleannest.co
