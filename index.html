@@ -59,7 +59,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=143">
+  <link rel="stylesheet" href="style.css?v=144">
   <style>
     /* Critical preloader shell: keep it full-screen off-white instantly so
        nothing flashes before style.css loads. (Full styling lives in style.css.) */
@@ -119,18 +119,19 @@
           <a class="btn btn-secondary" href="tel:+917610000654">Call 76100 00654</a>
         </div>
         <a class="hero-rating reveal" href="https://www.google.com/maps/place/?q=place_id:ChIJ1zZzOUtbaR4RXbMy1OZsKsI" target="_blank" rel="noopener" aria-label="See our reviews">
-          <span class="hero-rating-row">
-            <span class="hero-num" data-count="4.9" data-decimals="1">0</span>
-            <span class="hero-pill" aria-hidden="true">
-              <span class="hero-star">★</span>
-              <span class="hero-star">★</span>
-              <span class="hero-star">★</span>
-              <span class="hero-star">★</span>
-              <span class="hero-star">★</span>
+          <span class="hr-cell">
+            <span class="hr-top">
+              <span class="hr-num" data-count="4.9" data-decimals="1">0</span>
+              <span class="hr-stars" aria-hidden="true"><span class="hr-star">★</span><span class="hr-star">★</span><span class="hr-star">★</span><span class="hr-star">★</span><span class="hr-star">★</span></span>
             </span>
-            <span class="hero-count"><span data-count="468">0</span> live ratings</span>
+            <span class="hr-label">Google Rating</span>
           </span>
-          <span class="hero-sources">across all sources</span>
+          <span class="hr-divider" aria-hidden="true"></span>
+          <span class="hr-cell">
+            <span class="hr-top"><span class="hr-count"><span data-count="468">0</span> live ratings</span></span>
+            <span class="hr-label">Verified on Google</span>
+          </span>
+          <span class="hr-arrow" aria-hidden="true">→</span>
         </a>
         <a class="hero-follow reveal" id="hero-ig" href="https://www.instagram.com/cleannest.co" target="_blank" rel="noopener" aria-label="Follow CleanNest on Instagram">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.9.1 1.2.1 1.8.2 2.2.4.6.2 1 .5 1.4.9.4.4.7.8.9 1.4.2.4.4 1 .4 2.2.1 1.3.1 1.7.1 4.9s0 3.6-.1 4.9c-.1 1.2-.2 1.8-.4 2.2-.2.6-.5 1-.9 1.4-.4.4-.8.7-1.4.9-.4.2-1 .4-2.2.4-1.3.1-1.7.1-4.9.1s-3.6 0-4.9-.1c-1.2-.1-1.8-.2-2.2-.4-.6-.2-1-.5-1.4-.9-.4-.4-.7-.8-.9-1.4-.2-.4-.4-1-.4-2.2C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.9c.1-1.2.2-1.8.4-2.2.2-.6.5-1 .9-1.4.4-.4.8-.7 1.4-.9.4-.2 1-.4 2.2-.4C8.4 2.2 8.8 2.2 12 2.2Zm0 3.6a6.2 6.2 0 1 0 0 12.4 6.2 6.2 0 0 0 0-12.4Zm0 10.2a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm6.4-10.4a1.4 1.4 0 1 1-2.8 0 1.4 1.4 0 0 1 2.8 0Z"/></svg>
@@ -1022,7 +1023,7 @@
 
     // Animated stat counters — count up when they come into view
     (function initCounters() {
-      const nums = document.querySelectorAll('.stat-num, .rating-num, .rating-count-num, .hero-num, .hero-count span[data-count], .agg-score, .agg-text strong[data-count]');
+      const nums = document.querySelectorAll('.stat-num, .rating-num, .rating-count-num, .hr-num, .hr-count span[data-count], .agg-score, .agg-text strong[data-count]');
       if (!nums.length) return;
       const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       const animate = (el) => {
@@ -1035,7 +1036,13 @@
           const p = Math.min((now - start) / dur, 1);
           const val = target * ease(p);
           el.textContent = decimals ? val.toFixed(decimals) : Math.round(val).toString();
-          if (p < 1) requestAnimationFrame(step);
+          if (p < 1) { requestAnimationFrame(step); return; }
+          // The 4.9 is the hero's social-proof moment — stamp the stars in and
+          // sweep a sheen across the card the instant it lands.
+          if (el.classList.contains('hr-num')) {
+            const card = el.closest('.hero-rating');
+            if (card) card.classList.add('lit');
+          }
         };
         requestAnimationFrame(step);
       };

@@ -561,84 +561,128 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 
 /* Google review recap under the CTA — text outside the pill, centered */
 .hero-rating {
+  position: relative;
   display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
+  align-items: stretch;
   margin-top: 36px;
-  padding: 14px 26px;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.55);
-  border: 1px solid rgba(11, 67, 100, 0.08);
-  box-shadow: 0 8px 28px rgba(11, 67, 100, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  padding: 12px 10px 12px 18px;
+  border-radius: 20px;
+  background: var(--glass-bg);
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
   text-decoration: none;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;   /* clips the one-time sheen sweep */
+  transition: transform var(--dur-quick) var(--ease-out), box-shadow var(--dur-quick) var(--ease-out);
 }
-.hero-rating:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(11, 67, 100, 0.10); }
-/* Centered stack: 4.9 → stars → live ratings */
-.hero-rating-row {
-  display: inline-flex;
+.hero-rating:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(11, 67, 100, 0.16);
+}
+
+/* One-time sheen that sweeps across the card once the rating lands */
+.hero-rating::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(100deg, transparent 30%, rgba(255, 255, 255, 0.65) 50%, transparent 70%);
+  transform: translateX(-130%) skewX(-12deg);
+  pointer-events: none;
+}
+.hero-rating.lit::after { animation: ratingSheen 0.9s var(--ease-in-out) 0.45s both; }
+
+/* Two equal cells split by a hairline divider — compact, symmetric */
+.hr-cell {
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 5px;
+  padding: 4px 14px;
+  min-width: 0;
 }
-.hero-num {
+.hr-top { display: inline-flex; align-items: center; gap: 10px; line-height: 1; }
+.hr-num {
   font-family: 'Inter', Arial, sans-serif;
   font-weight: 800;
-  font-size: 2.2rem;
+  font-size: 1.75rem;
   line-height: 1;
   color: #F9AB00;
   letter-spacing: -0.02em;
-  text-shadow: 0 2px 12px rgba(249, 171, 0, 0.3);
-  animation: starShine 1.8s ease-in-out infinite;
 }
-/* Stars on a soft gold disc — centered, the hero of the block */
-.hero-pill {
-  display: inline-flex;
-  align-items: center;
-  gap: 3px;
-  padding: 7px 14px;
-  border-radius: 999px;
-  background: radial-gradient(120% 140% at 50% 0%, #FFF7E0 0%, #FFEFC2 100%);
-  border: 1px solid rgba(244, 210, 133, 0.8);
-}
-.hero-star {
-  font-size: 1.15rem;
+.hero-rating.lit .hr-num { animation: numBloom 0.55s var(--ease-out); }
+.hr-stars { display: inline-flex; gap: 2px; }
+.hr-star {
+  font-size: 1.05rem;
   line-height: 1;
   color: #F9AB00;
-  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.6);
-  animation: starShine 1.8s ease-in-out infinite;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
 }
-.hero-star:nth-child(2) { animation-delay: 0.18s; }
-.hero-star:nth-child(3) { animation-delay: 0.36s; }
-.hero-star:nth-child(4) { animation-delay: 0.54s; }
-.hero-star:nth-child(5) { animation-delay: 0.72s; }
-.hero-count {
+/* Stars stamp in one after another as the 4.9 finishes counting */
+.hero-rating.lit .hr-star { opacity: 0; animation: starPop 0.42s var(--ease-out) both; }
+.hero-rating.lit .hr-star:nth-child(2) { animation-delay: 0.07s; }
+.hero-rating.lit .hr-star:nth-child(3) { animation-delay: 0.14s; }
+.hero-rating.lit .hr-star:nth-child(4) { animation-delay: 0.21s; }
+.hero-rating.lit .hr-star:nth-child(5) { animation-delay: 0.28s; }
+.hr-count {
   font-family: 'Nunito', sans-serif;
   font-weight: 700;
-  font-size: 0.92rem;
-  line-height: 1.2;
+  font-size: 0.95rem;
+  line-height: 1.15;
   color: var(--navy);
   letter-spacing: 0.01em;
+  white-space: nowrap;
 }
-.hero-count span { font-weight: 800; color: var(--navy); }
-.hero-sources {
+.hr-count span { font-weight: 800; color: var(--navy); }
+.hr-label {
   font-family: 'Nunito', sans-serif;
-  font-weight: 500;
-  font-size: 0.78rem;
+  font-weight: 600;
+  font-size: 0.72rem;
+  line-height: 1;
   color: var(--muted);
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
+}
+.hr-divider {
+  align-self: center;
+  width: 1px;
+  height: 42px;
+  background: rgba(11, 67, 100, 0.12);
+}
+.hr-arrow {
+  display: inline-flex;
+  align-items: center;
+  align-self: center;
+  margin: 0 6px 0 2px;
+  font-size: 1.15rem;
+  color: var(--navy);
+  opacity: 0.45;
+  transition: transform var(--dur-quick) var(--ease-out), opacity var(--dur-quick) var(--ease-out);
+}
+.hero-rating:hover .hr-arrow { transform: translateX(3px); opacity: 0.9; }
+
+@keyframes starPop {
+  0%   { opacity: 0; transform: translateY(6px) scale(0.9); }
+  60%  { opacity: 1; transform: translateY(-2px) scale(1.1); }
+  100% { opacity: 1; transform: none; }
+}
+@keyframes numBloom {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(1.07); }
+  100% { transform: scale(1); }
+}
+@keyframes ratingSheen {
+  from { transform: translateX(-130%) skewX(-12deg); }
+  to   { transform: translateX(130%) skewX(-12deg); }
 }
 @media (max-width: 640px) {
-  .hero-rating { margin-top: 30px; padding: 12px 20px; }
-  .hero-num { font-size: 2rem; }
-  .hero-star { font-size: 1.05rem; }
-  .hero-count { font-size: 0.88rem; }
-  .hero-sources { font-size: 0.74rem; }
+  .hero-rating { margin-top: 30px; padding: 10px 6px 10px 12px; }
+  .hr-cell { padding: 4px 10px; }
+  .hr-num { font-size: 1.55rem; }
+  .hr-star { font-size: 0.95rem; }
+  .hr-count { font-size: 0.85rem; }
+  .hr-label { font-size: 0.66rem; }
+  .hr-arrow { margin-right: 4px; }
 }
 
 /* ---------- Section head (shared) ---------- */
@@ -2701,6 +2745,15 @@ body.loaded .brand-strip { opacity: 1; transition: opacity 0.3s ease; }
   .booking-ico::before, .booking-arrow { animation: none !important; }
   .rating-star { animation: none !important; }
   .q-slide { animation: none !important; }
+  /* Rating card: the .lit choreography never runs under reduced motion,
+     but force stars visible if it somehow does. */
+  .hero-rating.lit::after,
+  .hero-rating.lit .hr-star,
+  .hero-rating.lit .hr-num {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
   .hero-title .hero-line, .hero-copy .reveal, .service-tile, .svc-section, .svc-head {
     opacity: 1 !important;
     transform: none !important;
