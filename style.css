@@ -24,6 +24,12 @@
   --glass-border: 1px solid rgba(255, 255, 255, 0.65);
   --glass-shadow: 0 12px 40px rgba(11, 67, 100, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.7);
   --glass-backdrop: blur(18px) saturate(160%);
+  /* Motion tokens (Emil Kowalski curves) — shared across all UI motion */
+  --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+  --dur-press: 160ms;
+  --dur-quick: 220ms;
+  --dur-standard: 300ms;
 }
 
 /* Ultima font — the CleanNest brand typeface (single file only) */
@@ -293,6 +299,20 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   transition: transform 0.18s ease, box-shadow 0.18s ease;
 }
 
+/* Press feedback — subtle scale-down on press (Emil: 0.95–0.98, 160ms ease-out) */
+.btn:active,
+.cta-btn:active,
+.sticky-btn:active,
+.hero-follow:active,
+.footer-btn:active,
+.menu-btn:active,
+.gallery-card:active,
+.q-opt:active,
+.btn-secondary:active {
+  transform: scale(0.97);
+  transition-duration: var(--dur-press);
+}
+
 /* Visible keyboard focus ring for the main call-to-action buttons */
 .btn:focus-visible,
 .cta-btn:focus-visible,
@@ -313,12 +333,13 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   content: "";
   position: absolute;
   top: 0;
-  left: -80%;
+  left: 0;
   width: 50%;
   height: 100%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.55), transparent);
-  transform: skewX(-20deg);
+  transform: translateX(-160%) skewX(-20deg);
   animation: ctaShine 3s ease-in-out infinite;
+  will-change: transform;
 }
 .btn-primary:hover {
   transform: translateY(-3px) scale(1.04);
@@ -332,14 +353,13 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 .btn-primary:hover .btn-icon { transform: translateX(4px); }
 
 @keyframes ctaPulse {
-  0%, 100% { box-shadow: 0 8px 22px rgba(12, 215, 229, 0.32); }
-  50%      { box-shadow: 0 8px 30px rgba(12, 215, 229, 0.5); }
+  0%, 100% { box-shadow: 0 8px 22px rgba(12, 215, 229, 0.28); }
+  50%      { box-shadow: 0 8px 28px rgba(12, 215, 229, 0.4); }
 }
 
 @keyframes ctaShine {
-  0%   { left: -80%; }
-  60%  { left: 130%; }
-  100% { left: 130%; }
+  0%   { transform: translateX(-160%) skewX(-20deg); }
+  55%, 100% { transform: translateX(320%) skewX(-20deg); }
 }
 
 .btn-secondary {
@@ -424,9 +444,9 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
     text-shadow: 0 0 5px rgba(232, 185, 60, 0.45);
   }
   50% {
-    transform: scale(1.18);
+    transform: scale(1.08);
     color: #FCE1A0;
-    text-shadow: 0 0 12px rgba(240, 203, 90, 0.85);
+    text-shadow: 0 0 9px rgba(240, 203, 90, 0.7);
   }
 }
 
@@ -738,6 +758,15 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   opacity: 1;
   transform: translateY(0);
 }
+/* Stagger the 8 service tiles on entrance (40ms cascade — Emil's rule: 30–80ms) */
+.service-tile.in:nth-child(2) { transition-delay: 0.04s; }
+.service-tile.in:nth-child(3) { transition-delay: 0.08s; }
+.service-tile.in:nth-child(4) { transition-delay: 0.12s; }
+.service-tile.in:nth-child(5) { transition-delay: 0.16s; }
+.service-tile.in:nth-child(6) { transition-delay: 0.20s; }
+.service-tile.in:nth-child(7) { transition-delay: 0.24s; }
+.service-tile.in:nth-child(8) { transition-delay: 0.28s; }
+.service-tile.in:nth-child(9) { transition-delay: 0.32s; }
 .service-tile:hover {
   box-shadow: 0 20px 46px rgba(11, 67, 100, 0.24), inset 0 1px 0 rgba(255, 255, 255, 0.7);
 }
@@ -2161,7 +2190,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   opacity: 0;
   transform: translateY(16px);
 }
-.menu-panel.open .menu-note { animation: menuItemIn 0.5s ease 0.34s forwards; }
+.menu-panel.open .menu-note { animation: menuItemIn 0.28s cubic-bezier(0.23, 1, 0.32, 1) 0.30s forwards; }
 
 /* In-menu FAQ (collapsible accordion inside the menu) */
 .menu-faq-toggle { cursor: pointer; width: 100%; text-align: left; }
@@ -2249,7 +2278,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   opacity: 0;
   transform: translateY(16px);
 }
-.menu-panel.open .menu-quote { animation: menuItemIn 0.5s ease 0.40s forwards; }
+.menu-panel.open .menu-quote { animation: menuItemIn 0.28s cubic-bezier(0.23, 1, 0.32, 1) 0.36s forwards; }
 .menu-quote:hover,
 .menu-quote:focus-visible {
   color: var(--navy);
@@ -2623,9 +2652,10 @@ body.loaded .brand-strip { opacity: 1; transition: opacity 0.3s ease; }
 
 /* The preloader now owns the brand entrance, so the header's own positional
    animations are off (kept the shimmer) so the wordmark lands with no slide,
-   jump or duplicate. */
+   jump or duplicate. The wordmark is solid navy (no gradient), so a
+   background-position shimmer would be invisible — removed as wasted work. */
 .brand-lockup { animation: none !important; }
-.brand-wordmark { animation: brandShine 6s ease-in-out 1.2s infinite !important; }
+.brand-wordmark { animation: none !important; }
 
 @media (prefers-reduced-motion: reduce) {
   .preloader-glow { animation: none !important; }
