@@ -278,7 +278,6 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 .btn:active,
 .cta-btn:active,
 .hc-btn:active,
-.float-btn:active,
 .footer-btn:active,
 .menu-btn:active,
 .gallery-card:active,
@@ -1868,51 +1867,6 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 }
 
 
-/* ---------- Floating contact buttons (WhatsApp left, Call right) ---------- */
-/* Slide in from the screen edges once the hero is scrolled past (body.hero-past).
-   Anchored to the BOTTOM corners so they never cover mid-page content. */
-.float-btn {
-  position: fixed;
-  bottom: 24px;
-  z-index: 80;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 54px;
-  height: 54px;
-  border-radius: 50%;
-  color: #fff;
-  text-decoration: none;
-  backdrop-filter: blur(16px) saturate(180%);
-  -webkit-backdrop-filter: blur(16px) saturate(180%);
-  border: 1.5px solid rgba(255, 255, 255, 0.65);
-  box-shadow: 0 12px 32px rgba(11, 67, 100, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.6);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--dur-standard) var(--ease-out),
-              transform var(--dur-standard) var(--ease-out),
-              background var(--dur-quick) var(--ease-out);
-}
-.float-wa {
-  left: 18px;
-  transform: translateX(-130%);
-  background: rgba(37, 211, 102, 0.92);
-}
-.float-call {
-  right: 18px;
-  transform: translateX(130%);
-  background: rgba(11, 67, 100, 0.92);
-}
-.float-btn svg { width: 26px; height: 26px; }
-body.hero-past .float-wa,
-body.hero-past .float-call {
-  opacity: 1;
-  transform: translateX(0);
-  pointer-events: auto;
-}
-.float-btn:hover { transform: translateY(-4px) scale(1.05); }
-.float-wa:hover { background: rgba(31, 184, 87, 0.98); }
-.float-call:hover { background: rgba(8, 46, 70, 0.98); }
 
 /* Hero contact buttons — three flat circular icons under the CTA */
 .hero-contact {
@@ -1976,9 +1930,6 @@ body.hero-past .float-call {
 }
 
 @media (max-width: 640px) {
-  .float-btn { width: 48px; height: 48px; bottom: 18px; }
-  .float-wa { left: 12px; }
-  .float-call { right: 12px; }
   .hero-contact { gap: 12px; margin-top: 14px; justify-content: center; }
   .hc-btn { width: 46px; height: 46px; }
   .hc-btn svg { width: 21px; height: 21px; }
@@ -2734,8 +2685,7 @@ body.loaded .brand-strip { opacity: 1; transition: opacity 0.3s ease; }
     opacity: 1 !important;
     transform: none !important;
   }
-  /* Floating buttons: appear instantly with no slide; contact pills: no stamp */
-  .float-btn { transition: opacity 0.2s ease; transform: none !important; }
+  /* Contact pills: no stamp */
   .hero-contact.in .hc-btn { animation: none !important; opacity: 1 !important; transform: none !important; }
   .hero-title .hero-line, .hero-copy .reveal, .service-tile, .svc-section, .svc-head {
     opacity: 1 !important;
