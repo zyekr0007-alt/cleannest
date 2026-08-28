@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CLEANNEST — Pricing</title>
+<meta name="description" content="CleanNest Jalandhar official rate card — deep cleaning prices for homes, kitchens, bathrooms, appliances, upholstery, floors and commercial spaces. Transparent starting rates, free quotes on WhatsApp.">
+<link rel="icon" href="assets/img/logo.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#0a3d62;
+  --blue:#e8f0fe;
+  --accent:#1b6cb8;
+  --text:#1a2332;
+  --gray:#f4f6f8;
+  --border:#dde3ea;
+  --shadow:rgba(10,61,98,0.06);
+  font-family:'Inter',system-ui,sans-serif;
+}
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+body{
+  background:linear-gradient(180deg,#f8fafc 0%,#eef3fb 100%);
+  color:var(--text);
+  line-height:1.45;
+  min-height:100vh;
+}
+.container{
+  max-width:1080px;
+  margin:0 auto;
+  padding:80px 24px 60px;
+}
+header{
+  text-align:center;
+  margin-bottom:48px;
+}
+.badge{
+  display:inline-block;
+  background:var(--primary);
+  color:#fff;
+  padding:6px 18px;
+  border-radius:999px;
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:0.08em;
+  text-transform:uppercase;
+  margin-bottom:24px;
+}
+header h1{
+  font-size:clamp(2.2rem,5vw,3.4rem);
+  font-weight:800;
+  letter-spacing:-0.03em;
+  color:var(--primary);
+  line-height:1.1;
+  margin-bottom:12px;
+}
+header p{
+  color:#4a5568;
+  font-size:1.05rem;
+  max-width:560px;
+  margin:0 auto;
+}
+.group{
+  margin-bottom:40px;
+}
+.group-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:var(--accent);
+  margin-bottom:12px;
+}
+.group-title::before{
+  content:'';
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--primary));
+  flex-shrink:0;
+}
+.table{
+  display:grid;
+  grid-template-columns:2fr 1.6fr 1.3fr;
+  gap:0;
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+  background:#fff;
+  box-shadow:0 24px 48px var(--shadow),0 8px 16px rgba(10,61,98,.03);
+}
+.header-row{
+  display:contents;
+  font-weight:700;
+  background:var(--primary);
+  color:#fff;
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:0.06em;
+}
+.header-row > div{
+  padding:14px 16px;
+  background:var(--primary);
+}
+.row{
+  display:contents;
+}
+.row:not(:last-child) > .cell{
+  border-bottom:1px solid var(--border);
+}
+.cell{
+  padding:16px;
+  background:#fff;
+  transition:background .15s ease;
+}
+.row:hover > .cell{
+  background:#f8fafc;
+}
+.cell.name{
+  font-weight:600;
+  font-size:.93rem;
+  color:var(--primary);
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.cell.name::before{
+  content:'';
+  display:block;
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--accent),var(--primary));
+  flex-shrink:0;
+}
+.cell .label{
+  font-size:10px;
+  color:#8899ab;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+  margin-bottom:2px;
+  display:none;
+}
+.cell .sub{
+  font-size:.78rem;
+  color:#6b7a8a;
+  margin-top:3px;
+  line-height:1.5;
+}
+.cell .price{
+  font-weight:800;
+  font-size:1rem;
+  color:var(--primary);
+  white-space:nowrap;
+}
+.cell .price small{
+  font-weight:600;
+  font-size:.72rem;
+  color:#8899ab;
+  white-space:normal;
+  display:block;
+}
+.cell .price .line{
+  display:block;
+  white-space:nowrap;
+}
+.quote{
+  font-weight:800;
+  font-size:1rem;
+  color:var(--accent);
+}
+footer{
+  text-align:center;
+  margin-top:40px;
+  color:#8899ab;
+  font-size:.92rem;
+  line-height:1.7;
+}
+footer strong{
+  color:var(--primary);
+  font-weight:700;
+}
+.note-card{
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:22px 24px;
+  margin-top:36px;
+  box-shadow:0 16px 40px var(--shadow);
+}
+.note-card h3{
+  color:var(--primary);
+  font-size:1rem;
+  font-weight:800;
+  margin-bottom:10px;
+}
+.note-card ul{
+  list-style:none;
+  display:grid;
+  gap:8px;
+  color:#4a5568;
+  font-size:.92rem;
+}
+.note-card li{
+  padding-left:18px;
+  position:relative;
+}
+.note-card li::before{
+  content:'✓';
+  position:absolute;
+  left:0;
+  color:var(--accent);
+  font-weight:700;
+}
+.note-card li b{
+  color:var(--text);
+}
+@media(max-width:768px){
+  .table{
+    display:block;
+    border:0;
+    box-shadow:none;
+    background:transparent;
+  }
+  .header-row{
+    display:none;
+  }
+  .row{
+    display:block;
+    border:1px solid var(--border);
+    border-radius:14px;
+    background:#fff;
+    box-shadow:0 8px 24px var(--shadow);
+    overflow:hidden;
+    margin-bottom:14px;
+  }
+  .cell{
+    display:block;
+    padding:14px 18px;
+    border-bottom:1px solid #eef1f5;
+  }
+  .cell:last-child{
+    border-bottom:0;
+  }
+  .cell .label{
+    display:block;
+    font-weight:700;
+    color:var(--primary);
+    font-size:10px;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    margin-bottom:4px;
+  }
+  .cell.name{
+    font-size:1rem;
+    padding-top:16px;
+  }
+  .cell.name::before{
+    width:8px;
+    height:8px;
+  }
+  .cell .price{
+    font-size:1.1rem;
+  }
+  .container{
+    padding:48px 16px 48px;
+  }
+  header h1{
+    font-size:2rem;
+  }
+}
+</style>
+</head>
+<body>
+<div class="container">
+<header>
+  <div class="badge">Official Rate Card</div>
+  <h1>CLEANNEST Pricing</h1>
+  <p>Transparent starting rates for homes, kitchens, bathrooms, appliances, upholstery, floors &amp; commercial spaces. Your exact quote is free on WhatsApp.</p>
+</header>
+
+<div class="group">
+  <div class="group-title">Full-Home Deep Cleaning</div>
+  <div class="table" aria-label="Full home deep cleaning prices">
+    <div class="header-row" aria-hidden="true">
+      <div>Package</div>
+      <div>Scope</div>
+      <div>Rate Range</div>
+    </div>
+    <div class="row">
+      <div class="cell name"><span>1 BHK Full Deep Cleaning</span></div>
+      <div class="cell"><span class="label">Scope</span><span class="sub">Bedroom, living hall, kitchen, 1 bath &amp; balcony</span></div>
+      <div class="cell"><span class="label">Rate</span><span class="price">₹4,500 – ₹5,900</span></div>
+    </div>
+    <div class="row">
+      <div class="cell name"><span>2 BHK Full Deep Cleaning</span></div>
+      <div class="cell"><span class="label">Scope</span><span class="sub">2 bedrooms, hall, modular kitchen, 2 baths &amp; balconies</span></div>
+      <div class="cell"><span class="label">Rate</span><span class="price">₹9,500 – ₹11,900</span></div>
+    </div>
+    <div class="row">
+      <div class="cell name"><span>3 BHK Full Deep Cleaning</span></div>
+      <div class="cell"><span class="label">Scope</span><span class="sub">3 bedrooms, large living hall, kitchen, 3 baths &amp; balconies</span></div>
+      <div class="cell"><span class="label">Rate</span><span class="price">₹12,500 – ₹14,900</span></div>
+    </div>
+    <div class="row">
+      <div class="cell name"><span>4 BHK Full Deep Cleaning</span></div>
+      <div class="cell"><span class="label">Scope</span><span class="sub">4 bedrooms, extensive living/dining, kitchen, multiple baths</span></div>
+      <div class="cell"><span class="label">Rate</span><span class="price">₹15,900 – ₹17,900</span></div>
+    </div>
+    <div class="row">
+      <div class="cell name"><span>Villa / Bungalow / Duplex</span></div>
+      <div class="cell"><span class="label">Scope</span><span class="sub">Multi-floor residential, penthouses, outdoor porches</span></div>
+      <div class="cell"><span class="label">Rate</span><span class="price quote">Quote on visit</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="group">
+  <div class="group-title">Rooms &amp; Areas</div>
+  <div class="table" aria-label="Room and area cleaning prices">
+    <div class="header-row" aria-hidden="true">
+      <div>Service</div>
+      <div>Details</div>
+      <div>Rate Range</div>
+    </div>
+    <div class="row">
+      <div class="cell name"><span>Bathroom Deep Cleaning</span></div>
+      <div class="cell"><span class="label">Details</span><span class="sub">Tile descaling, hard water marks, sanitisation</span></div>
+      <div class="cell"><span class="label">Rate</span><span class="price">₹890 – ₹1,190 <small>per bathroom</small></span></div>
+    </div>
+    <div class="row">
+      <div class="cell name"><span>Kitchen Deep Cleaning</span></div>
+      <div class="cell"><span class="label">Details</span><span class="sub">Countertops, tile degreasing, cabinets, sink</span></div>
+      <div class="cell"><span class="label">Rate</span><span class="price">₹2,490 – ₹4,490 <small>per kitchen</small></span></div>
+    </div>
+    <div class="row">
+      <div class="cell name"><span>Balcony Deep Cleaning</span></div>
+      <div class="cell"><span class="label">Details</span><span class="sub">Rotary scrubbing, glass/metal railing, stain lifting</span></div>
+      <div class="cell"><span class="label">Rate</span><span class="price">₹490 – ₹990 <small>per unit</small></span></div>
+    </div>
+  </div>
+</div>
+
+<div class="group">
+  <div class="group-title">Appliances &amp; Kitchen Fixtures</div>
+  <div class="table" aria-label="Appliance cleaning prices">
+    <div class="header-row" aria-hidden="true">
+      <div>Service</div>
+      <div>Details</div>
+      <div>Rate</div>
+    </div>
+    <div class="row">
+      <div class="cell name"><span>Air Conditioner (AC)</span></div>
+      <div class="cell"><span class="label">Details</span><span class="sub">Standard service · Snow foam deep jet clean</span></div>
+      <div class="cell"><span class="label">Rate</span><span class="price"><span class="line">₹490 / unit · standard</span><span class="line">₹690 / unit · snow foam</span></span></div>
+    </div>
+    <div class="row">
+      <div class="cell name"><span>Kitchen Chimney</span></div>
+      <div class="cell"><span class="label">Details</span><span class="sub">Mesh &amp; baffle degreasing, motor casing wipe</span></div>
+      <div class="cell"><span class="label">Rate</span><span class="price">₹690 <small>per unit</small></span></div>
+    </div>
+    <div class="row">
+      <div class="cell name"><span>Gas Stove / Cooktop</span></div>
+      <div class="cell"><span class="label">Details</span><span class="sub">Burner de-clogging, tray cleaning, grease scraping</span></div>
+      <div class="cell"><span class="label">Rate</span><span class="price">₹290 <small>per unit</small></span></div>
+    </div>
+    <div class="row">
+      <div class="cell name"><span>Refrigerator</span></div>
+      <div class="cell"><span class="label">Details</span><span class="sub">Single door · double door · side-by-side</span></div>
+      <div class="cell"><span class="label">Rate</span><span class="price"><span class="line">Single door: ₹699</span><span class="line">Double: ₹899 · Steam ₹1,299</span><span class="line">Side-by-side: ₹1,499 · Steam ₹1,899</span></span></div>
+    </div>
+    <div class="row">
+      <div class="cell name"><span>Storage Cabinets</span></div>
+      <div class="cell"><span class="label">Details</span><span class="sub">Small (2 shelves) · Medium (3–4 shelves) · Large (wardrobe)</span></div>
+      <div class="cell"><span class="label">Rate</span><span class="price"><span class="line">S ₹490 · M ₹890 · L ₹1,490</span></span></div>
+    </div>
+    <div class="row">
+      <div class="cell name"><span>Ceiling Fan</span></div>
+      <div class="cell"><span class="label">Details</span><span class="sub">Blade degreasing, canopy dusting, motor wipe</span></div>
+      <div class="cell"><span class="label">Rate</span><span class="price">₹70 <small>per fan</small></span></div>
+    </div>
+    <div class="row">
+      <div class="cell name"><span>Exhaust Fan</span></div>
+      <div class="cell"><span class="label">Details</span><span class="sub">Industrial degreasing of blades &amp; frame</span></div>
+      <div class="cell"><span class="label">Rate</span><span class="price">₹290 <small>per fan</small></span></div>
+    </div>
+  </div>
+</div>
+
+<div class="group">
+  <div class="group-title">Upholstery, Mattress &amp; Fabric</div>
+  <div class="table" aria-label="Upholstery and fabric cleaning prices">
+    <div class="header-row" aria-hidden="true">
+      <div>Service</div>
+      <div>Details</div>
+      <div>Rate</div>
+    </div>
+    <div class="row">
+      <div class="cell name"><span>Sofa Deep Cleaning</span></div>
+      <div class="cell"><span class="label">Details</span><span class="sub">Per seat · standard / premium / premium + steam. Chaise counts as 2 seats; recliners +₹150</span></div>
+      <div class="cell"><span class="label">Rate</span><span class="price"><span class="line">₹199 / ₹249 / ₹319 per seat</span></span></div>
+    </div>
+    <div class="row">
+      <div class="cell name"><span>Dining Chairs</span></div>
+      <div class="cell"><span class="label">Details</span><span class="sub">Fabric seat &amp; backrest scrub and extraction</span></div>
+      <div class="cell"><span class="label">Rate</span><span class="price">₹150 <small>per chair</small></span></div>
+    </div>
+    <div class="row">
+      <div class="cell name"><span>Cushions</span></div>
+      <div class="cell"><span class="label">Details</span><span class="sub">Small · Medium · Large</span></div>
+      <div class="cell"><span class="label">Rate</span><span class="price">₹50 / ₹70 / ₹100 <small>per piece</small></span></div>
+    </div>
+    <div class="row">
+      <div class="cell name"><span>Mattress Sanitisation</span></div>
+      <div class="cell"><span class="label">Details</span><span class="sub">Single (both sides ₹1,099) · Queen · King</span></div>
+      <div class="cell"><span class="label">Rate</span><span class="price"><span class="line">Single ₹799 · Queen ₹1,199 · King ₹1,499</span></span></div>
+    </div>
+    <div class="row">
+      <div class="cell name"><span>Curtain Dry Cleaning</span></div>
+      <div class="cell"><span class="label">Details</span><span class="sub">Standard · with inner lining</span></div>
+      <div class="cell"><span class="label">Rate</span><span class="price">₹190 / ₹270 <small>per panel</small></span></div>
+    </div>
+    <div class="row">
+      <div class="cell name"><span>Window Blinds</span></div>
+      <div class="cell"><span class="label">Details</span><span class="sub">Venetian / roller / vertical wipe down</span></div>
+      <div class="cell"><span class="label">Rate</span><span class="price">₹25 <small>per sq.ft</small></span></div>
+    </div>
+    <div class="row">
+      <div class="cell name"><span>Carpet Cleaning &amp; Shampooing</span></div>
+      <div class="cell"><span class="label">Details</span><span class="sub">Rotary brush scrubbing &amp; moisture extraction</span></div>
+      <div class="cell"><span class="label">Rate</span><span class="price">₹25 <small>per sq.ft</small></span></div>
+    </div>
+  </div>
+</div>
+
+<div class="group">
+  <div class="group-title">Floor Renewal, Restoration &amp; Commercial</div>
+  <div class="table" aria-label="Floor renewal and commercial cleaning prices">
+    <div class="header-row" aria-hidden="true">
+      <div>Service</div>
+      <div>Details</div>
+      <div>Rate</div>
+    </div>
+    <div class="row">
+      <div class="cell name"><span>Commercial Floor Maintenance</span></div>
+      <div class="cell"><span class="label">Details</span><span class="sub">Machine buffing · buffing + standard cleaning</span></div>
+      <div class="cell"><span class="label">Rate</span><span class="price"><span class="line">₹6 / ₹10 per sq.ft</span></span></div>
+    </div>
+    <div class="row">
+      <div class="cell name"><span>Tile Floor Renewal</span></div>
+      <div class="cell"><span class="label">Details</span><span class="sub">Grout scrubbing &amp; single-disc buffing</span></div>
+      <div class="cell"><span class="label">Rate</span><span class="price">₹8 <small>per sq.ft</small></span></div>
+    </div>
+    <div class="row">
+      <div class="cell name"><span>Marble Floor Renewal</span></div>
+      <div class="cell"><span class="label">Details</span><span class="sub">Diamond pad honing &amp; chemical crystallisation</span></div>
+      <div class="cell"><span class="label">Rate</span><span class="price">₹12 <small>per sq.ft</small></span></div>
+    </div>
+    <div class="row">
+      <div class="cell name"><span>Granite Floor Renewal</span></div>
+      <div class="cell"><span class="label">Details</span><span class="sub">Abrasive machine scrub &amp; gloss buffing</span></div>
+      <div class="cell"><span class="label">Rate</span><span class="price">₹12 <small>per sq.ft</small></span></div>
+    </div>
+    <div class="row">
+      <div class="cell name"><span>Italian Marble Renewal &amp; Polish</span></div>
+      <div class="cell"><span class="label">Details</span><span class="sub">Multi-stage honing · high-gloss polish add-on</span></div>
+      <div class="cell"><span class="label">Rate</span><span class="price"><span class="line">₹18 / sq.ft · Polish +₹12 / sq.ft</span></span></div>
+    </div>
+    <div class="row">
+      <div class="cell name"><span>Post-Construction Deep Cleaning</span></div>
+      <div class="cell"><span class="label">Details</span><span class="sub">Debris clearance, paint speck scraping, grout haze</span></div>
+      <div class="cell"><span class="label">Rate</span><span class="price">₹12 <small>per sq.ft</small></span></div>
+    </div>
+    <div class="row">
+      <div class="cell name"><span>High-Pressure Jet Washing</span></div>
+      <div class="cell"><span class="label">Details</span><span class="sub">Patios, driveways, pavers, ramps, exterior stone</span></div>
+      <div class="cell"><span class="label">Rate</span><span class="price">₹3 <small>per sq.ft</small></span></div>
+    </div>
+  </div>
+</div>
+
+<div class="group">
+  <div class="group-title">Specialized &amp; Custom</div>
+  <div class="table" aria-label="Specialized cleaning prices">
+    <div class="header-row" aria-hidden="true">
+      <div>Service</div>
+      <div>Details</div>
+      <div>Rate</div>
+    </div>
+    <div class="row">
+      <div class="cell name"><span>Swimming Pool Deep Cleaning</span></div>
+      <div class="cell"><span class="label">Details</span><span class="sub">Drain down, acid descaling, algae removal</span></div>
+      <div class="cell"><span class="label">Rate</span><span class="price quote">Quote on visit</span></div>
+    </div>
+    <div class="row">
+      <div class="cell name"><span>Chandelier &amp; Crystal Fixtures</span></div>
+      <div class="cell"><span class="label">Details</span><span class="sub">Individual crystal wipe down &amp; metal polish</span></div>
+      <div class="cell"><span class="label">Rate</span><span class="price quote">Quote on visit</span></div>
+    </div>
+  </div>
+</div>
+
+<div class="note-card">
+  <h3>Good to know</h3>
+  <ul>
+    <li><b>Starting rates:</b> All prices are starting rates and vary with size, condition &amp; access. Your final quote is free — no obligation.</li>
+    <li><b>50% advance</b> confirms your booking; the remaining 50% is payable after the service is completed.</li>
+    <li><b>Upholstery &amp; carpets</b> need 3–5 hours drying time depending on ventilation.</li>
+    <li><b>Eco-safe:</b> All solutions are certified non-hazardous and safe for homes with children and pets.</li>
+  </ul>
+</div>
+
+<footer>
+  <p><strong>CleanNest</strong> · Professional Deep Cleaning &amp; Surface Care · Jalandhar, Punjab</p>
+  <p>Free quote on WhatsApp — 7 days a week, 9 AM – 8 PM</p>
+</footer>
+</div>
+</body>
+</html>

@@ -68,7 +68,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=165">
+  <link rel="stylesheet" href="style.css?v=166">
   <style>
     /* Critical preloader shell: keep it full-screen off-white instantly so
        nothing flashes before style.css loads. (Full styling lives in style.css.) */
@@ -186,13 +186,10 @@
         <img src="assets/img/services/chimney-cleaning.webp" alt="Chimney Cleaning" width="640" height="400" loading="lazy">
         <span class="service-tag">Chimney Cleaning</span>
       </a>
-      <a class="service-tile" href="commercial-cleaning.html">
-        <img src="assets/img/services/commercial-cleaning.webp" alt="Commercial Cleaning" width="640" height="400" loading="lazy">
-        <span class="service-tag">Commercial Cleaning</span>
-      </a>
-      <a class="service-tile" href="recurring-cleaning.html">
-        <img src="assets/img/services/recurring-cleaning.webp" alt="Recurring Cleaning" width="640" height="400" loading="lazy">
-        <span class="service-tag">Recurring Cleaning</span>
+      <a class="service-tile-all" href="services.html">
+        <span class="sta-icon" aria-hidden="true">+</span>
+        <span class="sta-label">All Services</span>
+        <span class="sta-sub">Appliances · fabric · floors · commercial &amp; more</span>
       </a>
     </div>
   </section>
@@ -671,7 +668,7 @@
     <div class="faq-list">
       <details class="faq-item">
         <summary>How much does house cleaning cost in Jalandhar?</summary>
-        <p>Starting prices are listed just below — full-house deep cleaning starts at ₹4,900. Your exact quote depends on your home size and services — message us on WhatsApp for a free, no-obligation quote.</p>
+        <p>Full-house deep cleaning starts at ₹4,500 — see the full <a href="pricing.html">rate card</a> for all services and prices. Your exact quote depends on your home size and services — message us on WhatsApp for a free, no-obligation quote.</p>
       </details>
       <details class="faq-item">
         <summary>How does payment work?</summary>
@@ -695,42 +692,7 @@
     </div>
   </section>
 
-  <!-- Starting prices -->
-  <section class="pricing" id="pricing">
-    <div class="section-head">
-      <span class="section-badge">Pricing</span>
-      <h2 class="section-title">Starting <span class="star">prices</span></h2>
-      <p class="section-sub">Honest starting rates — your exact quote is free on WhatsApp.</p>
-    </div>
-    <div class="pricing-grid">
-      <div class="price-card"><span class="price-name">Bathroom Deep Cleaning</span><span class="price-amt">From <strong>₹890</strong></span></div>
-      <div class="price-card"><span class="price-name">Kitchen Deep Cleaning</span><span class="price-amt">From <strong>₹2,490</strong></span></div>
-      <div class="price-card"><span class="price-name">Chimney Cleaning</span><span class="price-amt">From <strong>₹690</strong></span></div>
-      <div class="price-card"><span class="price-name">AC Cleaning (Normal)</span><span class="price-amt">From <strong>₹490</strong></span></div>
-      <div class="price-card"><span class="price-name">AC Snow Foam</span><span class="price-amt">From <strong>₹690</strong></span></div>
-      <div class="price-card"><span class="price-name">Sofa Cleaning (per seat)</span><span class="price-amt">From <strong>₹199</strong></span></div>
-      <div class="price-card"><span class="price-name">Mattress Steam Cleaning</span><span class="price-amt">From <strong>₹1,199</strong></span></div>
-      <div class="price-card"><span class="price-name">Refrigerator Cleaning</span><span class="price-amt">From <strong>₹899</strong></span></div>
-      <div class="price-card"><span class="price-name">Fan Cleaning</span><span class="price-amt">From <strong>₹70</strong></span></div>
-      <div class="price-card"><span class="price-name">Cabinet Interior Cleaning</span><span class="price-amt">From <strong>₹490</strong></span></div>
-      <div class="price-card"><span class="price-name">Carpet &amp; Steam Cleaning</span><span class="price-amt">Custom quote</span></div>
-      <div class="price-card"><span class="price-name">Villa Cleaning</span><span class="price-amt">Custom quote</span></div>
-    </div>
-    <a class="price-feature" href="full-house-deep-cleaning.html">
-      <span class="pf-title"><span class="price-name">Full House Cleaning</span><span class="pf-hint">Whole-home top-to-bottom deep clean</span></span>
-      <span class="price-tiers">
-        <span class="price-tier">1 BHK · ₹4,900</span>
-        <span class="price-tier">2 BHK · ₹9,900</span>
-        <span class="price-tier">3 BHK · ₹11,900</span>
-        <span class="price-tier">4 BHK · ₹15,900</span>
-      </span>
-      <span class="pf-link">View Service →</span>
-    </a>
-    <p class="pricing-note">All prices are starting rates and vary with home size &amp; condition. Your final quote is free — no obligation.</p>
-    <div class="pricing-cta">
-      <a class="btn btn-primary" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%20would%20like%20a%20free%20quote." target="_blank" rel="noopener">Get Exact Quote on WhatsApp <span class="btn-icon" aria-hidden="true">→</span></a>
-    </div>
-  </section>
+  <!-- Pricing moved to dedicated page (pricing.html) -->
 
   <section class="cta-band" id="contact">
     <div class="cta-inner">
@@ -807,19 +769,19 @@
       <button class="menu-close" id="menu-close" type="button" aria-label="Close menu">&times;</button>
     </div>
     <div class="menu-body">
-    <a class="menu-item" href="#services">
+    <a class="menu-item" href="services.html">
       <span class="menu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5"/></svg></span>
       <span>Services</span>
     </a>
-    <a class="menu-item" href="#results">
+    <a class="menu-item" href="index.html#results">
       <span class="menu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M21 16l-4.2-4.2a1.4 1.4 0 0 0-2 0L8 18.5"/></svg></span>
       <span>Results</span>
     </a>
-    <a class="menu-item" href="#reviews">
+    <a class="menu-item" href="index.html#reviews">
       <span class="menu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.7 5.5 6.1.9-4.4 4.3 1 6-5.4-2.8-5.4 2.8 1-6-4.4-4.3 6.1-.9L12 3Z"/></svg></span>
       <span>Reviews</span>
     </a>
-    <a class="menu-item" href="#pricing">
+    <a class="menu-item" href="pricing.html">
       <span class="menu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8Z"/><circle cx="7.5" cy="7.5" r="1.2"/></svg></span>
       <span>Pricing</span>
     </a>
