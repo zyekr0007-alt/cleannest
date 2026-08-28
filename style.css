@@ -3073,3 +3073,15 @@ body.loaded .brand-strip { opacity: 1; transition: opacity 0.3s ease; }
   .gallery-carousel { max-width: 900px; }
   .faq-list { max-width: 900px; }
 }
+/* ---- Footer map + service areas + reviews (added) ---- */
+.footer-map-block{margin:28px 0 8px;}
+.footer-map-block iframe{width:100%;height:240px;border:0;border-radius:14px;filter:none;}
+.footer-areas{text-align:center;margin:18px 0 6px;}
+.footer-areas h3{font-size:.82rem;text-transform:uppercase;letter-spacing:.07em;color:#0B4364;margin-bottom:6px;}
+.footer-areas p{color:#4a5568;font-size:.95rem;line-height:1.7;}
+.footer-reviews{text-align:center;margin:10px 0 4px;color:#4a5568;font-size:.95rem;}
+.footer-reviews .agg-stars{color:#0CD7E5;letter-spacing:2px;margin-right:6px;}
+.footer-reviews strong{color:#0B4364;}
+.footer-reviews a{color:#1b6cb8;text-decoration:none;}
+.footer-reviews a:hover{text-decoration:underline;}
+@media(max-width:768px){.footer-map-block iframe{height:200px;}}

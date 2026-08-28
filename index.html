@@ -3,19 +3,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Analytics 4 (FILL IN YOUR MEASUREMENT ID below) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+
   <title>CleanNest — Jalandhar's Most Trusted Cleaning Service</title>
   <meta name="description" content="Premium deep cleaning services for homes, offices and businesses across Jalandhar. 4.9★ rated — get a free quote on WhatsApp.">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "@id": "https://www.cleannest.in/#business",
+    "@id": "https://cleannest.in/#business",
     "name": "CleanNest",
     "description": "Jalandhar's most trusted cleaning service — full house, kitchen, bathroom, sofa, carpet, AC, chimney and commercial cleaning.",
-    "url": "https://www.cleannest.in/",
+    "url": "https://cleannest.in/",
     "telephone": "+91-76100-00654",
     "email": "cleannestclub@gmail.com",
-    "image": "https://www.cleannest.in/assets/img/logo.png",
+    "image": "https://cleannest.in/assets/img/logo.png",
     "priceRange": "₹₹",
     "currenciesAccepted": "INR",
     "areaServed": ["Jalandhar", "Phagwara", "Kapurthala", "Hoshiarpur", "Nakodar", "Goraya", "Adampur", "Kartarpur", "Sultanpur Lodhi", "Nawanshahr", "Phillaur", "Ludhiana"],
@@ -742,10 +751,22 @@
         </a>
 
         <div class="footer-info">
-          <span class="footer-info-item"><span class="fi-ico">📍</span>Jalandhar, Punjab</span>
-          <span class="footer-info-item"><span class="fi-ico">🕘</span>Open 7 days · 9 AM – 8 PM</span>
+          <span class="footer-info-item"><span class="fi-ico"></span>Jalandhar, Punjab</span>
+          <span class="footer-info-item"><span class="fi-ico"></span>Open 7 days · 9 AM – 8 PM</span>
         </div>
       </div>
+
+          <div class="footer-map-block">
+      <iframe src="https://www.google.com/maps?q=Jalandhar%2C%20Punjab%2C%20India&z=12&output=embed" title="CleanNest service area - Jalandhar, Punjab" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+    </div>
+    <div class="footer-areas">
+      <h3>Areas we serve</h3>
+      <p>Jalandhar &middot; Phagwara &middot; Kapurthala &middot; Hoshiarpur &middot; Nawanshahr &middot; Nakodar &middot; Adampur</p>
+    </div>
+    <div class="footer-reviews">
+      <span class="agg-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+      <strong>4.9</strong> <span class="footer-reviews-text">&middot; <a href="https://cleannest.in/#reviews">468 Google reviews</a></span>
+    </div>
 
       <div class="footer-bottom">
         <div class="footer-bottom-inner">
@@ -1445,5 +1466,17 @@
       });
     })();
 </script>
+  <script>
+  (function(){
+    function track(cat, label){ if(window.gtag){ gtag('event','cta_click',{event_category:cat,event_label:label}); } }
+    document.querySelectorAll('a[href^="https://wa.me/"],a[href^="tel:"]').forEach(function(a){
+      a.addEventListener('click', function(){ track('contact', a.getAttribute('href').split('?')[0]); });
+    });
+    document.querySelectorAll('[data-open-quote]').forEach(function(b){
+      b.addEventListener('click', function(){ track('quote', 'open_quote'); });
+    });
+  })();
+  </script>
+
 </body>
 </html>
