@@ -166,10 +166,10 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
-  min-height: 74vh;
+  min-height: 60vh;
   display: flex;
   align-items: center;
-  padding: 150px 22px 110px;
+  padding: 100px 22px 90px;
   background-color: #F6F7F9;
   overflow: hidden;
 }
