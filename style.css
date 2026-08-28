@@ -3085,3 +3085,16 @@ body.loaded .brand-strip { opacity: 1; transition: opacity 0.3s ease; }
 .footer-reviews a{color:#1b6cb8;text-decoration:none;}
 .footer-reviews a:hover{text-decoration:underline;}
 @media(max-width:768px){.footer-map-block iframe{height:200px;}}
+
+/* ---- City landing pages (areas served) ---- */
+.loc-services{padding:64px 22px;background:#fff;}
+.loc-services .container{max-width:1100px;margin:0 auto;}
+.loc-h2{font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:800;color:#0B4364;letter-spacing:-0.02em;margin-bottom:24px;text-align:center;}
+.loc-svc-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;}
+.loc-svc{display:flex;flex-direction:column;gap:4px;background:#F6F7F9;border:1px solid #e3e8ee;border-radius:14px;padding:18px 20px;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease;}
+.loc-svc:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(12,67,98,.10);border-color:#0CD7E5;}
+.loc-svc-name{font-weight:700;color:#0B4364;font-size:1.02rem;}
+.loc-svc-price{font-size:.85rem;color:#1b6cb8;font-weight:600;}
+.cta-band{padding:56px 22px;text-align:center;background:linear-gradient(180deg,#eef3fb,#f8fafc);}
+.cta-band .container{max-width:760px;margin:0 auto;}
+.cta-band p{color:#4a5568;margin:10px 0 22px;font-size:1.02rem;}
