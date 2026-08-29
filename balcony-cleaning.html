@@ -13,7 +13,7 @@
   </script>
 
   <title>Balcony Deep Cleaning in Jalandhar | CleanNest</title>
-  <meta name="description" content="Premium deep cleaning services for homes, offices and businesses across Jalandhar. 4.9★ rated — get a free quote on WhatsApp.">
+  <meta name="description" content="Balcony deep cleaning in Jalandhar — floor scrubbing, railing wash & stain lifting. From ₹490. Free quote on WhatsApp.">
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -62,22 +62,22 @@
   <!-- Open Graph / social sharing -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="CleanNest">
-  <meta property="og:title" content="CleanNest — Jalandhar's Most Trusted Cleaning Service">
-  <meta property="og:description" content="Premium deep cleaning services for homes, offices and businesses across Jalandhar. 4.9★ rated — get a free quote on WhatsApp.">
-  <meta property="og:url" content="https://cleannest.in/">
+  <meta property="og:title" content="Balcony Deep Cleaning in Jalandhar | CleanNest">
+  <meta property="og:description" content="Balcony deep cleaning in Jalandhar — floor scrubbing, railing wash & stain lifting. From ₹490. Free quote on WhatsApp.">
+  <meta property="og:url" content="https://cleannest.in/balcony-cleaning.html">
   <meta property="og:image" content="https://cleannest.in/assets/img/og-image.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:image:alt" content="CleanNest kitchen before and after deep cleaning — Professional Cleaning. Done Right.">
   <meta property="og:locale" content="en_IN">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="CleanNest — Jalandhar's Most Trusted Cleaning Service">
-  <meta name="twitter:description" content="Premium deep cleaning services for homes, offices and businesses across Jalandhar. 4.9★ rated — get a free quote on WhatsApp.">
+  <meta name="twitter:title" content="Balcony Deep Cleaning in Jalandhar | CleanNest">
+  <meta name="twitter:description" content="Balcony deep cleaning in Jalandhar — floor scrubbing, railing wash & stain lifting. From ₹490. Free quote on WhatsApp.">
   <meta name="twitter:image" content="https://cleannest.in/assets/img/og-image.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=166">
+  <link rel="stylesheet" href="style.css?v=171">
   <style>
     /* Critical preloader shell: keep it full-screen off-white instantly so
        nothing flashes before style.css loads. (Full styling lives in style.css.) */
@@ -101,12 +101,11 @@
     "@type":"Service",
     "name":"Balcony Deep Cleaning in Jalandhar",
     "serviceType":"Balcony Deep Cleaning in Jalandhar",
-    "provider":{"@type":"LocalBusiness","name":"CleanNest","telephone":"+917610000654","areaServed":"Jalandhar","address":{"@type":"PostalAddress","addressLocality":"Jalandhar","addressRegion":"Punjab","addressCountry":"IN"}},
-    "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"221"}
+    "provider":{"@type":"LocalBusiness","name":"CleanNest","telephone":"+917610000654","areaServed":"Jalandhar","address":{"@type":"PostalAddress","addressLocality":"Jalandhar","addressRegion":"Punjab","addressCountry":"IN"}}
   }</script>
   <script type="application/ld+json">{
     "@context":"https://schema.org",
-    "@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can you clean a covered balcony?","acceptedAnswer":{"@type":"Answer","text":"Yes \u2014 we clean covered and open balconies, including railings, tiles and glass. Message us on WhatsApp for a free quote."}}{"@type":"Question","name":"How do I get a quote?","acceptedAnswer":{"@type":"Answer","text":"Share your balcony size and condition on WhatsApp \u2014 we reply quickly with a free, no-obligation quote."}}]
+    "@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can you clean a covered balcony?","acceptedAnswer":{"@type":"Answer","text":"Yes \u2014 we clean covered and open balconies, including railings, tiles and glass. Message us on WhatsApp for a free quote."}},{"@type":"Question","name":"How do I get a quote?","acceptedAnswer":{"@type":"Answer","text":"Share your balcony size and condition on WhatsApp \u2014 we reply quickly with a free, no-obligation quote."}}]
   }</script>
 
 </head>
@@ -185,7 +184,7 @@
       <li>Verified, trained and uniformed cleaners — no casual labour</li>
       <li>On-time arrival and honest, transparent pricing</li>
       <li>Free quote · No booking fee · 50% advance to book, 50% after service</li>
-      <li>Rated 4.9/5 from 221+ Google reviews in Jalandhar</li>
+      <li>Rated 4.9/5 from 468 Google reviews in Jalandhar</li>
     </ul>
   </section>
   <section class="reviews" id="reviews">
@@ -480,47 +479,16 @@
 
     // Animated stat counters — count up when they come into view
     (function initCounters() {
+      // NOW bug: never paint 0 / negatives. Keep HTML values (4.9 / 468).
       const nums = document.querySelectorAll('.stat-num, .rating-num, .rating-count-num, .hr-num, .hr-count span[data-count], .agg-score, .agg-text strong[data-count]');
-      if (!nums.length) return;
-      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const animate = (el) => {
-        const target = parseFloat(el.dataset.count);
-        const decimals = parseInt(el.dataset.decimals || '0', 10);
-        const dur = 1400;
-        const start = performance.now();
-        const ease = (t) => 1 - Math.pow(1 - t, 3);
-        const step = (now) => {
-          const p = Math.min((now - start) / dur, 1);
-          const val = target * ease(p);
-          el.textContent = decimals ? val.toFixed(decimals) : Math.round(val).toString();
-          if (p < 1) { requestAnimationFrame(step); return; }
-          // The 4.9 is the hero's social-proof moment — stamp the stars in and
-          // sweep a sheen across the card the instant it lands.
-          if (el.classList.contains('hr-num')) {
-            const card = el.closest('.hero-rating');
-            if (card) card.classList.add('lit');
-          }
-        };
-        requestAnimationFrame(step);
-      };
-      if (reduced || !('IntersectionObserver' in window)) {
-        nums.forEach(el => { el.textContent = parseFloat(el.dataset.count).toFixed(el.dataset.decimals ? el.dataset.decimals : 0); });
-        return;
-      }
-      // Hero counters sit in view at load but are hidden behind the preloader;
-      // delay their start so the count-up is actually visible.
-      const HERO_DELAY = SKIP_PRELOADER ? 250 : 2400; // preloader skipped on repeat visits
-      const io = new IntersectionObserver((entries) => {
-        entries.forEach(e => {
-          if (e.isIntersecting) {
-            const inView = (e.target.getBoundingClientRect().top < window.innerHeight);
-            const el = e.target;
-            io.unobserve(el);
-            setTimeout(() => animate(el), inView ? HERO_DELAY : 0);
-          }
-        });
-      }, { threshold: 0.4 });
-      nums.forEach(el => io.observe(el));
+      nums.forEach(function(el){
+        var t = parseFloat(el.getAttribute('data-count'));
+        var d = parseInt(el.getAttribute('data-decimals') || '0', 10);
+        if (!isFinite(t) || t < 0) return;
+        el.textContent = d ? t.toFixed(d) : String(Math.round(t));
+      });
+      var card = document.querySelector('.hero-rating');
+      if (card) card.classList.add('lit');
     })();
 
     // Scroll-reveal for below-fold sections — bidirectional (animates on
@@ -975,8 +943,9 @@
       </div>
 
     <div class="footer-map-block">
-      <iframe src="https://www.google.com/maps?q=Jalandhar%2C%20Punjab%2C%20India&z=12&output=embed" title="CleanNest service area - Jalandhar, Punjab" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
-    </div>
+        <iframe src="https://www.google.com/maps?q=Jalandhar%2C%20Punjab%2C%20India&hl=en&z=13&output=embed" title="CleanNest service area - Jalandhar, Punjab" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+        <p class="footer-map-caption"><a href="https://www.google.com/maps/search/?api=1&query=Jalandhar%2C+Punjab%2C+India" target="_blank" rel="noopener">Open map in Google Maps →</a></p>
+      </div>
     <div class="footer-areas">
       <h3>Areas we serve</h3>
       <p>Jalandhar &middot; Phagwara &middot; Kapurthala &middot; Hoshiarpur &middot; Nawanshahr &middot; Nakodar &middot; Adampur</p>
