@@ -3117,3 +3117,210 @@ body.loaded .brand-strip { opacity: 1; transition: opacity 0.3s ease; }
 .cta-band{padding:56px 22px;text-align:center;background:linear-gradient(180deg,#eef3fb,#f8fafc);}
 .cta-band .container{max-width:760px;margin:0 auto;}
 .cta-band p{color:#4a5568;margin:10px 0 22px;font-size:1.02rem;}
+
+
+/* ===== Bug-fix pack (2026-08) ===== */
+
+/* FAIL-OPEN: never leave content invisible.
+   - City / areas pages: body has neither .preloading nor .loaded, and no observer.
+   - faqs.html / service pages: after unlock, body.loaded.
+   - Homepage during preloader stays hidden (body.preloading). */
+body:not(.preloading) .reveal,
+body.loaded .reveal,
+.reveal.in {
+  opacity: 1 !important;
+  transform: none !important;
+}
+body:not(.preloading) .hero-title .hero-line.reveal,
+body.loaded .hero-title .hero-line.reveal,
+.hero-title .hero-line.reveal.in {
+  opacity: 1 !important;
+  transform: none !important;
+  animation: none !important;
+}
+
+/* City / areas pages that still ship body.preloading without #preloader */
+body.preloading:not(:has(#preloader)) {
+  overflow: auto;
+}
+body.preloading:not(:has(#preloader)) .brand-strip,
+body.preloading:not(:has(#preloader)) .reveal {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+/* Homepage "All Services" tile — never stuck at opacity 0 */
+.service-tile-all,
+.service-tile-all.in,
+body.loaded .service-tile-all,
+.services-static .service-tile-all,
+.services-static .service-tile {
+  opacity: 1;
+  transform: none;
+}
+
+/* Mobile services grid: stop clipped / overflowing titles */
+.service-tag {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  font-size: clamp(0.78rem, 2.6vw, 0.95rem);
+  line-height: 1.25;
+  max-height: none;
+  overflow: visible;
+}
+.service-price-tag {
+  white-space: nowrap;
+  max-width: calc(100% - 20px);
+}
+@media (max-width: 640px) {
+  .services-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .service-tag {
+    font-size: 0.78rem;
+    padding: 18px 10px 10px;
+  }
+  .service-price-tag {
+    font-size: 0.66rem;
+    padding: 4px 9px;
+    top: 8px;
+    left: 8px;
+  }
+  .service-tile,
+  .service-tile-all {
+    min-height: 0;
+  }
+}
+
+/* faqs.html: kill the tall empty band under the hero / list */
+.faq-hero.hero {
+  min-height: 0 !important;
+  height: auto !important;
+  padding: 100px 22px 32px !important;
+}
+.faq-hero .hero-inner {
+  min-height: 0;
+}
+.faq-page {
+  padding-top: 24px;
+  padding-bottom: 48px;
+  margin-top: 0;
+}
+.faq-page + p {
+  margin-top: 8px !important;
+  margin-bottom: 24px !important;
+}
+
+/* City chips as links */
+a.city-chip {
+  text-decoration: none;
+  cursor: pointer;
+}
+a.city-chip:hover {
+  border-color: rgba(12, 215, 229, 0.5);
+  background: var(--cyan-soft);
+}
+
+/* Footer map: desktop grey-box fix */
+.footer-map-block {
+  margin: 28px auto 8px;
+  max-width: 720px;
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
+  border-radius: 14px;
+  overflow: hidden;
+  background: #e8eef3;
+  min-height: 240px;
+  box-shadow: 0 10px 28px rgba(11, 67, 100, 0.10);
+}
+.footer-map-block iframe {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  width: 100% !important;
+  height: 240px !important;
+  min-height: 240px !important;
+  border: 0;
+  border-radius: 14px;
+  filter: none !important;
+  -webkit-filter: none !important;
+  transform: none !important;
+  position: relative;
+  z-index: 1;
+  background: #e8eef3;
+  pointer-events: auto;
+}
+.footer-map-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 240px;
+  padding: 24px;
+  text-decoration: none;
+  color: var(--navy);
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  background:
+    radial-gradient(80% 60% at 50% 40%, rgba(12, 215, 229, 0.18), transparent 60%),
+    linear-gradient(160deg, #eef3fb, #e8eef3);
+}
+.footer-map-fallback span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 20px;
+  border-radius: 999px;
+  background: #fff;
+  border: 1px solid rgba(11, 67, 100, 0.12);
+  box-shadow: 0 8px 22px rgba(11, 67, 100, 0.10);
+}
+.footer-map-caption {
+  display: block;
+  text-align: center;
+  margin: 8px 0 0;
+  font-size: 0.85rem;
+}
+.footer-map-caption a {
+  color: #1b6cb8;
+  text-decoration: none;
+}
+.footer-map-caption a:hover { text-decoration: underline; }
+@media (max-width: 768px) {
+  .footer-map-block,
+  .footer-map-block iframe,
+  .footer-map-fallback { min-height: 200px; height: 200px; }
+  .footer-map-block iframe { height: 200px !important; min-height: 200px !important; }
+}
+
+/* Empty Before & After note on service pages */
+.svc-results-empty {
+  margin-top: 18px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.95rem;
+  padding: 18px 16px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px dashed rgba(11, 67, 100, 0.16);
+}
+
+/* Motion: stop perpetual CTA pulse/shine; one soft settle only */
+.btn-primary {
+  animation: none !important;
+}
+.btn-primary::after {
+  animation: ctaShine 2.8s ease-out 1 both !important;
+}
+.hc-btn.hc-call,
+.hc-btn.hc-ig {
+  animation: none !important;
+}
+
+/* One-shot scroll reveals (no re-loop when scrolling back up) */
+.scroll-reveal.scroll-in {
+  /* keep final state; JS no longer strips scroll-in */
+}

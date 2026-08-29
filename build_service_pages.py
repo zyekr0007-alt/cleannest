@@ -17,7 +17,7 @@ STD_WHY = [
     "Verified, trained and uniformed cleaners — no casual labour",
     "On-time arrival and honest, transparent pricing",
     "Free quote · No booking fee · 50% advance to book, 50% after service",
-    "Rated 4.9/5 from 221+ Google reviews in Jalandhar",
+    "Rated 4.9/5 from 468 Google reviews in Jalandhar",
 ]
 
 STD_AREA = ("Jalandhar · Phagwara · Kapurthala · Hoshiarpur · Nakodar · Goraya · "
@@ -28,11 +28,11 @@ STD_AREA = ("Jalandhar · Phagwara · Kapurthala · Hoshiarpur · Nakodar · Gor
 SERVICES = [
     dict(slug="full-house-cleaning", label="Full House Deep Cleaning",
         title="Full House Deep Cleaning in Jalandhar | CleanNest",
-        desc="Professional full-house deep cleaning in Jalandhar — every room, kitchen, bathroom, windows & floors. From ₹4,500. Free quote on WhatsApp.",
+        desc="Professional full-house deep cleaning in Jalandhar — every room, kitchen, bathroom, windows & floors. From ₹4,900. Free quote on WhatsApp.",
         h1="Full House Deep Cleaning in Jalandhar",
         sub="A top-to-bottom clean of your whole home — every room, every surface, from dust to shine.",
         img="assets/img/services/full-house-cleaning.jpg",
-        price="From ₹4,500",
+        price="From ₹4,900",
         includes=["Interior dusting & wipe-down of furniture and surfaces",
                   "Kitchen deep clean (countertop, stove, degrease)",
                   "Bathroom descale, sanitise & fittings polish",
@@ -472,7 +472,7 @@ def build_main(s):
 
 def build_schema(s):
     """JSON-LD for the service (Service + FAQPage, no invented prices)."""
-    faq_ent = "".join(
+    faq_ent = ",".join(
         '{"@type":"Question","name":%s,"acceptedAnswer":{"@type":"Answer","text":%s}}' %
         (json.dumps(q), json.dumps(a)) for (q, a) in s["faqs"])
     return (
