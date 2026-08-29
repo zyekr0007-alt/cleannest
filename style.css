@@ -1024,12 +1024,12 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 .reviews {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 64px 22px;
+  padding: 44px 22px;
 }
 
 .reviews-head {
   text-align: center;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .reviews-badge {
@@ -1059,8 +1059,8 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   display: inline-flex;
   align-items: center;
   gap: 10px;
-  margin-top: 16px;
-  padding: 10px 20px;
+  margin-top: 10px;
+  padding: 8px 16px;
   border-radius: 999px;
   background: rgba(255, 255, 255, 0.7);
   border: 1px solid rgba(11, 67, 100, 0.10);
@@ -1172,18 +1172,24 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 /* Reviews — static grid, all reviews visible at once */
 .reviews-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-  gap: 18px;
+  grid-auto-flow: column;
+  grid-auto-columns: minmax(215px, 1fr);
+  gap: 12px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding-bottom: 6px;
+  -webkit-overflow-scrolling: touch;
   max-width: 100%;
   margin: 0 auto;
 }
+.review-card { scroll-snap-align: start; }
 
 .review-card {
   position: relative;
   background: rgba(255, 255, 255, 0.85);
   border: 1px solid rgba(11, 67, 100, 0.08);
-  border-radius: 24px;
-  padding: 26px 24px 22px;
+  border-radius: 18px;
+  padding: 18px 18px 16px;
   box-shadow: 0 12px 36px rgba(11, 67, 100, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
@@ -1251,12 +1257,12 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   display: flex;
   align-items: center;
   gap: 12px;
-  margin-bottom: 14px;
+  margin-bottom: 10px;
 }
 
 .review-avatar {
-  width: 44px;
-  height: 44px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--navy), var(--cyan));
   color: var(--white);
@@ -1294,15 +1300,15 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 
 .review-text {
   color: var(--ink);
-  font-size: 0.92rem;
-  line-height: 1.55;
+  font-size: 0.86rem;
+  line-height: 1.5;
 }
 
 .review-tag {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  margin-top: 14px;
+  margin-top: 10px;
   padding: 5px 12px;
   border-radius: 999px;
   background: rgba(232, 246, 248, 0.9);
