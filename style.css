@@ -722,6 +722,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   position: relative;
   display: block;
   min-width: 0;
+  min-height: 200px;
   aspect-ratio: 1 / 1;
   border-radius: 18px;
   overflow: hidden;
@@ -809,12 +810,16 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   position: absolute;
   top: 12px;
   left: 12px;
+  max-width: calc(100% - 24px);
   padding: 5px 12px;
   border-radius: 999px;
   font-family: 'Nunito', sans-serif;
   font-weight: 800;
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
   color: #fff;
   background: rgba(11, 67, 100, 0.88);
   box-shadow: 0 6px 18px rgba(6, 29, 46, 0.3);
@@ -857,9 +862,13 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   padding-bottom: 16px;
 }
 
-/* ---------- Gallery ---------- */
+/* All-services page: tiles must be visible without depending on the
+   scroll-reveal JS (which only targets the home page). */
+.services-static .service-tile {
+  opacity: 1;
+  transform: none;
+}
 .gallery {
-  max-width: 1280px;
   margin: 0 auto;
   padding: 64px 22px;
 }
