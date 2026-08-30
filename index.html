@@ -77,7 +77,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=181">
+  <link rel="stylesheet" href="style.css?v=180">
   <style>
     /* Critical preloader shell: keep it full-screen off-white instantly so
        nothing flashes before style.css loads. (Full styling lives in style.css.) */
@@ -859,7 +859,8 @@
           if (e.isIntersecting) {
             e.target.classList.add('scroll-in');
             // BUG-1: when #services scrolls in, reveal ALL tiles (not just chimney + all-services)
-            if (e.target.classList.contains('services')) {
+            if (e.target.classList.contains('services') || e.target.id === 'services') {
+              e.target.classList.add('scroll-in');
               e.target.querySelectorAll('.service-tile, .service-tile-all').forEach(t => {
                 t.classList.add('in');
               });
@@ -902,7 +903,14 @@
         });
       }, { threshold: 0.12 });
       tiles.forEach(t => io.observe(t));
-      setTimeout(() => tiles.forEach(t => t.classList.add('in')), 4000);
+      const sec = document.getElementById('services');
+      const revealAll = () => {
+        if (sec) sec.classList.add('scroll-in');
+        tiles.forEach(t => t.classList.add('in'));
+      };
+      const inView = sec && sec.getBoundingClientRect().top < window.innerHeight;
+      if (inView) revealAll();
+      setTimeout(revealAll, 1200);
     })();
 
     // Swipeable reviews carousel — auto-advance + touch swipe + dot navigation

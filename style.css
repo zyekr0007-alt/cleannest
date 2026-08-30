@@ -760,6 +760,9 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   gap: 12px;
   min-width: 0;
   min-height: 0;
+  width: 100%;
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
   border-radius: 18px;
   text-decoration: none;
@@ -3149,12 +3152,9 @@ body.preloading:not(:has(#preloader)) .reveal {
   transform: none !important;
 }
 
-/* Homepage "All Services" tile — never stuck at opacity 0 */
-.service-tile-all,
-.service-tile-all.in,
-body.loaded .service-tile-all,
-.services-static .service-tile-all,
-.services-static .service-tile {
+/* Static services page: tiles always visible. Homepage tiles wait for .in / .scroll-in */
+.services-static .service-tile,
+.services-static .service-tile-all {
   opacity: 1;
   transform: none;
 }
@@ -3446,16 +3446,9 @@ a.city-chip:hover {
 }
 
 /* BUG-7: Results gallery dots — ≥44px hit area (visual stays small) */
-.gallery-dots {
-  flex-wrap: wrap;
-  row-gap: 4px;
-}
 .gallery-dots button {
   width: 44px;
   height: 44px;
-  min-width: 44px;
-  min-height: 44px;
-  flex: 0 0 44px;
   border-radius: 50%;
   background: transparent;
   position: relative;
@@ -3480,7 +3473,6 @@ a.city-chip:hover {
 /* neutralize old solid-background look */
 .gallery-dots button.active {
   width: 44px;
-  min-width: 44px;
   background: transparent;
 }
 
@@ -3494,14 +3486,36 @@ a.city-chip:hover {
 }
 
 
-/* BUG-2 safety: if services-static is ever nested in .hero flex, stack full-width */
-.hero:has(.services-static) {
-  flex-direction: column;
-  align-items: stretch;
-  min-height: 0;
+/* ===== Designer amend 2026-08-30 ===== */
+/* Homepage: when services section is in, ALL tiles visible (not just All Services) */
+.services.scroll-in .service-tile,
+.services.scroll-in .service-tile-all {
+  opacity: 1;
+  transform: none;
 }
-.hero .services-static {
-  width: 100%;
-  max-width: 1280px;
-  align-self: center;
+
+/* Last-row: All Services must share 1/1 track so Chimney cannot stretch wider */
+@media (max-width: 640px) {
+  .services-grid {
+    align-items: start;
+  }
+  .service-tile,
+  .service-tile-all {
+    width: 100%;
+    max-width: 100%;
+    aspect-ratio: 1 / 1;
+  }
+}
+
+/* services.html: if services is still inside .hero, stack on mobile instead of 44px crush */
+@media (max-width: 860px) {
+  .hero {
+    flex-direction: column;
+    align-items: stretch;
+    overflow: visible;
+  }
+  .hero > * {
+    width: 100%;
+    max-width: 100%;
+  }
 }
