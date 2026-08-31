@@ -582,7 +582,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   font-weight: 800;
   font-size: 1.75rem;
   line-height: 1;
-  color: #F9AB00;
+  color: #B26A00;
   letter-spacing: -0.02em;
 }
 .hero-rating.lit .hr-num { animation: numBloom 0.55s var(--ease-out); }
@@ -2012,8 +2012,9 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 .footer-btn:active { transform: scale(0.97); }
 .footer-btn svg { width: 18px; height: 18px; flex-shrink: 0; }
 
-.footer-btn-wa { background: #25D366; }
-.footer-btn-wa:hover { background: #1fb857; }
+.footer-btn-wa { background: #25D366; color: #0B4364; }
+.footer-btn-wa:hover { background: #1fb857; color: #0B4364; }
+.footer-btn-wa svg { color: #0B4364; }
 .footer-btn-call { background: var(--navy); }
 .footer-btn-call:hover { background: var(--navy-dark); }
 .footer-btn-mail { background: #1476A8; }
@@ -2100,7 +2101,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 .hc-btn:hover { transform: translateY(-3px) scale(1.06); box-shadow: 0 14px 30px rgba(11, 67, 100, 0.28); filter: brightness(1.08); }
 .hc-btn svg { width: 25px; height: 25px; flex-shrink: 0; }
 /* Flat brand colors, per reference: solid green / solid navy / IG gradient */
-.hc-wa { background: #25D366; }
+.hc-wa { background: #25D366; color: #0B4364; }
 .hc-call { background: #0B4364; }
 .hc-ig { background: linear-gradient(45deg, #F58529 0%, #DD2A7B 55%, #8134AF 100%); }
 /* Gentle float forever (independent of the entrance pop so it survives .in removal) */
