@@ -1,0 +1,7 @@
+# CleanNest CODEOWNERS — file ownership to prevent concurrent-edit collisions
+# Any PR touching these files requires review from the listed owner before merge.
+
+/index.html        @zyekr0007-alt
+/style.css         @zyekr0007-alt
+/assets/css/*.css  @zyekr0007-alt
+/assets/js/*.js    @zyekr0007-alt
