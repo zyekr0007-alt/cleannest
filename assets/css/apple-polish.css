@@ -127,6 +127,37 @@ body.loaded .topbar {
 .cta-title { color: #ffffff !important; }
 .cta-sub { color: rgba(255, 255, 255, 0.84) !important; }
 
+/* ---------- Hero photo: real cleaning visual, framed clean ---------- */
+.hero-media {
+  margin: 36px auto 0 !important;
+  max-width: 720px !important;
+  width: 100%;
+  position: relative !important;
+  border-radius: clamp(20px, 3vw, 32px) !important;
+  overflow: hidden !important;
+  box-shadow: 0 30px 70px rgba(11, 67, 100, 0.28) !important;
+  border: 6px solid #fff !important;
+}
+.hero-photo {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  max-width: 100% !important;
+}
+.hero-photo-badge {
+  position: absolute;
+  left: 16px;
+  bottom: 16px;
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--navy);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  padding: 9px 16px;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  box-shadow: 0 6px 18px rgba(11, 67, 100, 0.22);
+}
+
 /* ---------- Footer: light, calm ---------- */
 .footer { background: #ffffff !important; border-top: 1px solid rgba(11, 67, 100, 0.08) !important; }
 
