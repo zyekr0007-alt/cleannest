@@ -1,56 +1,44 @@
 /* ============================================================
-   CleanNest — Apple-inspired polish layer
-   Loaded AFTER style.css. Additive only: keeps the existing
-   navy (#0B4364) + cyan (#0CD7E5) brand, layers clean/light
-   minimalist Apple principles on top (tight type, generous
-   whitespace, soft single shadow, glass nav, pill CTAs).
-   No JavaScript — CSS transitions/hover only, so content can
-   never be stranded if JS fails.
+   CleanNest — Apple-inspired polish layer (v2, higher-impact)
+   Loaded AFTER style.css. Additive, pure CSS, no JS.
+   Fixes: nav glass must wait for body.loaded (baseline hides
+   .topbar until JS adds .loaded). Changes are now bold + visible
+   while keeping the navy/cyan brand.
    ============================================================ */
 
 :root {
-  /* Apple-flavoured refinements of the existing tokens */
-  --apple-bg: #f5f7fa;          /* Apple's #f5f5f7, matched to brand off-white */
-  --apple-ink: #12222e;         /* near-black heading text */
-  --apple-muted: rgba(18, 34, 46, 0.62);
+  --apple-bg: #f5f7fa;
+  --apple-ink: #12222e;
+  --apple-muted: rgba(18, 34, 46, 0.66);
   --apple-card-shadow: 0 3px 30px rgba(11, 67, 100, 0.10);
-  --apple-card-shadow-hover: 0 12px 40px rgba(11, 67, 100, 0.16);
-  --apple-radius-lg: 18px;
+  --apple-card-shadow-hover: 0 16px 44px rgba(11, 67, 100, 0.18);
+  --apple-radius-lg: 20px;
   --apple-radius-pill: 980px;
   --apple-ease: cubic-bezier(0.23, 1, 0.32, 1);
 }
 
-/* ---------- Typography: tighter, calmer, more "Apple" ---------- */
+/* ---------- Typography: tighter, calmer, unmistakably "Apple" ---------- */
 body {
   font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  letter-spacing: -0.011em;            /* subtle negative tracking, Apple-style */
-  background: var(--apple-bg);
+  letter-spacing: -0.012em;
 }
-.hero-title,
-.section-head .section-badge,
-.cta-title,
-.reviews-title,
-.services .section-head,
-h1, h2 {
-  letter-spacing: -0.02em;
-  line-height: 1.08;
+h1, h2, h3, .hero-title, .cta-title, .reviews-title, .section-badge, .section-head .section-badge {
+  letter-spacing: -0.025em;
+  line-height: 1.06;
 }
-.hero-sub,
-.section-sub,
-.cta-sub,
-p {
-  letter-spacing: -0.006em;
-  line-height: 1.5;
-}
+p, .hero-sub, .section-sub, .cta-sub { letter-spacing: -0.006em; line-height: 1.52; }
 
-/* ---------- Sticky glass navigation (Apple signature) ---------- */
-.topbar {
+/* ---------- Sticky glass navigation (Apple signature) ----------
+   Baseline hides .topbar (opacity:0) until body.loaded. Match that. */
+body.loaded .topbar {
+  opacity: 1;
   background: rgba(255, 255, 255, 0.72);
   -webkit-backdrop-filter: saturate(180%) blur(20px);
   backdrop-filter: saturate(180%) blur(20px);
-  border-bottom: 1px solid rgba(11, 67, 100, 0.06);
+  border-bottom: 1px solid rgba(11, 67, 100, 0.08);
+  box-shadow: 0 1px 0 rgba(11, 67, 100, 0.04);
 }
 .desk-nav a {
   font-weight: 600;
@@ -59,115 +47,90 @@ p {
 }
 .desk-nav a:hover { color: var(--cyan); }
 
-/* ---------- Hero: light, airy, centered ---------- */
+/* ---------- Hero: light, airy, BIG, centered ---------- */
 .hero {
   background:
-    radial-gradient(120% 80% at 50% -10%, rgba(12, 215, 229, 0.10), transparent 60%),
-    var(--apple-bg);
-  padding-top: clamp(72px, 12vh, 140px);
+    radial-gradient(120% 80% at 50% -10%, rgba(12, 215, 229, 0.12), transparent 60%),
+    var(--apple-bg) !important;
+  padding-top: clamp(96px, 16vh, 180px) !important;
+  padding-bottom: clamp(40px, 7vh, 90px) !important;
 }
 .hero-title {
-  font-weight: 700;
-  font-size: clamp(40px, 7vw, 72px);
-  line-height: 1.04;
+  font-weight: 800 !important;
+  font-size: clamp(44px, 8vw, 84px) !important;
+  line-height: 1.02 !important;
 }
 .hero-sub {
   color: var(--apple-muted);
-  font-size: clamp(17px, 2.2vw, 21px);
-  max-width: 36ch;
+  font-size: clamp(18px, 2.4vw, 22px);
+  max-width: 40ch;
   margin-inline: auto;
+  font-weight: 500;
 }
 .hero-copy { text-align: center; align-items: center; }
 
-/* CTA pills: Apple 980px radius, calm hover */
+/* CTA pills: Apple 980px radius, calm lift */
 .btn-primary {
   border-radius: var(--apple-radius-pill) !important;
-  font-weight: 600;
+  font-weight: 700 !important;
   letter-spacing: -0.01em;
-  padding: 13px 26px;
+  padding: 14px 30px !important;
   transition: transform var(--dur-quick) var(--apple-ease),
               box-shadow var(--dur-quick) var(--apple-ease),
               filter var(--dur-quick) var(--apple-ease);
 }
-.btn-primary:hover {
-  transform: translateY(-2px);
-  filter: brightness(1.03);
-  box-shadow: 0 12px 30px rgba(12, 215, 229, 0.34);
-}
+.btn-primary:hover { transform: translateY(-2px); filter: brightness(1.04); box-shadow: 0 14px 32px rgba(12, 215, 229, 0.36) !important; }
 .btn-primary:active { transform: translateY(0); }
 
-/* ---------- Sections: alternating calm rhythm + breathing room ---------- */
-.section-head,
-.reviews-head,
-.cta-inner { text-align: center; }
-.section-sub,
-.cta-sub { color: var(--apple-muted); }
+/* ---------- Sections: alternating calm rhythm + real breathing room ---------- */
+.section-head, .reviews-head, .cta-inner { text-align: center; }
+.section-sub, .cta-sub { color: var(--apple-muted); }
 
-.services,
-.reviews,
-.about,
-.cities,
-.faqs { padding-block: clamp(56px, 9vh, 110px); }
-.services { background: #ffffff; }
-.reviews { background: var(--apple-bg); }
-.about   { background: #ffffff; }
-.cities  { background: var(--apple-bg); }
-.faqs    { background: #ffffff; }
+.services, .reviews, .about, .cities, .faqs { padding-block: clamp(64px, 10vh, 128px) !important; }
+.services { background: #ffffff !important; }
+.reviews { background: var(--apple-bg) !important; }
+.about   { background: #ffffff !important; }
+.cities  { background: var(--apple-bg) !important; }
+.faqs    { background: #ffffff !important; }
 
-/* ---------- Service tiles: clean cards, single soft shadow, gentle lift ---------- */
+/* ---------- Service tiles: clean white cards, single soft shadow, lift ---------- */
 .service-tile {
-  background: #ffffff;
-  border: 1px solid rgba(11, 67, 100, 0.07);
-  border-radius: var(--apple-radius-lg);
-  box-shadow: var(--apple-card-shadow);
+  background: #ffffff !important;
+  border: 1px solid rgba(11, 67, 100, 0.08) !important;
+  border-radius: var(--apple-radius-lg) !important;
+  box-shadow: var(--apple-card-shadow) !important;
   transition: transform var(--dur-standard) var(--apple-ease),
-              box-shadow var(--dur-standard) var(--apple-ease);
+              box-shadow var(--dur-standard) var(--apple-ease) !important;
 }
-.service-tile:hover {
-  transform: translateY(-6px);
-  box-shadow: var(--apple-card-shadow-hover);
-}
-.service-tile img {
-  border-bottom-left-radius: 0;
-  border-bottom-right-radius: 0;
-}
-.service-tag {
-  font-weight: 700;
-  letter-spacing: -0.01em;
-}
+.service-tile:hover { transform: translateY(-8px) !important; box-shadow: var(--apple-card-shadow-hover) !important; }
+.service-tag { font-weight: 800; letter-spacing: -0.01em; }
 
 /* ---------- Review cards: clean, soft, subtle lift ---------- */
 .review-card {
-  background: #ffffff;
-  border: 1px solid rgba(11, 67, 100, 0.06);
-  border-radius: var(--apple-radius-lg);
-  box-shadow: var(--apple-card-shadow);
+  background: #ffffff !important;
+  border: 1px solid rgba(11, 67, 100, 0.07) !important;
+  border-radius: var(--apple-radius-lg) !important;
+  box-shadow: var(--apple-card-shadow) !important;
   transition: transform var(--dur-standard) var(--apple-ease),
-              box-shadow var(--dur-standard) var(--apple-ease);
+              box-shadow var(--dur-standard) var(--apple-ease) !important;
 }
-.review-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--apple-card-shadow-hover);
-}
+.review-card:hover { transform: translateY(-5px) !important; box-shadow: var(--apple-card-shadow-hover) !important; }
 
 /* ---------- CTA band: solid navy panel, pill CTAs ---------- */
 .cta-band {
-  background: var(--navy);
-  border-radius: clamp(20px, 3vw, 34px);
-  margin: clamp(40px, 6vh, 80px) auto;
+  background: var(--navy) !important;
+  border-radius: clamp(22px, 3vw, 36px) !important;
+  margin: clamp(48px, 7vh, 96px) auto !important;
   max-width: 1120px;
-  box-shadow: var(--apple-card-shadow);
+  box-shadow: var(--apple-card-shadow) !important;
 }
-.cta-title { color: #ffffff; }
-.cta-sub { color: rgba(255, 255, 255, 0.82); }
+.cta-title { color: #ffffff !important; }
+.cta-sub { color: rgba(255, 255, 255, 0.84) !important; }
 
-/* ---------- Footer: light, calm, roomy ---------- */
-.footer {
-  background: #ffffff;
-  border-top: 1px solid rgba(11, 67, 100, 0.07);
-}
+/* ---------- Footer: light, calm ---------- */
+.footer { background: #ffffff !important; border-top: 1px solid rgba(11, 67, 100, 0.08) !important; }
 
-/* ---------- Reduced motion: never animate ---------- */
+/* ---------- Reduced motion ---------- */
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; animation: none !important; }
 }
