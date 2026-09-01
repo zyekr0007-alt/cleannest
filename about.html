@@ -484,13 +484,28 @@
           if (p < 1) requestAnimationFrame(step);
         })(start);
       }
+      const started = new WeakSet();
+      function maybeStart() {
+        const vh = window.innerHeight;
+        nums.forEach(n => {
+          if (started.has(n)) return;
+          const r = n.getBoundingClientRect();
+          if (r.top < vh && r.bottom > 0) { started.add(n); run(n); }
+        });
+      }
       if (!('IntersectionObserver' in window)) { nums.forEach(run); return; }
       const io = new IntersectionObserver((entries) => {
         entries.forEach(e => {
-          if (e.isIntersecting) { run(e.target); io.unobserve(e.target); }
+          if (e.isIntersecting && !started.has(e.target)) { started.add(e.target); run(e.target); io.unobserve(e.target); }
         });
       }, { threshold: 0.4 });
       nums.forEach(n => io.observe(n));
+      // Fallbacks for throttled IO (occluded tabs, odd embeds): scroll + interval
+      window.addEventListener('scroll', maybeStart, { passive: true });
+      const iv = setInterval(() => {
+        if (nums.every(n => started.has(n))) { clearInterval(iv); return; }
+        maybeStart();
+      }, 300);
     })();
 
     // Scroll-reveal for below-fold sections
@@ -507,6 +522,26 @@
         });
       }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
       els.forEach(el => io.observe(el));
+      // Fallbacks for throttled IO (occluded tabs, odd embeds): scroll + interval,
+      // so content can never stay invisible once it reaches the viewport.
+      let ticking = false;
+      function check() {
+        ticking = false;
+        const vh = window.innerHeight;
+        els.forEach(el => {
+          if (el.classList.contains('in')) return;
+          const r = el.getBoundingClientRect();
+          if (r.top < vh - 40 && r.bottom > 0) el.classList.add('in');
+        });
+      }
+      window.addEventListener('scroll', () => {
+        if (!ticking) { ticking = true; requestAnimationFrame(check); }
+      }, { passive: true });
+      window.addEventListener('resize', check, { passive: true });
+      const iv = setInterval(() => {
+        if (els.every(el => el.classList.contains('in'))) { clearInterval(iv); return; }
+        check();
+      }, 300);
     })();
 
     // Quote panel — tap services, then send straight to WhatsApp (2 steps)
