@@ -130,16 +130,6 @@ h1, h2, h3,
 
 /* Header wordmark styled IDENTICALLY to the preloader wordmark (solid navy) so
    the flying preloader wordmark lands seamlessly and IS the header wordmark. */
-.brand-wordmark {
-  font-family: 'Ultima' !important;
-  font-weight: 400;
-  font-size: clamp(1.9rem, 4.8vw, 2.6rem);
-  letter-spacing: 0.01em;
-  color: var(--navy);
-  text-shadow: 0 2px 16px rgba(11, 67, 100, 0.10);
-  -webkit-text-stroke: 0.4px currentColor;
-  paint-order: stroke fill;
-}
 
 /* On small screens, scale the centered wordmark down so it stays clearly
    clear of the top-right menu button and reads balanced. */
@@ -170,16 +160,6 @@ h1, h2, h3,
 
 /* Animated floating gradient orbs — subtle, ambient background */
 .hero::before,
-.hero::after {
-  content: '';
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.35;
-  pointer-events: none;
-  z-index: 0;
-  will-change: transform;
-}
 .hero::before {
   width: 500px;
   height: 500px;
@@ -503,8 +483,6 @@ h1, h2, h3,
 }
 
 @keyframes riseIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* Distinct cascading mask-reveal for the headline lines */
@@ -723,18 +701,6 @@ h1, h2, h3,
   line-height: 1.4;
 }
 /* Connector arrows between steps */
-.how-step:not(:last-child)::after {
-  content: '→';
-  position: absolute;
-  right: -12px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1.2rem;
-  color: var(--cyan);
-  opacity: 0.6;
-}
-.how-step { position: relative; }
-
 @media (max-width: 640px) {
   .how-steps { grid-template-columns: 1fr; gap: 10px; }
   .how-step { flex-direction: row; text-align: left; gap: 14px; padding: 16px; }
@@ -789,15 +755,7 @@ h1, h2, h3,
 
 /* Compact service grid — image + name only, animated tiles.
    Fixed responsive columns so all 8 tiles land in clean rows (no orphan). */
-.services-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-  align-items: stretch;
-}
 @media (max-width: 1000px) {
-  .services-grid { grid-template-columns: repeat(3, 1fr); }
-}
 @media (max-width: 640px) {
   .services-grid { grid-template-columns: repeat(2, 1fr); }
 }
@@ -1016,13 +974,6 @@ h1, h2, h3,
   font-weight: 700;
 }
 
-.gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 14px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
 @media (max-width: 640px) {
   .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
 }
@@ -1246,18 +1197,6 @@ h1, h2, h3,
 }
 .lightbox-close:hover { transform: rotate(90deg); background: var(--glass-bg-strong); }
 
-.lightbox-full {
-  width: auto;
-  max-width: 100%;
-  max-height: 90vh;
-  height: auto;
-  border-radius: 16px;
-  border: var(--glass-border);
-  box-shadow: 0 24px 70px rgba(6, 29, 46, 0.55);
-  background: var(--surface-2);
-  object-fit: contain;
-}
-
 @media (max-width: 640px) {
   .lightbox { padding: 12px; }
   .lightbox-full { max-width: 100vw; border-radius: 12px; }
@@ -1324,13 +1263,6 @@ h1, h2, h3,
   color: #F9AB00;
   letter-spacing: 2px;
   font-size: 1.05rem;
-}
-.agg-text {
-  font-family: 'Nunito', sans-serif;
-  font-size: 0.85rem;
-  color: var(--muted);
-  padding-left: 12px;
-  border-left: 1px solid rgba(11, 67, 100, 0.14);
 }
 .agg-text strong {
   font-weight: 800;
@@ -1414,13 +1346,6 @@ h1, h2, h3,
 }
 
 /* Reviews — responsive grid, all reviews visible */
-.reviews-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 16px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
 @media (max-width: 640px) {
   .reviews-grid { grid-template-columns: 1fr; }
 }
@@ -1714,17 +1639,6 @@ h1, h2, h3,
 
 /* Compact 2-per-row layout on mobile so the space is used, not wasted */
 @media (max-width: 640px) {
-  .why-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
-  .why-card {
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    gap: 8px;
-    padding: 18px 12px;
-    border-radius: 18px;
-    min-height: 118px;
-  }
   .why-ico { width: 38px; height: 38px; }
   .why-ico svg { width: 19px; height: 19px; }
   .why-name { font-size: 0.86rem; }
@@ -1999,13 +1913,6 @@ h1, h2, h3,
   overflow: hidden;
 }
 .cta-inner::before,
-.cta-inner::after {
-  content: "";
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(70px);
-  pointer-events: none;
-}
 .cta-inner::before {
   width: 420px;
   height: 420px;
@@ -2329,8 +2236,6 @@ h1, h2, h3,
 .hc-btn svg { width: 25px; height: 25px; flex-shrink: 0; }
 /* Flat brand colors, per reference: solid green / solid navy / IG gradient */
 .hc-wa { background: #25D366; color: #0B4364; }
-.hc-call { background: #0B4364; }
-.hc-ig { background: linear-gradient(45deg, #F58529 0%, #DD2A7B 55%, #8134AF 100%); }
 /* Gentle float forever (independent of the entrance pop so it survives .in removal) */
 .hc-btn { animation: hcFloat 3.4s ease-in-out infinite; }
 .hc-call { animation-delay: 0.16s; }
@@ -2970,10 +2875,6 @@ h1, h2, h3,
 
 /* ---------- Tighten excess vertical spacing on mobile ---------- */
 @media (max-width: 860px) {
-  .services, .gallery, .reviews, .about { padding: 52px 22px; }
-  .cta-band { padding: 52px 22px 100px; }
-  .section-head { margin-bottom: 28px; }
-  .svc-section { padding: 48px 22px; }
 }
 @media (max-width: 640px) {
   .services, .gallery, .reviews, .about { padding: 44px 22px; }
@@ -3078,8 +2979,6 @@ body.preloading { overflow: hidden; }
 body.preloading .brand-strip { opacity: 0; }
 
 /* Once the wordmark lands, the header pill fades in and crossfades with it. */
-body.loaded .brand-strip { opacity: 1; transition: opacity 0.3s ease; }
-
 /* The preloader now owns the brand entrance, so the header's own positional
    animations are off (kept the shimmer) so the wordmark lands with no slide,
    jump or duplicate. The wordmark is solid navy (no gradient), so a
@@ -3372,19 +3271,6 @@ body.preloading:not(:has(#preloader)) .reveal {
 }
 
 /* Mobile services grid: stop clipped / overflowing titles */
-.service-tag {
-  white-space: normal;
-  overflow-wrap: anywhere;
-  word-break: break-word;
-  font-size: clamp(0.78rem, 2.6vw, 0.95rem);
-  line-height: 1.25;
-  max-height: none;
-  overflow: visible;
-}
-.service-price-tag {
-  white-space: nowrap;
-  max-width: calc(100% - 20px);
-}
 @media (max-width: 640px) {
   .services-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -3533,14 +3419,7 @@ a.city-chip:hover {
 }
 
 /* BUG-1/2: 2-col minmax + no horizontal overflow on services grids */
-.services-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  overflow-x: clip;
-  max-width: 100%;
-}
 @media (max-width: 1000px) {
-  .services-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-}
 @media (max-width: 640px) {
   .services-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -3631,8 +3510,6 @@ a.city-chip:hover {
 .sticky-contact .sticky-call { background: #0B4364; }
 .sticky-contact .sticky-call:hover { filter: brightness(1.08); }
 @media (max-width: 640px) {
-  .sticky-contact { display: flex; }
-  /* room for sticky bar above footer copyright */
   .footer { padding-bottom: calc(120px + env(safe-area-inset-bottom, 0px)); }
 }
 @media (min-width: 641px) {
@@ -3706,11 +3583,6 @@ a.city-chip:hover {
 
 /* services.html: if services is still inside .hero, stack on mobile instead of 44px crush */
 @media (max-width: 860px) {
-  .hero {
-    flex-direction: column;
-    align-items: stretch;
-    overflow: visible;
-  }
   .hero > * {
     width: 100%;
     max-width: 100%;
@@ -3718,22 +3590,6 @@ a.city-chip:hover {
 }
 
 /* ===== Desktop + overflow + tap 2026-08-30 ===== */
-.desk-nav { display: none; }
-@media (min-width: 1024px) {
-  .desk-nav { display: flex; align-items: center; gap: 22px; pointer-events: auto; z-index: 41; }
-  .desk-nav a { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.92rem; color: var(--navy); text-decoration: none; letter-spacing: 0.01em; min-height: 44px; display: inline-flex; align-items: center; }
-  .desk-nav a:hover { color: #0AA9C9; }
-  .desk-nav-cta { padding: 8px 16px; border-radius: 999px; background: var(--navy); color: #fff !important; }
-  .desk-nav-cta:hover { filter: brightness(1.08); }
-  .brand-strip { justify-content: space-between; align-items: center; padding: 16px 36px 0; pointer-events: none; }
-  .brand-lockup, .desk-nav { pointer-events: auto; }
-  .topbar { display: none !important; }
-  .hero { padding: 108px 48px 64px; min-height: 0; align-items: stretch; }
-  .hero-inner { max-width: 1200px; width: 100%; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); align-items: center; gap: 40px 56px; text-align: left; }
-  .hero-copy { align-items: flex-start; text-align: left; }
-  .hero-sub { margin-left: 0; margin-right: 0; max-width: 36rem; }
-  .hero-aside { display: flex; flex-direction: column; gap: 18px; align-items: flex-start; }
-}
 @media (max-width: 1023px) { .desk-nav { display: none !important; } }
 @media (max-width: 640px) {
   html, body { overflow-x: clip; max-width: 100%; }
@@ -3757,12 +3613,6 @@ a.city-chip:hover {
 
 /* Scroll reveal (about page) — fail-open: hidden only for the JS entrance;
    noscript + reduced-motion + in-viewport fallbacks force content visible. */
-.rv {
-  opacity: 0;
-  transform: translateY(26px);
-  transition: opacity 0.7s var(--ease-out), transform 0.7s var(--ease-out);
-  will-change: opacity, transform;
-}
 .rv.in { opacity: 1; transform: none; }
 @media (prefers-reduced-motion: reduce) {
   .rv { opacity: 1 !important; transform: none !important; transition: none !important; }
@@ -4021,12 +3871,6 @@ a.city-chip:hover {
 @media (max-width: 640px) { .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; } }
 
 /* ---- Service Areas — city chips ---- */
-.about-areas {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 64px 22px 72px;
-  text-align: center;
-}
 .about-areas .cities-inner { max-width: 900px; justify-content: center; }
 .about-areas .city-chip { padding: 9px 18px; font-size: 0.88rem; font-weight: 600; }
 
@@ -4085,11 +3929,6 @@ a.city-chip:hover {
   color: var(--navy-dark);
 }
 /* Denser portfolio grid (homepage grid stays looser) */
-.results-section .gallery-grid {
-  grid-template-columns: repeat(auto-fill, minmax(248px, 1fr));
-  gap: 18px;
-  max-width: 1320px;
-}
 @media (max-width: 640px) {
   .results-section .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
 }
@@ -4261,7 +4100,6 @@ a.rating-summary:hover {
   .gallery-card:hover img { transform: none !important; }
   .hero .hero-inner { transform: none !important; }
 }
-
 
 /* Utility: WhatsApp icon size */
 .wa-icon { width: 18px; height: 18px; }
