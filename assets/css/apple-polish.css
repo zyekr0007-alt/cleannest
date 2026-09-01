@@ -1,0 +1,173 @@
+/* ============================================================
+   CleanNest — Apple-inspired polish layer
+   Loaded AFTER style.css. Additive only: keeps the existing
+   navy (#0B4364) + cyan (#0CD7E5) brand, layers clean/light
+   minimalist Apple principles on top (tight type, generous
+   whitespace, soft single shadow, glass nav, pill CTAs).
+   No JavaScript — CSS transitions/hover only, so content can
+   never be stranded if JS fails.
+   ============================================================ */
+
+:root {
+  /* Apple-flavoured refinements of the existing tokens */
+  --apple-bg: #f5f7fa;          /* Apple's #f5f5f7, matched to brand off-white */
+  --apple-ink: #12222e;         /* near-black heading text */
+  --apple-muted: rgba(18, 34, 46, 0.62);
+  --apple-card-shadow: 0 3px 30px rgba(11, 67, 100, 0.10);
+  --apple-card-shadow-hover: 0 12px 40px rgba(11, 67, 100, 0.16);
+  --apple-radius-lg: 18px;
+  --apple-radius-pill: 980px;
+  --apple-ease: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* ---------- Typography: tighter, calmer, more "Apple" ---------- */
+body {
+  font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  letter-spacing: -0.011em;            /* subtle negative tracking, Apple-style */
+  background: var(--apple-bg);
+}
+.hero-title,
+.section-head .section-badge,
+.cta-title,
+.reviews-title,
+.services .section-head,
+h1, h2 {
+  letter-spacing: -0.02em;
+  line-height: 1.08;
+}
+.hero-sub,
+.section-sub,
+.cta-sub,
+p {
+  letter-spacing: -0.006em;
+  line-height: 1.5;
+}
+
+/* ---------- Sticky glass navigation (Apple signature) ---------- */
+.topbar {
+  background: rgba(255, 255, 255, 0.72);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
+  backdrop-filter: saturate(180%) blur(20px);
+  border-bottom: 1px solid rgba(11, 67, 100, 0.06);
+}
+.desk-nav a {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  transition: color var(--dur-quick) var(--apple-ease);
+}
+.desk-nav a:hover { color: var(--cyan); }
+
+/* ---------- Hero: light, airy, centered ---------- */
+.hero {
+  background:
+    radial-gradient(120% 80% at 50% -10%, rgba(12, 215, 229, 0.10), transparent 60%),
+    var(--apple-bg);
+  padding-top: clamp(72px, 12vh, 140px);
+}
+.hero-title {
+  font-weight: 700;
+  font-size: clamp(40px, 7vw, 72px);
+  line-height: 1.04;
+}
+.hero-sub {
+  color: var(--apple-muted);
+  font-size: clamp(17px, 2.2vw, 21px);
+  max-width: 36ch;
+  margin-inline: auto;
+}
+.hero-copy { text-align: center; align-items: center; }
+
+/* CTA pills: Apple 980px radius, calm hover */
+.btn-primary {
+  border-radius: var(--apple-radius-pill) !important;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  padding: 13px 26px;
+  transition: transform var(--dur-quick) var(--apple-ease),
+              box-shadow var(--dur-quick) var(--apple-ease),
+              filter var(--dur-quick) var(--apple-ease);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.03);
+  box-shadow: 0 12px 30px rgba(12, 215, 229, 0.34);
+}
+.btn-primary:active { transform: translateY(0); }
+
+/* ---------- Sections: alternating calm rhythm + breathing room ---------- */
+.section-head,
+.reviews-head,
+.cta-inner { text-align: center; }
+.section-sub,
+.cta-sub { color: var(--apple-muted); }
+
+.services,
+.reviews,
+.about,
+.cities,
+.faqs { padding-block: clamp(56px, 9vh, 110px); }
+.services { background: #ffffff; }
+.reviews { background: var(--apple-bg); }
+.about   { background: #ffffff; }
+.cities  { background: var(--apple-bg); }
+.faqs    { background: #ffffff; }
+
+/* ---------- Service tiles: clean cards, single soft shadow, gentle lift ---------- */
+.service-tile {
+  background: #ffffff;
+  border: 1px solid rgba(11, 67, 100, 0.07);
+  border-radius: var(--apple-radius-lg);
+  box-shadow: var(--apple-card-shadow);
+  transition: transform var(--dur-standard) var(--apple-ease),
+              box-shadow var(--dur-standard) var(--apple-ease);
+}
+.service-tile:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--apple-card-shadow-hover);
+}
+.service-tile img {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+}
+.service-tag {
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- Review cards: clean, soft, subtle lift ---------- */
+.review-card {
+  background: #ffffff;
+  border: 1px solid rgba(11, 67, 100, 0.06);
+  border-radius: var(--apple-radius-lg);
+  box-shadow: var(--apple-card-shadow);
+  transition: transform var(--dur-standard) var(--apple-ease),
+              box-shadow var(--dur-standard) var(--apple-ease);
+}
+.review-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--apple-card-shadow-hover);
+}
+
+/* ---------- CTA band: solid navy panel, pill CTAs ---------- */
+.cta-band {
+  background: var(--navy);
+  border-radius: clamp(20px, 3vw, 34px);
+  margin: clamp(40px, 6vh, 80px) auto;
+  max-width: 1120px;
+  box-shadow: var(--apple-card-shadow);
+}
+.cta-title { color: #ffffff; }
+.cta-sub { color: rgba(255, 255, 255, 0.82); }
+
+/* ---------- Footer: light, calm, roomy ---------- */
+.footer {
+  background: #ffffff;
+  border-top: 1px solid rgba(11, 67, 100, 0.07);
+}
+
+/* ---------- Reduced motion: never animate ---------- */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
