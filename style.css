@@ -3361,6 +3361,10 @@ body.loaded .brand-strip { opacity: 1; transition: opacity 0.3s ease; }
 
 .svc-hero .hero-inner { grid-template-columns: 1.15fr 0.85fr; }
 
+/* Service-page hero media: constrain the (1260px-declared) hero image to its
+   column so it can never overflow the viewport on desktop/tablet. */
+.srv-hero-media img { width: 100%; height: auto; display: block; }
+
 .svc-title {
   font-size: clamp(2.2rem, 4.6vw, 3.3rem);
   font-weight: 800;

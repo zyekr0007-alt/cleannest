@@ -74,15 +74,21 @@
     }
     if (RM || !('IntersectionObserver' in window)) { paintFinal(); return; }
     function run(el) {
+      el.setAttribute('data-cn-done', '1');
       var target = parseFloat(el.getAttribute('data-cn-target'));
       var dec = parseInt(el.getAttribute('data-cn-dec'), 10);
       var t0 = performance.now();
       var DUR = 1400;
+      var finished = false;
+      // Wall-clock failsafe: if rAF is throttled (background tab, low-power
+      // mode), never leave the counter stuck mid-count — snap to the final.
+      setTimeout(function () { if (!finished) el.textContent = fmt(target, dec); }, DUR + 350);
       (function step(now) {
         var p = Math.min((now - t0) / DUR, 1);
         var eased = 1 - Math.pow(1 - p, 3);   // easeOutCubic
         el.textContent = fmt(target * eased, dec);
         if (p < 1) requestAnimationFrame(step);
+        else finished = true;
       })(t0);
     }
     var io = new IntersectionObserver(function (entries) {
@@ -93,6 +99,26 @@
       });
     }, { threshold: 0.35 });
     els.forEach(function (el) { io.observe(el); });
+
+    // Fail-open safety net: never leave a counter stuck at 0. If the IO is
+    // throttled (occluded tab, odd embeds) or the element is already in the
+    // viewport when the page settles, start it from a scroll check + timeout.
+    function inViewport(el) {
+      var r = el.getBoundingClientRect();
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      return r.top < vh * 0.9 && r.bottom > 0;
+    }
+    function startVisible() {
+      els.forEach(function (el) {
+        if (!el.getAttribute('data-cn-done') && inViewport(el)) {
+          el.setAttribute('data-cn-done', '1');
+          run(el);
+        }
+      });
+    }
+    setTimeout(startVisible, 600);
+    window.addEventListener('scroll', startVisible, { passive: true });
+    window.addEventListener('load', startVisible);
   })();
 
   /* ---------- 3. Review cards — subtle 3D tilt on hover ----------
@@ -136,27 +162,49 @@
       entries.forEach(function (e) {
         if (!e.isIntersecting) return;
         io.unobserve(e.target);
-        var n = links.length;
-        links.forEach(function (a) {
-          a.style.transition = 'opacity 0.5s ' + EASE_OUT + ', transform 0.5s ' + EASE_OUT;
-          a.style.opacity = '0';
-          a.style.transform = 'translateY(10px)';
-        });
-        requestAnimationFrame(function () {
-          links.forEach(function (a, i) {
-            a.style.transitionDelay = (i * 0.05) + 's';
-            a.style.opacity = '1';
-            a.style.transform = 'none';
-          });
-          setTimeout(function () {
-            links.forEach(function (a) {
-              a.style.transition = '';
-              a.style.transitionDelay = '';
-            });
-          }, n * 50 + 550);
-        });
+        runReveal();
       });
     }, { rootMargin: '0px 0px -8% 0px', threshold: 0 });
     io.observe(footer);
+
+    // Fail-open safety net: if the IO is throttled (occluded tab) or the
+    // footer is already on screen when the page settles, run the stagger
+    // from a scroll check + timeout. Links are visible by default either way.
+    var started = false;
+    function runReveal() {
+      if (started) return;
+      started = true;
+      var n = links.length;
+      links.forEach(function (a) {
+        a.style.transition = 'opacity 0.5s ' + EASE_OUT + ', transform 0.5s ' + EASE_OUT;
+        a.style.opacity = '0';
+        a.style.transform = 'translateY(10px)';
+      });
+      // Reveal on the next paint. A 40ms gap (rather than requestAnimationFrame)
+      // guarantees the hidden state paints before the stagger begins, and still
+      // works when rAF is throttled (occluded/hidden tabs).
+      setTimeout(function () {
+        links.forEach(function (a, i) {
+          a.style.transitionDelay = (i * 0.05) + 's';
+          a.style.opacity = '1';
+          a.style.transform = 'none';
+        });
+        setTimeout(function () {
+          links.forEach(function (a) {
+            a.style.transition = '';
+            a.style.transitionDelay = '';
+          });
+        }, n * 50 + 550);
+      }, 40);
+    }
+    function tryStart() {
+      if (started) return;
+      var r = footer.getBoundingClientRect();
+      var vh = window.innerHeight || document.documentElement.clientHeight;
+      if (r.top < vh && r.bottom > 0) runReveal();
+    }
+    setTimeout(tryStart, 600);
+    window.addEventListener('scroll', tryStart, { passive: true });
+    window.addEventListener('load', tryStart);
   })();
 })();
