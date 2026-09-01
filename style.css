@@ -2290,6 +2290,45 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 }
 .fi-ico { color: var(--cyan); }
 
+/* Footer sitemap links */
+.footer-sitemap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 32px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(11, 67, 100, 0.08);
+}
+.footer-sitemap-col {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.footer-sitemap-col h4 {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--navy);
+  margin-bottom: 4px;
+  letter-spacing: 0.02em;
+}
+.footer-sitemap-col a {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 500;
+  font-size: 0.82rem;
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-block;
+}
+.footer-sitemap-col a:hover {
+  color: var(--cyan);
+  transform: translateX(3px);
+}
+@media (max-width: 640px) {
+  .footer-sitemap { grid-template-columns: 1fr; gap: 16px; }
+}
+
 /* Bottom copyright bar */
 .footer-bottom {
   margin-top: 40px;
