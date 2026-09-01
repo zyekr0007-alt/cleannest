@@ -42,4 +42,7 @@
   <url><loc>https://cleannest.in/full-house-cleaning.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://cleannest.in/kitchen-cleaning.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://cleannest.in/sofa-cleaning.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://cleannest.in/results.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://cleannest.in/reviews.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://cleannest.in/about.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>
