@@ -903,6 +903,12 @@
                 t.classList.add('in');
               });
             }
+            // Reveal why-cells with stagger
+            if (e.target.classList.contains('about') || e.target.id === 'about') {
+              e.target.querySelectorAll('.why-cell').forEach(t => {
+                t.classList.add('in');
+              });
+            }
             io.unobserve(e.target); // one-shot — do not re-loop on scroll up
           }
         });
