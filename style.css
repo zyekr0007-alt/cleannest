@@ -48,11 +48,12 @@ html { scroll-behavior: smooth; }
 body {
   font-family: 'Nunito', -apple-system, sans-serif;
   color: var(--ink);
+  /* Calm two-tone ambient wash — quiet enough that solid white cards
+     carry the elevation instead of competing gradients. */
   background:
-    radial-gradient(80% 60% at 15% 10%, rgba(12, 215, 229, 0.18), transparent 55%),
-    radial-gradient(70% 55% at 85% 25%, rgba(11, 67, 100, 0.16), transparent 55%),
-    radial-gradient(90% 70% at 50% 95%, rgba(20, 118, 168, 0.14), transparent 60%),
-    linear-gradient(160deg, var(--surface) 0%, var(--surface-2) 55%, #E6EDF3 100%);
+    radial-gradient(62% 46% at 12% 6%, rgba(12, 215, 229, 0.09), transparent 56%),
+    radial-gradient(55% 42% at 90% 18%, rgba(11, 67, 100, 0.07), transparent 55%),
+    var(--surface);
   background-attachment: fixed;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -242,6 +243,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   color: var(--navy);
   display: flex;
   flex-direction: column;
+  text-wrap: balance;
 }
 
 .hero-title .accent {
@@ -496,19 +498,59 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   white-space: nowrap;
 }
 
+/* Hero media card — real before/after proof shot anchoring the hero's
+   right column. Solid frame + floating result chip (used on homepage). */
 .hero-media {
   position: relative;
+  width: 100%;
+  max-width: 420px;
+  margin: 0 auto;
 }
 
 .hero-media img {
   width: 100%;
   height: auto;
   max-height: 78vh;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-radius: 28px;
+  border-radius: 26px;
   display: block;
-  box-shadow: 0 28px 60px rgba(11, 67, 100, 0.18), 0 2px 10px rgba(11, 67, 100, 0.12);
-  border: 4px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 28px 60px rgba(11, 67, 100, 0.20), 0 2px 10px rgba(11, 67, 100, 0.12);
+  border: 5px solid rgba(255, 255, 255, 0.9);
+}
+
+.hero-media-chip {
+  position: absolute;
+  left: 14px;
+  bottom: 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  max-width: calc(100% - 28px);
+  padding: 9px 15px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  box-shadow: 0 12px 28px rgba(6, 29, 46, 0.28);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  color: var(--navy);
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.hero-media-chip::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 10px rgba(12, 215, 229, 0.9);
+  flex-shrink: 0;
 }
 
 /* ---------- Reveal entrance (hero) ---------- */
@@ -522,13 +564,13 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
    scrolling UP. Driven by a scroll-direction-aware IntersectionObserver. */
 .scroll-reveal {
   opacity: 0;
-  transform: translateY(70px) scale(0.98);
-  transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
-              transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transform: translateY(34px) scale(0.985);
+  transition: opacity 0.8s var(--ease-out),
+              transform 0.8s var(--ease-out);
   will-change: opacity, transform;
 }
 .scroll-reveal.from-top {
-  transform: translateY(-70px) scale(0.98);
+  transform: translateY(-34px) scale(0.985);
 }
 .scroll-reveal.scroll-in {
   opacity: 1;
@@ -580,11 +622,10 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   margin-top: 36px;
   padding: 12px 10px 12px 18px;
   border-radius: 20px;
-  background: var(--glass-bg);
-  border: var(--glass-border);
-  box-shadow: var(--glass-shadow);
-  backdrop-filter: var(--glass-backdrop);
-  -webkit-backdrop-filter: var(--glass-backdrop);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(11, 67, 100, 0.10);
+  box-shadow: 0 14px 38px rgba(11, 67, 100, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+  color: var(--navy);
   text-decoration: none;
   overflow: hidden;   /* clips the one-time sheen sweep */
   transition: transform var(--dur-quick) var(--ease-out), box-shadow var(--dur-quick) var(--ease-out);
@@ -718,16 +759,14 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   text-align: center;
   padding: 24px 16px;
   border-radius: var(--radius);
-  background: var(--glass-bg-strong);
-  border: var(--glass-border);
-  backdrop-filter: var(--glass-backdrop);
-  -webkit-backdrop-filter: var(--glass-backdrop);
-  box-shadow: var(--glass-shadow);
+  background: #FFFFFF;
+  border: 1px solid rgba(11, 67, 100, 0.08);
+  box-shadow: 0 12px 30px rgba(11, 67, 100, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
   transition: transform var(--dur-quick) var(--ease-out), box-shadow var(--dur-quick) var(--ease-out);
 }
 .how-step:hover {
   transform: translateY(-3px);
-  box-shadow: 0 14px 34px rgba(11, 67, 100, 0.14);
+  box-shadow: 0 18px 40px rgba(11, 67, 100, 0.14), inset 0 1px 0 rgba(255, 255, 255, 0.9);
 }
 .how-step-num {
   display: flex;
@@ -802,6 +841,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   font-weight: 800;
   color: var(--navy);
   letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
 .section-title .star { color: var(--cyan); }
@@ -819,7 +859,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 .services {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 48px 22px;
+  padding: 64px 22px;
 }
 
 /* Compact service grid — image + name only, animated tiles.
@@ -1013,7 +1053,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 
 .gallery {
   margin: 0 auto;
-  padding: 64px 22px;
+  padding: 72px 22px;
 }
 
 /* Filterable gallery grid — replaces carousel on homepage */
@@ -1053,8 +1093,8 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 14px;
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -1069,7 +1109,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   cursor: pointer;
   border: var(--glass-border);
   box-shadow: var(--glass-shadow);
-  transition: transform var(--dur-quick) var(--ease-out), box-shadow var(--dur-quick) var(--ease-out), opacity 0.4s ease;
+  transition: transform var(--dur-standard) var(--ease-out), box-shadow var(--dur-standard) var(--ease-out), opacity 0.4s ease;
   opacity: 0;
   transform: translateY(16px);
 }
@@ -1081,8 +1121,8 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   display: none;
 }
 .gallery-grid-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 46px rgba(11, 67, 100, 0.24);
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 22px 48px rgba(11, 67, 100, 0.26);
 }
 .gallery-grid-item img {
   width: 100%;
@@ -1090,10 +1130,11 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   height: auto;
   object-fit: contain;
   display: block;
-  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: transform 0.6s var(--ease-out);
+  will-change: transform;
 }
 .gallery-grid-item:hover img {
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 .gallery-grid-label {
   position: absolute;
@@ -1134,6 +1175,12 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 .gallery-grid-item:nth-child(6) { transition-delay: 0.20s; }
 .gallery-grid-item:nth-child(7) { transition-delay: 0.24s; }
 .gallery-grid-item:nth-child(8) { transition-delay: 0.28s; }
+/* Hover must not inherit the entrance stagger delay — the lift/zoom
+   responds the instant the pointer lands, not after 0.28s. */
+.gallery-grid-item:hover,
+.gallery-grid-item:focus-visible {
+  transition-delay: 0s;
+}
 
 .gallery-carousel {
   position: relative;
@@ -1175,13 +1222,13 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   display: block;
   border: var(--glass-border);
   box-shadow: var(--glass-shadow);
-  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease;
+  transition: transform 0.5s var(--ease-out), box-shadow 0.5s var(--ease-out);
 }
 
 .gallery-card:hover img,
 .gallery-card:focus-visible img {
-  transform: scale(1.04);
-  box-shadow: 0 16px 38px rgba(11, 67, 100, 0.24);
+  transform: scale(1.06);
+  box-shadow: 0 18px 42px rgba(11, 67, 100, 0.26);
 }
 
 .gallery-card:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; }
@@ -1295,7 +1342,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 .reviews {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 44px 22px;
+  padding: 64px 22px;
 }
 
 .reviews-head {
@@ -1321,6 +1368,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   font-weight: 800;
   color: var(--navy);
   letter-spacing: -0.02em;
+  text-wrap: balance;
 }
 
 .reviews-title .star { color: var(--cyan); }
@@ -1454,13 +1502,11 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 
 .review-card {
   position: relative;
-  background: rgba(255, 255, 255, 0.85);
+  background: #FFFFFF;
   border: 1px solid rgba(11, 67, 100, 0.08);
   border-radius: 18px;
   padding: 18px 18px 16px;
-  box-shadow: 0 12px 36px rgba(11, 67, 100, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
+  box-shadow: 0 12px 34px rgba(11, 67, 100, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -1661,11 +1707,9 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   text-align: left;
   padding: 13px 16px;
   border-radius: 999px;
-  background: var(--glass-bg);
-  border: var(--glass-border);
-  box-shadow: var(--glass-shadow);
-  backdrop-filter: var(--glass-backdrop);
-  -webkit-backdrop-filter: var(--glass-backdrop);
+  background: #FFFFFF;
+  border: 1px solid rgba(11, 67, 100, 0.08);
+  box-shadow: 0 10px 26px rgba(11, 67, 100, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.9);
   cursor: pointer;
   font-family: 'Nunito', sans-serif;
   transition: transform 0.2s ease, box-shadow 0.25s ease, background 0.25s ease;
@@ -1785,7 +1829,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 .faqs {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 80px 22px;
+  padding: 72px 22px;
 }
 
 .faq-list {
@@ -2118,35 +2162,70 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 
 /* ---------- CTA band ---------- */
 .cta-band {
-  padding: 56px 22px 56px;
-  background: var(--surface);
+  padding: 24px 22px 80px;
   text-align: center;
   overflow: hidden;
 }
 
+/* Navy conversion panel — the page's strongest moment: deep brand navy,
+   cyan glow orbs, white headline. Reads as a deliberate sign-off, not
+   another flat background section. */
 .cta-inner {
+  position: relative;
   max-width: 1200px;
   margin: 0 auto;
+  padding: 68px 32px 60px;
+  border-radius: 36px;
+  background: linear-gradient(155deg, #0B4364 0%, #0A5584 46%, #0E7A9E 100%);
+  box-shadow: 0 30px 70px rgba(11, 67, 100, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.16);
+  overflow: hidden;
+}
+.cta-inner::before,
+.cta-inner::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(70px);
+  pointer-events: none;
+}
+.cta-inner::before {
+  width: 420px;
+  height: 420px;
+  background: radial-gradient(circle, rgba(12, 215, 229, 0.42), transparent 70%);
+  top: -180px;
+  left: -120px;
+}
+.cta-inner::after {
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(20, 118, 168, 0.55), transparent 70%);
+  bottom: -170px;
+  right: -110px;
 }
 
 .cta-title {
+  position: relative;
   margin-top: 16px;
-  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
   font-weight: 800;
-  color: var(--navy);
+  color: #FFFFFF;
   letter-spacing: -0.02em;
+  text-wrap: balance;
+  text-shadow: 0 2px 20px rgba(6, 29, 46, 0.35);
 }
 
 .cta-title .star { color: var(--cyan); }
 
 .cta-sub {
+  position: relative;
   margin-top: 12px;
-  color: var(--muted);
+  color: rgba(255, 255, 255, 0.82);
   font-size: 1.05rem;
 }
 
 .cta-actions {
-  margin-top: 26px;
+  position: relative;
+  margin-top: 28px;
   display: flex;
   gap: 14px;
   justify-content: center;
@@ -2188,7 +2267,8 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 
 /* Compact trust row — three facts, one line */
 .cta-perks {
-  margin: 22px auto 0;
+  position: relative;
+  margin: 24px auto 0;
   padding: 0;
   list-style: none;
   display: flex;
@@ -2203,9 +2283,9 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   gap: 7px;
   padding: 7px 16px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.65);
-  border: 1px solid rgba(11, 67, 100, 0.1);
-  color: var(--muted);
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.88);
   font-size: 0.84rem;
   font-weight: 600;
   white-space: nowrap;
@@ -2216,7 +2296,31 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   height: 6px;
   border-radius: 50%;
   background: var(--cyan);
+  box-shadow: 0 0 10px rgba(12, 215, 229, 0.9);
   flex-shrink: 0;
+}
+
+/* CTA band on navy panel: badge becomes frosted glass, WhatsApp button
+   stays a bright frosted pill so the cyan CTA remains the loudest element. */
+.cta-band .section-badge {
+  position: relative;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: #CDF3F7;
+}
+.cta-band .cta-glass {
+  background: rgba(255, 255, 255, 0.92);
+  border-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 26px rgba(6, 29, 46, 0.35);
+}
+.cta-band .cta-glass:hover {
+  background: #FFFFFF;
+  border-color: var(--cyan);
+}
+
+@media (max-width: 640px) {
+  .cta-band { padding: 8px 16px 64px; }
+  .cta-inner { padding: 52px 22px 48px; border-radius: 28px; }
 }
 
 /* ---------- Footer ---------- */
@@ -2598,6 +2702,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 
 /* Staggered item reveals — tall glass rows */
 .menu-item {
+  position: relative;
   display: flex;
   align-items: center;
   gap: 16px;
@@ -2617,6 +2722,22 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   transition: box-shadow 0.22s ease, color 0.2s ease, transform 0.2s ease, background 0.2s ease;
   margin-bottom: 12px;
 }
+/* Smooth cyan underline that sweeps in on hover — quiet nav feedback */
+.menu-item::after {
+  content: "";
+  position: absolute;
+  left: 26px;
+  right: 26px;
+  bottom: 8px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--cyan), rgba(12, 215, 229, 0.25));
+  opacity: 0;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform var(--dur-standard) var(--ease-out), opacity var(--dur-standard) var(--ease-out);
+  pointer-events: none;
+}
 /* Uniform spacing for every menu item (last item gets the same gap; the
    body is vertically centered so it stays balanced). */
 .menu-faq-toggle { margin-bottom: 12px; }
@@ -2627,6 +2748,11 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   transform: translateY(1px);
   background: var(--glass-bg-strong);
   box-shadow: 0 16px 40px rgba(11, 67, 100, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+.menu-item:hover::after,
+.menu-item:focus-visible::after {
+  opacity: 1;
+  transform: scaleX(1);
 }
 .menu-panel.open .menu-item {
   animation: menuItemIn 0.38s cubic-bezier(0.22, 1, 0.36, 1) forwards;
@@ -3853,7 +3979,10 @@ a.city-chip:hover {
   .preloader-glow { max-width: 100vw; overflow: hidden; }
 }
 @media (min-width: 1024px) {
-  .reviews-grid { grid-auto-flow: column; grid-auto-columns: minmax(260px, 1fr); }
+  /* Homepage + reviews page: reviews flow as a balanced multi-column grid.
+     (The previous grid-auto-flow: column + overflow-x: clip rendered the
+     last cards off-viewport and unreachable on desktop — removed.) */
+  .reviews-grid { grid-auto-flow: row; }
 }
 .footer-btn { min-height: 44px; }
 .footer-map-caption a, .footer-reviews a, .footer-areas a {
@@ -4344,3 +4473,29 @@ a.rating-summary:hover {
   .rating-bar-label { font-size: 0.85rem; }
   .rating-bar-pct { font-size: 0.85rem; }
 }
+
+/* ---------- Desktop section rhythm (final pass) ----------
+   A single 96px vertical beat on desktop so every section breathes
+   identically; 64px base (set above) keeps mobile tight. */
+@media (min-width: 768px) {
+  .services { padding-top: 88px; padding-bottom: 88px; }
+  .gallery { padding-top: 96px; padding-bottom: 96px; }
+  .reviews { padding-top: 96px; padding-bottom: 96px; }
+  .about { padding-top: 96px; padding-bottom: 96px; }
+  .faqs { padding-top: 96px; padding-bottom: 96px; }
+  .cta-band { padding-top: 48px; padding-bottom: 96px; }
+}
+
+/* ---------- Motion overhaul: reduced-motion guard ----------
+   Every motion-system addition (nav underline sweep, review-card tilt,
+   gallery lift/zoom, hero parallax) is disabled under reduced motion;
+   JS skips these too, this is the CSS-level safety net. */
+@media (prefers-reduced-motion: reduce) {
+  .menu-item::after { opacity: 0 !important; transform: none !important; }
+  .review-card { transform: none !important; }
+  .gallery-grid-item:hover,
+  .gallery-grid-item:hover img,
+  .gallery-card:hover img { transform: none !important; }
+  .hero .hero-inner { transform: none !important; }
+}
+
