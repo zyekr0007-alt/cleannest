@@ -39,35 +39,8 @@
       .brand-strip { opacity: 1 !important; }
     </style>
   </noscript>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "AboutPage",
-    "name": "About CleanNest",
-    "url": "https://cleannest.in/about.html",
-    "description": "CleanNest is a professional deep cleaning service based in Jalandhar, Punjab — 4.9★ rated on Google with 20+ services across 13 towns.",
-    "mainEntity": {
-      "@type": "Organization",
-      "@id": "https://cleannest.in/#business",
-      "name": "CleanNest",
-      "url": "https://cleannest.in/",
-      "telephone": "+91-76100-00654",
-      "email": "cleannestclub@gmail.com",
-      "founder": { "@type": "Person", "name": "Gurlal Sandhu" },
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Jalandhar",
-        "addressRegion": "Punjab",
-        "addressCountry": "IN"
-      },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.9",
-        "reviewCount": "223"
-      }
-    }
-  }
-  </script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"AboutPage","name":"About CleanNest","url":"https://cleannest.in/about.html","description":"CleanNest is a professional deep cleaning service based in Jalandhar, Punjab — 4.9★ rated on Google with 20+ services across 13 towns.","mainEntity":{"@type":"Organization","@id":"https://cleannest.in/#business","name":"CleanNest","url":"https://cleannest.in/","telephone":"+91-76100-00654","email":"cleannestclub@gmail.com","founder":{"@type":"Person","name":"Gurlal Sandhu"},"address":{"@type":"PostalAddress","addressLocality":"Jalandhar","addressRegion":"Punjab","addressCountry":"IN"},"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"223"}}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://cleannest.in/"},{"@type":"ListItem","position":2,"name":"About","item":"https://cleannest.in/about.html"}]}</script>
 </head>
 <body>
   <header class="brand-strip"><a class="brand-lockup" href="index.html" aria-label="CleanNest home"><span class="brand-wordmark">CleanNest</span></a><span class="brand-glow" aria-hidden="true"></span>
@@ -503,7 +476,7 @@
       // Fallbacks for throttled IO (occluded tabs, odd embeds): scroll + interval
       window.addEventListener('scroll', maybeStart, { passive: true });
       const iv = setInterval(() => {
-        if (nums.every(n => started.has(n))) { clearInterval(iv); return; }
+        if (Array.from(nums).every(n => started.has(n))) { clearInterval(iv); return; }
         maybeStart();
       }, 300);
     })();
@@ -539,7 +512,7 @@
       }, { passive: true });
       window.addEventListener('resize', check, { passive: true });
       const iv = setInterval(() => {
-        if (els.every(el => el.classList.contains('in'))) { clearInterval(iv); return; }
+        if (Array.from(els).every(el => el.classList.contains('in'))) { clearInterval(iv); return; }
         check();
       }, 300);
     })();
