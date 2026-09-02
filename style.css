@@ -808,10 +808,10 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   line-height: 1.4;
 }
 
-/* Starting-price chip on service tiles (all-services page) */
+/* Starting-price chip on service tiles — sits at the BOTTOM now (label swapped to top) */
 .service-price-tag {
   position: absolute;
-  top: 12px;
+  bottom: 12px;
   left: 12px;
   max-width: calc(100% - 24px);
   padding: 5px 12px;
@@ -844,25 +844,25 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   transform: scale(1.08);
 }
 
-/* Label overlay at the bottom */
+/* Label overlay at the TOP now (swapped with price per request) */
 .service-tag {
   position: absolute;
+  top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
-  padding: 26px 12px 12px;
+  padding: 12px 12px 26px;
   font-family: 'Nunito', sans-serif;
   font-weight: 700;
   font-size: 0.95rem;
   line-height: 1.2;
   color: var(--white);
-  text-shadow: 0 1px 8px rgba(6, 29, 46, 0.5);
-  background: linear-gradient(transparent, rgba(6, 29, 46, 0.72));
+  text-shadow: 0 1px 8px rgba(6, 29, 46, 0.6);
+  background: linear-gradient(rgba(6, 29, 46, 0.72), transparent);
   transition: background 0.3s ease, padding 0.3s ease;
 }
 .service-tile:hover .service-tag {
-  background: linear-gradient(transparent, rgba(6, 29, 46, 0.88));
-  padding-bottom: 16px;
+  background: linear-gradient(rgba(6, 29, 46, 0.88), transparent);
+  padding-top: 16px;
 }
 
 /* All-services page: tiles must be visible without depending on the
@@ -3181,12 +3181,13 @@ body.preloading:not(:has(#preloader)) .reveal {
   }
   .service-tag {
     font-size: 0.78rem;
-    padding: 18px 10px 10px;
+    padding: 10px 10px 18px;
   }
   .service-price-tag {
     font-size: 0.66rem;
     padding: 4px 9px;
-    top: 8px;
+    top: auto;
+    bottom: 8px;
     left: 8px;
   }
   .service-tile,
