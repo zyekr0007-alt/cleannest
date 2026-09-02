@@ -3,14 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- Google Analytics 4 (FILL IN YOUR MEASUREMENT ID below) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-XXXXXXXXXX');
-  </script>
 
   <title>CleanNest — Jalandhar's Most Trusted Cleaning Service</title>
   <meta name="description" content="Premium deep cleaning services for homes, offices and businesses across Jalandhar. 4.9★ rated — get a free quote on WhatsApp.">
@@ -77,7 +69,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=190">
+  <link rel="stylesheet" href="style.css?v=191">
   <style>
     /* Critical preloader shell: keep it full-screen off-white instantly so
        nothing flashes before style.css loads. (Full styling lives in style.css.) */
@@ -95,7 +87,7 @@
     </style>
   </noscript>
 </head>
-<body class="preloading">
+<body id="top" class="preloading">
 
   <!-- Premium preloader: CleanNest wordmark only -->
   <div class="preloader" id="preloader" aria-hidden="true">
@@ -457,11 +449,11 @@
           <span class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span>
           <span class="why-txt">
             <span class="why-name">Free quote</span>
-            <span class="why-snip">50% to book, 50% after</span>
+            <span class="why-snip">No hidden charges</span>
           </span>
           <span class="why-arrow" aria-hidden="true">›</span>
         </button>
-        <div class="why-more"><p>Get a free quote in minutes. A 50% advance confirms your booking and the remaining 50% is payable after the job is done.</p></div>
+        <div class="why-more"><p>Get a free quote in minutes. The price we agree on WhatsApp is the price you pay — no hidden charges.</p></div>
       </div>
 
       <div class="why-cell">
@@ -480,137 +472,106 @@
 
   <!-- Cities we cover (compact) -->
   <section class="cities" id="cities">
-    <div class="cities-inner">
-      <span class="cities-label">Areas we cover:</span>
-      <div class="cities-grid">
-        <a class="city-chip" href="index.html">Jalandhar</a>
-        <a class="city-chip" href="phagwara.html">Phagwara</a>
-        <a class="city-chip" href="kapurthala.html">Kapurthala</a>
-        <a class="city-chip" href="hoshiarpur.html">Hoshiarpur</a>
-        <a class="city-chip" href="nakodar.html">Nakodar</a>
-        <a class="city-chip" href="goraya.html">Goraya</a>
-        <a class="city-chip" href="adampur.html">Adampur</a>
-        <a class="city-chip" href="kartarpur.html">Kartarpur</a>
-        <a class="city-chip" href="sultanpur-lodhi.html">Sultanpur Lodhi</a>
-        <a class="city-chip" href="nawanshahr.html">Nawanshahr</a>
-        <a class="city-chip" href="phillaur.html">Phillaur</a>
-        <a class="city-chip" href="areas-we-serve.html">Ludhiana</a>
-      </div>
+  <div class="cities-inner">
+    <div class="cities-head section-head">
+      <span class="section-badge">Areas</span>
+      <h2 class="section-title">Areas We <span class="star">Serve</span></h2>
     </div>
-  </section>
+    <div class="cities-map">
+      <iframe src="https://www.google.com/maps?q=place_id:ChIJ1zZzOUtbaR4RXbMy1OZsKsI&z=10&hl=en&output=embed"
+        title="CleanNest service area map - Jalandhar, Punjab"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      <a class="cities-map-open" href="https://maps.app.goo.gl/NdqSxjHHVCg2mKMY9?g_st=ac" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+        <span>Open in Google Maps</span>
+      </a>
+    </div>
+    <div class="cities-grid">
+<a class="city-chip city-chip-home" href="index.html">Jalandhar</a> <a class="city-chip" href="phagwara.html">Phagwara</a> <a class="city-chip" href="kapurthala.html">Kapurthala</a> <a class="city-chip" href="kartarpur.html">Kartarpur</a> <a class="city-chip" href="adampur.html">Adampur</a> <a class="city-chip" href="phillaur.html">Phillaur</a> <a class="city-chip" href="sultanpur-lodhi.html">Sultanpur Lodhi</a> <a class="city-chip" href="nakodar.html">Nakodar</a> <a class="city-chip" href="goraya.html">Goraya</a> <a class="city-chip" href="hoshiarpur.html">Hoshiarpur</a> <a class="city-chip" href="banga.html">Banga</a> <a class="city-chip" href="nawanshahr.html">Nawanshahr</a> <a class="city-chip" href="dasuya.html">Dasuya</a> <a class="city-chip" href="hariana.html">Hariana</a>
+    </div>
+  </div>
+</section>
 
   <!-- Contact / CTA -->
   <!-- FAQ -->
   <!-- Pricing moved to dedicated page (pricing.html) -->
 
-  <section class="cta-band" id="contact">
-    <div class="cta-inner">
-      <span class="section-badge">Free Quote</span>
-      <h2 class="cta-title">Ready for a <span class="star">spotless home?</span></h2>
-      <p class="cta-sub">Get your free quote in minutes — 50% to book, 50% after service.</p>
-
-      <div class="cta-actions">
-        <button class="btn btn-primary" type="button" data-open-quote>Get Free Quote <span class="btn-icon" aria-hidden="true">→</span></button>
-        <a class="cta-btn cta-glass" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%20would%20like%20a%20free%20quote." target="_blank" rel="noopener">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="width:18px;height:18px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          <span>WhatsApp Us</span>
-        </a>
-      </div>
-
-      <ul class="cta-perks">
-        <li>Free quote in minutes</li>
-        <li>No booking fee</li>
-        <li>7 days a week · 9 AM – 8 PM</li>
-      </ul>
-    </div>
-  </section>
+  
 
   <section class="faqs" id="faq">
-    <div class="section-head">
-      <span class="section-badge">FAQ</span>
-      <h2 class="section-title">Questions, <span class="star">answered</span></h2>
+  <div class="faq-collapse" id="faq-collapse">
+    <button class="faq-collapse-head" type="button" aria-expanded="false" aria-controls="faq-collapse-body">
+      <span class="faq-collapse-title">Frequently Asked Questions</span>
+      <span class="faq-collapse-chev" aria-hidden="true"></span>
+    </button>
+    <div class="faq-collapse-body" id="faq-collapse-body">
+      <div class="faq-collapse-in">
+        <div class="faq-list">
+<details class="faq-item">
+<summary><span>How much does cleaning cost in Jalandhar?</span><span class="faq-ico" aria-hidden="true"></span></summary>
+<div class="faq-a"><div class="faq-a-in"><p>Full-home deep cleaning starts at &#8377;4,900, kitchens from &#8377;2,490, bathrooms from &#8377;890 and ACs from &#8377;490. See the full <a href="pricing.html">rate card</a>, then get an exact free quote on WhatsApp &mdash; no obligation.</p></div></div>
+</details>
+<details class="faq-item">
+<summary><span>What&rsquo;s included in a full-house deep clean?</span><span class="faq-ico" aria-hidden="true"></span></summary>
+<div class="faq-a"><div class="faq-a-in"><p>Every room, top to bottom: dusting ceilings, fans, walls and fixtures, kitchen degreasing, bathroom descaling, floor scrubbing and mopping, plus window sills and switchboards. Most 1&ndash;4 BHK homes take 3&ndash;6 hours.</p></div></div>
+</details>
+<details class="faq-item">
+<summary><span>How do I book a cleaning?</span><span class="faq-ico" aria-hidden="true"></span></summary>
+<div class="faq-a"><div class="faq-a-in"><p>Tap <strong>Get Free Quote</strong>, pick your services and time, then press send &mdash; your request opens in WhatsApp and we confirm with a free estimate, usually within minutes.</p></div></div>
+</details>
+<details class="faq-item">
+<summary><span>Are your products safe for kids and pets?</span><span class="faq-ico" aria-hidden="true"></span></summary>
+<div class="faq-a"><div class="faq-a-in"><p>Yes &mdash; we use professional, eco-friendly products that leave no harsh smells. Every cleaner is verified, trained and uniformed.</p></div></div>
+</details>
+<details class="faq-item">
+<summary><span>Do I need to be home during the cleaning?</span><span class="faq-ico" aria-hidden="true"></span></summary>
+<div class="faq-a"><div class="faq-a-in"><p>Not necessarily &mdash; many customers share keys or schedule a time when someone is home. We&rsquo;ll work out whatever is most convenient for you.</p></div></div>
+</details>
+        </div>
+        <div class="faq-more">
+          <a href="faqs.html">View All</a>
+        </div>
+      </div>
     </div>
-    <div class="faq-list">
-      <details class="faq-item">
-        <summary>How much does house cleaning cost in Jalandhar?</summary>
-        <p>Full-house deep cleaning starts at ₹4,900 — see the full <a href="pricing.html">rate card</a> for all services and prices. Your exact quote depends on your home size and services — message us on WhatsApp for a free, no-obligation quote.</p>
-      </details>
-      <details class="faq-item">
-        <summary>How does payment work?</summary>
-        <p>A 50% advance is required to confirm your booking, with the remaining 50% payable after the service is completed.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Do I need to be home during the cleaning?</summary>
-        <p>Not necessarily. Many customers share keys or schedule when someone is home. We'll work out what's most convenient for you.</p>
-      </details>
-      <details class="faq-item">
-        <summary>Are your cleaning products safe for kids and pets?</summary>
-        <p>Yes — we use professional, eco-friendly products that leave no harsh smells and are safe for your family and pets.</p>
-      </details>
-      <details class="faq-item">
-        <summary>How do I book a cleaning service?</summary>
-        <p>Tap Get Free Quote, pick your services, and send your request on WhatsApp — we'll confirm your booking with a free estimate.</p>
-      </details>
-    </div>
-    <div class="faq-more">
-      <a href="faqs.html">See all FAQs →</a>
-    </div>
-  </section>
+  </div>
+</section>
 
 
   <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-brand-block">
-        <a class="footer-brand" href="index.html" aria-label="CleanNest home">CleanNest</a>
-        <p class="footer-note">Jalandhar's most trusted cleaning service</p>
+  <div class="footer-inner">
+    <div class="footer-main">
+      <div class="f-brand">
+        <a class="footer-brand" href="index.html">CleanNest</a>
+        <p class="footer-note">Jalandhar&rsquo;s most trusted cleaning service</p>
+        <p class="f-hours">Open 7 days &middot; 9 AM &ndash; 8 PM</p>
       </div>
-
-      <div class="footer-contact-grid">
-        <a class="footer-btn footer-btn-wa" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%20would%20like%20a%20free%20quote." target="_blank" rel="noopener">
+      <div class="f-actions">
+        <a class="f-act f-act-wa" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%20would%20like%20a%20free%20quote." target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-          <span>WhatsApp Us</span>
+          <span>WhatsApp</span>
         </a>
-        <a class="footer-btn footer-btn-call" href="tel:+917610000654">
-          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.75-.24 1.02l-2.2 2.2z"/></svg>
-          <span>Call Now</span>
-        </a>
-        <a class="footer-btn footer-btn-mail" href="mailto:cleannestclub@gmail.com">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
-          <span>Email Us</span>
-        </a>
-        <a class="footer-btn footer-btn-ig" id="footer-ig" href="https://www.instagram.com/cleannest.co" target="_blank" rel="noopener" aria-label="CleanNest on Instagram">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        <a class="f-act" href="https://www.instagram.com/cleannest.co" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
           <span>Instagram</span>
         </a>
-
-        <div class="footer-info">
-          <span class="footer-info-item"><span class="fi-ico"></span>Jalandhar, Punjab</span>
-          <span class="footer-info-item"><span class="fi-ico"></span>Open 7 days · 9 AM – 8 PM</span>
-        </div>
-      </div>
-
-          <div class="footer-map-block">
-        <iframe src="https://www.google.com/maps?q=Jalandhar%2C%20Punjab%2C%20India&hl=en&z=13&output=embed" title="CleanNest service area - Jalandhar, Punjab" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
-        <p class="footer-map-caption"><a href="https://www.google.com/maps/search/?api=1&query=Jalandhar%2C+Punjab%2C+India" target="_blank" rel="noopener">Open map in Google Maps →</a></p>
-      </div>
-    <div class="footer-areas">
-      <h3>Areas we serve</h3>
-      <p>Jalandhar &middot; Phagwara &middot; Kapurthala &middot; Hoshiarpur &middot; Nawanshahr &middot; Nakodar &middot; Adampur</p>
-    </div>
-    <div class="footer-reviews">
-      <span class="agg-stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
-      <strong>4.9</strong> <span class="footer-reviews-text">&middot; <a href="https://cleannest.in/#reviews">468 Google reviews</a></span>
-    </div>
-
-      <div class="footer-bottom">
-        <div class="footer-bottom-inner">
-          <span>© 2026 CleanNest</span>
-          <span class="footer-dot">·</span>
-          <span>All rights reserved</span>
-        </div>
+        <a class="f-act f-act-dir" href="https://maps.app.goo.gl/NdqSxjHHVCg2mKMY9?g_st=ac" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="3 11 22 2 13 21 11 13 3 11"/></svg>
+          <span>Directions</span>
+        </a>
+        <a class="f-act" href="mailto:cleannestclub@gmail.com">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
+          <span>Email</span>
+        </a>
       </div>
     </div>
-  </footer>
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        <span>&copy; 2026 CleanNest &middot; All rights reserved</span>
+        <a class="f-top" href="#top">&#8593;&nbsp; Back to top</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
 
   <!-- Top-right sliding menu drawer -->
@@ -1314,6 +1275,68 @@
     });
   })();
   </script>
-
+<script id="faq-accordion">
+(function () {
+  var items = Array.prototype.slice.call(document.querySelectorAll('.faq-item'));
+  if (!items.length || !('requestAnimationFrame' in window)) return;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var DUR = 280;
+  function row(el, v) { var a = el.querySelector('.faq-a'); if (a) a.style.gridTemplateRows = v; }
+  function isOpen(el) { return el.hasAttribute('open'); }
+  function openItem(el) {
+    row(el, '0fr');
+    el.setAttribute('open', '');
+    void el.offsetHeight;
+    row(el, '');
+  }
+  function closeItem(el) {
+    if (reduce) { el.removeAttribute('open'); row(el, ''); return; }
+    row(el, '0fr');
+    setTimeout(function () { el.removeAttribute('open'); row(el, ''); }, DUR + 40);
+  }
+  items.forEach(function (det) {
+    var sum = det.querySelector('summary');
+    if (!sum) return;
+    sum.addEventListener('click', function (e) {
+      e.preventDefault();
+      if (isOpen(det)) { closeItem(det); }
+      else {
+        items.forEach(function (o) { if (o !== det && isOpen(o)) closeItem(o); });
+        if (reduce) { det.setAttribute('open', ''); row(det, ''); }
+        else { openItem(det); }
+      }
+    });
+  });
+})();
+</script>
+<script id="faq-collapse-js">
+(function () {
+  var c = document.getElementById('faq-collapse');
+  var b = c && c.querySelector('.faq-collapse-head');
+  var body = c && c.querySelector('.faq-collapse-body');
+  if (!c || !b || !body) return;
+  var open = c.classList.contains('open');
+  function sync() {
+    body.style.maxHeight = open ? body.scrollHeight + 'px' : '0px';
+  }
+  b.addEventListener('click', function () {
+    open = !open;
+    c.classList.toggle('open', open);
+    b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    if (open) {
+      body.style.maxHeight = '0px';
+      requestAnimationFrame(function () {
+        body.style.maxHeight = body.scrollHeight + 'px';
+      });
+    } else {
+      body.style.maxHeight = body.scrollHeight + 'px';
+      void body.offsetHeight;
+      body.style.maxHeight = '0px';
+    }
+  });
+  window.addEventListener('resize', sync);
+  sync();
+})();
+</script>
 </body>
 </html>
