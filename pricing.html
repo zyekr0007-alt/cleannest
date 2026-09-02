@@ -293,15 +293,22 @@ footer strong{
 </head>
 <body>
 <nav class="pn-nav" aria-label="Site">
-  <a class="pn-home" href="index.html">&larr; Back to CleanNest</a>
-  <a class="pn-wa" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%20would%20like%20a%20free%20quote." target="_blank" rel="noopener">WhatsApp Us</a>
+  <a class="pn-home" href="index.html">CleanNest</a>
+  <div class="pn-links">
+    <a href="services.html">Services</a>
+    <a href="faqs.html">FAQs</a>
+    <a class="pn-wa" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%20would%20like%20a%20free%20quote." target="_blank" rel="noopener">Get a free quote</a>
+  </div>
 </nav>
 <style>
-.pn-nav{max-width:1080px;margin:0 auto;padding:18px 24px 0;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.pn-home{color:var(--accent);text-decoration:none;font-weight:600;font-size:.95rem}
-.pn-home:hover{text-decoration:underline}
-.pn-wa{background:#25D366;color:#fff;text-decoration:none;font-weight:700;font-size:.9rem;padding:9px 18px;border-radius:999px}
-.pn-wa:hover{filter:brightness(1.06)}
+.pn-nav{max-width:1080px;min-height:72px;margin:0 auto;padding:16px 24px 0;display:flex;justify-content:space-between;align-items:center;gap:18px}
+.pn-home{color:var(--primary);text-decoration:none;font-weight:800;font-size:1.25rem;letter-spacing:-.04em}
+.pn-links{display:flex;align-items:center;gap:20px}
+.pn-links>a{color:var(--primary);text-decoration:none;font-weight:700;font-size:.9rem}
+.pn-links>a:hover{color:var(--accent)}
+.pn-wa{min-height:42px;display:inline-flex;align-items:center;background:var(--primary);color:#fff!important;text-decoration:none;font-weight:700;font-size:.9rem;padding:0 16px;border-radius:999px;box-shadow:0 8px 20px rgba(10,61,98,.14)}
+.pn-wa:hover{background:#0d4f7f!important}
+@media(max-width:768px){.pn-nav{min-height:64px;padding-top:12px}.pn-links{gap:12px}.pn-links>a:not(.pn-wa){display:none}}
 </style>
 
 <div class="container">
