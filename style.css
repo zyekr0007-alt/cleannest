@@ -3454,65 +3454,6 @@ a.city-chip:hover {
   }
 }
 
-/* BUG-4: sticky bottom WA + Call — max 640px, safe-area, no bounce */
-.sticky-contact {
-  position: fixed;
-  left: 50%;
-  bottom: 0;
-  transform: translateX(-50%);
-  z-index: 70;
-  display: none;
-  width: 100%;
-  max-width: 640px;
-  box-sizing: border-box;
-  gap: 10px;
-  padding: 10px 14px calc(10px + env(safe-area-inset-bottom, 0px));
-  background: rgba(255, 255, 255, 0.94);
-  border-top: 1px solid rgba(11, 67, 100, 0.10);
-  box-shadow: 0 -8px 28px rgba(11, 67, 100, 0.12);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  /* intentionally no bounce / float animation */
-  animation: none !important;
-}
-.sticky-contact .sticky-btn {
-  flex: 1 1 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  min-height: 48px;
-  padding: 12px 16px;
-  border-radius: 999px;
-  font-family: 'Nunito', sans-serif;
-  font-weight: 700;
-  font-size: 0.95rem;
-  line-height: 1;
-  text-decoration: none;
-  color: #fff;
-  box-shadow: 0 6px 18px rgba(11, 67, 100, 0.18);
-  transition: transform 0.16s ease, filter 0.16s ease;
-  animation: none !important;
-}
-.sticky-contact .sticky-btn:active { transform: scale(0.97); }
-.sticky-contact .sticky-btn svg { width: 20px; height: 20px; flex-shrink: 0; }
-.sticky-contact .sticky-msg { background: #25D366; }
-.sticky-contact .sticky-msg:hover { filter: brightness(1.05); }
-.sticky-contact .sticky-call { background: #0B4364; }
-.sticky-contact .sticky-call:hover { filter: brightness(1.08); }
-@media (max-width: 640px) {
-  .sticky-contact { display: flex; }
-  /* room for sticky bar above footer copyright */
-  .footer { padding-bottom: calc(120px + env(safe-area-inset-bottom, 0px)); }
-}
-@media (min-width: 641px) {
-  .sticky-contact { display: none !important; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .sticky-contact,
-  .sticky-contact .sticky-btn { transition: none !important; animation: none !important; }
-}
-
 /* BUG-7: Results gallery dots — ≥44px hit area (visual stays small) */
 .gallery-dots button {
   width: 44px;
