@@ -704,10 +704,10 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 }
 
 /* Compact service grid — image + name only, animated tiles.
-   Fixed responsive columns so all 8 tiles land in clean rows (no orphan). */
+   Fixed responsive columns so all 6 tiles land in clean 3+3 rows (symmetric). */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 12px;
   align-items: stretch;
 }
@@ -716,6 +716,31 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 }
 @media (max-width: 640px) {
   .services-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+/* "View all services" pill button under the grid (replaces the old tile-all card) */
+.services-more {
+  display: flex;
+  justify-content: center;
+  margin-top: 22px;
+}
+.services-more-btn {
+  display: inline-block;
+  padding: 13px 34px;
+  border-radius: 999px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 0.98rem;
+  letter-spacing: 0.01em;
+  text-decoration: none;
+  color: #fff;
+  background: linear-gradient(135deg, #0b4364, #0d5f8f);
+  box-shadow: 0 10px 26px rgba(11, 67, 100, 0.28);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.services-more-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 34px rgba(11, 67, 100, 0.38);
 }
 
 .service-tile {
@@ -823,9 +848,10 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  color: #fff;
-  background: rgba(11, 67, 100, 0.88);
-  box-shadow: 0 6px 18px rgba(6, 29, 46, 0.3);
+  color: var(--navy);
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(11, 67, 100, 0.12);
+  box-shadow: 0 4px 14px rgba(6, 29, 46, 0.16);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
   z-index: 2;
@@ -852,16 +878,16 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   right: 0;
   padding: 12px 12px 26px;
   font-family: 'Nunito', sans-serif;
-  font-weight: 700;
-  font-size: 0.95rem;
+  font-weight: 800;
+  font-size: 1.15rem;
   line-height: 1.2;
   color: var(--white);
   text-shadow: 0 1px 8px rgba(6, 29, 46, 0.6);
-  background: linear-gradient(rgba(6, 29, 46, 0.72), transparent);
+  background: linear-gradient(rgba(6, 29, 46, 0.78), transparent);
   transition: background 0.3s ease, padding 0.3s ease;
 }
 .service-tile:hover .service-tag {
-  background: linear-gradient(rgba(6, 29, 46, 0.88), transparent);
+  background: linear-gradient(rgba(6, 29, 46, 0.9), transparent);
   padding-top: 16px;
 }
 
@@ -3165,7 +3191,7 @@ body.preloading:not(:has(#preloader)) .reveal {
   white-space: normal;
   overflow-wrap: anywhere;
   word-break: break-word;
-  font-size: clamp(0.78rem, 2.6vw, 0.95rem);
+  font-size: clamp(0.8rem, 2.8vw, 1rem);
   line-height: 1.25;
   max-height: none;
   overflow: visible;
@@ -3180,11 +3206,11 @@ body.preloading:not(:has(#preloader)) .reveal {
     gap: 10px;
   }
   .service-tag {
-    font-size: 0.78rem;
+    font-size: 0.85rem;
     padding: 10px 10px 18px;
   }
   .service-price-tag {
-    font-size: 0.66rem;
+    font-size: 0.7rem;
     padding: 4px 9px;
     top: auto;
     bottom: 8px;
@@ -3338,7 +3364,7 @@ a.city-chip:hover {
 
 /* BUG-1/2: 2-col minmax + no horizontal overflow on services grids */
 .services-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   overflow-x: clip;
   max-width: 100%;
 }
