@@ -3975,6 +3975,8 @@ details[open] .faq-a { grid-template-rows: 1fr; }
 .cities-more { text-align: center; margin-top: 24px; }
 .cities-more a {
   display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-family: 'Nunito', sans-serif;
   font-weight: 700;
   font-size: 0.95rem;
@@ -4040,17 +4042,18 @@ details[open] .faq-a { grid-template-rows: 1fr; }
 .cities-map-open:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(11, 67, 100, 0.24); }
 
 .cities-grid {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 9px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
   max-width: 920px;
   margin: 22px auto 0;
 }
 .city-chip {
   display: inline-flex;
   align-items: center;
-  padding: 8px 16px;
+  justify-content: center;
+  min-height: 44px;
+  padding: 8px 12px;
   border-radius: 999px;
   background: #fff;
   border: 1px solid rgba(11, 67, 100, 0.12);
@@ -4059,6 +4062,7 @@ details[open] .faq-a { grid-template-rows: 1fr; }
   font-family: 'Nunito', sans-serif;
   font-weight: 700;
   font-size: 0.9rem;
+  text-align: center;
   text-decoration: none;
   transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
 }
