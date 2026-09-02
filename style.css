@@ -3564,9 +3564,12 @@ a.city-chip:hover {
 
 /* ===== Desktop optimisation pass (2026-09-02): use the width, keep it uniform ===== */
 @media (min-width: 1024px) {
-  /* Big grids: cap width so tiles/pills stay proportionate, centered = symmetric */
+  /* Big grids: cap width so tiles/pills stay proportionate, centered = symmetric.
+     minmax floor: tiles can never shrink below 280px regardless of odd
+     browser/cache states. */
   .services-grid,
   .why-grid { max-width: 1200px; margin-left: auto; margin-right: auto; }
+  .services-grid { width: 100%; grid-template-columns: repeat(3, minmax(280px, 1fr)); }
   .why-grid { gap: 14px; }
 
   /* Reviews: wider stage, roomier card, bigger text */
