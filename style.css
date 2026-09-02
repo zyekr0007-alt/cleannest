@@ -3561,3 +3561,35 @@ a.city-chip:hover {
   display: inline-flex; align-items: center; min-height: 44px; padding: 8px 4px;
 }
 .menu-btn { min-width: 44px; min-height: 44px; }
+
+/* ===== Desktop optimisation pass (2026-09-02): use the width, keep it uniform ===== */
+@media (min-width: 1024px) {
+  /* Big grids: cap width so tiles/pills stay proportionate, centered = symmetric */
+  .services-grid,
+  .why-grid { max-width: 1200px; margin-left: auto; margin-right: auto; }
+  .why-grid { gap: 14px; }
+
+  /* Reviews: wider stage, roomier card, bigger text */
+  .reviews-viewport { max-width: 960px; }
+  .review-card { padding: 30px 34px 26px; }
+  .review-text { font-size: 1.02rem; line-height: 1.6; }
+  .review-name { font-size: 1.05rem; }
+  .review-avatar { width: 44px; height: 44px; font-size: 1rem; }
+  .reviews-arrow.prev { left: -22px; }
+  .reviews-arrow.next { right: -22px; }
+
+  /* Gallery carousel: bigger stage on desktop */
+  .gallery-carousel { max-width: 1040px; }
+
+  /* FAQ, footer, CTA: align on one wider column */
+  .faq-list { max-width: 980px; }
+  .footer-inner,
+  .cta-inner { max-width: 1240px; }
+
+  /* Service + city page container */
+  .svc-container,
+  .svc-results .svc-container { max-width: 1140px; }
+
+  /* Even section rhythm */
+  .services, .gallery, .reviews, .about, .faqs { padding-top: 56px; padding-bottom: 56px; }
+}
