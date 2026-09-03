@@ -17,10 +17,6 @@
   --surface-2: #F6F7F9;    /* uniform off-white page background */
   --shadow: 0 10px 30px rgba(11, 67, 100, 0.12);
   --radius: 16px;
-  --section-space: clamp(64px, 8vw, 112px);
-  --content-wide: 1200px;
-  --content-reading: 760px;
-  --line: rgba(11, 67, 100, 0.13);
 
   /* Glassmorphism system */
   --glass-bg: rgba(255, 255, 255, 0.55);
@@ -354,7 +350,113 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   border-color: rgba(12, 215, 229, 0.6);
 }
 
-/* ---------- Reveal entrance (hero) ---------- */
+/* Two pill-shaped proof cards side by side */
+.hero-proof {
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+  max-width: 520px;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.proof-card {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 11px 10px;
+  border-radius: 999px;
+  background: var(--glass-bg-strong);
+  border: var(--glass-border);
+  width: 100%;
+  min-height: 60px;
+  text-align: center;
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+  box-shadow: var(--glass-shadow);
+  flex: 0 0 auto;
+  max-width: 100%;
+}
+
+.proof-rating {
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+.proof-rating:hover {
+  transform: translateY(-2px);
+  border-color: rgba(12, 215, 229, 0.6);
+  background: rgba(255, 255, 255, 1);
+}
+
+.proof-stars {
+  display: flex;
+  gap: 2px;
+}
+
+.proof-stars .star {
+  color: #E8B93C;
+  font-size: 0.95rem;
+  line-height: 1;
+  text-shadow: 0 0 6px rgba(232, 185, 60, 0.5);
+  animation: starShine 1.8s ease-in-out infinite;
+}
+
+.proof-stars .star:nth-child(1) { animation-delay: 0s; }
+.proof-stars .star:nth-child(2) { animation-delay: 0.14s; }
+.proof-stars .star:nth-child(3) { animation-delay: 0.28s; }
+.proof-stars .star:nth-child(4) { animation-delay: 0.42s; }
+.proof-stars .star:nth-child(5) { animation-delay: 0.56s; }
+
+@keyframes starShine {
+  0%, 100% {
+    transform: scale(1);
+    color: #E8B93C;
+    text-shadow: 0 0 5px rgba(232, 185, 60, 0.45);
+  }
+  50% {
+    transform: scale(1.08);
+    color: #FCE1A0;
+    text-shadow: 0 0 9px rgba(240, 203, 90, 0.7);
+  }
+}
+
+.proof-main {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: var(--navy);
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+}
+.proof-main.cyan { color: var(--cyan); }
+
+.proof-arrow {
+  font-size: 0.92rem;
+  color: var(--muted);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+.proof-rating:hover .proof-arrow {
+  transform: translateX(3px);
+  color: #E8B93C;
+}
+
+.proof-sub {
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1;
+  white-space: nowrap;
+}
+
 .hero-media {
   position: relative;
 }
@@ -370,6 +472,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   border: 4px solid rgba(255, 255, 255, 0.7);
 }
 
+/* ---------- Reveal entrance (hero) ---------- */
 .reveal { opacity: 0; }
 /* Base opacity:1 so content is never stuck invisible if animations are
    disabled (reduced motion / no-JS), while the animation still runs normally. */
@@ -1331,6 +1434,157 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 .reviews-all:hover {
   transform: translateY(-1px);
   background: rgba(12, 215, 229, 0.16);
+}
+
+/* ---------- About ---------- */
+.about {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 64px 22px;
+}
+
+/* "Why Choose Us" — compact pill-shaped icon cards that toggle open */
+/* 6 cards in a clean 3x2 grid (symmetric, no orphan column) */
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.why-cell {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.why-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  padding: 13px 16px;
+  border-radius: 999px;
+  background: var(--glass-bg);
+  border: var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: var(--glass-backdrop);
+  -webkit-backdrop-filter: var(--glass-backdrop);
+  cursor: pointer;
+  font-family: 'Nunito', sans-serif;
+  transition: transform 0.2s ease, box-shadow 0.25s ease, background 0.25s ease;
+}
+/* Name + subtitle stack vertically in the card so text wraps cleanly
+   without stretching the card taller than its row-mates */
+.why-txt {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+.why-card:hover { transform: translateY(-2px); background: var(--glass-bg-strong); }
+
+.why-ico {
+  flex-shrink: 0;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cyan-soft);
+  color: var(--navy);
+  position: relative;
+  overflow: hidden;
+}
+/* Animated swirl glow behind the icon */
+.why-ico::before {
+  content: "";
+  position: absolute;
+  inset: -40%;
+  background: conic-gradient(from 0deg, transparent 0 40%, rgba(12, 215, 229, 0.35) 50%, transparent 60% 100%);
+  animation: whyIcoSwirl 3.2s linear infinite;
+}
+.why-ico svg {
+  width: 19px;
+  height: 19px;
+  position: relative;
+  z-index: 1;
+}
+@keyframes whyIcoSwirl {
+  to { transform: rotate(360deg); }
+}
+/* Soft pulsing ring on hover */
+.why-card:hover .why-ico::before { animation-duration: 1.4s; }
+
+.why-name {
+  font-weight: 700;
+  color: var(--navy);
+  font-size: 0.92rem;
+  line-height: 1.15;
+}
+.why-snip {
+  display: block;
+  color: var(--muted);
+  font-size: 0.78rem;
+  margin-top: 1px;
+}
+
+.why-arrow {
+  margin-left: auto;
+  color: var(--muted);
+  font-size: 1.1rem;
+  transition: transform 0.25s ease, color 0.25s ease;
+  flex-shrink: 0;
+}
+.why-card[aria-expanded="true"] .why-arrow { transform: rotate(90deg); color: var(--cyan); }
+
+/* Expanding description revealed on toggle (inside the cell) */
+.why-more {
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+}
+.why-more.open { max-height: 320px; opacity: 1; }
+.why-more p {
+  margin: 0;
+  padding: 8px 6px 2px;
+  color: var(--ink);
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+/* Compact 2-per-row layout on mobile so the space is used, not wasted */
+@media (max-width: 640px) {
+  .why-grid { grid-template-columns: 1fr 1fr; gap: 10px; }
+  .why-card {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 8px;
+    padding: 18px 12px;
+    border-radius: 18px;
+    min-height: 118px;
+  }
+  .why-ico { width: 38px; height: 38px; }
+  .why-ico svg { width: 19px; height: 19px; }
+  .why-name { font-size: 0.86rem; }
+  .why-snip { font-size: 0.73rem; margin-top: 2px; }
+  .why-arrow { display: none; }
+  .why-more p { font-size: 0.82rem; }
+}
+
+/* Tablet: 2 columns so cards stay roomy between 640-880px */
+@media (max-width: 880px) {
+  .why-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* Respect reduced-motion: stop looping icon animation */
+@media (prefers-reduced-motion: reduce) {
+  .why-ico::before { animation: none; }
 }
 
 /* ---------- FAQs ---------- */
@@ -3314,8 +3568,9 @@ a.city-chip:hover {
      minmax floor: tiles can never shrink below 280px regardless of odd
      browser/cache states. */
   .services-grid,
-  .services-grid { max-width: 1200px; margin-left: auto; margin-right: auto; }
+  .why-grid { max-width: 1200px; margin-left: auto; margin-right: auto; }
   .services-grid { width: 100%; grid-template-columns: repeat(3, minmax(280px, 1fr)); }
+  .why-grid { gap: 14px; }
 
   /* Reviews: wider stage, roomier card, bigger text */
   .reviews-viewport { max-width: 960px; }
@@ -3367,7 +3622,8 @@ summary:focus-visible,
 .reviews-title .star,
 .svc-title .star,
 .cta-title .star,
- .footer-dot,
+.why-arrow,
+.footer-dot,
 .fi-ico,
 .faq-item summary::after {
   color: var(--cyan-ink) !important;
@@ -3871,50 +4127,6 @@ details[open] .faq-a { grid-template-rows: 1fr; }
 /* Areas We Serve page — custom wave map + locality lists */
 .areas-serve-inner { max-width: 1120px; margin: 0 auto; padding: 0 22px 80px; }
 .areas-serve .section-head { text-align:center; margin-top: 30px; }
-.areas-serve .areas-sub,
-.areas-note {
-  max-width: 760px;
-  margin: 10px auto 0;
-  color: var(--muted);
-  text-align: center;
-  font-size: 0.98rem;
-  line-height: 1.65;
-}
-
-.areas-grid {
-  width: min(100%, 1120px);
-  margin: 28px auto 0;
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
-}
-.area-link {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 76px;
-  padding: 18px 16px;
-  border-radius: 18px;
-  border: 1px solid rgba(11, 67, 100, 0.12);
-  background: rgba(255, 255, 255, 0.82);
-  box-shadow: 0 8px 24px rgba(11, 67, 100, 0.06);
-  color: var(--navy);
-  text-decoration: none;
-  font-family: 'Nunito', sans-serif;
-  font-weight: 800;
-  font-size: 1rem;
-  text-align: center;
-  transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
-}
-.area-link:hover {
-  transform: translateY(-2px);
-  border-color: rgba(12, 215, 229, 0.55);
-  box-shadow: 0 14px 34px rgba(11, 67, 100, 0.12);
-  background: #fff;
-}
-.areas-grid .area-link:first-child {
-  background: linear-gradient(180deg, rgba(12, 215, 229, 0.16), rgba(255, 255, 255, 0.92));
-}
 
 .areas-map { margin: 26px auto 26px; max-width: 900px; }
 .areas-map-wrap { border-radius: 26px; overflow: hidden; background: linear-gradient(180deg, rgba(12,215,229,0.10), rgba(11,67,100,0.03)); border: 1px solid rgba(11,67,100,0.10); box-shadow: 0 14px 38px rgba(11,67,100,0.14); }
@@ -3936,268 +4148,4 @@ details[open] .faq-a { grid-template-rows: 1fr; }
 @media (max-width: 880px){
   .areas-all{ grid-template-columns: 1fr; }
   .areas-serve-inner{ padding-left: 18px; padding-right: 18px; }
-  .areas-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-}
-@media (max-width: 560px){
-  .areas-grid { grid-template-columns: 1fr; }
-}
-
-/* Proof-led hero visual */
-.hero-proof-card {
-  position: relative;
-  width: min(100%, 520px);
-  margin: 0;
-  overflow: hidden;
-  border: 1px solid rgba(11, 67, 100, 0.12);
-  border-radius: 24px;
-  background: var(--card);
-  box-shadow: 0 24px 64px rgba(11, 67, 100, 0.16);
-}
-.hero-proof-card img {
-  display: block;
-  width: 100%;
-  height: auto;
-  aspect-ratio: 1;
-  object-fit: cover;
-}
-.hero-proof-card::after {
-  content: "";
-  position: absolute;
-  inset: 0 auto 0 50%;
-  width: 2px;
-  background: rgba(12, 215, 229, 0.88);
-  pointer-events: none;
-}
-.hero-proof-card figcaption {
-  position: absolute;
-  left: 16px;
-  right: 16px;
-  bottom: 16px;
-  display: grid;
-  gap: 2px;
-  padding: 12px 14px;
-  border: 1px solid rgba(255, 255, 255, 0.72);
-  border-radius: 14px;
-  color: var(--navy-deep);
-  background: rgba(255, 255, 255, 0.86);
-  backdrop-filter: blur(14px);
-}
-.proof-kicker { color: var(--muted); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
-.proof-title { font-size: 1rem; font-weight: 800; }
-@media (max-width: 767px) {
-  .hero-proof-card { width: 100%; border-radius: 20px; }
-}
-
-
-/* Compact homepage trust strip */
-.trust-strip { padding: 0 22px 28px; }
-.trust-strip-inner {
-  width: min(100%, 1200px);
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-block: 1px solid rgba(11, 67, 100, 0.13);
-}
-.trust-strip-inner > span { display: grid; gap: 2px; padding: 18px 22px; }
-.trust-strip-inner > span + span { border-left: 1px solid rgba(11, 67, 100, 0.13); }
-.trust-strip strong { color: var(--navy); font-size: 0.96rem; }
-.trust-strip small { color: var(--muted); font-size: 0.82rem; }
-@media (max-width: 640px) {
-  .trust-strip-inner { grid-template-columns: 1fr; }
-  .trust-strip-inner > span + span { border-left: 0; border-top: 1px solid rgba(11, 67, 100, 0.13); }
-}
-
-
-/* Authoritative content rhythm and quiet surfaces */
-.services, .gallery, .reviews, .cities, .faqs, .cta-band, .final-cta {
-  width: min(100%, var(--content-wide));
-  margin-inline: auto;
-  padding: var(--section-space) clamp(20px, 4vw, 48px);
-}
-.section-head, .reviews-head {
-  max-width: var(--content-reading);
-  margin: 0 auto clamp(28px, 4vw, 48px);
-  text-align: center;
-}
-.section-title, .reviews-title {
-  max-width: 18ch;
-  margin-inline: auto;
-  font-size: clamp(1.9rem, 4vw, 3rem);
-  line-height: 1.08;
-  letter-spacing: -0.035em;
-}
-.service-tile, .service-tile-all, .review-card, .city-chip, .area-city-block, .faq-item {
-  background: var(--card);
-  border: 1px solid var(--line);
-  box-shadow: 0 8px 24px rgba(11, 67, 100, 0.08);
-  backdrop-filter: none;
-  -webkit-backdrop-filter: none;
-}
-
-.gallery-carousel, .reviews-viewport { overflow: hidden; }
-
-@media (max-width: 1023px) { .hero { overflow: hidden; } }
-
-.final-cta {
-  text-align: center;
-  background: var(--surface-2);
-  border-block: 1px solid var(--line);
-}
-.final-cta-inner {
-  max-width: var(--content-reading);
-  margin-inline: auto;
-  display: grid;
-  justify-items: center;
-  gap: 16px;
-}
-.final-cta h2 {
-  margin: 0;
-  color: var(--navy);
-  font-size: clamp(1.9rem, 4vw, 3rem);
-  line-height: 1.08;
-  letter-spacing: -0.035em;
-}
-.final-cta-inner > p:not(.section-badge) {
-  max-width: 58ch;
-  margin: 0;
-  color: var(--muted);
-  font-size: 1.05rem;
-  line-height: 1.6;
-}
-.final-cta small {
-  color: var(--muted);
-  font-size: 0.85rem;
-}
-
-
-/* Outcome-led service cards */
-.service-card-body { display: grid; gap: 7px; padding: 16px; color: var(--ink); background: var(--card); }
-.service-card-body strong { color: var(--navy); font-size: 1rem; line-height: 1.25; }
-.service-card-body small { color: var(--muted); font-size: 0.82rem; line-height: 1.45; }
-.service-card-meta { display: flex; justify-content: space-between; color: var(--cyan-ink); font-size: 0.86rem; font-weight: 800; }
-.service-tile:has(.service-card-body) { aspect-ratio: auto; display: grid; grid-template-rows: auto 1fr; }
-.service-tile:has(.service-card-body) img { aspect-ratio: 8 / 5; }
-.service-tile-all { min-height: 180px; padding: 22px; display: flex; align-items: end; justify-content: space-between; gap: 20px; color: var(--navy); text-decoration: none; border-radius: var(--radius); }
-.service-tile-all > span:first-child { display: grid; gap: 4px; }
-.service-tile-all strong { font-size: 1.1rem; }
-.service-tile-all small { color: var(--muted); }
-.service-category { margin-top: 48px; }
-.service-category:first-of-type { margin-top: 0; }
-.service-category > h2 { max-width: 1200px; margin: 0 auto 18px; color: var(--navy); font-size: clamp(1.35rem, 2.5vw, 1.8rem); }
-@media (max-width: 640px) {
-  .service-card-body { padding: 12px; }
-  .service-card-body small { font-size: 0.78rem; }
-  .service-tile:has(.service-card-body), .service-tile-all { aspect-ratio: auto; }
-}
-
-
-/* Focused review carousel: one card on compact screens, two on desktop */
-.review-card { flex: 0 0 100%; }
-@media (min-width: 1024px) {
-  .review-card { flex-basis: 50%; }
-}
-
-
-/* Pricing page — shared CleanNest shell and quieter rate-card hierarchy */
-.pricing-page {
-  background: var(--surface);
-  color: var(--navy);
-}
-.pricing-page > .container {
-  width: min(100% - 32px, var(--content-wide));
-  margin-inline: auto;
-  padding: clamp(128px, 14vw, 176px) 0 var(--section-space);
-}
-.pricing-page main > header {
-  max-width: var(--content-reading);
-  margin: 0 auto clamp(44px, 6vw, 72px);
-  text-align: center;
-}
-.pricing-page .badge {
-  display: inline-flex;
-  margin-bottom: 18px;
-  padding: 8px 14px;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  color: var(--navy);
-  font: 800 .75rem/1 Inter, sans-serif;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-}
-.pricing-page main h1 {
-  margin: 0 0 14px;
-  font-size: clamp(2.1rem, 5vw, 3.4rem);
-  letter-spacing: -.045em;
-}
-.pricing-page main > header p { margin: 0; color: var(--muted); }
-.pricing-page .group { margin-bottom: clamp(32px, 5vw, 52px); }
-.pricing-page .group-title {
-  margin-bottom: 12px;
-  color: var(--navy);
-  font: 800 .78rem/1.3 Inter, sans-serif;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-}
-.pricing-page .table {
-  display: grid;
-  grid-template-columns: 2fr 1.6fr 1.3fr;
-  overflow: hidden;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: #fff;
-  box-shadow: var(--shadow);
-}
-.pricing-page .header-row,
-.pricing-page .row { display: contents; }
-.pricing-page .header-row > div {
-  padding: 13px 16px;
-  background: var(--navy);
-  color: #fff;
-  font: 700 .72rem/1.2 Inter, sans-serif;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-}
-.pricing-page .cell {
-  min-width: 0;
-  padding: 16px;
-  border-bottom: 1px solid var(--line);
-  background: #fff;
-}
-.pricing-page .row:last-child .cell { border-bottom: 0; }
-.pricing-page .cell.name { font-weight: 800; }
-.pricing-page .cell .label {
-  display: none;
-  margin-bottom: 4px;
-  color: var(--muted);
-  font: 700 .68rem/1.2 Inter, sans-serif;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-}
-.pricing-page .cell .sub { color: var(--muted); font-size: .88rem; }
-.pricing-page .price { font-weight: 800; white-space: nowrap; }
-.pricing-page .price small,
-.pricing-page .price .line { display: block; white-space: normal; }
-.pricing-page .price small { color: var(--muted); font-size: .75rem; font-weight: 600; }
-.pricing-page .quote { color: var(--navy); }
-.pricing-page .note-card {
-  max-width: var(--content-reading);
-  margin: 44px auto 0;
-  padding: clamp(22px, 4vw, 32px);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: var(--cyan-soft);
-}
-.pricing-page .note-card h3 { margin: 0 0 12px; }
-.pricing-page .note-card ul { margin: 0; padding-left: 1.2rem; color: var(--muted); }
-.pricing-page .note-card li + li { margin-top: 8px; }
-@media (max-width: 767px) {
-  .pricing-page > .container { width: min(100% - 24px, var(--content-wide)); padding-top: 112px; }
-  .pricing-page .table { display: block; overflow: visible; border: 0; border-radius: 0; background: transparent; box-shadow: none; }
-  .pricing-page .header-row { display: none; }
-  .pricing-page .row { display: block; overflow: hidden; margin-bottom: 12px; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; box-shadow: var(--shadow); }
-  .pricing-page .cell { display: block; border-bottom: 1px solid var(--line); }
-  .pricing-page .row:last-child .cell:not(:last-child) { border-bottom: 1px solid var(--line); }
-  .pricing-page .row .cell:last-child { border-bottom: 0; }
-  .pricing-page .cell .label { display: block; }
-  .pricing-page .price { font-size: 1.05rem; white-space: normal; }
 }

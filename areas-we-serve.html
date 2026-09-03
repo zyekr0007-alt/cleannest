@@ -76,12 +76,12 @@
     </div>
   </nav>
 </div>
-  <main class="hero svc-hero areas-hero" id="top">
+  <main class="hero svc-hero" id="top">
     <div class="hero-inner">
       <div class="hero-copy">
         <span class="svc-kicker reveal in">Service Areas</span>
         <h1 class="svc-title reveal in">Areas We Serve</h1>
-        <p class="hero-sub reveal in">Jalandhar is our main market. Nearby-town availability depends on the job and location and is confirmed on WhatsApp before booking.</p>
+        <p class="hero-sub reveal in">CleanNest delivers deep cleaning across Jalandhar and 13 nearby towns — all within a 60 km radius. Pick your town for local pricing and a fast WhatsApp quote.</p>
         <div class="hero-ctas reveal in">
           <a class="btn btn-primary" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%27d%20like%20a%20free%20quote." target="_blank" rel="noopener">Get Free Quote <span class="btn-icon" aria-hidden="true">&rarr;</span></a>
           <a class="btn btn-secondary" href="services.html">All Services</a>
@@ -90,42 +90,150 @@
       <div class="hero-media reveal in"><img src="assets/img/services/full-house-cleaning.webp" alt="CleanNest service areas near Jalandhar" width="640" height="400" fetchpriority="high"></div>
     </div>
   </main>
-
-  <section class="areas-serve" id="areas-serve">
-    <div class="areas-serve-inner">
-      <div class="section-head">
-        <span class="section-badge">Areas We Serve</span>
-        <h2 class="section-title">Choose Your <span class="star">City</span></h2>
-        <p class="areas-sub">Jalandhar leads the list, and each nearby town below links to its own page. Exact coverage is confirmed on WhatsApp before booking.</p>
-      </div>
-
-      <div class="areas-grid" aria-label="CleanNest service areas">
-        <a class="area-link" href="services.html">Jalandhar</a>
-        <a class="area-link" href="phagwara.html">Phagwara</a>
-        <a class="area-link" href="kapurthala.html">Kapurthala</a>
-        <a class="area-link" href="kartarpur.html">Kartarpur</a>
-        <a class="area-link" href="adampur.html">Adampur</a>
-        <a class="area-link" href="phillaur.html">Phillaur</a>
-        <a class="area-link" href="sultanpur-lodhi.html">Sultanpur Lodhi</a>
-        <a class="area-link" href="nakodar.html">Nakodar</a>
-        <a class="area-link" href="goraya.html">Goraya</a>
-        <a class="area-link" href="banga.html">Banga</a>
-        <a class="area-link" href="hoshiarpur.html">Hoshiarpur</a>
-        <a class="area-link" href="dasuya.html">Dasuya</a>
-        <a class="area-link" href="hariana.html">Hariana</a>
-        <a class="area-link" href="nawanshahr.html">Nawanshahr</a>
-      </div>
-
-      <p class="areas-note">Availability depends on the job and location and is confirmed on WhatsApp before booking.</p>
+  
+<section class="areas-serve" id="areas-serve">
+  <div class="areas-serve-inner">
+    <div class="section-head">
+      <span class="section-badge">Areas We Serve</span>
+      <h2 class="section-title">Jalandhar &amp; Nearby <span class="star">Towns</span></h2>
+      <p class="areas-sub">Get cleaning in your area — explore the cities we cover, then check your localities below.</p>
     </div>
-  </section>
 
+    
+<div class="areas-map">
+  <div class="areas-map-wrap" aria-hidden="true">
+    <svg viewBox="0 0 900 360" class="areas-svg" role="img" aria-label="Jalandhar to nearby cities">
+      <defs>
+        <linearGradient id="wave" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0%" stop-color="#0CD7E5" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#0B4364" stop-opacity="0.9"/>
+        </linearGradient>
+        <filter id="softGlow" x="-20%" y="-20%" width="140%" height="140%">
+          <feGaussianBlur stdDeviation="6" result="blur"/>
+          <feMerge>
+            <feMergeNode in="blur"/>
+            <feMergeNode in="SourceGraphic"/>
+          </feMerge>
+        </filter>
+      </defs>
+
+      <!-- Jalandhar anchor -->
+      <g class="anchor" filter="url(#softGlow)">
+        <circle cx="210" cy="170" r="10" fill="#0B4364"/>
+        <circle cx="210" cy="170" r="22" fill="rgba(12,215,229,0.22)"/>
+      </g>
+
+      <!-- Decorative wave paths -->
+      <path d="M210 170 C 290 110, 360 80, 450 120" stroke="url(#wave)" stroke-width="3" fill="none" class="wave"/>
+      <path d="M210 170 C 300 200, 360 230, 480 245" stroke="url(#wave)" stroke-width="3" fill="none" class="wave"/>
+      <path d="M210 170 C 260 250, 320 285, 420 300" stroke="url(#wave)" stroke-width="3" fill="none" class="wave"/>
+      <path d="M210 170 C 180 240, 130 260, 95 240" stroke="url(#wave)" stroke-width="3" fill="none" class="wave"/>
+
+      <!-- City dots (positions are illustrative, not geographic-accurate) -->
+      <g class="city-dots" filter="url(#softGlow)">
+        <g class="city" transform="translate(450 120)"><circle r="6" fill="#0CD7E5"/><circle r="16" fill="rgba(12,215,229,0.16)"/></g>
+        <g class="city" transform="translate(480 245)"><circle r="6" fill="#0CD7E5"/><circle r="16" fill="rgba(12,215,229,0.16)"/></g>
+        <g class="city" transform="translate(420 300)"><circle r="6" fill="#0CD7E5"/><circle r="16" fill="rgba(12,215,229,0.16)"/></g>
+        <g class="city" transform="translate(95 240)"><circle r="6" fill="#0CD7E5"/><circle r="16" fill="rgba(12,215,229,0.16)"/></g>
+      </g>
+
+      <!-- Labels -->
+      <g class="city-labels" font-family="Nunito, sans-serif" font-weight="800" fill="#0B4364">
+        <text x="230" y="165" font-size="14">Jalandhar</text>
+        <text x="460" y="114" font-size="14">Nearby cities</text>
+      </g>
+    </svg>
+  </div>
+
+  <div class="areas-map-legend">
+    <span class="legend-dot" aria-hidden="true"></span>
+    <span>Jalandhar connects to our service towns</span>
+  </div>
+</div>
+
+
+    <div class="areas-all">
+      
+    <div class="area-city-block">
+      <h3 class="area-city">Jalandhar</h3>
+      <ul class="area-list"><li>Urban Estate Phase 1</li><li>Urban Estate Phase 2</li><li>Bastis</li><li>Model Town</li><li>Civil Lines</li></ul>
+    </div>
+    
+    <div class="area-city-block">
+      <h3 class="area-city">Phagwara</h3>
+      <ul class="area-list"><li>Gandhi Nagar</li><li>Mehatpur Road</li><li>Phagwara Industrial Area</li><li>Urban Estate</li></ul>
+    </div>
+    
+    <div class="area-city-block">
+      <h3 class="area-city">Kapurthala</h3>
+      <ul class="area-list"><li>Sultanpur Road</li><li>Model Town</li><li>Jalandhar Road</li></ul>
+    </div>
+    
+    <div class="area-city-block">
+      <h3 class="area-city">Kartarpur</h3>
+      <ul class="area-list"><li>Gurudwara Road</li><li>Main Market</li><li>Near Railway Station</li></ul>
+    </div>
+    
+    <div class="area-city-block">
+      <h3 class="area-city">Adampur</h3>
+      <ul class="area-list"><li>Main Bazar</li><li>Bus Stand Area</li><li>Jalandhar Road</li></ul>
+    </div>
+    
+    <div class="area-city-block">
+      <h3 class="area-city">Phillaur</h3>
+      <ul class="area-list"><li>Near Railway Station</li><li>Main Market</li><li>GT Road</li></ul>
+    </div>
+    
+    <div class="area-city-block">
+      <h3 class="area-city">Sultanpur Lodhi</h3>
+      <ul class="area-list"><li>Main Chowk</li><li>Near Gurudwara</li><li>GT Road</li></ul>
+    </div>
+    
+    <div class="area-city-block">
+      <h3 class="area-city">Nakodar</h3>
+      <ul class="area-list"><li>Main Bazar</li><li>Railway Road</li><li>GT Road</li></ul>
+    </div>
+    
+    <div class="area-city-block">
+      <h3 class="area-city">Goraya</h3>
+      <ul class="area-list"><li>Main Market</li><li>GT Road</li><li>Railway Road</li></ul>
+    </div>
+    
+    <div class="area-city-block">
+      <h3 class="area-city">Hoshiarpur</h3>
+      <ul class="area-list"><li>Model Town</li><li>Civil Lines</li><li>GT Road</li></ul>
+    </div>
+    
+    <div class="area-city-block">
+      <h3 class="area-city">Banga</h3>
+      <ul class="area-list"><li>Main Bazar</li><li>GT Road</li><li>Railway Road</li></ul>
+    </div>
+    
+    <div class="area-city-block">
+      <h3 class="area-city">Nawanshahr</h3>
+      <ul class="area-list"><li>Main Market</li><li>City Centre</li><li>Railway Road</li></ul>
+    </div>
+    
+    <div class="area-city-block">
+      <h3 class="area-city">Dasuya</h3>
+      <ul class="area-list"><li>Main Bazar</li><li>GT Road</li><li>Railway Road</li></ul>
+    </div>
+    
+    <div class="area-city-block">
+      <h3 class="area-city">Hariana</h3>
+      <ul class="area-list"><li>Main Bazar</li><li>GT Road</li><li>Railway Road</li></ul>
+    </div>
+    
+    </div>
+  </div>
+</section>
+>
   <footer class="footer">
   <div class="footer-inner">
     <div class="footer-main">
       <div class="f-brand">
         <a class="footer-brand" href="index.html">CleanNest</a>
-        <p class="footer-note">Professional cleaning service in Jalandhar</p>
+        <p class="footer-note">Jalandhar&rsquo;s most trusted cleaning service</p>
         <p class="f-hours">Open 7 days &middot; 9 AM &ndash; 8 PM</p>
       </div>
       <div class="f-actions">
