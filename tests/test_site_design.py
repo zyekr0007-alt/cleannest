@@ -57,6 +57,14 @@ class SiteDesignTests(unittest.TestCase):
         self.assertEqual(block.count('class="service-tile"'), 6)
         self.assertEqual(block.count('class="service-tile-all"'), 1)
 
+    def test_results_are_primary_visual_proof(self):
+        html = self.text("index.html")
+        css = self.text("style.css")
+        self.assertIn("Results you can inspect", html)
+        self.assertIn("Tap any CleanNest job", html)
+        self.assertIn("prefers-reduced-motion: reduce", html)
+        self.assertRegex(css, r"\.gallery-dots button\s*\{[^}]*width:\s*44px;[^}]*height:\s*44px;", re.S)
+
     def test_no_forbidden_copy_or_emoji(self):
         for path in list(ROOT.glob("*.html")) + [ROOT / "CONTENT_ARCHITECTURE.md"]:
             text = path.read_text(encoding="utf-8")
