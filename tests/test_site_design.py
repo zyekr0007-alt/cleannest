@@ -6,6 +6,37 @@ ROOT = Path(__file__).resolve().parents[1]
 CORE = ["index.html", "services.html", "pricing.html", "areas-we-serve.html", "faqs.html"]
 FORBIDDEN = ("CLEAN10", "10% OFF", "no advance payment", "most trusted")
 EMOJI = re.compile(r"[\U0001F300-\U0001FAFF\uFE0F]")
+ALIASES = {"bathroom-cleaning.html", "full-house-cleaning.html", "kitchen-cleaning.html", "sofa-cleaning.html"}
+CITY_PAGES = {
+    "adampur.html",
+    "banga.html",
+    "dasuya.html",
+    "goraya.html",
+    "hariana.html",
+    "hoshiarpur.html",
+    "kapurthala.html",
+    "kartarpur.html",
+    "nakodar.html",
+    "nawanshahr.html",
+    "phagwara.html",
+    "phillaur.html",
+    "sultanpur-lodhi.html",
+}
+HUB_PAGES = set(CORE) | {"index.html", "services.html", "pricing.html", "areas-we-serve.html", "faqs.html"}
+
+
+def sitemap_pages():
+    text = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
+    pages = re.findall(r"<loc>https://cleannest\.in/([^<]+)</loc>", text)
+    return [
+        page
+        for page in pages
+        if page.endswith(".html")
+        and page not in HUB_PAGES
+        and page not in CITY_PAGES
+        and page not in ALIASES
+        and page != ""
+    ]
 
 
 class SiteDesignTests(unittest.TestCase):
@@ -97,6 +128,62 @@ class SiteDesignTests(unittest.TestCase):
         html = self.text("pricing.html")
         self.assertRegex(html, r'href="style\.css\?v=\d+"')
         self.assertNotIn("<style>\n:root{", html)
+
+    def test_areas_hub_uses_linked_city_grid(self):
+        html = self.text("areas-we-serve.html")
+        self.assertIn("Jalandhar", html)
+        self.assertIn("Availability depends on the job and location", html)
+        self.assertIn("WhatsApp", html)
+        self.assertNotIn("area-city-block", html)
+        self.assertEqual(html.count('class="area-link"'), 14)
+        for name in sorted(CITY_PAGES):
+            self.assertIn(f'href="{name}"', html, name)
+
+    def test_faq_page_matches_payment_and_grouping_rules(self):
+        html = self.text("faqs.html")
+        self.assertIn("Booking &amp; Quotes", html)
+        self.assertIn("Services &amp; Pricing", html)
+        self.assertIn("Care &amp; Safety", html)
+        self.assertIn("Areas &amp; Good to Know", html)
+        self.assertLess(html.index("How payment works"), html.index("How to get a quote"))
+        self.assertGreaterEqual(html.count("50%"), 2)
+        self.assertNotIn("verified, trained and uniformed", html.lower())
+        self.assertNotIn("eco-friendly products", html.lower())
+
+    def test_service_pages_follow_shared_information_order(self):
+        for name in sitemap_pages():
+            html = self.text(name)
+            with self.subTest(page=name):
+                self.assertEqual(len(re.findall(r"<h1\b", html, re.I)), 1, name)
+                self.assertRegex(html, r'"@type"\s*:\s*"Service"', name)
+                self.assertTrue('data-open-quote' in html or 'wa.me/917610000654' in html, name)
+                self.assertIn('<footer class="footer"', html, name)
+                self.assertGreaterEqual(len(re.findall(r'class="faq-item"', html)), 2, name)
+                self.assertIn("Who this is for / when to book", html, name)
+                self.assertTrue(
+                    any(phrase in html for phrase in ("What is included", "What we cover", "Every detail covered")),
+                    name,
+                )
+
+    def test_city_pages_are_locally_specific_and_non_duplicate(self):
+        seen = {}
+        for name in sorted(CITY_PAGES):
+            city = name.removesuffix(".html").replace("-", " ").title()
+            html = self.text(name)
+            title = re.search(r"<title>(.*?)</title>", html, re.S).group(1)
+            h1 = re.search(r"<h1[^>]*>(.*?)</h1>", html, re.S)
+            paragraph = re.search(r"<main.*?<p[^>]*>(.*?)</p>", html, re.S)
+            intro = re.sub(r"\s+", " ", re.sub(r"<[^>]+>", " ", paragraph.group(1) if paragraph else "")).strip().lower()
+            seen.setdefault(intro, []).append(name)
+            with self.subTest(page=name):
+                self.assertIn(city, title, name)
+                self.assertIn(f"Professional Cleaning Services in {city}", h1.group(1) if h1 else "", name)
+                self.assertIn(f'href="https://cleannest.in/{name}"', html, name)
+                self.assertRegex(html, r'"@type"\s*:\s*"Service"', name)
+                self.assertIn(f"WhatsApp for {city} Quote", html, name)
+                self.assertIn(city, html, name)
+        duplicates = [pages for pages in seen.values() if len(pages) > 1]
+        self.assertFalse(duplicates, f"Duplicate city intros: {duplicates}")
 
 
 if __name__ == "__main__":
