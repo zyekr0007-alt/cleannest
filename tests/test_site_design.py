@@ -41,6 +41,11 @@ class SiteDesignTests(unittest.TestCase):
         self.assertIn('assets/img/results/sink-vanity.webp', html)
         self.assertIn('width="640" height="640"', html)
 
+    def test_homepage_uses_compact_trust_strip(self):
+        html = self.text("index.html")
+        self.assertIn('id="trust-strip"', html)
+        self.assertNotIn('<section class="about" id="about">', html)
+
     def test_no_forbidden_copy_or_emoji(self):
         for path in list(ROOT.glob("*.html")) + [ROOT / "CONTENT_ARCHITECTURE.md"]:
             text = path.read_text(encoding="utf-8")

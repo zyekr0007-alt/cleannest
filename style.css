@@ -4195,3 +4195,22 @@ details[open] .faq-a { grid-template-rows: 1fr; }
 @media (max-width: 767px) {
   .hero-proof-card { width: 100%; border-radius: 20px; }
 }
+
+
+/* Compact homepage trust strip */
+.trust-strip { padding: 0 22px 28px; }
+.trust-strip-inner {
+  width: min(100%, 1200px);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-block: 1px solid rgba(11, 67, 100, 0.13);
+}
+.trust-strip-inner > span { display: grid; gap: 2px; padding: 18px 22px; }
+.trust-strip-inner > span + span { border-left: 1px solid rgba(11, 67, 100, 0.13); }
+.trust-strip strong { color: var(--navy); font-size: 0.96rem; }
+.trust-strip small { color: var(--muted); font-size: 0.82rem; }
+@media (max-width: 640px) {
+  .trust-strip-inner { grid-template-columns: 1fr; }
+  .trust-strip-inner > span + span { border-left: 0; border-top: 1px solid rgba(11, 67, 100, 0.13); }
+}
