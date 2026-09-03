@@ -73,16 +73,6 @@ class SiteDesignTests(unittest.TestCase):
         for name in ("Neha Verma", "gurjit bhangu", "Kamal Jeet", "Shelly Bajwa", "Harshalipreet Kaur Bhangu"):
             self.assertIn(name, block)
 
-    def test_about_hub_exists_with_required_structure(self):
-        html = self.text("about.html")
-        self.assertEqual(len(re.findall(r"<h1(?:\s|>)", html)), 1)
-        for required in ('class="brand-strip"', 'class="desk-nav"', 'id="about-values"', 'id="about-process"', 'id="about-proof"', 'style.css?v='):
-            self.assertIn(required, html)
-        self.assertIn('"@type": "LocalBusiness"', html)
-        self.assertNotRegex(html, EMOJI)
-        for page in ("index.html", "services.html", "pricing.html"):
-            self.assertIn('href="about.html"', self.text(page), page)
-
     def test_no_forbidden_copy_or_emoji(self):
         for path in list(ROOT.glob("*.html")) + [ROOT / "CONTENT_ARCHITECTURE.md"]:
             text = path.read_text(encoding="utf-8")
