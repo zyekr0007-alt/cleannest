@@ -471,20 +471,77 @@
   </section>
 
   <!-- Cities we cover (compact) -->
-  <section class="cities" id="cities">
+  <section class="cities" id="cities" aria-labelledby="areas-title">
   <div class="cities-inner">
-    <div class="cities-head section-head">
-      <span class="section-badge">Areas</span>
-      <h2 class="section-title">Areas We <span class="star">Serve</span></h2>
+    <div class="cities-head">
+      <h2 class="section-title" id="areas-title">Areas We <span class="star">Serve</span></h2>
+      <p class="cities-sub">Jalandhar is home. We also serve nearby towns across Punjab.</p>
     </div>
-    <div class="cities-grid">
-<a class="city-chip city-chip-home" href="index.html">Jalandhar</a> <a class="city-chip" href="phagwara.html">Phagwara</a> <a class="city-chip" href="kapurthala.html">Kapurthala</a> <a class="city-chip" href="kartarpur.html">Kartarpur</a> <a class="city-chip" href="adampur.html">Adampur</a> <a class="city-chip" href="phillaur.html">Phillaur</a> <a class="city-chip" href="sultanpur-lodhi.html">Sultanpur Lodhi</a> <a class="city-chip" href="nakodar.html">Nakodar</a> <a class="city-chip" href="goraya.html">Goraya</a> <a class="city-chip" href="hoshiarpur.html">Hoshiarpur</a> <a class="city-chip" href="banga.html">Banga</a> <a class="city-chip" href="nawanshahr.html">Nawanshahr</a> <a class="city-chip" href="dasuya.html">Dasuya</a> <a class="city-chip" href="hariana.html">Hariana</a>
-    </div>
-    <div class="cities-more">
-      <a class="all-areas-btn" href="areas-we-serve.html">All Areas <span aria-hidden="true">&rarr;</span></a>
+    <div class="areas-launcher">
+      <a class="areas-home-city" href="areas-we-serve.html">
+        <span class="areas-home-dot" aria-hidden="true"></span>
+        <span><strong>Jalandhar</strong><small>Home city</small></span>
+      </a>
+      <div class="areas-nearby" aria-label="Popular service areas">
+        <a class="city-chip" href="phagwara.html">Phagwara</a>
+        <a class="city-chip" href="kapurthala.html">Kapurthala</a>
+        <a class="city-chip" href="hoshiarpur.html">Hoshiarpur</a>
+        <a class="city-chip" href="nakodar.html">Nakodar</a>
+        <a class="city-chip" href="goraya.html">Goraya</a>
+      </div>
+      <button class="all-areas-btn" type="button" data-open-areas-map aria-controls="areas-map-dialog" aria-expanded="false">
+        View all 14 areas
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 5-9 11-9 11S3 15 3 10a9 9 0 1 1 18 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      </button>
     </div>
   </div>
 </section>
+
+<div class="areas-map-dialog" id="areas-map-dialog" role="dialog" aria-modal="true" aria-labelledby="areas-map-title" hidden>
+  <div class="areas-map-backdrop" data-close-areas-map></div>
+  <section class="areas-map-sheet">
+    <div class="areas-map-sheet-head">
+      <div>
+        <p class="areas-map-overline">Service coverage</p>
+        <h2 id="areas-map-title">Jalandhar connects us</h2>
+      </div>
+      <button class="areas-map-close" type="button" data-close-areas-map aria-label="Close service area map">&times;</button>
+    </div>
+    <p class="areas-map-copy">Choose a town to see its local service page. Exact availability is confirmed on WhatsApp.</p>
+    <div class="areas-network-map" aria-label="Animated service area map centered on Jalandhar">
+      <svg viewBox="0 0 900 520" role="img" aria-labelledby="areas-map-svg-title areas-map-svg-desc">
+        <title id="areas-map-svg-title">CleanNest service coverage from Jalandhar</title>
+        <desc id="areas-map-svg-desc">Animated routes travel from Jalandhar to 13 nearby service towns.</desc>
+        <defs>
+          <radialGradient id="areasMapGlow"><stop stop-color="#0CD7E5" stop-opacity=".32"/><stop offset="1" stop-color="#0CD7E5" stop-opacity="0"/></radialGradient>
+          <linearGradient id="areasRoute" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#0B4364"/><stop offset="1" stop-color="#0CD7E5"/></linearGradient>
+        </defs>
+        <path class="areas-map-land" d="M72 98C176 42 300 66 393 40c110-31 201 25 330 18 85-5 123 43 100 99 49 57 30 139-38 167-76 31-88 96-180 97-82 1-150 69-254 35-90-29-162 5-225-69-57-67-18-136-56-213-20-41-29-105 2-136Z"/>
+        <g class="areas-route-layer" aria-hidden="true">
+          <path class="areas-route" d="M430 255 L510 165"/><path class="areas-route" d="M430 255 L310 184"/><path class="areas-route" d="M430 255 L535 250"/><path class="areas-route" d="M430 255 L548 335"/><path class="areas-route" d="M430 255 L448 365"/><path class="areas-route" d="M430 255 L353 345"/><path class="areas-route" d="M430 255 L267 295"/><path class="areas-route" d="M430 255 L225 222"/><path class="areas-route" d="M430 255 L640 198"/><path class="areas-route" d="M430 255 L685 300"/><path class="areas-route" d="M430 255 L612 390"/><path class="areas-route" d="M430 255 L720 410"/><path class="areas-route" d="M430 255 L162 390"/>
+        </g>
+        <g class="areas-map-node areas-map-home" transform="translate(430 255)"><circle class="areas-node-aura" r="43"/><circle class="areas-node-core" r="13"/><text x="0" y="-25" text-anchor="middle">Jalandhar</text></g>
+        <a class="map-city-link" href="phagwara.html" aria-label="Phagwara service page"><g class="areas-map-node" transform="translate(510 165)"><circle r="8"/><text x="14" y="4">Phagwara</text></g></a>
+        <a class="map-city-link" href="kapurthala.html" aria-label="Kapurthala service page"><g class="areas-map-node" transform="translate(310 184)"><circle r="8"/><text x="-14" y="4" text-anchor="end">Kapurthala</text></g></a>
+        <a class="map-city-link" href="kartarpur.html" aria-label="Kartarpur service page"><g class="areas-map-node" transform="translate(535 250)"><circle r="8"/><text x="14" y="4">Kartarpur</text></g></a>
+        <a class="map-city-link" href="adampur.html" aria-label="Adampur service page"><g class="areas-map-node" transform="translate(548 335)"><circle r="8"/><text x="14" y="4">Adampur</text></g></a>
+        <a class="map-city-link" href="phillaur.html" aria-label="Phillaur service page"><g class="areas-map-node" transform="translate(448 365)"><circle r="8"/><text x="14" y="4">Phillaur</text></g></a>
+        <a class="map-city-link" href="sultanpur-lodhi.html" aria-label="Sultanpur Lodhi service page"><g class="areas-map-node" transform="translate(353 345)"><circle r="8"/><text x="-14" y="4" text-anchor="end">Sultanpur Lodhi</text></g></a>
+        <a class="map-city-link" href="nakodar.html" aria-label="Nakodar service page"><g class="areas-map-node" transform="translate(267 295)"><circle r="8"/><text x="-14" y="4" text-anchor="end">Nakodar</text></g></a>
+        <a class="map-city-link" href="goraya.html" aria-label="Goraya service page"><g class="areas-map-node" transform="translate(225 222)"><circle r="8"/><text x="-14" y="4" text-anchor="end">Goraya</text></g></a>
+        <a class="map-city-link" href="hoshiarpur.html" aria-label="Hoshiarpur service page"><g class="areas-map-node" transform="translate(640 198)"><circle r="8"/><text x="14" y="4">Hoshiarpur</text></g></a>
+        <a class="map-city-link" href="banga.html" aria-label="Banga service page"><g class="areas-map-node" transform="translate(685 300)"><circle r="8"/><text x="14" y="4">Banga</text></g></a>
+        <a class="map-city-link" href="nawanshahr.html" aria-label="Nawanshahr service page"><g class="areas-map-node" transform="translate(612 390)"><circle r="8"/><text x="14" y="4">Nawanshahr</text></g></a>
+        <a class="map-city-link" href="dasuya.html" aria-label="Dasuya service page"><g class="areas-map-node" transform="translate(720 410)"><circle r="8"/><text x="14" y="4">Dasuya</text></g></a>
+        <a class="map-city-link" href="hariana.html" aria-label="Hariana service page"><g class="areas-map-node" transform="translate(162 390)"><circle r="8"/><text x="-14" y="4" text-anchor="end">Hariana</text></g></a>
+      </svg>
+    </div>
+    <div class="areas-map-footer">
+      <span><i aria-hidden="true"></i> Repeating routes show our service network from Jalandhar.</span>
+      <a href="areas-we-serve.html">Explore area details</a>
+    </div>
+  </section>
+</div>
 
   <!-- Contact / CTA -->
   <!-- FAQ -->
@@ -1330,6 +1387,30 @@
   });
   window.addEventListener('resize', sync);
   sync();
+})();
+</script>
+
+<script>
+(function initAreasMap() {
+  const dialog = document.getElementById('areas-map-dialog');
+  const open = document.querySelector('[data-open-areas-map]');
+  if (!dialog || !open) return;
+  const close = () => {
+    dialog.hidden = true;
+    document.body.classList.remove('sheet-open');
+    open.setAttribute('aria-expanded', 'false');
+    open.focus();
+  };
+  open.addEventListener('click', () => {
+    dialog.hidden = false;
+    document.body.classList.add('sheet-open');
+    open.setAttribute('aria-expanded', 'true');
+    dialog.querySelector('[data-close-areas-map]').focus();
+  });
+  dialog.querySelectorAll('[data-close-areas-map]').forEach((control) => control.addEventListener('click', close));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && !dialog.hidden) close();
+  });
 })();
 </script>
 </body>
