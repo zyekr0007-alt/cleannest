@@ -35,6 +35,12 @@ class SiteDesignTests(unittest.TestCase):
         self.assertIn("Home and commercial deep cleaning in Jalandhar", html)
         self.assertIn('href="#results"', html)
 
+    def test_homepage_hero_uses_real_result_proof(self):
+        html = self.text("index.html")
+        self.assertIn('class="hero-proof-card"', html)
+        self.assertIn('assets/img/results/sink-vanity.webp', html)
+        self.assertIn('width="640" height="640"', html)
+
     def test_no_forbidden_copy_or_emoji(self):
         for path in list(ROOT.glob("*.html")) + [ROOT / "CONTENT_ARCHITECTURE.md"]:
             text = path.read_text(encoding="utf-8")

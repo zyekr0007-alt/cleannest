@@ -4149,3 +4149,49 @@ details[open] .faq-a { grid-template-rows: 1fr; }
   .areas-all{ grid-template-columns: 1fr; }
   .areas-serve-inner{ padding-left: 18px; padding-right: 18px; }
 }
+
+/* Proof-led hero visual */
+.hero-proof-card {
+  position: relative;
+  width: min(100%, 520px);
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid rgba(11, 67, 100, 0.12);
+  border-radius: 24px;
+  background: var(--card);
+  box-shadow: 0 24px 64px rgba(11, 67, 100, 0.16);
+}
+.hero-proof-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+.hero-proof-card::after {
+  content: "";
+  position: absolute;
+  inset: 0 auto 0 50%;
+  width: 2px;
+  background: rgba(12, 215, 229, 0.88);
+  pointer-events: none;
+}
+.hero-proof-card figcaption {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  display: grid;
+  gap: 2px;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 14px;
+  color: var(--navy-deep);
+  background: rgba(255, 255, 255, 0.86);
+  backdrop-filter: blur(14px);
+}
+.proof-kicker { color: var(--muted); font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+.proof-title { font-size: 1rem; font-weight: 800; }
+@media (max-width: 767px) {
+  .hero-proof-card { width: 100%; border-radius: 20px; }
+}
