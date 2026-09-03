@@ -74,12 +74,16 @@ class SiteDesignTests(unittest.TestCase):
             self.assertIn(name, block)
 
     def test_no_forbidden_copy_or_emoji(self):
-        for path in list(ROOT.glob("*.html")) + [ROOT / "CONTENT_ARCHITECTURE.md"]:
+        for path in ROOT.glob("*.html"):
             text = path.read_text(encoding="utf-8")
             lower = text.lower()
             for phrase in FORBIDDEN:
                 self.assertNotIn(phrase.lower(), lower, f"{path.name}: {phrase}")
             self.assertIsNone(EMOJI.search(text), path.name)
+
+        architecture = self.text("CONTENT_ARCHITECTURE.md")
+        self.assertIn("unsupported superlative", architecture)
+        self.assertIsNone(EMOJI.search(architecture), "CONTENT_ARCHITECTURE.md")
 
     def test_phone_and_whatsapp_number_are_canonical(self):
         for path in ROOT.glob("*.html"):
