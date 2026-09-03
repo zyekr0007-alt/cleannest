@@ -4249,3 +4249,24 @@ details[open] .faq-a { grid-template-rows: 1fr; }
 .gallery-carousel, .reviews-viewport { overflow: hidden; }
 
 @media (max-width: 1023px) { .hero { overflow: hidden; } }
+
+
+/* Outcome-led service cards */
+.service-card-body { display: grid; gap: 7px; padding: 16px; color: var(--ink); background: var(--card); }
+.service-card-body strong { color: var(--navy); font-size: 1rem; line-height: 1.25; }
+.service-card-body small { color: var(--muted); font-size: 0.82rem; line-height: 1.45; }
+.service-card-meta { display: flex; justify-content: space-between; color: var(--cyan-ink); font-size: 0.86rem; font-weight: 800; }
+.service-tile:has(.service-card-body) { aspect-ratio: auto; display: grid; grid-template-rows: auto 1fr; }
+.service-tile:has(.service-card-body) img { aspect-ratio: 8 / 5; }
+.service-tile-all { min-height: 180px; padding: 22px; display: flex; align-items: end; justify-content: space-between; gap: 20px; color: var(--navy); text-decoration: none; border-radius: var(--radius); }
+.service-tile-all > span:first-child { display: grid; gap: 4px; }
+.service-tile-all strong { font-size: 1.1rem; }
+.service-tile-all small { color: var(--muted); }
+.service-category { margin-top: 48px; }
+.service-category:first-of-type { margin-top: 0; }
+.service-category > h2 { max-width: 1200px; margin: 0 auto 18px; color: var(--navy); font-size: clamp(1.35rem, 2.5vw, 1.8rem); }
+@media (max-width: 640px) {
+  .service-card-body { padding: 12px; }
+  .service-card-body small { font-size: 0.78rem; }
+  .service-tile:has(.service-card-body), .service-tile-all { aspect-ratio: auto; }
+}

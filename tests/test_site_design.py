@@ -51,6 +51,12 @@ class SiteDesignTests(unittest.TestCase):
         for token in ("--section-space", "--content-wide", "--content-reading"):
             self.assertIn(token, css)
 
+    def test_homepage_service_grid_is_curated(self):
+        html = self.text("index.html")
+        block = html[html.index('id="services"'):html.index('id="results"')]
+        self.assertEqual(block.count('class="service-tile"'), 6)
+        self.assertEqual(block.count('class="service-tile-all"'), 1)
+
     def test_no_forbidden_copy_or_emoji(self):
         for path in list(ROOT.glob("*.html")) + [ROOT / "CONTENT_ARCHITECTURE.md"]:
             text = path.read_text(encoding="utf-8")
