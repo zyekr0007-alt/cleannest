@@ -4131,6 +4131,50 @@ details[open] .faq-a { grid-template-rows: 1fr; }
 /* Areas We Serve page — custom wave map + locality lists */
 .areas-serve-inner { max-width: 1120px; margin: 0 auto; padding: 0 22px 80px; }
 .areas-serve .section-head { text-align:center; margin-top: 30px; }
+.areas-serve .areas-sub,
+.areas-note {
+  max-width: 760px;
+  margin: 10px auto 0;
+  color: var(--muted);
+  text-align: center;
+  font-size: 0.98rem;
+  line-height: 1.65;
+}
+
+.areas-grid {
+  width: min(100%, 1120px);
+  margin: 28px auto 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+.area-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 76px;
+  padding: 18px 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(11, 67, 100, 0.12);
+  background: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 8px 24px rgba(11, 67, 100, 0.06);
+  color: var(--navy);
+  text-decoration: none;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  text-align: center;
+  transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease, background 0.16s ease;
+}
+.area-link:hover {
+  transform: translateY(-2px);
+  border-color: rgba(12, 215, 229, 0.55);
+  box-shadow: 0 14px 34px rgba(11, 67, 100, 0.12);
+  background: #fff;
+}
+.areas-grid .area-link:first-child {
+  background: linear-gradient(180deg, rgba(12, 215, 229, 0.16), rgba(255, 255, 255, 0.92));
+}
 
 .areas-map { margin: 26px auto 26px; max-width: 900px; }
 .areas-map-wrap { border-radius: 26px; overflow: hidden; background: linear-gradient(180deg, rgba(12,215,229,0.10), rgba(11,67,100,0.03)); border: 1px solid rgba(11,67,100,0.10); box-shadow: 0 14px 38px rgba(11,67,100,0.14); }
@@ -4152,6 +4196,10 @@ details[open] .faq-a { grid-template-rows: 1fr; }
 @media (max-width: 880px){
   .areas-all{ grid-template-columns: 1fr; }
   .areas-serve-inner{ padding-left: 18px; padding-right: 18px; }
+  .areas-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px){
+  .areas-grid { grid-template-columns: 1fr; }
 }
 
 /* Proof-led hero visual */
