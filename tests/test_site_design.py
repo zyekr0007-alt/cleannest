@@ -65,6 +65,14 @@ class SiteDesignTests(unittest.TestCase):
         self.assertIn("prefers-reduced-motion: reduce", html)
         self.assertRegex(css, r"\.gallery-dots button\s*\{[^}]*width:\s*44px;[^}]*height:\s*44px;", re.S)
 
+    def test_reviews_keep_five_named_cards_without_verified_wording(self):
+        html = self.text("index.html")
+        block = html[html.index('id="reviews"'):html.index('id="cities"')]
+        self.assertEqual(block.count('class="review-card"'), 5)
+        self.assertNotIn("verified", block.lower())
+        for name in ("Neha Verma", "gurjit bhangu", "Kamal Jeet", "Shelly Bajwa", "Harshalipreet Kaur Bhangu"):
+            self.assertIn(name, block)
+
     def test_no_forbidden_copy_or_emoji(self):
         for path in list(ROOT.glob("*.html")) + [ROOT / "CONTENT_ARCHITECTURE.md"]:
             text = path.read_text(encoding="utf-8")

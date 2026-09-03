@@ -4270,3 +4270,10 @@ details[open] .faq-a { grid-template-rows: 1fr; }
   .service-card-body small { font-size: 0.78rem; }
   .service-tile:has(.service-card-body), .service-tile-all { aspect-ratio: auto; }
 }
+
+
+/* Focused review carousel: one card on compact screens, two on desktop */
+.review-card { flex: 0 0 100%; }
+@media (min-width: 1024px) {
+  .review-card { flex-basis: 50%; }
+}
