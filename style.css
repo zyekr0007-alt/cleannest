@@ -17,6 +17,10 @@
   --surface-2: #F6F7F9;    /* uniform off-white page background */
   --shadow: 0 10px 30px rgba(11, 67, 100, 0.12);
   --radius: 16px;
+  --section-space: clamp(64px, 8vw, 112px);
+  --content-wide: 1200px;
+  --content-reading: 760px;
+  --line: rgba(11, 67, 100, 0.13);
 
   /* Glassmorphism system */
   --glass-bg: rgba(255, 255, 255, 0.55);
@@ -4214,3 +4218,34 @@ details[open] .faq-a { grid-template-rows: 1fr; }
   .trust-strip-inner { grid-template-columns: 1fr; }
   .trust-strip-inner > span + span { border-left: 0; border-top: 1px solid rgba(11, 67, 100, 0.13); }
 }
+
+
+/* Authoritative content rhythm and quiet surfaces */
+.services, .gallery, .reviews, .cities, .faqs, .cta-band, .final-cta {
+  width: min(100%, var(--content-wide));
+  margin-inline: auto;
+  padding: var(--section-space) clamp(20px, 4vw, 48px);
+}
+.section-head, .reviews-head {
+  max-width: var(--content-reading);
+  margin: 0 auto clamp(28px, 4vw, 48px);
+  text-align: center;
+}
+.section-title, .reviews-title {
+  max-width: 18ch;
+  margin-inline: auto;
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+.service-tile, .service-tile-all, .review-card, .city-chip, .area-city-block, .faq-item {
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 24px rgba(11, 67, 100, 0.08);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.gallery-carousel, .reviews-viewport { overflow: hidden; }
+
+@media (max-width: 1023px) { .hero { overflow: hidden; } }

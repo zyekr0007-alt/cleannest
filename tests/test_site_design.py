@@ -46,6 +46,11 @@ class SiteDesignTests(unittest.TestCase):
         self.assertIn('id="trust-strip"', html)
         self.assertNotIn('<section class="about" id="about">', html)
 
+    def test_shared_section_rhythm_tokens_exist(self):
+        css = self.text("style.css")
+        for token in ("--section-space", "--content-wide", "--content-reading"):
+            self.assertIn(token, css)
+
     def test_no_forbidden_copy_or_emoji(self):
         for path in list(ROOT.glob("*.html")) + [ROOT / "CONTENT_ARCHITECTURE.md"]:
             text = path.read_text(encoding="utf-8")
