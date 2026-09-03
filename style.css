@@ -891,6 +891,15 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   padding-top: 16px;
 }
 
+/* Homepage service grid refresh: let the photography lead, with readable labels
+   kept off the important image area. */
+.service-tile-featured { grid-column:span 2; aspect-ratio:2.05 / 1; }
+.service-tile::after { content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(180deg,rgba(5,24,38,.18) 0%,transparent 42%,rgba(5,24,38,.62) 100%); z-index:1; }
+.service-tag { top:auto; right:auto; bottom:14px; left:14px; max-width:calc(100% - 112px); padding:8px 12px; border-radius:10px; background:rgba(5,28,44,.86); box-shadow:0 5px 18px rgba(4,24,36,.22); text-shadow:none; font-size:1rem; letter-spacing:.005em; z-index:2; }
+.service-tile:hover .service-tag { padding:8px 12px; background:rgba(5,28,44,.95); }
+.service-price-tag { top:14px; right:14px; bottom:auto; left:auto; max-width:calc(100% - 28px); padding:6px 10px; background:rgba(255,255,255,.92); font-size:.72rem; }
+@media (max-width:640px){.service-tile-featured{grid-column:span 2;aspect-ratio:1.75 / 1}.service-tag{bottom:10px;left:10px;padding:7px 9px;font-size:.9rem;max-width:calc(100% - 104px)}.service-price-tag{top:10px;right:10px;left:auto;bottom:auto}}
+
 /* All-services page: tiles must be visible without depending on the
    scroll-reveal JS (which only targets the home page). */
 .services-static .service-tile {
@@ -1586,6 +1595,13 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 @media (prefers-reduced-motion: reduce) {
   .why-ico::before { animation: none; }
 }
+
+/* Why CleanNest — visible trust proof and four uncluttered benefits */
+.why-proof { display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:11px; max-width:680px; margin:0 auto 18px; color:var(--muted); font:700 .82rem/1.3 'Nunito',sans-serif; }.why-proof strong { color:var(--navy); font-weight:900; }.why-proof i { width:4px; height:4px; border-radius:50%; background:var(--cyan); }
+.why-grid-new { grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; max-width:1000px; padding:18px; border-radius:24px; background:linear-gradient(145deg,#0b4364,#082e46); box-shadow:0 20px 45px rgba(11,67,100,.2); }
+.why-card-new { min-height:178px; padding:20px 17px; border:1px solid rgba(201,248,251,.15); border-radius:16px; background:rgba(255,255,255,.07); color:#fff; }.why-card-new .why-ico { margin-bottom:16px; background:rgba(12,215,229,.16); color:var(--cyan); }.why-card-new h3 { margin:0 0 7px; font:900 1rem/1.15 'Nunito',sans-serif; color:#fff; }.why-card-new p { margin:0; color:#c4e6e9; font:600 .79rem/1.5 'Nunito',sans-serif; }.why-card-new:hover { background:rgba(255,255,255,.12); transform:translateY(-3px); transition:transform 180ms ease,background 180ms ease; }
+.why-results-link { display:flex; align-items:center; justify-content:center; gap:8px; width:max-content; margin:18px auto 0; color:var(--navy); font:900 .88rem/1 'Nunito',sans-serif; text-decoration:none; }.why-results-link span { color:#078894; font-size:1.2rem; }.why-results-link:hover { text-decoration:underline; text-underline-offset:4px; }
+@media (max-width:880px){.why-grid-new{grid-template-columns:repeat(2,minmax(0,1fr));max-width:640px}.why-card-new{min-height:154px}}@media (max-width:640px){.why-proof{font-size:.73rem;gap:8px;margin-bottom:14px}.why-grid-new{gap:9px;padding:10px;border-radius:18px}.why-card-new{min-height:145px;padding:15px 12px}.why-card-new .why-ico{margin-bottom:11px}.why-card-new h3{font-size:.9rem}.why-card-new p{font-size:.73rem;line-height:1.4}}
 
 /* ---------- FAQs ---------- */
 .faqs {
@@ -4110,6 +4126,11 @@ details[open] .faq-a { grid-template-rows: 1fr; }
   -webkit-backdrop-filter: none;
 }
 .faq-collapse .faq-item:hover { background: rgba(11, 67, 100, 0.035); }
+
+/* Homepage declutter: show a curated results set and the key booking FAQs. */
+#gallery-track .gallery-slide:nth-child(n+7) { display:none; }
+.gallery-more { display:flex; justify-content:center; margin-top:18px; }.gallery-more a { display:inline-flex; align-items:center; gap:8px; color:var(--navy); font:900 .88rem/1 'Nunito',sans-serif; text-decoration:none; }.gallery-more a span { color:#078894; font-size:1.2rem; }.gallery-more a:hover { text-decoration:underline; text-underline-offset:4px; }
+.faq-home-head { margin-bottom:18px; }.faq-collapse-head { display:none; }.faq-collapse-body, .faq-collapse.open .faq-collapse-body { max-height:none; overflow:visible; }.faq-collapse-in .faq-list { padding-top:0; }.faq-collapse .faq-item:nth-child(n+4) { display:none; }.faq-collapse-in .faq-more { margin-top:18px; text-align:center; }
 .faq-collapse .faq-item summary { padding: 15px 10px; font-size: 1rem; }
 .faq-collapse .faq-item p {
   margin: 0;
@@ -4164,6 +4185,9 @@ details[open] .faq-a { grid-template-rows: 1fr; }
 .areas-home-dot { width:10px; height:10px; border-radius:50%; background:var(--cyan); box-shadow:0 0 0 5px rgba(12,215,229,.14); }
 .areas-summary { margin:0; color:var(--muted); font:700 .86rem/1.45 'Nunito',sans-serif; text-align:center; }.areas-summary span { color:var(--navy); }
 .all-areas-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:42px; padding:10px 15px; border-radius:999px; color:#fff; background:var(--navy); font:800 .85rem/1 'Nunito',sans-serif; text-decoration:none; white-space:nowrap; transition:transform 180ms ease, box-shadow 180ms ease, background 180ms ease; }
+.home-city-grid { max-width:900px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); border:1px solid rgba(11,67,100,.13); border-radius:18px; overflow:hidden; background:#fff; }
+.home-city { min-height:48px; display:flex; align-items:center; justify-content:center; padding:9px 10px; border-right:1px solid rgba(11,67,100,.1); border-bottom:1px solid rgba(11,67,100,.1); color:var(--navy); font:800 .84rem/1.2 'Nunito',sans-serif; text-align:center; }
+.home-city:nth-child(4n) { border-right:0; }.home-city:nth-last-child(-n+4) { border-bottom:0; }.home-city.is-home { background:#effcfd; }.home-city i { width:7px; height:7px; flex:0 0 7px; margin-right:7px; border-radius:50%; background:var(--cyan); box-shadow:0 0 0 4px rgba(12,215,229,.14); }.home-areas-btn { margin:18px auto 0; width:max-content; }
 .all-areas-btn svg { width:17px;height:17px; }.all-areas-btn:hover { transform:translateY(-2px); background:#082e46; box-shadow:0 9px 20px rgba(11,67,100,.22); }.all-areas-btn:focus-visible,.areas-home-city:focus-visible,.coverage-city-link:focus-visible { outline:3px solid var(--cyan); outline-offset:4px; }
 
 .areas-map-page { padding:clamp(52px,7vw,88px) 22px 68px; background:linear-gradient(180deg,#f8fcfd 0%,#fff 74%); }
@@ -4177,9 +4201,14 @@ details[open] .faq-a { grid-template-rows: 1fr; }
 .coverage-signal { fill:#fff; transform-origin:545px 310px; animation:coverage-signal-travel 3s cubic-bezier(.17,.67,.38,1) infinite; }.signal-two{animation-delay:-1s}.signal-three{animation-delay:-2s}
 .coverage-map-foot { display:flex; justify-content:space-between; align-items:center; gap:18px; padding:16px 24px; background:#fff; color:var(--muted); font:700 .85rem 'Nunito',sans-serif; }.coverage-map-foot i { display:inline-block;width:9px;height:9px;margin-right:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 4px rgba(12,215,229,.15);}.coverage-map-foot a { color:var(--navy); font-weight:900; text-decoration-thickness:1px; text-underline-offset:4px; }
 .areas-all-compact { max-width:1120px; margin:36px auto 0; display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid rgba(11,67,100,.13); border-left:1px solid rgba(11,67,100,.13); }.area-city-block { min-height:104px; padding:18px 20px; border-right:1px solid rgba(11,67,100,.13); border-bottom:1px solid rgba(11,67,100,.13); text-decoration:none; background:#fff; transition:background 180ms ease; }.area-city-block:hover { background:#f2fcfd; }.area-city { margin:0 0 5px; color:var(--navy); font-size:1rem; }.area-city-block p { margin:0; color:var(--muted); font-size:.82rem; line-height:1.45; }
+.coverage-localities { max-width:1120px; margin:36px auto 0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
+.locality-card { padding:20px; border:1px solid rgba(11,67,100,.12); border-radius:18px; background:#fff; box-shadow:0 10px 24px rgba(11,67,100,.05); }
+.locality-card h3 { display:flex; align-items:center; justify-content:space-between; gap:8px; margin:0 0 11px; color:var(--navy); font:900 1.03rem/1.2 'Nunito',sans-serif; }.locality-card h3 span { padding:4px 7px; border-radius:999px; background:rgba(12,215,229,.12); color:#087883; font-size:.62rem; letter-spacing:.04em; text-transform:uppercase; }.locality-card p { margin:-3px 0 11px; color:var(--muted); font-size:.8rem; }.locality-card ul { display:grid; grid-template-columns:1fr 1fr; gap:8px 10px; margin:0; padding:0; list-style:none; }.locality-card li { color:var(--muted); font-size:.78rem; line-height:1.25; }.locality-card li::before { content:'•'; margin-right:6px; color:var(--cyan); }.locality-card-home { border-color:rgba(12,215,229,.45); background:linear-gradient(135deg,#f4feff,#fff); }
 @keyframes coverage-wave { to { stroke-dashoffset:-156; } } @keyframes coverage-pulse { 0%{transform:scale(.38);opacity:.92} 75%,100%{transform:scale(1.25);opacity:0} } @keyframes coverage-signal-travel { 0%{transform:scale(1);opacity:1} 75%,100%{transform:scale(15);opacity:0} }
 @media (max-width:760px){.cities{padding:32px 18px 28px}.areas-launcher{grid-template-columns:1fr;gap:8px;padding:12px 0}.areas-summary{text-align:left}.all-areas-btn{width:100%}.areas-map-page{padding:46px 14px 52px}.coverage-map-frame{border-radius:20px}.coverage-map-top{padding:15px 16px}.coverage-map-top span{display:none}.coverage-map{padding:8px}.coverage-map svg{min-height:330px}.coverage-city-link text{font-size:11px}.coverage-home text{font-size:14px}.coverage-map-foot{align-items:flex-start;flex-direction:column;padding:14px 16px}.areas-all-compact{grid-template-columns:repeat(2,1fr);margin-top:24px}.area-city-block{min-height:94px;padding:14px}.area-city-block p{font-size:.76rem}}
 @media (prefers-reduced-motion:reduce){.coverage-route,.coverage-home-halo,.coverage-signal{animation:none}.all-areas-btn{transition:none}.all-areas-btn:hover{transform:none}}
+
+@media (max-width:760px){.home-city-grid{grid-template-columns:repeat(2,1fr)}.home-city:nth-child(4n){border-right:1px solid rgba(11,67,100,.1)}.home-city:nth-child(2n){border-right:0}.home-city:nth-last-child(-n+4){border-bottom:1px solid rgba(11,67,100,.1)}.home-city:nth-last-child(-n+2){border-bottom:0}.home-areas-btn{width:100%}.coverage-localities{grid-template-columns:1fr;margin-top:24px}.locality-card{padding:18px}}
 
 
 /* Dedicated areas page composition */
