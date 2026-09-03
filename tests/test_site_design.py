@@ -32,6 +32,8 @@ class SiteDesignTests(unittest.TestCase):
         self.assertEqual(len(re.findall(r"<h1\b", html, re.I)), 1)
         self.assertIn("Professional", html)
         self.assertIn("Done Right", html)
+        self.assertIn("Home and commercial deep cleaning in Jalandhar", html)
+        self.assertIn('href="#results"', html)
 
     def test_no_forbidden_copy_or_emoji(self):
         for path in list(ROOT.glob("*.html")) + [ROOT / "CONTENT_ARCHITECTURE.md"]:
