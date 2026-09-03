@@ -22,298 +22,22 @@
 <meta name="twitter:image" content="https://cleannest.in/assets/img/og-image.jpg">
 <link rel="icon" href="assets/img/logo.png" type="image/png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-<style>
-:root{
-  --primary:#0a3d62;
-  --blue:#e8f0fe;
-  --accent:#1b6cb8;
-  --text:#1a2332;
-  --gray:#f4f6f8;
-  --border:#dde3ea;
-  --shadow:rgba(10,61,98,0.06);
-  font-family:'Inter',system-ui,sans-serif;
-}
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-body{
-  background:linear-gradient(180deg,#f8fafc 0%,#eef3fb 100%);
-  color:var(--text);
-  line-height:1.45;
-  min-height:100vh;
-}
-.container{
-  max-width:1080px;
-  margin:0 auto;
-  padding:80px 24px 60px;
-}
-header{
-  text-align:center;
-  margin-bottom:48px;
-}
-.badge{
-  display:inline-block;
-  background:var(--primary);
-  color:#fff;
-  padding:6px 18px;
-  border-radius:999px;
-  font-size:11px;
-  font-weight:700;
-  letter-spacing:0.08em;
-  text-transform:uppercase;
-  margin-bottom:24px;
-}
-header h1{
-  font-size:clamp(2.2rem,5vw,3.4rem);
-  font-weight:800;
-  letter-spacing:-0.03em;
-  color:var(--primary);
-  line-height:1.1;
-  margin-bottom:12px;
-}
-header p{
-  color:#4a5568;
-  font-size:1.05rem;
-  max-width:560px;
-  margin:0 auto;
-}
-.group{
-  margin-bottom:40px;
-}
-.group-title{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-size:13px;
-  font-weight:800;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  color:var(--accent);
-  margin-bottom:12px;
-}
-.group-title::before{
-  content:'';
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  background:linear-gradient(135deg,var(--accent),var(--primary));
-  flex-shrink:0;
-}
-.table{
-  display:grid;
-  grid-template-columns:2fr 1.6fr 1.3fr;
-  gap:0;
-  border:1px solid var(--border);
-  border-radius:16px;
-  overflow:hidden;
-  background:#fff;
-  box-shadow:0 24px 48px var(--shadow),0 8px 16px rgba(10,61,98,.03);
-}
-.header-row{
-  display:contents;
-  font-weight:700;
-  background:var(--primary);
-  color:#fff;
-  font-size:12px;
-  text-transform:uppercase;
-  letter-spacing:0.06em;
-}
-.header-row > div{
-  padding:14px 16px;
-  background:var(--primary);
-}
-.row{
-  display:contents;
-}
-.row:not(:last-child) > .cell{
-  border-bottom:1px solid var(--border);
-}
-.cell{
-  padding:16px;
-  background:#fff;
-  transition:background .15s ease;
-}
-.row:hover > .cell{
-  background:#f8fafc;
-}
-.cell.name{
-  font-weight:600;
-  font-size:.93rem;
-  color:var(--primary);
-  display:flex;
-  align-items:center;
-  gap:12px;
-}
-.cell.name::before{
-  content:'';
-  display:block;
-  width:9px;
-  height:9px;
-  border-radius:50%;
-  background:linear-gradient(135deg,var(--accent),var(--primary));
-  flex-shrink:0;
-}
-.cell .label{
-  font-size:10px;
-  color:#8899ab;
-  text-transform:uppercase;
-  letter-spacing:.05em;
-  margin-bottom:2px;
-  display:none;
-}
-.cell .sub{
-  font-size:.78rem;
-  color:#6b7a8a;
-  margin-top:3px;
-  line-height:1.5;
-}
-.cell .price{
-  font-weight:800;
-  font-size:1rem;
-  color:var(--primary);
-  white-space:nowrap;
-}
-.cell .price small{
-  font-weight:600;
-  font-size:.72rem;
-  color:#8899ab;
-  white-space:normal;
-  display:block;
-}
-.cell .price .line{
-  display:block;
-  white-space:nowrap;
-}
-.quote{
-  font-weight:800;
-  font-size:1rem;
-  color:var(--accent);
-}
-footer{
-  text-align:center;
-  margin-top:40px;
-  color:#8899ab;
-  font-size:.92rem;
-  line-height:1.7;
-}
-footer strong{
-  color:var(--primary);
-  font-weight:700;
-}
-.note-card{
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:22px 24px;
-  margin-top:36px;
-  box-shadow:0 16px 40px var(--shadow);
-}
-.note-card h3{
-  color:var(--primary);
-  font-size:1rem;
-  font-weight:800;
-  margin-bottom:10px;
-}
-.note-card ul{
-  list-style:none;
-  display:grid;
-  gap:8px;
-  color:#4a5568;
-  font-size:.92rem;
-}
-.note-card li{
-  padding-left:18px;
-  position:relative;
-}
-.note-card li::before{
-  content:'✓';
-  position:absolute;
-  left:0;
-  color:var(--accent);
-  font-weight:700;
-}
-.note-card li b{
-  color:var(--text);
-}
-@media(max-width:768px){
-  .table{
-    display:block;
-    border:0;
-    box-shadow:none;
-    background:transparent;
-  }
-  .header-row{
-    display:none;
-  }
-  .row{
-    display:block;
-    border:1px solid var(--border);
-    border-radius:14px;
-    background:#fff;
-    box-shadow:0 8px 24px var(--shadow);
-    overflow:hidden;
-    margin-bottom:14px;
-  }
-  .cell{
-    display:block;
-    padding:14px 18px;
-    border-bottom:1px solid #eef1f5;
-  }
-  .cell:last-child{
-    border-bottom:0;
-  }
-  .cell .label{
-    display:block;
-    font-weight:700;
-    color:var(--primary);
-    font-size:10px;
-    letter-spacing:.06em;
-    text-transform:uppercase;
-    margin-bottom:4px;
-  }
-  .cell.name{
-    font-size:1rem;
-    padding-top:16px;
-  }
-  .cell.name::before{
-    width:8px;
-    height:8px;
-  }
-  .cell .price{
-    font-size:1.1rem;
-  }
-  .container{
-    padding:48px 16px 48px;
-  }
-  header h1{
-    font-size:2rem;
-  }
-}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=193">
 </head>
-<body id="top">
-<nav class="pn-nav" aria-label="Site">
-  <a class="pn-home" href="index.html">CleanNest</a>
-  <div class="pn-links">
-    <a href="services.html">Services</a>
-    <a href="faqs.html">FAQs</a>
-    <a class="pn-wa" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%20would%20like%20a%20free%20quote." target="_blank" rel="noopener">Get a free quote</a>
-  </div>
-</nav>
-<style>
-.pn-nav{max-width:1080px;min-height:72px;margin:0 auto;padding:16px 24px 0;display:flex;justify-content:space-between;align-items:center;gap:18px}
-.pn-home{color:var(--primary);text-decoration:none;font-weight:800;font-size:1.25rem;letter-spacing:-.04em}
-.pn-links{display:flex;align-items:center;gap:20px}
-.pn-links>a{color:var(--primary);text-decoration:none;font-weight:700;font-size:.9rem}
-.pn-links>a:hover{color:var(--accent)}
-.pn-wa{min-height:42px;display:inline-flex;align-items:center;background:var(--primary);color:#fff!important;text-decoration:none;font-weight:700;font-size:.9rem;padding:0 16px;border-radius:999px;box-shadow:0 8px 20px rgba(10,61,98,.14)}
-.pn-wa:hover{background:#0d4f7f!important}
-@media(max-width:768px){.pn-nav{min-height:64px;padding-top:12px}.pn-links{gap:12px}.pn-links>a:not(.pn-wa){display:none}}
-</style>
-
+<body id="top" class="pricing-page">
+<header class="brand-strip">
+  <a class="brand-lockup" href="index.html" aria-label="CleanNest home"><span class="brand-wordmark">CleanNest</span></a>
+  <span class="brand-glow" aria-hidden="true"></span>
+  <nav class="desk-nav" aria-label="Primary">
+    <a href="services.html">Services</a><a href="index.html#results">Results</a><a href="index.html#reviews">Reviews</a>
+    <a href="pricing.html" aria-current="page">Pricing</a><a href="areas-we-serve.html">Areas</a><a href="faqs.html">FAQs</a>
+    <a class="desk-nav-cta" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%20would%20like%20a%20free%20quote." target="_blank" rel="noopener">Get Quote</a>
+  </nav>
+</header>
+<div class="topbar">
+  <button class="menu-btn" id="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="menu-panel"><span class="menu-btn-icon" aria-hidden="true"><span></span><span></span><span></span></span></button>
+</div>
 <div class="container">
 <main>
 <header>
@@ -590,5 +314,52 @@ footer strong{
 </footer>
 </main>
 </div>
+
+<div class="menu-overlay" id="menu-overlay" hidden></div>
+  <nav class="menu-panel" id="menu-panel" role="dialog" aria-modal="true" aria-label="Menu" hidden>
+    <div class="menu-panel-head">
+      <span class="menu-brand">
+        <span class="menu-brand-name">CleanNest</span>
+      </span>
+      <button class="menu-close" id="menu-close" type="button" aria-label="Close menu">&times;</button>
+    </div>
+    <div class="menu-body">
+    <a class="menu-item" href="services.html">
+      <span class="menu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5"/></svg></span>
+      <span>Services</span>
+    </a>
+    <a class="menu-item" href="index.html#results">
+      <span class="menu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.6"/><path d="M21 16l-4.2-4.2a1.4 1.4 0 0 0-2 0L8 18.5"/></svg></span>
+      <span>Results</span>
+    </a>
+    <a class="menu-item" href="index.html#reviews">
+      <span class="menu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l2.7 5.5 6.1.9-4.4 4.3 1 6-5.4-2.8-5.4 2.8 1-6-4.4-4.3 6.1-.9L12 3Z"/></svg></span>
+      <span>Reviews</span>
+    </a>
+    <a class="menu-item" href="pricing.html">
+      <span class="menu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8Z"/><circle cx="7.5" cy="7.5" r="1.2"/></svg></span>
+      <span>Pricing</span>
+    </a>
+    <a class="menu-item" href="areas-we-serve.html">
+      <span class="menu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-5.2-7-11a7 7 0 0 1 14 0c0 5.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.6"/></svg></span>
+      <span>Areas We Serve</span>
+    </a>
+    <a class="menu-item" href="faqs.html">
+      <span class="menu-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.6 9.2a2.4 2.4 0 0 1 4.7.8c0 1.3-1.4 2-2.3 2.5-.4.2-.6.4-.6.8v.4"/><circle cx="12" cy="16.8" r="0.6" fill="currentColor" stroke="none"/></svg></span>
+      <span>FAQs</span>
+    </a>
+    <div class="menu-nav">
+      <p class="menu-note">Serving Jalandhar &amp; nearby cities — 7 days a week.</p>
+    </div>
+    </div>
+  </nav>
+<script>
+(() => {
+  const panel=document.getElementById('menu-panel'), overlay=document.getElementById('menu-overlay'), btn=document.getElementById('menu-btn'), close=document.getElementById('menu-close');
+  const openMenu=()=>{ panel.hidden=false; overlay.hidden=false; requestAnimationFrame(()=>{ panel.classList.add('open'); overlay.classList.add('show'); }); btn.setAttribute('aria-expanded','true'); document.body.classList.add('sheet-open'); close.focus(); };
+  const closeMenu=()=>{ panel.classList.remove('open'); overlay.classList.remove('show'); btn.setAttribute('aria-expanded','false'); document.body.classList.remove('sheet-open'); setTimeout(()=>{ panel.hidden=true; overlay.hidden=true; btn.focus(); },320); };
+  btn.addEventListener('click',()=>panel.hidden?openMenu():closeMenu()); close.addEventListener('click',closeMenu); overlay.addEventListener('click',closeMenu); panel.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeMenu)); document.addEventListener('keydown',event=>{ if(event.key==='Escape'&&!panel.hidden) closeMenu(); });
+})();
+</script>
 </body>
 </html>
