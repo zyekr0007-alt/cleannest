@@ -4240,3 +4240,20 @@ details[open] .faq-a { grid-template-rows: 1fr; }
 .coverage-page .coverage-map-svg { display:block; width:100%; height:auto; min-height:460px; }
 .coverage-page .coverage-map-foot { margin:0; }
 @media (max-width:760px){.coverage-page{padding:44px 14px 52px}.coverage-page .coverage-map{border-radius:20px}.coverage-page .coverage-map-intro{display:block;padding:15px 16px}.coverage-page .coverage-map-intro p{margin-top:5px}.coverage-page .coverage-map-stage{padding:8px}.coverage-page .coverage-map-svg{min-height:330px}}
+
+/* Final mobile card-label correction: labels belong at the top, prices at the bottom. */
+@media (max-width:640px) {
+  .service-tile .service-tag {
+    top: 8px !important;
+    right: 8px !important;
+    bottom: auto !important;
+    left: 8px !important;
+    width: auto !important;
+    max-width: none !important;
+    max-height: none !important;
+    padding: 8px 9px 22px !important;
+    font-size: 0.82rem !important;
+    line-height: 1.15 !important;
+    overflow: visible !important;
+  }
+}
