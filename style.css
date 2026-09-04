@@ -1145,6 +1145,21 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   .agg-text { padding-left: 0; border-left: none; }
 }
 
+/* Keep long service labels clear of the bottom price pill on narrow cards. */
+@media (max-width: 640px) {
+  .service-tile .service-tag {
+    right: 8px;
+    max-width: calc(100% - 16px);
+    max-height: calc(100% - 58px);
+    padding: 9px 9px 18px;
+    font-size: 0.78rem;
+    line-height: 1.12;
+    overflow: hidden;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+}
+
 /* Aggregate rating summary — big animated score, star pill, live ratings */
 .rating-summary {
   display: flex;
