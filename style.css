@@ -4257,3 +4257,23 @@ details[open] .faq-a { grid-template-rows: 1fr; }
     overflow: visible !important;
   }
 }
+
+/* Keep the homepage FAQ in normal document flow on mobile.
+   Its inner list is intentionally visible, so the wrapper must reserve its height. */
+@media (max-width:640px) {
+  #faq .faq-collapse,
+  #faq .faq-collapse-body,
+  #faq .faq-collapse-in {
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+}
+
+/* Make review navigation usable on touch screens as well as swipe gestures. */
+@media (max-width:640px) {
+  .reviews-viewport { padding: 0 34px; }
+  .reviews-arrow { display: inline-flex !important; width: 32px; height: 32px; }
+  .reviews-arrow.prev { left: 0; }
+  .reviews-arrow.next { right: 0; }
+}
