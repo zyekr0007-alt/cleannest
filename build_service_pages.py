@@ -28,11 +28,11 @@ STD_AREA = ("Jalandhar · Phagwara · Kapurthala · Hoshiarpur · Nakodar · Gor
 SERVICES = [
     dict(slug="full-house-cleaning", label="Full House Deep Cleaning",
         title="Full House Deep Cleaning in Jalandhar | CleanNest",
-        desc="Professional full-house deep cleaning in Jalandhar — every room, kitchen, bathroom, windows & floors. From ₹4,900. Free quote on WhatsApp.",
+        desc="Professional full-house deep cleaning in Jalandhar — every room, kitchen, bathroom, windows & floors. From ₹4,500. Free quote on WhatsApp.",
         h1="Full House Deep Cleaning in Jalandhar",
         sub="A top-to-bottom clean of your whole home — every room, every surface, from dust to shine.",
         img="assets/img/services/full-house-cleaning.jpg",
-        price="From ₹4,900",
+        price="From ₹4,500",
         includes=["Interior dusting & wipe-down of furniture and surfaces",
                   "Kitchen deep clean (countertop, stove, degrease)",
                   "Bathroom descale, sanitise & fittings polish",
