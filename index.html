@@ -69,7 +69,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=196">
+  <link rel="stylesheet" href="style.css?v=198">
   <style>
     /* Critical preloader shell: keep it full-screen off-white instantly so
        nothing flashes before style.css loads. (Full styling lives in style.css.) */
@@ -80,7 +80,7 @@
       /* No-JS fallback: reveal/tile content must not stay invisible, and the
          preloader (which JS removes) must not leave the page covered. */
       .reveal, .hero-title .hero-line { opacity: 1 !important; transform: none !important; }
-      .service-tile { opacity: 1 !important; transform: none !important; transition: none !important; }
+      .svc-card { opacity: 1 !important; transform: none !important; transition: none !important; }
       .preloader { display: none !important; }
       body.preloading { overflow: auto !important; }
       body.preloading .brand-strip { opacity: 1 !important; }
@@ -168,43 +168,193 @@
   <section class="services" id="services">
     <div class="section-head">
       <span class="section-badge">Our Services</span>
-      <p class="section-sub">Pick a service to see details &amp; get a quote.</p>
+      <h2 class="section-title">What We <span class="star">Clean</span></h2>
+      <p class="section-sub">Starting prices shown — tap any card for details &amp; booking.</p>
     </div>
-    <div class="services-grid">
-      <a class="service-tile service-tile-featured" href="full-house-deep-cleaning.html">
-        <img src="assets/img/services/full-house-cleaning.webp" alt="Full House Deep Cleaning" width="640" height="400" loading="lazy">
-        <span class="service-tag">Full House</span>
-        <span class="service-price-tag">From ₹4,900</span>
+    <div class="svc-grid">
+      <!-- Full Home -->
+      <a class="svc-card" href="full-house-cleaning.html">
+        <div class="svc-card__img"><img src="assets/img/services/full-house-cleaning.webp" alt="Full House Deep Cleaning" width="640" height="400" loading="lazy"></div>
+        <div class="svc-card__body">
+          <span class="svc-card__name">Full House Cleaning</span>
+          <span class="svc-card__desc">Complete deep clean for flats, villas &amp; bungalows.</span>
+          <span class="svc-card__price">from ₹4,500</span>
+        </div>
       </a>
-      <a class="service-tile" href="kitchen-deep-cleaning.html">
-        <img src="assets/img/services/kitchen-deep-cleaning.webp" alt="Kitchen Deep Cleaning" width="640" height="400" loading="lazy">
-        <span class="service-tag">Kitchen</span>
-        <span class="service-price-tag">From ₹2,490</span>
+      <!-- Kitchen -->
+      <a class="svc-card" href="kitchen-cleaning.html">
+        <div class="svc-card__img"><img src="assets/img/services/kitchen-deep-cleaning.webp" alt="Kitchen Deep Cleaning" width="640" height="400" loading="lazy"></div>
+        <div class="svc-card__body">
+          <span class="svc-card__name">Kitchen Cleaning</span>
+          <span class="svc-card__desc">Grease removal, counters, backsplash &amp; appliances.</span>
+          <span class="svc-card__price">from ₹2,490</span>
+        </div>
       </a>
-      <a class="service-tile" href="bathroom-deep-cleaning.html">
-        <img src="assets/img/services/bathroom-deep-cleaning.webp" alt="Bathroom Deep Cleaning" width="640" height="400" loading="lazy">
-        <span class="service-tag">Bathroom</span>
-        <span class="service-price-tag">From ₹890</span>
+      <!-- Bathroom -->
+      <a class="svc-card" href="bathroom-cleaning.html">
+        <div class="svc-card__img"><img src="assets/img/services/bathroom-deep-cleaning.webp" alt="Bathroom Deep Cleaning" width="640" height="400" loading="lazy"></div>
+        <div class="svc-card__body">
+          <span class="svc-card__name">Bathroom Cleaning</span>
+          <span class="svc-card__desc">Tile descale, grout scrub, fixtures &amp; sanitisation.</span>
+          <span class="svc-card__price">from ₹890</span>
+        </div>
       </a>
-      <a class="service-tile" href="services.html">
-        <img src="assets/img/services/sofa-dry-cleaning.webp" alt="Sofa &amp; Carpet Cleaning" width="640" height="400" loading="lazy">
-        <span class="service-tag">Sofa &amp; Carpet</span>
-        <span class="service-price-tag">From ₹199 / seat</span>
+      <!-- Sofa -->
+      <a class="svc-card" href="sofa-cleaning.html">
+        <div class="svc-card__img"><img src="assets/img/services/sofa-dry-cleaning.webp" alt="Sofa Dry Cleaning" width="640" height="400" loading="lazy"></div>
+        <div class="svc-card__body">
+          <span class="svc-card__name">Sofa Cleaning</span>
+          <span class="svc-card__desc">Dry cleaning, shampoo &amp; steam for all fabrics.</span>
+          <span class="svc-card__price">from ₹199 / seat</span>
+        </div>
       </a>
-      <a class="service-tile" href="ac-services.html">
-        <img src="assets/img/services/ac-services.webp" alt="Air Conditioner Services" width="640" height="400" loading="lazy">
-        <span class="service-tag">Air Conditioner</span>
-        <span class="service-price-tag">From ₹490</span>
+      <!-- Carpet -->
+      <a class="svc-card" href="carpet-steam-cleaning.html">
+        <div class="svc-card__img"><img src="assets/img/services/carpet-steam-cleaning.webp" alt="Carpet Steam Cleaning" width="640" height="400" loading="lazy"></div>
+        <div class="svc-card__body">
+          <span class="svc-card__name">Carpet Cleaning</span>
+          <span class="svc-card__desc">Steam extraction, stain removal &amp; fibre protection.</span>
+          <span class="svc-card__price">from ₹25 / sq.ft</span>
+        </div>
       </a>
-      <a class="service-tile" href="chimney-cleaning.html">
-        <!-- BUG-5: rooftop photo was wrong; kitchen-hood filter asset from repo -->
-        <img src="assets/img/services/chimney-cleaning.webp" alt="Kitchen chimney / hood cleaning" width="640" height="400" loading="lazy">
-        <span class="service-tag">Chimney</span>
-        <span class="service-price-tag">From ₹690</span>
+      <!-- AC -->
+      <a class="svc-card" href="ac-services.html">
+        <div class="svc-card__img"><img src="assets/img/services/ac-services.webp" alt="AC Services" width="640" height="400" loading="lazy"></div>
+        <div class="svc-card__body">
+          <span class="svc-card__name">AC Services</span>
+          <span class="svc-card__desc">Standard clean &amp; snow foam for split &amp; window units.</span>
+          <span class="svc-card__price">from ₹490</span>
+        </div>
+      </a>
+      <!-- Chimney -->
+      <a class="svc-card" href="chimney-cleaning.html">
+        <div class="svc-card__img"><img src="assets/img/services/chimney-cleaning.webp" alt="Chimney Cleaning" width="640" height="400" loading="lazy"></div>
+        <div class="svc-card__body">
+          <span class="svc-card__name">Chimney Cleaning</span>
+          <span class="svc-card__desc">Filter degrease, motor service &amp; duct cleaning.</span>
+          <span class="svc-card__price">from ₹690</span>
+        </div>
+      </a>
+      <!-- Commercial -->
+      <a class="svc-card" href="commercial-cleaning.html">
+        <div class="svc-card__img"><img src="assets/img/services/commercial-cleaning.webp" alt="Commercial Cleaning" width="640" height="400" loading="lazy"></div>
+        <div class="svc-card__body">
+          <span class="svc-card__name">Commercial Cleaning</span>
+          <span class="svc-card__desc">Office, shop &amp; industrial floor buffing &amp; cleaning.</span>
+          <span class="svc-card__price">from ₹6 / sq.ft</span>
+        </div>
+      </a>
+      <!-- Balcony -->
+      <a class="svc-card" href="balcony-cleaning.html">
+        <div class="svc-card__img"><img src="assets/img/services/balcony-cleaning.webp" alt="Balcony Cleaning" width="640" height="400" loading="lazy"></div>
+        <div class="svc-card__body">
+          <span class="svc-card__name">Balcony Cleaning</span>
+          <span class="svc-card__desc">Floor scrub, railing wipe &amp; drainage unclogging.</span>
+          <span class="svc-card__price">from ₹490</span>
+        </div>
+      </a>
+      <!-- Gas Stove -->
+      <a class="svc-card" href="gas-stove-cleaning.html">
+        <div class="svc-card__img"><img src="assets/img/services/gas-stove-cleaning.webp" alt="Gas Stove Cleaning" width="640" height="400" loading="lazy"></div>
+        <div class="svc-card__body">
+          <span class="svc-card__name">Gas Stove Cleaning</span>
+          <span class="svc-card__desc">Burner soak, drip-tray degrease &amp; surface polish.</span>
+          <span class="svc-card__price">from ₹290</span>
+        </div>
+      </a>
+      <!-- Exhaust Fan -->
+      <a class="svc-card" href="exhaust-fan-cleaning.html">
+        <div class="svc-card__img"><img src="assets/img/services/exhaust-fan-cleaning.webp" alt="Exhaust Fan Cleaning" width="640" height="400" loading="lazy"></div>
+        <div class="svc-card__body">
+          <span class="svc-card__name">Exhaust Fan Cleaning</span>
+          <span class="svc-card__desc">Blade degrease, motor wipe &amp; vent clearing.</span>
+          <span class="svc-card__price">from ₹290</span>
+        </div>
+      </a>
+      <!-- Refrigerator -->
+      <a class="svc-card" href="refrigerator-cleaning.html">
+        <div class="svc-card__img"><img src="assets/img/services/refrigerator-cleaning.webp" alt="Refrigerator Cleaning" width="640" height="400" loading="lazy"></div>
+        <div class="svc-card__body">
+          <span class="svc-card__name">Refrigerator Cleaning</span>
+          <span class="svc-card__desc">Interior wipe, shelf soak &amp; coil dusting.</span>
+          <span class="svc-card__price">from ₹699</span>
+        </div>
+      </a>
+      <!-- Mattress -->
+      <a class="svc-card" href="mattress-steam-cleaning.html">
+        <div class="svc-card__img"><img src="assets/img/services/mattress-steam-cleaning.webp" alt="Mattress Steam Cleaning" width="640" height="400" loading="lazy"></div>
+        <div class="svc-card__body">
+          <span class="svc-card__name">Mattress Cleaning</span>
+          <span class="svc-card__desc">Steam sanitisation, dust mite removal &amp; deodorise.</span>
+          <span class="svc-card__price">from ₹799</span>
+        </div>
+      </a>
+      <!-- Curtains -->
+      <a class="svc-card" href="curtain-cleaning.html">
+        <div class="svc-card__img"><img src="assets/img/services/curtain-cleaning.webp" alt="Curtain Cleaning" width="640" height="400" loading="lazy"></div>
+        <div class="svc-card__body">
+          <span class="svc-card__name">Curtain Cleaning</span>
+          <span class="svc-card__desc">Dry cleaning &amp; steam for sheer &amp; lined panels.</span>
+          <span class="svc-card__price">from ₹190 / panel</span>
+        </div>
+      </a>
+      <!-- Window Blinds -->
+      <a class="svc-card" href="window-blinds-cleaning.html">
+        <div class="svc-card__img"><img src="assets/img/services/window-blinds-cleaning.webp" alt="Window Blinds Cleaning" width="640" height="400" loading="lazy"></div>
+        <div class="svc-card__body">
+          <span class="svc-card__name">Window Blinds</span>
+          <span class="svc-card__desc">Slat-by-slat wipe, soak &amp; re-hang for all blind types.</span>
+          <span class="svc-card__price">from ₹25 / sq.ft</span>
+        </div>
+      </a>
+      <!-- Floor Renewal -->
+      <a class="svc-card" href="floor-renewal.html">
+        <div class="svc-card__img"><img src="assets/img/services/floor-renewal.webp" alt="Floor Renewal" width="640" height="400" loading="lazy"></div>
+        <div class="svc-card__body">
+          <span class="svc-card__name">Floor Renewal</span>
+          <span class="svc-card__desc">Marble, granite &amp; tile grinding, polishing &amp; sealing.</span>
+          <span class="svc-card__price">from ₹8 / sq.ft</span>
+        </div>
+      </a>
+      <!-- Jet Washing -->
+      <a class="svc-card" href="jet-washing.html">
+        <div class="svc-card__img"><img src="assets/img/services/jet-washing.webp" alt="Jet Washing" width="640" height="400" loading="lazy"></div>
+        <div class="svc-card__body">
+          <span class="svc-card__name">Jet Washing</span>
+          <span class="svc-card__desc">High-pressure wash for driveways, walls &amp; exteriors.</span>
+          <span class="svc-card__price">from ₹3 / sq.ft</span>
+        </div>
+      </a>
+      <!-- Pool Cleaning -->
+      <a class="svc-card" href="pool-cleaning.html">
+        <div class="svc-card__img"><img src="assets/img/services/pool-cleaning.webp" alt="Pool Cleaning" width="640" height="400" loading="lazy"></div>
+        <div class="svc-card__body">
+          <span class="svc-card__name">Pool Cleaning</span>
+          <span class="svc-card__desc">Drain, scrub, tile clean &amp; water treatment.</span>
+          <span class="svc-card__price">on-visit quote</span>
+        </div>
+      </a>
+      <!-- Chandelier -->
+      <a class="svc-card" href="chandelier-cleaning.html">
+        <div class="svc-card__img"><img src="assets/img/services/chandelier-cleaning.webp" alt="Chandelier Cleaning" width="640" height="400" loading="lazy"></div>
+        <div class="svc-card__body">
+          <span class="svc-card__name">Chandelier Cleaning</span>
+          <span class="svc-card__desc">Crystal &amp; glass piece-by-piece cleaning &amp; reassembly.</span>
+          <span class="svc-card__price">on-visit quote</span>
+        </div>
+      </a>
+      <!-- Recurring -->
+      <a class="svc-card" href="recurring-cleaning.html">
+        <div class="svc-card__img"><img src="assets/img/services/recurring-cleaning.webp" alt="Recurring Cleaning" width="640" height="400" loading="lazy"></div>
+        <div class="svc-card__body">
+          <span class="svc-card__name">Recurring Cleaning</span>
+          <span class="svc-card__desc">Weekly &amp; monthly plans for homes &amp; offices.</span>
+          <span class="svc-card__price">custom quote</span>
+        </div>
       </a>
     </div>
     <div class="services-more">
-      <a class="services-more-btn" href="services.html">View All Services</a>
+      <a class="services-more-btn" href="pricing.html">See Full Rate Card</a>
     </div>
   </section>
 
@@ -383,9 +533,12 @@
     </div>
     <div class="reviews-dots" id="reviews-dots" role="group" aria-label="Review slides"></div>
     <div class="reviews-actions">
-      <a class="reviews-all" href="https://www.google.com/maps/search/?api=1&amp;query=CleanNest%20Jalandhar" target="_blank" rel="noopener">
+      <a class="reviews-all" href="https://www.google.com/maps/place/?q=place_id:ChIJ1zZzOUtbaR4RXbMy1OZsKsI" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" aria-hidden="true" style="width:18px;height:18px;vertical-align:-3px;margin-right:8px;"><path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.5c-.3 1.5-1.1 2.8-2.4 3.6v3h3.9c2.3-2.1 3.5-5.2 3.5-8.8Z"/><path fill="#34A853" d="M12 24c3.2 0 6-1.1 8-2.9l-3.9-3c-1.1.7-2.5 1.2-4.1 1.2-3.1 0-5.8-2.1-6.7-5H1.3v3.1C3.3 21.3 7.3 24 12 24Z"/><path fill="#FBBC05" d="M5.3 14.3c-.2-.7-.4-1.5-.4-2.3s.1-1.6.4-2.3V6.6H1.3C.5 8.2 0 10 0 12s.5 3.8 1.3 5.4l4-3.1Z"/><path fill="#EA4335" d="M12 4.8c1.8 0 3.4.6 4.6 1.8l3.5-3.5C18 1.1 15.2 0 12 0 7.3 0 3.3 2.7 1.3 6.6l4 3.1c.9-3 3.6-4.9 6.7-4.9Z"/></svg>
-        See all reviews on Google
+        View all reviews on Google
+      </a>
+      <a class="reviews-write" href="https://search.google.com/local/writereview?placeid=ChIJ1zZzOUtbaR4RXbMy1OZsKsI" target="_blank" rel="noopener">
+        Write a review
       </a>
     </div>
   </section>
@@ -396,16 +549,33 @@
       <span class="section-badge">Why CleanNest</span>
       <h2 class="section-title">Why choose <span class="star">us</span>?</h2>
     </div>
-    <div class="why-proof" aria-label="CleanNest customer trust">
-      <span><strong>4.9</strong> Google rating</span><i aria-hidden="true"></i><span><strong>468+</strong> verified reviews</span><i aria-hidden="true"></i><span>Jalandhar-based</span>
+    <div class="trust-stats" aria-label="CleanNest trust statistics">
+      <div class="trust-stat">
+        <span class="trust-num" data-count="4.9" data-decimals="1">4.9</span>
+        <span class="trust-label">Google Rating</span>
+      </div>
+      <div class="trust-stat">
+        <span class="trust-num" data-count="468">468</span>
+        <span class="trust-label">Verified Reviews</span>
+      </div>
+      <div class="trust-stat">
+        <span class="trust-num" data-count="400">400+</span>
+        <span class="trust-label">Homes Cleaned</span>
+      </div>
+      <div class="trust-stat">
+        <span class="trust-num" data-count="50">50+</span>
+        <span class="trust-label">Commercial Sites</span>
+      </div>
     </div>
     <div class="why-grid why-grid-new">
-      <article class="why-card-new"><span class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M21 21v-2a4 4 0 0 0-3-3.8"/></svg></span><h3>Trained Team</h3><p>Verified, uniformed professionals at your door.</p></article>
-      <article class="why-card-new"><span class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5v14"/><circle cx="12" cy="12" r="9"/></svg></span><h3>Detailed Clean</h3><p>Machines and careful finishing in every corner.</p></article>
-      <article class="why-card-new"><span class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16M6 12h12M8 16h8"/></svg></span><h3>Upfront Quote</h3><p>Clear estimates with no hidden charges.</p></article>
-      <article class="why-card-new"><span class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l7 3v5c0 4.5-3 8-7 10-4-2-7-5.5-7-10V6l7-3Z"/><path d="M9.5 12l2 2 3.5-3.5"/></svg></span><h3>Safe Products</h3><p>Family- and pet-safe products with no harsh smells.</p></article>
+      <article class="why-card-new"><span class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10Z"/><path d="m9 12 2 2 4-4"/></svg></span><h3>Eco-Friendly</h3><p>Safe, non-toxic products that protect your family, pets, and the environment.</p></article>
+      <article class="why-card-new"><span class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/><path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16"/><path d="M16 16h5v5"/></svg></span><h3>Re-Clean Guarantee</h3><p>Not satisfied with any area? We return and re-clean at no extra cost.</p></article>
+      <article class="why-card-new"><span class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M21 21v-2a4 4 0 0 0-3-3.8"/><path d="m16 11 2 2 4-4"/></svg></span><h3>Trained & Verified</h3><p>Background-checked, uniformed professionals with hands-on training.</p></article>
+      <article class="why-card-new"><span class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h16M6 12h12M8 16h8"/><circle cx="12" cy="4" r="2"/></svg></span><h3>Upfront Pricing</h3><p>Clear estimates before we start. No surprises, no hidden charges.</p></article>
+      <article class="why-card-new"><span class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></span><h3>Same-Day Booking</h3><p>Available 7 days a week. Book today, get cleaned today.</p></article>
+      <article class="why-card-new"><span class="why-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76Z"/></svg></span><h3>Pro Equipment</h3><p>Industrial-grade machines and tools for a deeper, lasting clean.</p></article>
     </div>
-    <a class="why-results-link" href="#results">See real results <span aria-hidden="true">→</span></a>
+    <a class="why-results-link" href="#results">See real results <span aria-hidden="true">&rarr;</span></a>
   </section>
 
   <!-- Areas we serve -->
@@ -795,7 +965,7 @@
             // BUG-1: when #services scrolls in, reveal ALL tiles (not just chimney + all-services)
             if (e.target.classList.contains('services') || e.target.id === 'services') {
               e.target.classList.add('scroll-in');
-              e.target.querySelectorAll('.service-tile, .service-tile-all').forEach(t => {
+              e.target.querySelectorAll('.svc-card').forEach(t => {
                 t.classList.add('in');
               });
             }
@@ -823,14 +993,14 @@
 
     // Staggered entrance for service tiles — big, noticeable slide-up
     (function initTileReveal() {
-      const tiles = document.querySelectorAll('.service-tile, .service-tile-all');
+      const tiles = document.querySelectorAll('.svc-card');
       if (!tiles.length) return;
       if (!('IntersectionObserver' in window)) { tiles.forEach(t => t.classList.add('in')); return; }
       const io = new IntersectionObserver((entries) => {
         entries.forEach(e => {
           if (e.isIntersecting) {
             const i = Array.from(tiles).indexOf(e.target);
-            e.target.style.transitionDelay = ((i % 8) * 0.08) + 's';
+            e.target.style.transitionDelay = ((i % 4) * 0.06) + 's';
             e.target.classList.add('in');
             io.unobserve(e.target);
           }
