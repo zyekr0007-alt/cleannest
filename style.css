@@ -982,7 +982,6 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 
 /* Homepage service grid refresh: let the photography lead, with readable labels
    kept off the important image area. */
-.service-tile-featured { grid-column:span 2; aspect-ratio:2.05 / 1; }
 .service-tile::after { content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(180deg,rgba(5,24,38,.18) 0%,transparent 42%,rgba(5,24,38,.62) 100%); z-index:1; }
 .service-tag { top:auto; right:auto; bottom:14px; left:14px; max-width:calc(100% - 112px); padding:8px 12px; border-radius:10px; background:rgba(5,28,44,.86); box-shadow:0 5px 18px rgba(4,24,36,.22); text-shadow:none; font-size:1rem; letter-spacing:.005em; z-index:2; }
 .service-tile:hover .service-tag { padding:8px 12px; background:rgba(5,28,44,.95); }
@@ -1485,7 +1484,6 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 .av-green{ background: #34A853; }
 .av-red  { background: #EA4335; }
 .av-gold { background: #F9AB00; }
-.av-purple{ background: #8A56D6; }
 .av-pink { background: #E052A0; }
 
 .review-meta { display: flex; flex-direction: column; }
@@ -1729,7 +1727,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 }
 
 /* Why CleanNest — visible trust proof and four uncluttered benefits */
-.why-proof { display:flex; justify-content:center; align-items:center; flex-wrap:wrap; gap:11px; max-width:680px; margin:0 auto 18px; color:var(--muted); font:700 .82rem/1.3 'Nunito',sans-serif; }.why-proof strong { color:var(--navy); font-weight:900; }.why-proof i { width:4px; height:4px; border-radius:50%; background:var(--cyan); }
+
 
 /* Trust stats bar — horizontal strip of key metrics */
 .trust-stats {
@@ -3442,18 +3440,6 @@ body.loaded .brand-strip { opacity: 1; transition: opacity 0.3s ease; }
   .faq-list { max-width: 900px; }
 }
 /* ---- Footer map + service areas + reviews (added) ---- */
-.footer-map-block{margin:28px 0 8px;}
-.footer-map-block iframe{width:100%;height:240px;border:0;border-radius:14px;filter:none;}
-.footer-areas{text-align:center;margin:18px 0 6px;}
-.footer-areas h3{font-size:.82rem;text-transform:uppercase;letter-spacing:.07em;color:#0B4364;margin-bottom:6px;}
-.footer-areas p{color:#4a5568;font-size:.95rem;line-height:1.7;}
-.footer-reviews{text-align:center;margin:10px 0 4px;color:#4a5568;font-size:.95rem;}
-.footer-reviews .agg-stars{color:#0CD7E5;letter-spacing:2px;margin-right:6px;}
-.footer-reviews strong{color:#0B4364;}
-.footer-reviews a{color:#1b6cb8;text-decoration:none;}
-.footer-reviews a:hover{text-decoration:underline;}
-@media(max-width:768px){.footer-map-block iframe{height:200px;}}
-
 /* ---- City landing pages (areas served) ---- */
 .loc-services{padding:64px 22px;background:#fff;}
 .loc-services .container{max-width:1100px;margin:0 auto;}
@@ -3816,9 +3802,6 @@ a.city-chip:hover {
   .reviews-grid { grid-auto-flow: column; grid-auto-columns: minmax(260px, 1fr); }
 }
 .footer-btn { min-height: 44px; }
-.footer-map-caption a, .footer-reviews a, .footer-areas a {
-  display: inline-flex; align-items: center; min-height: 44px; padding: 8px 4px;
-}
 .menu-btn { min-width: 44px; min-height: 44px; }
 
 /* ===== Desktop optimisation pass (2026-09-02): use the width, keep it uniform ===== */
@@ -4404,7 +4387,6 @@ details[open] .faq-a { grid-template-rows: 1fr; }
 .legend-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--navy); box-shadow: 0 0 0 6px rgba(12,215,229,0.12); }
 
 .areas-all { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 18px 28px; margin-top: 18px; }
-.area-city-block { background: rgba(255,255,255,0.65); border: 1px solid rgba(11,67,100,0.10); border-radius: 18px; padding: 14px 16px; box-shadow: 0 8px 22px rgba(11,67,100,0.04); }
 .area-city { margin: 0 0 8px; font-family: 'Nunito', sans-serif; font-size: 1.05rem; font-weight: 900; color: var(--navy); }
 .area-list { margin: 0; padding-left: 18px; color: var(--ink); }
 .area-list li { margin: 6px 0; font-size: 0.95rem; color: var(--muted); }
@@ -4418,56 +4400,16 @@ details[open] .faq-a { grid-template-rows: 1fr; }
 /* ===== Areas launcher + coverage map page ===== */
 .cities { padding: 38px 22px 34px; }
 .cities-head { margin-bottom: 14px; }
-.areas-launcher {
-  max-width: 900px; margin: 0 auto; display:grid; grid-template-columns: 1.05fr 1.55fr auto;
-  align-items:center; gap:20px; padding:13px 0; border-top:1px solid rgba(11,67,100,.15); border-bottom:1px solid rgba(11,67,100,.15);
-}
 .areas-home-city { display:inline-flex; align-items:center; gap:10px; min-height:42px; color:var(--navy); text-decoration:none; font-family:'Nunito',sans-serif; }
 .areas-home-city span:last-child { display:flex; flex-direction:column; line-height:1.05; }
 .areas-home-city strong { font-size:.98rem; font-weight:900; }.areas-home-city small { margin-top:3px; color:var(--muted); font-size:.72rem; font-weight:700; }
 .areas-home-dot { width:10px; height:10px; border-radius:50%; background:var(--cyan); box-shadow:0 0 0 5px rgba(12,215,229,.14); }
-.areas-summary { margin:0; color:var(--muted); font:700 .86rem/1.45 'Nunito',sans-serif; text-align:center; }.areas-summary span { color:var(--navy); }
 .all-areas-btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; min-height:42px; padding:10px 15px; border-radius:999px; color:#fff; background:var(--navy); font:800 .85rem/1 'Nunito',sans-serif; text-decoration:none; white-space:nowrap; transition:transform 180ms ease, box-shadow 180ms ease, background 180ms ease; }
 .home-city-grid { max-width:900px; margin:0 auto; display:grid; grid-template-columns:repeat(4,1fr); border:1px solid rgba(11,67,100,.13); border-radius:18px; overflow:hidden; background:#fff; }
 .home-city { min-height:48px; display:flex; align-items:center; justify-content:center; padding:9px 10px; border-right:1px solid rgba(11,67,100,.1); border-bottom:1px solid rgba(11,67,100,.1); color:var(--navy); font:800 .84rem/1.2 'Nunito',sans-serif; text-align:center; }
 .home-city:nth-child(4n) { border-right:0; }.home-city:nth-last-child(-n+4) { border-bottom:0; }.home-city.is-home { background:#effcfd; }.home-city i { width:7px; height:7px; flex:0 0 7px; margin-right:7px; border-radius:50%; background:var(--cyan); box-shadow:0 0 0 4px rgba(12,215,229,.14); }.home-areas-btn { margin:18px auto 0; width:max-content; }
 .all-areas-btn svg { width:17px;height:17px; }.all-areas-btn:hover { transform:translateY(-2px); background:#082e46; box-shadow:0 9px 20px rgba(11,67,100,.22); }.all-areas-btn:focus-visible,.areas-home-city:focus-visible,.coverage-city-link:focus-visible { outline:3px solid var(--cyan); outline-offset:4px; }
-
-.areas-map-page { padding:clamp(52px,7vw,88px) 22px 68px; background:linear-gradient(180deg,#f8fcfd 0%,#fff 74%); }
-.coverage-intro { max-width:710px; margin:0 auto 30px; text-align:center; }.coverage-intro h1 { margin:0; color:var(--navy); font-size:clamp(2rem,5vw,3.65rem); line-height:1.02; letter-spacing:-.045em; }.coverage-intro p { max-width:55ch; margin:14px auto 0; color:var(--muted); font-size:1.02rem; line-height:1.65; }
-.coverage-map-frame { max-width:1120px; margin:0 auto; overflow:hidden; border:1px solid rgba(11,67,100,.14); border-radius:28px; background:#093c5b; box-shadow:0 24px 55px rgba(11,67,100,.18); }
-.coverage-map-top { display:flex; align-items:center; justify-content:space-between; gap:18px; padding:19px 24px; color:#fff; border-bottom:1px solid rgba(255,255,255,.14); }.coverage-map-top strong { font:900 1rem 'Nunito',sans-serif; }.coverage-map-top span { color:#b8d6e4; font:700 .8rem 'Nunito',sans-serif; }
-.coverage-map { position:relative; padding:clamp(10px,2vw,24px); background:radial-gradient(circle at 50% 46%,#126288 0%,#0b4364 46%,#082e46 100%); }.coverage-map svg { display:block; width:100%; height:auto; min-height:460px; }
-.coverage-land { fill:rgba(213,246,249,.08); stroke:rgba(191,242,246,.4); stroke-width:1.2; }.coverage-contours path { fill:none; stroke:rgba(190,239,244,.14); stroke-width:1; stroke-dasharray:3 11; }.coverage-route { fill:none; stroke:rgba(12,215,229,.48); stroke-width:1.7; stroke-linecap:round; stroke-dasharray:2 11; animation:coverage-wave 3.9s linear infinite; }.coverage-route:nth-child(2n){animation-delay:-1.2s}.coverage-route:nth-child(3n){animation-delay:-2.3s}
-.coverage-home-halo { fill:url(#coverageGlow); animation:coverage-pulse 3s ease-out infinite; transform-origin:center; }.coverage-home-ring { fill:rgba(12,215,229,.12); stroke:rgba(12,215,229,.72); stroke-width:1.5; }.coverage-home-core { fill:#0cd7e5; stroke:#fff; stroke-width:4; }.coverage-home text { fill:#fff; font:900 17px 'Nunito',sans-serif; letter-spacing:-.02em; }.coverage-home .coverage-home-sub { fill:#9feef2; font-size:10px; letter-spacing:.16em; }
-.coverage-city-link { cursor:pointer; }.coverage-city-dot { fill:#fff; stroke:#0cd7e5; stroke-width:3; transition:fill 160ms ease,transform 160ms ease; transform-box:fill-box; transform-origin:center; }.coverage-city-link text { fill:#e8fbfc; font:800 14px 'Nunito',sans-serif; paint-order:stroke; stroke:#0b4364; stroke-width:5px; stroke-linejoin:round; }.coverage-city-link:hover .coverage-city-dot { fill:#0cd7e5; transform:scale(1.35); }.coverage-city-link:hover text { fill:#fff; }
-.coverage-signal { fill:#fff; transform-origin:545px 310px; animation:coverage-signal-travel 3s cubic-bezier(.17,.67,.38,1) infinite; }.signal-two{animation-delay:-1s}.signal-three{animation-delay:-2s}
-.coverage-map-foot { display:flex; justify-content:space-between; align-items:center; gap:18px; padding:16px 24px; background:#fff; color:var(--muted); font:700 .85rem 'Nunito',sans-serif; }.coverage-map-foot i { display:inline-block;width:9px;height:9px;margin-right:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 0 4px rgba(12,215,229,.15);}.coverage-map-foot a { color:var(--navy); font-weight:900; text-decoration-thickness:1px; text-underline-offset:4px; }
-.areas-all-compact { max-width:1120px; margin:36px auto 0; display:grid; grid-template-columns:repeat(3,1fr); border-top:1px solid rgba(11,67,100,.13); border-left:1px solid rgba(11,67,100,.13); }.area-city-block { min-height:104px; padding:18px 20px; border-right:1px solid rgba(11,67,100,.13); border-bottom:1px solid rgba(11,67,100,.13); text-decoration:none; background:#fff; transition:background 180ms ease; }.area-city-block:hover { background:#f2fcfd; }.area-city { margin:0 0 5px; color:var(--navy); font-size:1rem; }.area-city-block p { margin:0; color:var(--muted); font-size:.82rem; line-height:1.45; }
-.coverage-localities { max-width:1120px; margin:36px auto 0; display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:14px; }
-.locality-card { padding:20px; border:1px solid rgba(11,67,100,.12); border-radius:18px; background:#fff; box-shadow:0 10px 24px rgba(11,67,100,.05); }
-.locality-card h3 { display:flex; align-items:center; justify-content:space-between; gap:8px; margin:0 0 11px; color:var(--navy); font:900 1.03rem/1.2 'Nunito',sans-serif; }.locality-card h3 span { padding:4px 7px; border-radius:999px; background:rgba(12,215,229,.12); color:#087883; font-size:.62rem; letter-spacing:.04em; text-transform:uppercase; }.locality-card p { margin:-3px 0 11px; color:var(--muted); font-size:.8rem; }.locality-card ul { display:grid; grid-template-columns:1fr 1fr; gap:8px 10px; margin:0; padding:0; list-style:none; }.locality-card li { color:var(--muted); font-size:.78rem; line-height:1.25; }.locality-card li::before { content:'•'; margin-right:6px; color:var(--cyan); }.locality-card-home { border-color:rgba(12,215,229,.45); background:linear-gradient(135deg,#f4feff,#fff); }
-@keyframes coverage-wave { to { stroke-dashoffset:-156; } } @keyframes coverage-pulse { 0%{transform:scale(.38);opacity:.92} 75%,100%{transform:scale(1.25);opacity:0} } @keyframes coverage-signal-travel { 0%{transform:scale(1);opacity:1} 75%,100%{transform:scale(15);opacity:0} }
-@media (max-width:760px){.cities{padding:32px 18px 28px}.areas-launcher{grid-template-columns:1fr;gap:8px;padding:12px 0}.areas-summary{text-align:left}.all-areas-btn{width:100%}.areas-map-page{padding:46px 14px 52px}.coverage-map-frame{border-radius:20px}.coverage-map-top{padding:15px 16px}.coverage-map-top span{display:none}.coverage-map{padding:8px}.coverage-map svg{min-height:330px}.coverage-city-link text{font-size:11px}.coverage-home text{font-size:14px}.coverage-map-foot{align-items:flex-start;flex-direction:column;padding:14px 16px}.areas-all-compact{grid-template-columns:repeat(2,1fr);margin-top:24px}.area-city-block{min-height:94px;padding:14px}.area-city-block p{font-size:.76rem}}
-@media (prefers-reduced-motion:reduce){.coverage-route,.coverage-home-halo,.coverage-signal{animation:none}.all-areas-btn{transition:none}.all-areas-btn:hover{transform:none}}
-
-@media (max-width:760px){.home-city-grid{grid-template-columns:repeat(2,1fr)}.home-city:nth-child(4n){border-right:1px solid rgba(11,67,100,.1)}.home-city:nth-child(2n){border-right:0}.home-city:nth-last-child(-n+4){border-bottom:1px solid rgba(11,67,100,.1)}.home-city:nth-last-child(-n+2){border-bottom:0}.home-areas-btn{width:100%}.coverage-localities{grid-template-columns:1fr;margin-top:24px}.locality-card{padding:18px}}
-
-
-/* Dedicated areas page composition */
-.coverage-page { padding:clamp(48px,7vw,84px) 22px 68px; background:linear-gradient(180deg,#f8fcfd 0%,#fff 72%); }
-.coverage-page .areas-serve-inner { max-width:1120px; margin:0 auto; }
-.coverage-page .coverage-head { max-width:720px; margin:0 auto 30px; text-align:center; }
-.coverage-page .coverage-head .section-title { font-size:clamp(2rem,5vw,3.45rem); line-height:1.03; letter-spacing:-.045em; }
-.coverage-page .coverage-head .areas-sub { max-width:56ch; margin:14px auto 0; font-size:1rem; line-height:1.65; }
-.coverage-page .coverage-map { max-width:none; margin:0; overflow:hidden; border:1px solid rgba(11,67,100,.14); border-radius:28px; background:#093c5b; box-shadow:0 24px 55px rgba(11,67,100,.18); }
-.coverage-page .coverage-map-intro { display:flex; align-items:baseline; justify-content:space-between; gap:18px; padding:19px 24px; color:#fff; border-bottom:1px solid rgba(255,255,255,.14); }
-.coverage-page .coverage-map-intro h3 { margin:0; font:900 1.05rem 'Nunito',sans-serif; color:#fff; }
-.coverage-page .coverage-map-intro p { margin:0; color:#b8d6e4; font:700 .82rem/1.4 'Nunito',sans-serif; }
-.coverage-page .coverage-map-stage { padding:clamp(10px,2vw,24px); background:radial-gradient(circle at 50% 46%,#126288 0%,#0b4364 46%,#082e46 100%); }
-.coverage-page .coverage-map-svg { display:block; width:100%; height:auto; min-height:460px; }
-.coverage-page .coverage-map-foot { margin:0; }
-@media (max-width:760px){.coverage-page{padding:44px 14px 52px}.coverage-page .coverage-map{border-radius:20px}.coverage-page .coverage-map-intro{display:block;padding:15px 16px}.coverage-page .coverage-map-intro p{margin-top:5px}.coverage-page .coverage-map-stage{padding:8px}.coverage-page .coverage-map-svg{min-height:330px}}
+}
 
 /* Final mobile card-label correction: labels belong at the top, prices at the bottom. */
 @media (max-width:640px) {
