@@ -355,7 +355,7 @@ def build_faq_block(faqs):
     items = "".join(
         '\n      <details class="faq-item">\n        <summary>%s</summary>\n        <p>%s</p>\n      </details>' % (q, a)
         for (q, a) in faqs)
-    return ('\n  <section class="faqs" id="faqs">\n'
+    return ('\n  <!-- SECTION: SERVICE FAQS -->\n  <section class="faqs" id="faqs" data-section="service-faqs">\n'
             '    <div class="section-head">\n'
             '      <span class="section-badge">FAQs</span>\n'
             '      <h2 class="section-title">%s <span class="star">questions</span></h2>\n'
@@ -374,7 +374,7 @@ def build_main(s):
     return (
         '\n  <main>\n'
         # --- Hero (navy band) ---
-        '\n  <section class="cta-band" id="top">\n'
+        '\n  <!-- SECTION: SERVICE HERO -->\n  <section class="cta-band" data-section="service-hero">\n'
         '    <span class="section-badge">CleanNest · Jalandhar</span>\n'
         '    <h1 class="cta-title">%s</h1>\n'
         '    <p class="cta-sub">%s</p>\n'
@@ -384,7 +384,7 @@ def build_main(s):
         '    </div>\n'
         '  </section>\n'
         # --- Intro ---
-        '  <section class="services" id="about">\n'
+        '  <!-- SECTION: SERVICE OVERVIEW -->\n  <section class="services" id="about" data-section="service-overview">\n'
         '    <div class="section-head">\n'
         '      <span class="section-badge">Our Services</span>\n'
         '      <h2 class="section-title">%s</h2>\n'
@@ -393,7 +393,7 @@ def build_main(s):
         '    <div class="srv-hero-media"><img src="%s" alt="%s" width="1260" height="700" loading="lazy"></div>\n'
         '  </section>\n'
         # --- What's included ---
-        '  <section class="services" id="included">\n'
+        '  <!-- SECTION: WHATS INCLUDED -->\n  <section class="services" id="included" data-section="whats-included">\n'
         '    <div class="section-head">\n'
         '      <span class="section-badge">What\'s Included</span>\n'
         '      <h2 class="section-title">Every detail covered</h2>\n'
@@ -402,7 +402,7 @@ def build_main(s):
         '    <ul class="srv-included">\n%s\n    </ul>\n'
         '  </section>\n'
         # --- Why choose ---
-        '  <section class="services" id="why">\n'
+        '  <!-- SECTION: WHY CLEANNEST -->\n  <section class="services" id="why" data-section="why-cleannest">\n'
         '    <div class="section-head">\n'
         '      <span class="section-badge">Why CleanNest</span>\n'
         '      <h2 class="section-title">Trusted by <span class="star">Jalandhar</span></h2>\n'
@@ -411,7 +411,7 @@ def build_main(s):
         '    <ul class="srv-included">\n%s\n    </ul>\n'
         '  </section>\n'
         # --- Reviews (real) ---
-        '  <section class="reviews" id="reviews">\n'
+        '  <!-- SECTION: CUSTOMER REVIEWS -->\n  <section class="reviews" id="reviews" data-section="customer-reviews">\n'
         '    <div class="reviews-head">\n'
         '      <span class="reviews-badge">Reviews</span>\n'
         '      <h2 class="reviews-title">Rated <span class="star">4.9/5</span> on Google</h2>\n'
@@ -444,7 +444,7 @@ def build_main(s):
         # --- FAQs ---
         '%s\n'
         # --- Related services ---
-        '  <section class="services" id="related">\n'
+        '  <!-- SECTION: RELATED SERVICES -->\n  <section class="services" id="related" data-section="related-services">\n'
         '    <div class="section-head">\n'
         '      <span class="section-badge">Related</span>\n'
         '      <h2 class="section-title">You may also <span class="star">like</span></h2>\n'
@@ -452,7 +452,7 @@ def build_main(s):
         '    <div class="services-grid">%s\n    </div>\n'
         '  </section>\n'
         # --- Bottom CTA ---
-        '  <section class="cta-band" id="contact">\n'
+        '  <!-- SECTION: QUOTE CTA -->\n  <section class="cta-band" id="contact" data-section="quote-cta">\n'
         '    <h2 class="cta-title">Ready for a <span class="star">spotless space?</span></h2>\n'
         '    <p class="cta-sub">Get your free quote in minutes — 50%% to book, 50%% after service.</p>\n'
         '    <div class="cta-actions">\n'
@@ -524,7 +524,7 @@ def build_all_services(html):
 
     wa = wa_prefill("a service")
     main = (
-        '\n  <main class="hero">\n'
+        '\n  <main class="hero" data-section="page-main">\n'
         '  <section class="cta-band" id="top">\n'
         '    <span class="section-badge">CleanNest · Jalandhar</span>\n'
         '    <h1 class="cta-title">All <span class="star">Services</span></h1>\n'
@@ -534,7 +534,7 @@ def build_all_services(html):
         '      <a class="cta-btn cta-call" href="pricing.html">See Pricing</a>\n'
         '    </div>\n'
         '  </section>\n'
-        '  <section class="services" id="services">\n'
+        '  <!-- SECTION: ALL SERVICES GRID -->\n  <section class="services" id="services" data-section="all-services-grid">\n'
         '    <div class="section-head">\n'
         '      <span class="section-badge">All Services</span>\n'
         '      <p class="section-sub">Starting prices shown on each card — tap for full details.</p>\n'
