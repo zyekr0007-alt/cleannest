@@ -68,7 +68,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=201">
+  <link rel="stylesheet" href="style.css?v=203">
   <style>
     /* Critical preloader shell: keep it full-screen off-white instantly so
        nothing flashes before style.css loads. (Full styling lives in style.css.) */
@@ -487,6 +487,14 @@
           el.style.transform = '';
         });
       });
+      // The rating recap is the last hero element to land (its --d is the
+      // largest), so stagger its Google-rating sheen + star pop to fire once
+      // the entrance has finished — visible, not buried behind the preloader.
+      const heroRating = document.querySelector('.hero-rating');
+      if (heroRating && !heroRating.classList.contains('lit')) {
+        setTimeout(function () { heroRating.classList.add('lit'); },
+          Math.min(2200, 0.06 * els.length * 1000 + 900));
+      }
     }
 
     // ===== Preloader: brand lockup appears, logo dissolves, tagline fades, and
@@ -596,9 +604,10 @@
       });
     })();
 
-    // Animated stat counters — count up when they come into view
+    // Animated stat counters — final values are painted immediately (never
+    // flash 0 / negatives). The rating sheen + star pop fire AFTER the hero
+    // entrance lands (see runHeroReveal), not during/behind the preloader.
     (function initCounters() {
-      // NOW bug: never paint 0 / negatives. Keep HTML values (4.9 / 468).
       const nums = document.querySelectorAll('.stat-num, .rating-num, .rating-count-num, .hr-num, .hr-count span[data-count], .agg-score, .agg-text strong[data-count]');
       nums.forEach(function(el){
         var t = parseFloat(el.getAttribute('data-count'));
@@ -606,8 +615,6 @@
         if (!isFinite(t) || t < 0) return;
         el.textContent = d ? t.toFixed(d) : String(Math.round(t));
       });
-      var card = document.querySelector('.hero-rating');
-      if (card) card.classList.add('lit');
     })();
 
     // Scroll-reveal for below-fold sections — bidirectional (animates on
@@ -671,9 +678,9 @@
         if (sec) sec.classList.add('scroll-in');
         tiles.forEach(t => t.classList.add('in'));
       };
-      const inView = sec && sec.getBoundingClientRect().top < window.innerHeight;
-      if (inView) revealAll();
-      setTimeout(revealAll, 1200);
+      // No blanket timeout here: tiles animate in with the IO stagger as they
+      // scroll into view (below-fold rows would otherwise reveal invisibly).
+      // Anything that somehow stays hidden is caught by initRevealSafety.
       const revealIfHash = () => {
         if (location.hash === '#services') {
           tiles.forEach(el => { el.style.transitionDelay = '0s'; });
@@ -682,6 +689,39 @@
       };
       revealIfHash();
       window.addEventListener('hashchange', revealIfHash);
+    })();
+
+    // Fail-open safety net — reveals must never leave content invisible.
+    // If the IntersectionObserver or entrance timing stalls for any reason
+    // (restored scroll position, slow tab, edge browser), force-reveal
+    // anything that should be on screen. Guards every fire so already-revealed
+    // elements (inline opacity 1 after animationend) are never re-animated.
+    (function initRevealSafety() {
+      const secs = () => document.querySelectorAll('.scroll-reveal:not(.scroll-in)');
+      const cards = () => document.querySelectorAll('.svc-card:not(.in)');
+      const heroes = () => document.querySelectorAll('.hero .reveal:not(.in)');
+      const shown = (el) => el.style.opacity === '1';
+      const inView = (el, pad) => {
+        const r = el.getBoundingClientRect();
+        return r.top < window.innerHeight * pad && r.bottom > -60;
+      };
+      const revealHero = (el) => { if (!shown(el)) el.classList.add('in'); };
+      // Every scroll (cheap) force-reveals anything inside/above the viewport.
+      window.addEventListener('scroll', () => {
+        for (const el of secs()) if (inView(el, 1.0)) el.classList.add('scroll-in');
+        for (const el of cards()) if (inView(el, 1.0)) el.classList.add('in');
+        for (const el of heroes()) if (inView(el, 1.05)) revealHero(el);
+      }, { passive: true });
+      // Timed fail-open: visible-or-near content at 2.2s, everything at 6s.
+      setTimeout(() => {
+        heroes().forEach(revealHero);
+        for (const el of secs()) if (inView(el, 1.05)) el.classList.add('scroll-in');
+        for (const el of cards()) if (inView(el, 1.05)) el.classList.add('in');
+      }, 2200);
+      setTimeout(() => {
+        secs().forEach(el => el.classList.add('scroll-in'));
+        cards().forEach(el => el.classList.add('in'));
+      }, 6000);
     })();
 
     // Swipeable reviews carousel — auto-advance + touch swipe + dot navigation

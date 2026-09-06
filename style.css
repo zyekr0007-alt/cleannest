@@ -778,6 +778,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   font-size: 0.88rem;
   line-height: 1.25;
   color: var(--navy);
+  min-height: 2.5em; /* reserve 2 lines so one-line names don't shrink the card */
 }
 .svc-card__desc {
   font-family: 'Inter', sans-serif;
@@ -785,6 +786,11 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   line-height: 1.4;
   color: #5a7a8a;
   flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 2.8em; /* 2 lines — uniform card heights across the grid */
 }
 .svc-card__price {
   display: inline-block;
@@ -1358,6 +1364,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   height: 100%;
+  min-height: 220px; /* uniform slide height — no carousel jump between reviews */
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -3423,10 +3430,21 @@ body.loaded .brand-strip { opacity: 1; transition: opacity 0.3s ease; }
 
   .section-head, .reviews-head h2, .pricing h2, .faqs h2 { font-size: clamp(1.6rem, 2.4vw, 2.6rem); }
 
+  /* All content columns share the hero's 1200px grid so section heads and
+     card grids align exactly with the hero container edges. Above 1200px the
+     sections pin to 1200 centered; below that they keep side padding. */
   .services, .gallery, .reviews, .about, .faqs, .pricing {
-    max-width: 1440px;
-    padding-left: 40px;
-    padding-right: 40px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  @media (max-width: 1199px) and (min-width: 768px) {
+    .services, .gallery, .reviews, .about, .faqs, .pricing {
+      padding-left: 22px;
+      padding-right: 22px;
+    }
   }
 
   .gallery-carousel { max-width: 900px; }
@@ -3459,25 +3477,13 @@ body.loaded .brand-strip { opacity: 1; transition: opacity 0.3s ease; }
 .cta-band p{color:#4a5568;margin:10px 0 22px;font-size:1.02rem;}
 
 
-/* ===== Bug-fix pack (2026-08) ===== */
-
-/* FAIL-OPEN: never leave content invisible.
-   - City / areas pages: body has neither .preloading nor .loaded, and no observer.
-   - faqs.html / service pages: after unlock, body.loaded.
-   - Homepage during preloader stays hidden (body.preloading). */
-body:not(.preloading) .reveal,
-body.loaded .reveal,
-.reveal.in {
-  opacity: 1 !important;
-  transform: none !important;
-}
-body:not(.preloading) .hero-title .hero-line.reveal,
-body.loaded .hero-title .hero-line.reveal,
-.hero-title .hero-line.reveal.in {
-  opacity: 1 !important;
-  transform: none !important;
-  animation: none !important;
-}
+/* ===== Animation system (fixed 2026-09) =====
+   Entrance + scroll reveals are driven by JS adding .in / .scroll-in.
+   Fail-open is handled in JS (safety timers force-reveal anything left
+   hidden), so the CSS must NOT force-show .reveal with !important —
+   that permanently suppressed the entrance animations (riseIn / lineMaskIn,
+   tile stagger, rating stamp). The only CSS fail-open left is for pages
+   that ship body.preloading without a #preloader element (no JS path). */
 
 /* City / areas pages that still ship body.preloading without #preloader */
 body.preloading:not(:has(#preloader)) {
@@ -4190,9 +4196,9 @@ details[open] .faq-a { grid-template-rows: 1fr; }
 .faq-collapse-chev::after { border-color: #fff; }
 .faq-collapse.open .faq-collapse-chev { background: rgba(255, 255, 255, 0.26); }
 
-/* Areas section */
+/* Areas section — inner column matches the site-wide 1200px grid */
 .cities { padding: 70px 22px 20px; }
-.cities-inner { max-width: 1080px; margin: 0 auto; }
+.cities-inner { max-width: 1200px; margin: 0 auto; }
 .cities-head { text-align: center; margin-bottom: 30px; }
 .cities-head .section-title { justify-content: center; }
 .cities-sub {
@@ -4256,7 +4262,7 @@ details[open] .faq-a { grid-template-rows: 1fr; }
 
 /* Areas section v2 — map + compact chips (no timings, no km) */
 .cities { padding: 70px 22px 20px; }
-.cities-inner { display: block; max-width: 1060px; margin: 0 auto; }
+.cities-inner { display: block; max-width: 1200px; margin: 0 auto; }
 .cities-head { text-align: center; margin-bottom: 26px; }
 .cities-head .section-title { justify-content: center; }
 
