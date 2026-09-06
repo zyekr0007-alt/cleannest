@@ -1630,7 +1630,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 .about {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 64px 22px;
+  padding: 48px 22px;
 }
 
 /* "Why Choose Us" — compact pill-shaped icon cards that toggle open */
@@ -1815,8 +1815,8 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   padding: 4px 0;
 }
 .why-card-new {
-  min-height: 178px;
-  padding: 26px 22px;
+  min-height: 140px;
+  padding: 20px 20px;
   border: 1px solid rgba(11, 67, 100, 0.08);
   border-radius: 18px;
   background: var(--white);
@@ -1828,16 +1828,16 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 46px;
-  height: 46px;
-  border-radius: 14px;
-  margin-bottom: 16px;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  margin-bottom: 12px;
   background: var(--cyan-soft);
   color: var(--navy);
   transition: background 0.24s ease, color 0.24s ease;
 }
-.why-card-new h3 { margin: 0 0 8px; font: 800 1.05rem/1.2 'Nunito', sans-serif; color: var(--navy); }
-.why-card-new p { margin: 0; color: var(--muted); font: 500 0.9rem/1.55 'Nunito', sans-serif; }
+.why-card-new h3 { margin: 0 0 6px; font: 800 0.95rem/1.2 'Nunito', sans-serif; color: var(--navy); }
+.why-card-new p { margin: 0; color: var(--muted); font: 500 0.85rem/1.5 'Nunito', sans-serif; }
 .why-card-new:hover {
   transform: translateY(-4px);
   box-shadow: 0 22px 44px rgba(11, 67, 100, 0.14);
@@ -1858,7 +1858,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 .why-results-link span { color: #078894; font-size: 1.2rem; transition: transform 0.2s ease; }
 .why-results-link:hover { text-decoration: underline; text-underline-offset: 4px; }
 .why-results-link:hover span { transform: translateX(3px); }
-@media (max-width:880px){.why-grid-new{grid-template-columns:repeat(2,minmax(0,1fr));max-width:580px;gap:14px}.why-card-new{min-height:154px;padding:22px 18px}.why-pills{gap:10px}.why-pill{padding:8px 18px;font-size:.8rem}}@media (max-width:640px){.why-proof{font-size:.73rem;gap:8px;margin-bottom:14px}.why-grid-new{grid-template-columns:1fr;max-width:400px;gap:12px}.why-card-new{min-height:auto;padding:20px 18px}.why-card-new .why-ico{margin-bottom:12px}.why-card-new h3{font-size:.98rem}.why-card-new p{font-size:.85rem;line-height:1.5}.why-pills{flex-direction:column;align-items:center;gap:8px}}
+@media (max-width:880px){.why-grid-new{grid-template-columns:repeat(2,minmax(0,1fr));max-width:580px;gap:14px}.why-card-new{min-height:120px;padding:18px 16px}.why-pills{gap:10px}.why-pill{padding:8px 18px;font-size:.8rem}}@media (max-width:640px){.why-proof{font-size:.73rem;gap:8px;margin-bottom:14px}.why-grid-new{grid-template-columns:1fr;max-width:400px;gap:12px}.why-card-new{min-height:auto;padding:16px 16px}.why-card-new .why-ico{margin-bottom:10px;width:36px;height:36px;border-radius:10px}.why-card-new h3{font-size:.92rem}.why-card-new p{font-size:.82rem;line-height:1.45}.why-pills{flex-direction:column;align-items:center;gap:8px}}
 
 /* ---------- FAQs ---------- */
 .faqs {
