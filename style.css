@@ -290,11 +290,12 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 14px 32px;
+  padding: 16px 36px;
   border-radius: 999px;
   font-family: 'Nunito', sans-serif;
-  font-weight: 700;
+  font-weight: 800;
   font-size: 0.95rem;
+  letter-spacing: 0.01em;
   text-decoration: none;
   border: none;
   cursor: pointer;
@@ -863,17 +864,21 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   margin-top: 28px;
 }
 .services-more-btn {
-  display: inline-block;
-  padding: 13px 34px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 36px;
   border-radius: 999px;
-  font-family: 'Sora', sans-serif;
-  font-weight: 700;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
   font-size: 0.95rem;
   letter-spacing: 0.01em;
   text-decoration: none;
   color: #fff;
   background: linear-gradient(135deg, #0b4364, #0d5f8f);
   box-shadow: 0 10px 26px rgba(11, 67, 100, 0.28);
+  border: none;
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .services-more-btn:hover {
