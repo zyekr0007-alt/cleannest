@@ -4850,8 +4850,8 @@ details[open] .faq-a { grid-template-rows: 1fr; }
 @keyframes solarSpin{to{transform:rotate(360deg)}}
 .solar-node .node-dot{transition:transform .2s ease,box-shadow .2s ease}
 .solar-cta{display:flex;justify-content:center;margin-top:14px}
-@media (max-width:600px){.solar-map{width:440px;height:440px}.solar-svg .ring-3{transform:scale(.7855);transform-origin:260px 260px}.solar-node.n7{transform:translate(-150px,0)}.solar-node.n8{transform:translate(-93px,-118px)}.solar-node.n9{transform:translate(-47px,-142px)}.solar-node.n10{transform:translate(93px,-118px)}.solar-node.n11{transform:translate(150px,0)}.solar-node.n3{transform:translate(-103px,-103px)}.solar-node.n4{transform:translate(103px,-103px)}.solar-node.n5{transform:translate(-103px,103px)}.solar-node.n6{transform:translate(103px,103px)}.solar-node.n1{transform:translate(-50%,-126px)}.solar-node.n2{transform:translate(-50%,126px)}.solar-node .node-name{font-size:.66rem;padding:4px 7px}.solar-node.sun .node-dot{width:38px;height:38px}.solar-node.sun .sun-name{font-size:.74rem}}
-@media (prefers-reduced-motion:reduce){.solar-svg .ring-3-sub{animation:none}}
+@media (max-width:600px){.solar-map{width:380px;height:380px}.solar-node.n1{--x:0px;--y:-72px}.solar-node.n2{--x:0px;--y:72px}.solar-node.n3{--x:-79px;--y:-79px}.solar-node.n4{--x:79px;--y:-79px}.solar-node.n5{--x:-79px;--y:79px}.solar-node.n6{--x:79px;--y:79px}.solar-node.n7{--x:-152px;--y:0px}.solar-node.n8{--x:-107px;--y:-107px}.solar-node.n9{--x:0px;--y:-152px}.solar-node.n10{--x:107px;--y:-107px}.solar-node.n11{--x:152px;--y:0px}.solar-node .node-name{font-size:.66rem;padding:3px 7px}.solar-node.sun .node-dot{width:34px;height:34px}.solar-node.sun .sun-name{font-size:.7rem}}
+@media (prefers-reduced-motion:reduce){.solar-svg .ring-3-sub,.solar-svg .orbit-planet{animation:none}}
 /* ===== HERO CTA SUB ===== */
 .hero-cta-sub{margin:12px 0 0;font-size:.88rem;color:var(--ink);opacity:.78}
 .hero-cta-sub strong{color:var(--navy);font-weight:700}
