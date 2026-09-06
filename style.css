@@ -4803,7 +4803,7 @@ details[open] .faq-a { grid-template-rows: 1fr; }
 /* ===== SVC CARD COVER ===== */
 .svc-grid-cover{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 @media(max-width:700px){.svc-grid-cover{grid-template-columns:repeat(2,1fr);gap:12px}}
-.svc-card-cover{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:200px;border-radius:14px;overflow:hidden;background-size:cover;background-position:center;background-image:var(--bg-img);text-decoration:none;padding:16px;transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.svc-card-cover{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:200px;aspect-ratio:1/1;border-radius:14px;overflow:hidden;background-size:cover;background-position:center;background-image:var(--bg-img);text-decoration:none;padding:16px;transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s;box-shadow:0 2px 12px rgba(0,0,0,.06)}
 .svc-card-cover::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,transparent 30%,transparent 60%,rgba(0,0,0,.55) 90%,rgba(0,0,0,.75) 100%);z-index:1;pointer-events:none}
 .svc-card-cover:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.18)}
 .svc-card-cover .svc-card__name{position:relative;z-index:2;color:#fff;font-size:1.1rem;font-weight:700;margin:0}
