@@ -4803,9 +4803,9 @@ details[open] .faq-a { grid-template-rows: 1fr; }
 .svc-card-cover{position:relative;display:flex;flex-direction:column;justify-content:flex-end;aspect-ratio:3/4;min-height:160px;border-radius:14px;overflow:hidden;background-size:cover;background-position:center;background-image:var(--bg-img);text-decoration:none;padding:0;transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s;box-shadow:0 2px 12px rgba(0,0,0,.06)}
 .svc-card-cover::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,transparent 30%,transparent 60%,rgba(0,0,0,.55) 90%,rgba(0,0,0,.75) 100%);z-index:1;pointer-events:none}
 .svc-card-cover:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.18)}
-.svc-card-cover .svc-card__name{position:relative;z-index:2;color:#fff;font-size:.95rem;font-weight:700;margin:0}
-.svc-card-cover .svc-card__price-des{position:relative;z-index:2;color:rgba(255,255,255,.9);font-size:.82rem;font-weight:600;margin:0}
-.svc-card-cover .svc-card__bottom{position:absolute;z-index:2;bottom:0;left:0;right:0;display:flex;justify-content:space-between;align-items:center;padding:12px 16px;background:linear-gradient(0deg,rgba(5,20,35,.85) 0%,rgba(5,20,35,.4) 70%,transparent 100%);pointer-events:none}
+.svc-card-cover .svc-card__name{color:#fff;font-size:.95rem;font-weight:700;margin:0;line-height:1.2}
+.svc-card-cover .svc-card__price-des{color:rgba(255,255,255,.75);font-size:.76rem;font-weight:600;margin:0;line-height:1.2}
+.svc-card-cover .svc-card__bottom{position:absolute;z-index:2;bottom:0;left:0;right:0;display:flex;flex-direction:column;gap:1px;padding:11px 14px 13px;background:linear-gradient(0deg,rgba(5,20,35,.88) 0%,rgba(5,20,35,.4) 55%,transparent 100%);pointer-events:none}
 /* ===== AREAS SOLAR (real orbit map) ===== */
 .areas-solar{max-width:600px;margin:0 auto;padding:6px 0}
 .solar-map{position:relative;width:560px;max-width:100%;height:560px;margin:0 auto}
