@@ -31,7 +31,7 @@ SERVICES = [
         desc="Professional full-house deep cleaning in Jalandhar — every room, kitchen, bathroom, windows & floors. From ₹4,500. Free quote on WhatsApp.",
         h1="Full House Deep Cleaning in Jalandhar",
         sub="A top-to-bottom clean of your whole home — every room, every surface, from dust to shine.",
-        img="assets/img/services/full-house-cleaning.jpg",
+        img="assets/img/services/full-house-cleaning.webp",
         price="From ₹4,500",
         includes=["Interior dusting & wipe-down of furniture and surfaces",
                   "Kitchen deep clean (countertop, stove, degrease)",
@@ -50,7 +50,7 @@ SERVICES = [
         desc="Kitchen deep cleaning in Jalandhar — chimney, gas stove, cabinets, countertop & tile degrease. From ₹2,490. Free quote on WhatsApp.",
         h1="Kitchen Deep Cleaning in Jalandhar",
         sub="Degrease and refresh your kitchen — chimney, stove, cabinets and tiles, cleaned right.",
-        img="assets/img/services/kitchen-deep-cleaning.jpg",
+        img="assets/img/services/kitchen-deep-cleaning.webp",
         price="From ₹2,490",
         includes=["Chimney & exhaust cleaning",
                   "Gas stove & hob degrease",
@@ -69,7 +69,7 @@ SERVICES = [
         desc="Bathroom deep cleaning in Jalandhar — tiles, grout, fittings, shower, mirror & descaling. From ₹890. Free quote on WhatsApp.",
         h1="Bathroom Deep Cleaning in Jalandhar",
         sub="Remove grime, limescale and soap scum to leave your bathroom fresh and sparkling.",
-        img="assets/img/services/bathroom-deep-cleaning.jpg",
+        img="assets/img/services/bathroom-deep-cleaning.webp",
         price="From ₹890",
         includes=["Tile & grout deep scrubbing",
                   "Basin, faucet & fittings polish",
@@ -87,7 +87,7 @@ SERVICES = [
         desc="Sofa dry cleaning in Jalandhar — fabric sofas deep cleaned, stains & odours removed. From ₹199/seat. Free quote on WhatsApp.",
         h1="Sofa Dry Cleaning in Jalandhar",
         sub="Deep-clean your fabric sofa to lift dirt, stains and odours — best sofa dry cleaning service in Jalandhar.",
-        img="assets/img/services/sofa-dry-cleaning.jpg",
+        img="assets/img/services/sofa-dry-cleaning.webp",
         price="From ₹199 / seat",
         includes=["Fabric deep cleaning (dry-clean method)",
                   "Stain & spot treatment",
@@ -104,7 +104,7 @@ SERVICES = [
         desc="Carpet & steam cleaning in Jalandhar — carpets, rugs & mattresses deep cleaned. From ₹25/sq.ft. Free quote on WhatsApp.",
         h1="Carpet & Steam Cleaning in Jalandhar",
         sub="Steam-clean carpets, rugs and mattresses to remove embedded dirt, stains and allergens.",
-        img="assets/img/services/carpet-steam-cleaning.jpg",
+        img="assets/img/services/carpet-steam-cleaning.webp",
         price="From ₹25 / sq.ft",
         includes=["Carpet deep clean & steam treatment",
                   "Rug & mat cleaning",
@@ -122,7 +122,7 @@ SERVICES = [
         desc="AC cleaning & servicing in Jalandhar — filter, coil & blower cleaning for split & window ACs. From ₹490. Improves cooling & air quality. Free quote.",
         h1="AC Service & Deep Cleaning in Jalandhar",
         sub="Improve cooling and air quality — a professional deep clean of your split or window AC.",
-        img="assets/img/services/ac-services.jpg",
+        img="assets/img/services/ac-services.webp",
         price="From ₹490",
         includes=["Filter cleaning",
                   "Evaporator coil cleaning",
@@ -140,7 +140,7 @@ SERVICES = [
         desc="Kitchen chimney cleaning in Jalandhar — filter, motor & duct cleaning for better airflow & safety. From ₹690. Free quote on WhatsApp.",
         h1="Chimney Cleaning in Jalandhar",
         sub="A clean chimney means better airflow, less grease build-up and a safer kitchen.",
-        img="assets/img/services/chimney-cleaning.jpg",
+        img="assets/img/services/chimney-cleaning.webp",
         price="From ₹690",
         includes=["Chimney filter cleaning",
                   "Motor & baffle cleaning",
@@ -158,7 +158,7 @@ SERVICES = [
         desc="Commercial & office cleaning in Jalandhar — offices, shops & workspaces deep cleaned. From ₹6/sq.ft. Free quote on WhatsApp.",
         h1="Commercial Cleaning in Jalandhar",
         sub="Keep your office, shop or workspace spotless and hygienic for your team and customers.",
-        img="assets/img/services/commercial-cleaning.jpg",
+        img="assets/img/services/commercial-cleaning.webp",
         price="From ₹6 / sq.ft",
         includes=["Office floor vacuuming & mopping",
                   "Desks, counters & workstations",
@@ -482,9 +482,9 @@ def build_schema(s):
         '    "name":%s,\n'
         '    "serviceType":%s,\n'
         '    "provider":{"@type":"LocalBusiness","name":"CleanNest",'
-        '"telephone":"+%s","areaServed":"Jalandhar",'
+        '"telephone":"+%s","geo":{"@type":"GeoCoordinates","latitude":31.326,"longitude":75.5762},"areaServed":"Jalandhar",'
         '"address":{"@type":"PostalAddress","addressLocality":"Jalandhar","addressRegion":"Punjab","addressCountry":"IN"}},\n'
-        '    "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"221"}\n'
+        '    "aggregateRating":{"@type":"AggregateRating","ratingValue":"4.9","reviewCount":"468"}\n'
         '  }</script>\n'
         '  <script type="application/ld+json">{\n'
         '    "@context":"https://schema.org",\n'
@@ -505,7 +505,7 @@ def build_all_services(html):
     grid = "".join(tiles)
 
     head_idx = html.index('<main class="hero"')
-    tail_marker = '</footer>'
+    tail_marker = '<footer'
     tail_idx = html.index(tail_marker)
     shell_head = html[:head_idx]
     shell_tail = html[tail_idx:]
@@ -517,8 +517,9 @@ def build_all_services(html):
     shell_head = shell_head.replace(
         "From dust to shine everytime! CleanNest is Jalandhar's most trusted cleaning service. Get a free quote on WhatsApp.",
         "Every CleanNest service in one place — deep cleaning for homes, kitchens, bathrooms, appliances, upholstery, floors, commercial spaces and more. Free quotes on WhatsApp.", 1)
-    # Keep canonical/schema of index for the services page
-    canonical = '\n  <link rel="canonical" href="https://www.cleannest.in/services.html">\n'
+    # Single apex canonical for the services page (strip inherited index canonical)
+    shell_head = re.sub(r'\s*<link rel="canonical" href="[^"]*">', '', shell_head, count=1)
+    canonical = '\n  <link rel="canonical" href="https://cleannest.in/services.html">\n'
     shell_head = shell_head.replace('</head>', canonical + '\n</head>')
 
     wa = wa_prefill("a service")
@@ -566,7 +567,7 @@ def main():
     html = open(INDEX, encoding="utf-8").read()
     # Split into shell head (through hero <main>) and tail (from </footer>)
     head_idx = html.index('<main class="hero"')
-    tail_marker = '</footer>'
+    tail_marker = '<footer'
     tail_idx = html.index(tail_marker)
     shell_head = html[:head_idx]
     shell_tail = html[tail_idx:]   # includes '</footer>' onward (footer+menu+quote+script)
@@ -580,8 +581,9 @@ def main():
             "From dust to shine everytime! CleanNest is Jalandhar's most trusted cleaning service. Get a free quote on WhatsApp.",
             s["desc"], 1)
 
-        # 2) Canonical + schema before </head>
-        canonical = ('\n  <link rel="canonical" href="https://www.cleannest.in/%s.html">\n' % s["slug"])
+        # 2) Canonical + schema before </head> (strip inherited index canonical first)
+        page = re.sub(r'\s*<link rel="canonical" href="[^"]*">', '', page, count=1)
+        canonical = ('\n  <link rel="canonical" href="https://cleannest.in/%s.html">\n' % s["slug"])
         page = page.replace('</head>', canonical + build_schema(s) + '\n</head>')
 
         # 3) Service <main> + shell tail

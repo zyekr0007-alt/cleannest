@@ -4621,3 +4621,11 @@ details[open] .faq-a { grid-template-rows: 1fr; }
   .q-nav-sent { flex-direction: row; align-items: center; }
   .q-nav-sent .q-back { align-self: auto; }
 }
+
+/* ---- team-cleanx 2026-09-06: persistent WhatsApp FAB + tap-target hardening ---- */
+.wa-fab{position:fixed;right:20px;bottom:24px;z-index:1200;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(11,67,100,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 10px 30px rgba(11,67,100,.35),0 0 0 1px rgba(255,255,255,.12);color:#fff;transition:transform .25s ease,box-shadow .25s ease;}
+.wa-fab:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 14px 36px rgba(11,67,100,.45);}
+.wa-fab svg{width:28px;height:28px;fill:currentColor;}
+.hc-btn{min-width:48px;min-height:48px;}
+.reviews-dots button{padding:18px;background-clip:content-box;}
+@media print{.wa-fab{display:none;}}
