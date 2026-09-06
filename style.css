@@ -4826,19 +4826,19 @@ details[open] .faq-a { grid-template-rows: 1fr; }
 .solar-node.sun:hover .node-dot{transform:scale(1.08)}
 
 /* Ring 1 — Kartarpur, Adampur (inner) */
-.solar-node.n1{--x:0px;--y:-150px}
-.solar-node.n2{--x:0px;--y:150px}
-/* Ring 2 — Phagwara, Kapurthala, Phillaur, Goraya */
-.solar-node.n3{--x:-106px;--y:-106px}
-.solar-node.n4{--x:106px;--y:-106px}
-.solar-node.n5{--x:-106px;--y:106px}
-.solar-node.n6{--x:106px;--y:106px}
-/* Ring 3 — Nakodar, Sultanpur Lodhi, Nawanshahr, Banga, Hoshiarpur */
-.solar-node.n7{--x:-170px;--y:0px}
-.solar-node.n8{--x:-105px;--y:-133px}
-.solar-node.n9{--x:0px;--y:-170px}
-.solar-node.n10{--x:105px;--y:-133px}
-.solar-node.n11{--x:170px;--y:0px}
+.solar-node.n1{--x:0px;--y:-110px}
+.solar-node.n2{--x:0px;--y:110px}
+/* Ring 2 — Phagwara, Kapurthala, Phillaur, Goraya (r168) */
+.solar-node.n3{--x:-119px;--y:-119px}
+.solar-node.n4{--x:119px;--y:-119px}
+.solar-node.n5{--x:-119px;--y:119px}
+.solar-node.n6{--x:119px;--y:119px}
+/* Ring 3 — Nakodar, Sultanpur Lodhi, Nawanshahr, Banga, Hoshiarpur (r225) */
+.solar-node.n7{--x:-225px;--y:0px}
+.solar-node.n8{--x:-159px;--y:-159px}
+.solar-node.n9{--x:0px;--y:-225px}
+.solar-node.n10{--x:159px;--y:-159px}
+.solar-node.n11{--x:225px;--y:0px}
 /* Label placement: keep readable, sit beside dot */
 .solar-node .node-name{left:18px;top:-8px;transform:none}
 /* Real orbiting planet on ring-2 (visible motion) */
