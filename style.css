@@ -192,10 +192,10 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
-  min-height: min(60vh, 600px);
+  min-height: min(60vh, 520px);
   display: flex;
   align-items: center;
-  padding: 100px 22px 90px;
+  padding: 90px 22px 70px;
   background-color: #F6F7F9;
   overflow: hidden;
 }
@@ -279,9 +279,9 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 .hero-ctas {
   margin-top: 28px;
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+  flex-direction: column;
   align-items: center;
+  gap: 10px;
 }
 
 .btn {
@@ -701,12 +701,12 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   to   { transform: translateX(130%) skewX(-12deg); }
 }
 @media (max-width: 640px) {
-  .hero-rating { margin-top: 30px; padding: 10px 6px 10px 12px; }
-  .hr-cell { padding: 4px 10px; }
-  .hr-num { font-size: 1.55rem; }
-  .hr-star { font-size: 0.95rem; }
-  .hr-count { font-size: 0.85rem; }
-  .hr-label { font-size: 0.66rem; }
+  .hero-rating { margin-top: 20px; padding: 8px 6px 8px 10px; }
+  .hr-cell { padding: 3px 8px; }
+  .hr-num { font-size: 1.4rem; }
+  .hr-star { font-size: 0.9rem; }
+  .hr-count { font-size: 0.8rem; }
+  .hr-label { font-size: 0.62rem; }
   .hr-arrow { margin-right: 4px; }
 }
 
@@ -2409,8 +2409,9 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: center;
   gap: 14px;
-  margin-top: 18px;
+  margin-top: 14px;
 }
 .hc-btn {
   display: inline-flex;
