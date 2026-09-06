@@ -4800,8 +4800,8 @@ details[open] .faq-a { grid-template-rows: 1fr; }
 .svc-card-cover{position:relative;display:flex;flex-direction:column;justify-content:space-between;aspect-ratio:3/4;min-height:160px;border-radius:14px;overflow:hidden;background-size:cover;background-position:center;background-image:var(--bg-img);text-decoration:none;padding:16px;transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s;box-shadow:0 2px 12px rgba(0,0,0,.06)}
 .svc-card-cover::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,transparent 30%,transparent 60%,rgba(0,0,0,.55) 90%,rgba(0,0,0,.75) 100%);z-index:1;pointer-events:none}
 .svc-card-cover:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.18)}
-.svc-card-cover .svc-card__name{position:relative;z-index:2;color:#fff;font-size:1.1rem;font-weight:700;margin:0;align-self:flex-start;background:rgba(11,67,100,.2);padding:6px 14px;border-radius:999px;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
-.svc-card-cover .svc-card__price-des{position:relative;z-index:2;color:var(--navy);font-size:.85rem;font-weight:700;margin:0;align-self:flex-end;background:rgba(255,255,255,.2);padding:5px 12px;border-radius:999px;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.svc-card-cover .svc-card__name{position:relative;z-index:2;color:#fff;font-size:.95rem;font-weight:700;margin:0;align-self:flex-start;background:rgba(11,67,100,.25);padding:5px 12px;border-radius:999px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
+.svc-card-cover .svc-card__price-des{position:relative;z-index:2;color:#fff;font-size:.85rem;font-weight:700;margin:0;align-self:flex-end;background:rgba(11,67,100,.35);padding:5px 12px;border-radius:999px;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)}
 /* ===== AREAS SOLAR (real orbit map) ===== */
 .areas-solar{max-width:600px;margin:0 auto;padding:6px 0}
 .solar-map{position:relative;width:560px;max-width:100%;height:560px;margin:0 auto}
