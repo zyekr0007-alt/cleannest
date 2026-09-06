@@ -220,7 +220,7 @@ SERVICES = [
 
     dict(slug="refrigerator-cleaning", label="Refrigerator Deep Clean",
         title="Refrigerator Deep Cleaning in Jalandhar | CleanNest",
-        desc="Refrigerator deep cleaning in Jalandhar — trays, gaskets & shelves scrubbed, odours removed. From ₹699. Free quote on WhatsApp.",
+        desc="Refrigerator deep cleaning in Jalandhar — trays, gaskets & shelves scrubbed, odours removed. From ₹899. Free quote on WhatsApp.",
         h1="Refrigerator Deep Clean in Jalandhar",
         sub="Trays, gaskets and shelves deep-cleaned and de-odourised — with optional steam sanitisation.",
         img="assets/img/services/refrigerator-cleaning.webp",
@@ -236,7 +236,7 @@ SERVICES = [
 
     dict(slug="mattress-steam-cleaning", label="Mattress Sanitisation",
         title="Mattress Steam Cleaning & Sanitisation in Jalandhar | CleanNest",
-        desc="Mattress steam cleaning & sanitisation in Jalandhar — deep extraction & high-temp steam kill. From ₹799. Free quote on WhatsApp.",
+        desc="Mattress steam cleaning & sanitisation in Jalandhar — deep extraction & high-temp steam kill. From ₹1,199. Free quote on WhatsApp.",
         h1="Mattress Steam Cleaning & Sanitisation in Jalandhar",
         sub="Deep extraction and high-temperature steam — an anti-allergen treatment for a hygienic mattress.",
         img="assets/img/services/mattress-steam-cleaning.webp",
@@ -505,7 +505,7 @@ def build_all_services(html):
     grid = "".join(tiles)
 
     head_idx = html.index('<main class="hero"')
-    tail_marker = '<footer'
+    tail_marker = 'data-section="site-footer"'
     tail_idx = html.index(tail_marker)
     shell_head = html[:head_idx]
     shell_tail = html[tail_idx:]
@@ -515,8 +515,8 @@ def build_all_services(html):
         "CleanNest — Jalandhar's Most Trusted Cleaning Service",
         "All Services | CleanNest Jalandhar", 1)
     shell_head = shell_head.replace(
-        "From dust to shine everytime! CleanNest is Jalandhar's most trusted cleaning service. Get a free quote on WhatsApp.",
-        "Every CleanNest service in one place — deep cleaning for homes, kitchens, bathrooms, appliances, upholstery, floors, commercial spaces and more. Free quotes on WhatsApp.", 1)
+        'content="Premium deep cleaning services for homes, offices and businesses across Jalandhar. 4.9★ rated — get a free quote on WhatsApp."',
+        'content="Every CleanNest service in one place — deep cleaning for homes, kitchens, bathrooms, appliances, upholstery, floors, commercial spaces and more. Free quotes on WhatsApp."', 1)
     # Single apex canonical for the services page (strip inherited index canonical)
     shell_head = re.sub(r'\s*<link rel="canonical" href="[^"]*">', '', shell_head, count=1)
     canonical = '\n  <link rel="canonical" href="https://cleannest.in/services.html">\n'
@@ -567,7 +567,7 @@ def main():
     html = open(INDEX, encoding="utf-8").read()
     # Split into shell head (through hero <main>) and tail (from </footer>)
     head_idx = html.index('<main class="hero"')
-    tail_marker = '<footer'
+    tail_marker = 'data-section="site-footer"'
     tail_idx = html.index(tail_marker)
     shell_head = html[:head_idx]
     shell_tail = html[tail_idx:]   # includes '</footer>' onward (footer+menu+quote+script)
@@ -578,7 +578,7 @@ def main():
         page = page.replace("CleanNest — Jalandhar's Most Trusted Cleaning Service",
                             s["title"], 1)
         page = page.replace(
-            "From dust to shine everytime! CleanNest is Jalandhar's most trusted cleaning service. Get a free quote on WhatsApp.",
+            'content="Premium deep cleaning services for homes, offices and businesses across Jalandhar. 4.9★ rated — get a free quote on WhatsApp."',
             s["desc"], 1)
 
         # 2) Canonical + schema before </head> (strip inherited index canonical first)
