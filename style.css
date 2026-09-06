@@ -46,11 +46,23 @@
   --dur-press: 160ms;
   --dur-quick: 220ms;
   --dur-standard: 300ms;
+
+  /* Safe area insets — env() fallback to 0px */
+  --sat: env(safe-area-inset-top, 0px);
+  --sar: env(safe-area-inset-right, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
-html { scroll-behavior: smooth; overflow-x: clip; }
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
 
 body {
   font-family: 'Nunito', -apple-system, sans-serif;
@@ -60,7 +72,6 @@ body {
     radial-gradient(70% 55% at 85% 25%, rgba(11, 67, 100, 0.16), transparent 55%),
     radial-gradient(90% 70% at 50% 95%, rgba(20, 118, 168, 0.14), transparent 60%),
     linear-gradient(160deg, var(--surface) 0%, var(--surface-2) 55%, #E6EDF3 100%);
-  background-attachment: fixed;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
@@ -71,6 +82,14 @@ body.sheet-open { overflow: hidden; }
 /* When the full-screen menu is open, hide the top-right hamburger so it
    doesn't sit on top of the menu's own close button. */
 body.sheet-open .topbar { opacity: 0; pointer-events: none; }
+
+/* Interactive elements: eliminate 300ms tap delay on mobile */
+a, button, input, select, textarea,
+.menu-btn, .wa-fab, .svc-card-cover, .pricing-card,
+.city-pill, .review-card, .gallery-card,
+.nav a, .dock__item, .hc-btn {
+  touch-action: manipulation;
+}
 
 h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 
@@ -173,7 +192,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 /* ---------- Hero ---------- */
 .hero {
   position: relative;
-  min-height: 60vh;
+  min-height: min(60vh, 600px);
   display: flex;
   align-items: center;
   padding: 100px 22px 90px;
@@ -2457,8 +2476,8 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
    ============================================================ */
 .topbar {
   position: fixed;
-  top: 13px;
-  right: 18px;
+  top: max(13px, calc(13px + var(--sat)));
+  right: max(18px, calc(18px + var(--sar)));
   z-index: 96;
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
@@ -2548,10 +2567,11 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   transform: translateY(-102%);
   width: 100%;
   height: 100dvh;
+  height: 100vh; /* fallback for older iOS */
   background: rgba(240, 245, 250, 0.6);
   backdrop-filter: var(--glass-backdrop);
   -webkit-backdrop-filter: var(--glass-backdrop);
-  padding: 22px 24px;
+  padding: calc(22px + var(--sat)) 24px calc(22px + var(--sab));
   display: flex;
   flex-direction: column;
   transition: transform 0.32s cubic-bezier(0.32, 0.72, 0, 1);
@@ -2812,7 +2832,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   transform: translate(-50%, -105%);
   z-index: 90;
   width: min(calc(100% - 24px), 500px);
-  max-height: 92vh;
+  max-height: max(70vh, 520px);
   overflow-y: auto;
   background: var(--glass-bg-strong);
   border: var(--glass-border);
@@ -2820,10 +2840,10 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   box-shadow: var(--glass-shadow);
   backdrop-filter: var(--glass-backdrop);
   -webkit-backdrop-filter: var(--glass-backdrop);
-  padding: 30px 26px 26px;
+  padding: calc(30px + var(--sat)) 26px calc(26px + var(--sab));
   transition: transform 0.38s cubic-bezier(0.32, 0.72, 0, 1);
 }
-.quote-panel.open { transform: translate(-50%, 6vh); }
+.quote-panel.open { transform: translate(-50%, calc(6vh + var(--sat))); }
 
 .quote-close {
   position: absolute;
@@ -4642,7 +4662,7 @@ details[open] .faq-a { grid-template-rows: 1fr; }
 }
 
 /* ---- team-cleanx 2026-09-06: persistent WhatsApp FAB + tap-target hardening ---- */
-.wa-fab{position:fixed;right:20px;bottom:24px;z-index:1200;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(11,67,100,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 10px 30px rgba(11,67,100,.35),0 0 0 1px rgba(255,255,255,.12);color:#fff;transition:transform .25s ease,box-shadow .25s ease;}
+.wa-fab{position:fixed;right:max(20px, var(--sar));bottom:max(24px, calc(24px + var(--sab)));z-index:1200;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(11,67,100,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 10px 30px rgba(11,67,100,.35),0 0 0 1px rgba(255,255,255,.12);color:#fff;transition:transform .25s ease,box-shadow .25s ease;}
 .wa-fab:hover{transform:translateY(-3px) scale(1.04);box-shadow:0 14px 36px rgba(11,67,100,.45);}
 .wa-fab svg{width:28px;height:28px;fill:currentColor;}
 .hc-btn{min-width:48px;min-height:48px;}
