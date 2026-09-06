@@ -4802,21 +4802,17 @@ details[open] .faq-a { grid-template-rows: 1fr; }
 .svc-card-cover:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.18)}
 .svc-card-cover .svc-card__name{position:relative;z-index:2;color:#fff;font-size:1.1rem;font-weight:700;margin:0}
 .svc-card-cover .svc-card__price-des{position:relative;z-index:2;color:rgba(255,255,255,.9);font-size:.85rem;font-weight:600;margin:2px 0 0}
-/* ===== AREAS ORBIT (solar-system city map) ===== */
-.areas-orbit{max-width:760px;margin:0 auto;padding:10px 0 6px}
-.orbit-sun{display:flex;justify-content:center;margin-bottom:22px}
-.orbit-city.is-home{display:inline-flex;align-items:center;justify-content:center;background:linear-gradient(145deg,#0b4364,#0d5f8f);color:#fff;font-weight:800;font-size:1.05rem;padding:16px 34px;border-radius:999px;box-shadow:0 14px 30px rgba(11,67,100,.22),0 0 0 8px rgba(12,215,229,.18);letter-spacing:.02em}
-.orbit-city.is-home::before{content:"";width:11px;height:11px;border-radius:50%;background:var(--cyan);margin-right:10px;box-shadow:0 0 0 4px rgba(12,215,229,.28)}
-.orbit-ring{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;max-width:620px;margin:0 auto 18px}
-.orbit-ring .orbit-city{position:relative;display:flex}
-.orbit-ring .orbit-city a{flex:1;display:inline-flex;align-items:center;justify-content:center;background:var(--white);color:var(--navy);border:1px solid rgba(11,67,100,.12);font-size:.88rem;font-weight:700;padding:12px 10px;border-radius:14px;text-decoration:none;transition:transform .2s ease,box-shadow .2s ease,background .2s ease;box-shadow:0 8px 20px rgba(11,67,100,.08)}
-.orbit-ring .orbit-city a::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--cyan);margin-right:8px;flex-shrink:0}
-.orbit-ring .orbit-city a:hover{transform:translateY(-3px);background:var(--navy);color:#fff;box-shadow:0 12px 26px rgba(11,67,100,.2)}
-.orbit-ring .orbit-city a:hover::before{background:var(--cyan)}
-.orbit-ring-1{grid-template-columns:repeat(2,minmax(0,1fr));max-width:360px}
-.orbit-ring-3{max-width:760px}
-.orbit-city-linkrow{display:flex;justify-content:center;margin-top:16px}
-@media (max-width:640px){.areas-orbit{max-width:420px}.orbit-ring{grid-template-columns:repeat(2,minmax(0,1fr))}.orbit-ring-3{grid-template-columns:repeat(2,minmax(0,1fr))}.orbit-city.is-home{padding:13px 26px;font-size:.95rem}.orbit-ring .orbit-city a{padding:11px 8px;font-size:.82rem}}
+/* ===== AREAS SOLAR (real orbit map) ===== */
+.areas-solar{max-width:600px;margin:0 auto;padding:6px 0}
+.solar-map{position:relative;width:min(100%,560px);aspect-ratio:1/1;margin:0 auto}
+.solar-svg{position:absolute;inset:0;width:100%;height:100%}
+.solar-svg .ring{fill:none;stroke:rgba(11,67,100,.14);stroke-width:1.2}
+.solar-svg .ring-3-sub{stroke:rgba(12,215,229,.35);fill:none}
+.solar-node{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:2;text-decoration:none}
+.solar-node .node-dot{display:block;width:14px;height:14px;border-radius:50%;background:var(--cyan);border:3px solid #fff;box-shadow:0 0 0 1px rgba(12,215,229,.5),0 4px 10px rgba(11,67,100,.2);transition:transform .2s ease,box-shadow .2s ease;transform:translate(-50%,-50%)}
+.solar-node .node-name{position:absolute;left:0;transform:translateX(-50%);margin-top:8px;white-space:nowrap;font:700 .74rem/1 'Nunito',sans-serif;color:var(--navy);background:rgba(255,255,255,.92);padding:5px 9px;border-radius:999px;border:1px solid rgba(11,67,100,.1);box-shadow:0 3px 8px rgba(11,67,100,.08);transition:background .2s ease,color .2s ease}
+.solar-node:hover .node-dot{transform:translate(-50%,-50%) scale(1.25);box-shadow:0 0 0 4px rgba(12,215,229,.25),0 6px 14px rgba(11,67,100,.25)}
+.solar-node:hover .node-name{background:var(--navy);color:#fff}
 /* ===== HERO CTA SUB ===== */
 .hero-cta-sub{margin:12px 0 0;font-size:.88rem;color:var(--ink);opacity:.78}
 .hero-cta-sub strong{color:var(--navy);font-weight:700}
