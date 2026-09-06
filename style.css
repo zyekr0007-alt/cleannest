@@ -3598,8 +3598,8 @@ body.loaded .brand-strip { opacity: 1; transition: opacity 0.3s ease; }
   body { font-size: 18px; }
 
   .hero-inner { max-width: 1100px; }
-  .hero-title { font-size: clamp(2.2rem, 7vw, 4.6rem); }
-  .hero-sub { font-size: clamp(1rem, 2vw, 1.35rem); max-width: 680px; }
+  .hero-title { font-size: clamp(2rem, 6vw, 4rem); }
+  .hero-sub { font-size: clamp(0.95rem, 1.6vw, 1.2rem); max-width: 620px; }
 
   .section-head, .reviews-head h2, .pricing h2, .faqs h2 { font-size: clamp(1.6rem, 2.4vw, 2.6rem); }
 
@@ -3973,19 +3973,22 @@ main.hero > * {
 /* ===== Desktop + overflow + tap 2026-08-30 ===== */
 .desk-nav { display: none; }
 @media (min-width: 1024px) {
-  .desk-nav { display: flex; align-items: center; gap: 22px; pointer-events: auto; z-index: 41; }
-  .desk-nav a { font-family: 'Nunito', sans-serif; font-weight: 700; font-size: 0.92rem; color: var(--navy); text-decoration: none; letter-spacing: 0.01em; min-height: 44px; display: inline-flex; align-items: center; }
+  .desk-nav { display: flex; align-items: center; gap: 16px; pointer-events: auto; z-index: 41; }
+  .desk-nav a { font-family: 'Nunito', sans-serif; font-weight: 600; font-size: 0.88rem; color: var(--navy); text-decoration: none; letter-spacing: 0.01em; min-height: 38px; display: inline-flex; align-items: center; }
   .desk-nav a:hover { color: #0AA9C9; }
-  .desk-nav-cta { padding: 8px 16px; border-radius: 999px; background: var(--navy); color: #fff !important; }
+  .desk-nav-cta { padding: 7px 14px; border-radius: 999px; background: var(--navy); color: #fff !important; font-size: 0.85rem; font-weight: 700; }
   .desk-nav-cta:hover { filter: brightness(1.08); }
-  .brand-strip { justify-content: space-between; align-items: center; padding: 16px 36px 0; pointer-events: none; }
+  .brand-strip { justify-content: space-between; align-items: center; padding: 14px 36px 0; pointer-events: none; }
   .brand-lockup, .desk-nav { pointer-events: auto; }
   .topbar { display: none !important; }
-  .hero { padding: 108px 48px 64px; min-height: 0; align-items: stretch; }
+  .hero { padding: 96px 48px 48px; min-height: 0; align-items: stretch; }
   .hero-inner { max-width: 1200px; width: 100%; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); align-items: center; gap: 40px 56px; text-align: left; }
   .hero-copy { align-items: flex-start; text-align: left; }
   .hero-sub { margin-left: 0; margin-right: 0; max-width: 36rem; }
-  .hero-aside { display: flex; flex-direction: column; gap: 18px; align-items: flex-start; }
+  .hero-aside { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+  .hero-contact { gap: 10px; }
+  .hc-btn { padding: 10px 16px; min-width: 0; font-size: 0.85rem; }
+  .hero-rating { padding: 8px 14px; font-size: 0.82rem; }
 }
 @media (max-width: 1023px) { .desk-nav { display: none !important; } }
 @media (max-width: 640px) {
@@ -4038,7 +4041,10 @@ main.hero > * {
   .svc-results .svc-container { max-width: 1140px; }
 
   /* Even section rhythm */
-  .services, .gallery, .reviews, .about, .faqs { padding-top: 56px; padding-bottom: 56px; }
+  .services, .gallery, .reviews, .about, .faqs { padding-top: 48px; padding-bottom: 48px; }
+
+  /* Desktop section spacing — reduce padding above the fold */
+  .services { padding-top: 36px; }
 }
 
 /* ============================================================
