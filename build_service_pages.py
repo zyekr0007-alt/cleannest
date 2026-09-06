@@ -537,6 +537,7 @@ def build_all_services(html):
         '  <!-- SECTION: ALL SERVICES GRID -->\n  <section class="services" id="services" data-section="all-services-grid">\n'
         '    <div class="section-head">\n'
         '      <span class="section-badge">All Services</span>\n'
+        '      <h2 class="section-title">Choose your <span class="star">service</span></h2>\n'
         '      <p class="section-sub">Starting prices shown on each card — tap for full details.</p>\n'
         '    </div>\n'
         '    <div class="services-grid">%s\n    </div>\n'

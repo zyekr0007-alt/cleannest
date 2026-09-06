@@ -3710,10 +3710,11 @@ a.city-chip:hover {
 
 /* BUG-1/2: 2-col minmax + no horizontal overflow on services grids */
 .services-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  overflow-x: clip;
-  max-width: 100%;
-}
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    overflow-x: clip;
+    max-width: 100%;
+    }
 @media (max-width: 1000px) {
   .services-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
@@ -3827,6 +3828,17 @@ a.city-chip:hover {
   }
 }
 
+/* Service/shell pages (services.html, service pages): main.hero contains the CTA band AND
+   the body sections as siblings — keep them stacked full-width, never side-by-side. */
+main.hero {
+  flex-direction: column;
+  align-items: stretch;
+}
+main.hero > * {
+  width: 100%;
+  max-width: 100%;
+}
+
 /* ===== Desktop + overflow + tap 2026-08-30 ===== */
 .desk-nav { display: none; }
 @media (min-width: 1024px) {
@@ -3866,6 +3878,11 @@ a.city-chip:hover {
   .why-grid { max-width: 1200px; margin-left: auto; margin-right: auto; }
   .services-grid { width: 100%; grid-template-columns: repeat(3, minmax(280px, 1fr)); }
   .why-grid { gap: 14px; }
+
+  /* All-services page: 20 cards = 5 symmetrical rows of 4 (bigger-than-280px screen) */
+  section[data-section="all-services-grid"] .services-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
 
   /* Reviews: wider stage, roomier card, bigger text */
   .reviews-viewport { max-width: 960px; }
