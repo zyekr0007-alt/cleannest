@@ -1376,6 +1376,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   position: relative;
   max-width: 720px;
   margin: 0 auto;
+  overflow: hidden;
   touch-action: pan-y;
   -webkit-user-select: none;
   user-select: none;
@@ -1383,7 +1384,6 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 .reviews-grid {
   display: flex;
   gap: 0;
-  overflow: hidden;
   max-width: 100%;
   margin: 0 auto;
   transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -1405,6 +1405,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   height: 100%;
   display: flex;
   flex-direction: column;
+  text-decoration: none;
   transition: box-shadow 0.2s ease;
 }
 .review-card:hover {
@@ -4807,11 +4808,11 @@ details[open] .faq-a { grid-template-rows: 1fr; }
 .svc-card-cover .svc-card__price-des{color:rgba(255,255,255,.75);font-size:.76rem;font-weight:600;margin:0;line-height:1.2}
 .svc-card-cover .svc-card__bottom{position:absolute;z-index:2;bottom:0;left:0;right:0;display:flex;flex-direction:column;gap:1px;padding:11px 14px 13px;background:linear-gradient(0deg,rgba(5,20,35,.88) 0%,rgba(5,20,35,.4) 55%,transparent 100%);pointer-events:none}
 /* ===== AREAS SOLAR (real orbit map) ===== */
-.areas-solar{max-width:600px;margin:0 auto;padding:6px 0}
+.areas-solar{max-width:600px;margin:0 auto;padding:10px 0;background:linear-gradient(180deg,rgba(11,67,100,.03),rgba(12,215,229,.05));border-radius:24px;border:1px solid rgba(11,67,100,.06)}
 .solar-map{position:relative;width:560px;max-width:100%;height:560px;margin:0 auto}
 .solar-svg{position:absolute;inset:0;width:100%;height:100%}
-.solar-svg .ring{fill:none;stroke:rgba(11,67,100,.14);stroke-width:1.2}
-.solar-svg .ring-3-sub{stroke:rgba(12,215,229,.35);fill:none}
+.solar-svg .ring{fill:none;stroke:rgba(11,67,100,.30);stroke-width:1.4}
+.solar-svg .ring-3-sub{stroke:rgba(12,215,229,.5);fill:none}
 .solar-node{position:absolute;top:50%;left:50%;transform:translate(calc(-50% + var(--x,0px)),calc(-50% + var(--y,0px)));z-index:2;text-decoration:none}
 .solar-node .node-dot{display:block;width:16px;height:16px;border-radius:50%;background:var(--cyan);border:3px solid #fff;box-shadow:0 0 0 0 rgba(12,215,229,0);box-shadow:0 3px 0 0 #02848f,0 5px 12px rgba(11,67,100,.35);transform:none;transition:transform .22s ease,box-shadow .22s ease}
 .solar-node .node-name{position:absolute;left:0;top:50%;transform:none;white-space:nowrap;font:700 .76rem/1 'Nunito',sans-serif;color:var(--navy);background:#fff;padding:6px 12px;border-radius:999px;border:2px solid var(--navy);font-weight:800;color:#0b4364;box-shadow:0 4px 10px rgba(0,0,0,.12);transition:background .2s ease,color .2s ease;text-decoration:none}
@@ -4840,6 +4841,10 @@ details[open] .faq-a { grid-template-rows: 1fr; }
 .solar-node.n11{--x:170px;--y:0px}
 /* Label placement: keep readable, sit beside dot */
 .solar-node .node-name{left:18px;top:-8px;transform:none}
+/* Real orbiting planet on ring-2 (visible motion) */
+.solar-svg .orbit-planet{animation:solarOrbit 10s linear infinite;transform-origin:260px 260px}
+.solar-svg .planet-dot{fill:#0cd7e5;stroke:#02848f;stroke-width:2}
+@keyframes solarOrbit{from{transform:rotate(0deg) translate(156px) rotate(0deg)}to{transform:rotate(360deg) translate(156px) rotate(-360deg)}}
 /* Gentle breathing on the rings only (decorative, honor reduced-motion) */
 .solar-svg .ring-3-sub{animation:solarSpin 40s linear infinite;transform-origin:260px 260px}
 @keyframes solarSpin{to{transform:rotate(360deg)}}
