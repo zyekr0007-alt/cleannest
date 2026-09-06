@@ -2386,12 +2386,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   color: var(--muted);
   font-size: 0.85rem;
 }
-.footer-bottom-inner {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-}
+/* (footer-bottom-inner centralized via later override — see bottom of file) */
 .footer-dot { color: var(--cyan); }
 
 @media (max-width: 640px) {
@@ -4671,6 +4666,44 @@ details[open] .faq-a { grid-template-rows: 1fr; }
   .q-nav-sent .q-back { align-self: auto; }
 }
 
+/* ===== FULL SERVICE LIST (toggle reveal) ===== */
+.svc-full-list{padding-top:20px}
+.svc-full-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.svc-full-card{display:flex;flex-direction:column;gap:5px;background:var(--card);border:1px solid rgba(11,67,100,.12);border-radius:14px;padding:16px 18px;text-decoration:none;transition:border-color .2s,box-shadow .2s,transform .2s}
+.svc-full-card:hover{transform:translateY(-3px);border-color:var(--cyan);box-shadow:0 8px 24px rgba(11,67,100,.12)}
+.svc-full-name{font-weight:700;font-size:.9rem;color:var(--navy)}
+.svc-full-price{font-weight:600;font-size:.8rem;color:var(--muted)}
+@keyframes svcListFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.svc-full-list:not([hidden]) .svc-full-card{animation:svcListFade .3s ease-out both}
+.svc-full-list:not([hidden]) .svc-full-card:nth-child(1){animation-delay:0s}
+.svc-full-list:not([hidden]) .svc-full-card:nth-child(2){animation-delay:.03s}
+.svc-full-list:not([hidden]) .svc-full-card:nth-child(3){animation-delay:.06s}
+.svc-full-list:not([hidden]) .svc-full-card:nth-child(4){animation-delay:.09s}
+.svc-full-list:not([hidden]) .svc-full-card:nth-child(5){animation-delay:.12s}
+.svc-full-list:not([hidden]) .svc-full-card:nth-child(6){animation-delay:.15s}
+.svc-full-list:not([hidden]) .svc-full-card:nth-child(7){animation-delay:.18s}
+.svc-full-list:not([hidden]) .svc-full-card:nth-child(8){animation-delay:.21s}
+.svc-full-list:not([hidden]) .svc-full-card:nth-child(9){animation-delay:.24s}
+.svc-full-list:not([hidden]) .svc-full-card:nth-child(10){animation-delay:.27s}
+.svc-full-list:not([hidden]) .svc-full-card:nth-child(11){animation-delay:.30s}
+.svc-full-list:not([hidden]) .svc-full-card:nth-child(12){animation-delay:.33s}
+.svc-full-list:not([hidden]) .svc-full-card:nth-child(13){animation-delay:.36s}
+.svc-full-list:not([hidden]) .svc-full-card:nth-child(14){animation-delay:.39s}
+.svc-full-list:not([hidden]) .svc-full-card:nth-child(15){animation-delay:.42s}
+.svc-full-list:not([hidden]) .svc-full-card:nth-child(16){animation-delay:.45s}
+.svc-full-list:not([hidden]) .svc-full-card:nth-child(17){animation-delay:.48s}
+.svc-full-list:not([hidden]) .svc-full-card:nth-child(18){animation-delay:.51s}
+.svc-full-list:not([hidden]) .svc-full-card:nth-child(19){animation-delay:.54s}
+.svc-full-list:not([hidden]) .svc-full-card:nth-child(20){animation-delay:.57s}
+@media(max-width:640px){.svc-full-grid{grid-template-columns:repeat(2,1fr);gap:10px}.svc-full-card{padding:14px 15px}.svc-full-name{font-size:.85rem}.svc-full-price{font-size:.76rem}}
+
+/* Footer legal links — match footer color, no different tint */
+.f-legal a{color:var(--muted);text-decoration:none;font-weight:600;transition:color .2s}
+.f-legal a:hover{color:var(--cyan)}
+
+/* Back to top — always centered */
+.footer-bottom-inner{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px;color:var(--muted);font-size:.84rem}
+
 /* ---- team-cleanx 2026-09-06: persistent WhatsApp FAB + tap-target hardening ---- */
 .wa-fab{position:fixed;right:20px;bottom:24px;z-index:1200;width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:rgba(11,67,100,.92);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 10px 30px rgba(11,67,100,.35),0 0 0 1px rgba(255,255,255,.12);color:#fff;transition:transform .25s ease,box-shadow .25s ease;}
 /* Safe-area bump for iPhone notch — applied in a separate rule so env() failure doesn't kill the base */
@@ -4684,8 +4717,8 @@ details[open] .faq-a { grid-template-rows: 1fr; }
 /* ===== SVC CARD COVER ===== */
 .svc-grid-cover{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
 @media(max-width:700px){.svc-grid-cover{grid-template-columns:repeat(2,1fr);gap:12px}}
-.svc-card-cover{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:200px;border-radius:14px;overflow:hidden;background-size:cover;background-position:center;background-image:var(--bg-img);text-decoration:none;padding:16px;transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s;box-shadow:0 2px 12px rgba(0,0,0,.06)}
-.svc-card-cover::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.65) 95%);z-index:1;pointer-events:none}
+.svc-card-cover{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:200px;border-radius:14px;overflow:hidden;background-size:cover;background-position:center;background-image:var(--bg-img);text-decoration:none;padding:16px;transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.svc-card-cover::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,transparent 30%,transparent 60%,rgba(0,0,0,.55) 90%,rgba(0,0,0,.75) 100%);z-index:1;pointer-events:none}
 .svc-card-cover:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.18)}
 .svc-card-cover .svc-card__name{position:relative;z-index:2;color:#fff;font-size:1.1rem;font-weight:700;margin:0}
 .svc-card-cover .svc-card__price-des{position:relative;z-index:2;color:rgba(255,255,255,.9);font-size:.85rem;font-weight:600;margin:2px 0 0}

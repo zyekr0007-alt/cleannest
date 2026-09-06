@@ -175,7 +175,7 @@
       <h2 class="section-title">What We <span class="star">Clean</span></h2>
       <p class="section-sub">Starting prices shown — tap any card for details &amp; booking.</p>
     </div>
-    <div class="svc-grid svc-grid-cover">
+    <div class="svc-grid svc-grid-cover" id="svc-popular-grid">
       <!-- Full House -->
       <a class="svc-card svc-card-cover" href="full-house-cleaning.html" style="--bg-img:url(assets/img/services/full-house-cleaning.webp)">
         <span class="svc-card__name">Full House</span>
@@ -206,37 +206,95 @@
         <span class="svc-card__name">AC</span>
         <span class="svc-card__price-des">from ₹490</span>
       </a>
-      <!-- Chimney -->
-      
-      <!-- Commercial -->
-      
-      <!-- Balcony -->
-      
-      <!-- Gas Stove -->
-      
-      <!-- Exhaust Fan -->
-      
-      <!-- Refrigerator -->
-      
-      <!-- Mattress -->
-      
-      <!-- Curtains -->
-      
-      <!-- Window Blinds -->
-      
-      <!-- Floor Renewal -->
-      
-      <!-- Jet Washing -->
-      
-      <!-- Pool Cleaning -->
-      
-      <!-- Chandelier -->
-      
-      <!-- Recurring -->
-      
+    </div>
+
+    <!-- Full service list (hidden, toggled by button) -->
+    <div class="svc-full-list" id="svc-full-list" hidden>
+      <div class="svc-full-grid">
+        <a class="svc-full-card" href="full-house-cleaning.html">
+          <span class="svc-full-name">Full House Cleaning</span>
+          <span class="svc-full-price">from ₹4,500</span>
+        </a>
+        <a class="svc-full-card" href="kitchen-cleaning.html">
+          <span class="svc-full-name">Kitchen Deep Cleaning</span>
+          <span class="svc-full-price">from ₹2,490</span>
+        </a>
+        <a class="svc-full-card" href="bathroom-cleaning.html">
+          <span class="svc-full-name">Bathroom Deep Cleaning</span>
+          <span class="svc-full-price">from ₹890</span>
+        </a>
+        <a class="svc-full-card" href="sofa-cleaning.html">
+          <span class="svc-full-name">Sofa Cleaning</span>
+          <span class="svc-full-price">from ₹199 / seat</span>
+        </a>
+        <a class="svc-full-card" href="carpet-steam-cleaning.html">
+          <span class="svc-full-name">Carpet Steam Cleaning</span>
+          <span class="svc-full-price">from ₹25 / sq.ft</span>
+        </a>
+        <a class="svc-full-card" href="ac-services.html">
+          <span class="svc-full-name">AC Service</span>
+          <span class="svc-full-price">from ₹490</span>
+        </a>
+        <a class="svc-full-card" href="chimney-cleaning.html">
+          <span class="svc-full-name">Chimney Cleaning</span>
+          <span class="svc-full-price">Custom quote</span>
+        </a>
+        <a class="svc-full-card" href="recurring-cleaning.html">
+          <span class="svc-full-name">Recurring Cleaning</span>
+          <span class="svc-full-price">from ₹199 / seat</span>
+        </a>
+        <a class="svc-full-card" href="commercial-cleaning.html">
+          <span class="svc-full-name">Commercial Cleaning</span>
+          <span class="svc-full-price">from ₹6 / sq.ft</span>
+        </a>
+        <a class="svc-full-card" href="balcony-cleaning.html">
+          <span class="svc-full-name">Balcony Cleaning</span>
+          <span class="svc-full-price">Custom quote</span>
+        </a>
+        <a class="svc-full-card" href="gas-stove-cleaning.html">
+          <span class="svc-full-name">Gas Stove Cleaning</span>
+          <span class="svc-full-price">Custom quote</span>
+        </a>
+        <a class="svc-full-card" href="exhaust-fan-cleaning.html">
+          <span class="svc-full-name">Exhaust Fan Cleaning</span>
+          <span class="svc-full-price">Custom quote</span>
+        </a>
+        <a class="svc-full-card" href="refrigerator-cleaning.html">
+          <span class="svc-full-name">Refrigerator Cleaning</span>
+          <span class="svc-full-price">from ₹899</span>
+        </a>
+        <a class="svc-full-card" href="mattress-steam-cleaning.html">
+          <span class="svc-full-name">Mattress Steam Cleaning</span>
+          <span class="svc-full-price">from ₹1,199</span>
+        </a>
+        <a class="svc-full-card" href="curtain-cleaning.html">
+          <span class="svc-full-name">Curtain Cleaning</span>
+          <span class="svc-full-price">Custom quote</span>
+        </a>
+        <a class="svc-full-card" href="window-blinds-cleaning.html">
+          <span class="svc-full-name">Window Blinds Cleaning</span>
+          <span class="svc-full-price">Custom quote</span>
+        </a>
+        <a class="svc-full-card" href="floor-renewal.html">
+          <span class="svc-full-name">Floor Renewal</span>
+          <span class="svc-full-price">Custom quote</span>
+        </a>
+        <a class="svc-full-card" href="jet-washing.html">
+          <span class="svc-full-name">Jet Washing</span>
+          <span class="svc-full-price">Custom quote</span>
+        </a>
+        <a class="svc-full-card" href="pool-cleaning.html">
+          <span class="svc-full-name">Pool Cleaning</span>
+          <span class="svc-full-price">Custom quote</span>
+        </a>
+        <a class="svc-full-card" href="chandelier-cleaning.html">
+          <span class="svc-full-name">Chandelier Cleaning</span>
+          <span class="svc-full-price">Custom quote</span>
+        </a>
+      </div>
     </div>
     <div class="services-more">
-      <a class="services-more-btn" href="pricing.html">See Full Rate Card</a>
+      <button class="services-more-btn" id="svc-toggle-btn" type="button" aria-expanded="false">See Full Service List</button>
     </div>
   </section>
 
@@ -1166,6 +1224,19 @@
           ticking = false;
         });
       }, { passive: true });
+    })();
+
+    // Service list toggle — "See Full Service List" shows/hides all 20 services
+    (function initSvcToggle() {
+      const btn = document.getElementById('svc-toggle-btn');
+      const list = document.getElementById('svc-full-list');
+      if (!btn || !list) return;
+      btn.addEventListener('click', function() {
+        const open = list.hidden;
+        list.hidden = !open;
+        btn.textContent = open ? 'Show Less Services' : 'See Full Service List';
+        btn.setAttribute('aria-expanded', String(open));
+      });
     })();
 
 // Quote panel — conversational 3-step estimator (multi-select → contact → results)
