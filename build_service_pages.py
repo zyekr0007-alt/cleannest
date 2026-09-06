@@ -390,7 +390,7 @@ def build_main(s):
         '      <h2 class="section-title">%s</h2>\n'
         '      <p class="section-sub">%s</p>\n'
         '    </div>\n'
-        '    <div class="srv-hero-media"><img src="%s" alt="%s" width="1260" height="700" loading="lazy"></div>\n'
+        '    <div class="srv-hero-media"><img src="%s" alt="%s" width="640" height="400" loading="lazy"></div>\n'
         '  </section>\n'
         # --- What's included ---
         '  <!-- SECTION: WHATS INCLUDED -->\n  <section class="services" id="included" data-section="whats-included">\n'
@@ -525,7 +525,7 @@ def build_all_services(html):
     wa = wa_prefill("a service")
     main = (
         '\n  <main class="hero" data-section="page-main">\n'
-        '  <section class="cta-band" id="top">\n'
+        '  <section class="cta-band" data-section="services-hero">\n'
         '    <span class="section-badge">CleanNest · Jalandhar</span>\n'
         '    <h1 class="cta-title">All <span class="star">Services</span></h1>\n'
         '    <p class="cta-sub">Every CleanNest service in one place — tap any service for details and a free quote.</p>\n'
