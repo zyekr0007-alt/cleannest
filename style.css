@@ -165,7 +165,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 .brand-wordmark {
   font-family: 'Ultima', 'Nunito', -apple-system, sans-serif !important;
   font-weight: 400;
-  font-size: clamp(1.9rem, 4.8vw, 2.6rem);
+  font-size: clamp(2rem, 5vw, 2.7rem);
   letter-spacing: 0.01em;
   color: var(--navy);
   text-shadow: 0 2px 16px rgba(11, 67, 100, 0.10);
@@ -176,7 +176,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 /* On small screens, scale the centered wordmark down so it stays clearly
    clear of the top-right menu button and reads balanced. */
 @media (max-width: 480px) {
-  .brand-wordmark { font-size: 1.8rem; }
+  .brand-wordmark { font-size: 1.9rem; }
 }
 
 @keyframes brandIn {
@@ -2308,7 +2308,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 }
 .footer-brand {
   font-family: 'Ultima', 'Nunito', -apple-system, sans-serif !important;
-  font-size: 1.7rem;
+  font-size: 1.8rem;
   font-weight: 700;
   color: var(--navy);
   text-decoration: none;
@@ -3997,7 +3997,7 @@ summary:focus-visible,
 .f-brand { display: flex; flex-direction: column; gap: 4px; }
 .footer-brand {
   font-family: 'Ultima', 'Nunito', -apple-system, sans-serif !important;
-  font-size: 1.8rem;
+  font-size: 1.9rem;
   font-weight: 700;
   color: var(--navy);
   text-decoration: none;
