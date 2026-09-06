@@ -69,7 +69,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=208">
+  <link rel="stylesheet" href="style.css?v=209">
   <style>
     /* Critical preloader shell: keep it full-screen off-white instantly so
        nothing flashes before style.css loads. (Full styling lives in style.css.) */
@@ -1139,7 +1139,7 @@
       }, { passive: true });
     })();
 
-// Quote panel — conversational 3-step estimator (multi-select → contact → results)
+// Quote panel — conversational 4-step estimator (services → details → contact → results)
     (function initQuote() {
       const panel = document.getElementById('quote-panel');
       const overlay = document.getElementById('quote-overlay');
@@ -1149,6 +1149,10 @@
       const progressEl = document.getElementById('q-progress');
       const servicesEl = document.getElementById('q-services');
       const svcNext = document.getElementById('q-svc-next');
+      const otherInput = document.getElementById('q-other');
+      const detailTitle = document.getElementById('q-detail-title');
+      const detailsEl = document.getElementById('q-details');
+      const detailNext = document.getElementById('q-detail-next');
       const nameInput = document.getElementById('q-name');
       const phoneInput = document.getElementById('q-phone');
       const phoneError = document.getElementById('q-phone-error');
@@ -1161,6 +1165,7 @@
           !servicesEl || !svcNext || !nameInput || !phoneInput || !contactNext ||
           !resultEl || !bookBtn || !sendBtn || !doneBtn) return;
 
+      // Services shown as chips on step 1
       const SERVICES = [
         { id: 'full-house', label: 'Full House', price: '₹4,500 – ₹5,900' },
         { id: 'bathroom', label: 'Bathroom', price: '₹890 – ₹1,190' },
@@ -1169,63 +1174,158 @@
         { id: 'carpet', label: 'Carpet', price: 'from ₹25 / sq.ft' },
         { id: 'ac', label: 'AC', price: '₹490 – ₹690' },
         { id: 'chimney', label: 'Chimney', price: '₹690' },
-        { id: 'commercial', label: 'Commercial', price: 'Custom quote' },
-        { id: 'recurring', label: 'Recurring', price: 'Custom quote' }
+        { id: 'commercial', label: 'Commercial', price: 'Custom quote' }
       ];
 
-      const SLIDES = ['services', 'contact', 'results', 'sent'];
-      let selected = [];
+      // Detail questions per service that needs them
+      const DETAILS = {
+        'full-house': {
+          title: 'Full House — How many bedrooms?',
+          opts: [
+            { id: '1-bhk', label: '1 BHK' },
+            { id: '2-bhk', label: '2 BHK' },
+            { id: '3-bhk', label: '3 BHK' },
+            { id: '4-bhk', label: '4 BHK' }
+          ]
+        },
+        'kitchen': {
+          title: 'In the Kitchen — select options',
+          opts: [
+            { id: 'with-chimney', label: 'With Chimney' },
+            { id: 'with-fridge', label: 'With Fridge' }
+          ]
+        },
+        'bathroom': {
+          title: 'Bathroom — how many?',
+          opts: [
+            { id: 'bath-1', label: '1' },
+            { id: 'bath-2', label: '2' },
+            { id: 'bath-3', label: '3' },
+            { id: 'bath-4', label: '4+' }
+          ]
+        }
+      };
+
+      const SLIDES = ['services', 'details', 'contact', 'results', 'sent'];
+      let selected = [];        // service ids
+      let detailAnswers = {};   // { serviceId: answerId }
+      let otherText = '';
       let slide = 'services';
       let name = '', phone = '';
-
-      const fmt = n => '₹' + n.toLocaleString('en-IN');
 
       function renderProgress() {
         const interactive = SLIDES.filter(s => s !== 'sent');
         if (slide === 'sent') {
-          progressEl.innerHTML = interactive.map(() => '<span class="q-dot done" aria-hidden="true"></span>').join('');
+          progressEl.innerHTML = interactive.map(function() { return '<span class="q-dot done" aria-hidden="true"></span>'; }).join('');
           return;
         }
-        const idx = interactive.indexOf(slide);
-        progressEl.innerHTML = interactive.map((_, i) =>
-          `<span class="q-dot${i === idx ? ' active' : ''}${i < idx ? ' done' : ''}" aria-hidden="true"></span>`
-        ).join('');
+        var idx = interactive.indexOf(slide);
+        progressEl.innerHTML = interactive.map(function(_, i) {
+          return '<span class="q-dot' + (i === idx ? ' active' : '') + (i < idx ? ' done' : '') + '" aria-hidden="true"></span>';
+        }).join('');
       }
 
       function go(to) {
         if (!SLIDES.includes(to)) to = 'services';
-        slidesEl.querySelectorAll('.q-slide').forEach(s => { s.hidden = s.dataset.slide !== to; });
+        slidesEl.querySelectorAll('.q-slide').forEach(function(s) { s.hidden = s.dataset.slide !== to; });
         slide = to;
         renderProgress();
         panel.scrollTop = 0;
         if (to === 'services') buildServices();
+        if (to === 'details') buildDetails();
         if (to === 'results') renderResults();
       }
 
+      // Step 1 — service chips (multi-select) + free-type bar
       function buildServices() {
-        servicesEl.innerHTML = SERVICES.map(s =>
-          `<button type="button" class="q-opt${selected.includes(s.id) ? ' chosen' : ''}" data-svc="${s.id}">
-             <span class="q-opt-label">${s.label}</span>
-           </button>`
-        ).join('');
+        servicesEl.innerHTML = SERVICES.map(function(s) {
+          return '<button type="button" class="q-chip' + (selected.includes(s.id) ? ' chosen' : '') + '" data-svc="' + s.id + '">' + s.label + '</button>';
+        }).join('');
         svcNext.disabled = selected.length === 0;
       }
 
-      servicesEl.addEventListener('click', (e) => {
-        const btn = e.target.closest('.q-opt');
+      servicesEl.addEventListener('click', function(e) {
+        var btn = e.target.closest('.q-chip');
         if (!btn) return;
-        const id = btn.dataset.svc;
-        const idx = selected.indexOf(id);
+        var id = btn.dataset.svc;
+        var idx = selected.indexOf(id);
         if (idx === -1) { selected.push(id); } else { selected.splice(idx, 1); }
         btn.classList.toggle('chosen');
         svcNext.disabled = selected.length === 0;
       });
 
-      svcNext.addEventListener('click', () => go('contact'));
+      otherInput.addEventListener('input', function() {
+        otherText = otherInput.value.trim();
+      });
 
-      // Contact
-      nameInput.addEventListener('input', () => { name = nameInput.value.trim(); });
-      phoneInput.addEventListener('input', () => {
+      svcNext.addEventListener('click', function() {
+        if (otherText) selected.push('custom-' + otherText);
+        // Check if any selected service has details to ask
+        var needsDetail = selected.some(function(id) { return !id.startsWith('custom-') && DETAILS[id]; });
+        if (needsDetail) {
+          go('details');
+        } else {
+          go('contact');
+        }
+      });
+
+      // Step 2 — service-specific detail questions
+      function buildDetails() {
+        var detailSvcs = selected.filter(function(id) { return !id.startsWith('custom-') && DETAILS[id]; });
+        if (!detailSvcs.length) { go('contact'); return; }
+        var first = detailSvcs[0];
+        var d = DETAILS[first];
+        detailTitle.textContent = d.title;
+        detailAnswers[first] = detailAnswers[first] || null;
+        detailsEl.innerHTML = '<div class="q-detail-opts" data-svc="' + first + '">' +
+          d.opts.map(function(o) {
+            var chosen = detailAnswers[first] === o.id;
+            return '<button type="button" class="q-chip' + (chosen ? ' chosen' : '') + '" data-val="' + o.id + '">' + o.label + '</button>';
+          }).join('') +
+          '</div>' +
+          '<p class="q-detail-hint">' + (detailSvcs.length > 1 ? 'Step 1 of ' + detailSvcs.length + '. More questions after this.' : '') + '</p>';
+        detailNext.disabled = !detailAnswers[first];
+      }
+
+      detailsEl.addEventListener('click', function(e) {
+        var btn = e.target.closest('.q-chip');
+        if (!btn) return;
+        var wrap = btn.closest('.q-detail-opts');
+        if (!wrap) return;
+        var svcId = wrap.dataset.svc;
+        var val = btn.dataset.val;
+        detailAnswers[svcId] = val;
+        wrap.querySelectorAll('.q-chip').forEach(function(c) { c.classList.remove('chosen'); });
+        btn.classList.add('chosen');
+        detailNext.disabled = false;
+      });
+
+      detailNext.addEventListener('click', function() {
+        var detailSvcs = selected.filter(function(id) { return !id.startsWith('custom-') && DETAILS[id]; });
+        var answered = detailSvcs.filter(function(id) { return detailAnswers[id]; });
+        if (answered.length < detailSvcs.length) {
+          // Move to next unanswered detail service
+          var next = detailSvcs[answered.length];
+          var d = DETAILS[next];
+          detailTitle.textContent = d.title;
+          detailAnswers[next] = detailAnswers[next] || null;
+          detailsEl.innerHTML = '<div class="q-detail-opts" data-svc="' + next + '">' +
+            d.opts.map(function(o) {
+              var chosen = detailAnswers[next] === o.id;
+              return '<button type="button" class="q-chip' + (chosen ? ' chosen' : '') + '" data-val="' + o.id + '">' + o.label + '</button>';
+            }).join('') +
+            '</div>' +
+            '<p class="q-detail-hint">Step ' + (answered.length + 1) + ' of ' + detailSvcs.length + '.</p>';
+          detailNext.disabled = !detailAnswers[next];
+          panel.scrollTop = 0;
+        } else {
+          go('contact');
+        }
+      });
+
+      // Step 3 — Contact
+      nameInput.addEventListener('input', function() { name = nameInput.value.trim(); });
+      phoneInput.addEventListener('input', function() {
         phoneInput.value = phoneInput.value.replace(/\D/g, '').slice(0, 10);
         phone = phoneInput.value;
         phoneError.hidden = true;
@@ -1243,18 +1343,29 @@
         return true;
       }
 
-      contactNext.addEventListener('click', () => {
+      contactNext.addEventListener('click', function() {
         if (!name) { nameInput.focus(); return; }
         if (!validatePhone()) return;
         go('results');
       });
 
-      // Results
+      // Step 4 — Results & Send
       function renderResults() {
-        const svcs = SERVICES.filter(s => selected.includes(s.id));
-        let html = '<div class="q-estimate"><div class="q-estimate-total"><span class="q-estimate-range">Selected Services</span></div><ul class="q-estimate-list">';
-        svcs.forEach(s => {
-          html += `<li><span>${s.label}</span><span>${s.price}</span></li>`;
+        var svcs = SERVICES.filter(function(s) { return selected.includes(s.id); });
+        var custom = selected.filter(function(id) { return id.startsWith('custom-'); })
+          .map(function(id) { return { label: id.replace('custom-', ''), price: '' }; });
+        var allSvcs = svcs.concat(custom);
+        var html = '<div class="q-estimate"><div class="q-estimate-total"><span class="q-estimate-range">Your Quote</span></div><ul class="q-estimate-list">';
+        allSvcs.forEach(function(s, i) {
+          var detail = '';
+          // Match detail answers
+          for (var key in detailAnswers) {
+            if (key === s.id) {
+              detail = ' <span class="q-detail-tag">' + detailAnswers[key] + '</span>';
+              break;
+            }
+          }
+          html += '<li><span>' + s.label + detail + '</span><span>' + (s.price || 'Custom') + '</span></li>';
         });
         html += '</ul></div>';
         html += '<p class="quote-note">Exact price confirmed on WhatsApp — no hidden charges.</p>';
@@ -1262,74 +1373,85 @@
       }
 
       function buildWhatsAppMsg() {
-        const svcs = SERVICES.filter(s => selected.includes(s.id));
-        let lines = ['Hi CleanNest! I would like a quote.', '', 'Services:'];
-        svcs.forEach(s => { lines.push('- ' + s.label + ' (' + s.price + ')'); });
+        var svcs = SERVICES.filter(function(s) { return selected.includes(s.id); });
+        var custom = selected.filter(function(id) { return id.startsWith('custom-'); })
+          .map(function(id) { return '- ' + id.replace('custom-', '') + ' (Custom)'; });
+        var lines = ['Hi CleanNest! I would like a quote.', '', 'Services:'];
+        svcs.forEach(function(s) {
+          var line = '- ' + s.label + ' (' + s.price + ')';
+          for (var key in detailAnswers) {
+            if (key === s.id) line += ' [' + detailAnswers[key] + ']';
+          }
+          lines.push(line);
+        });
+        custom.forEach(function(l) { lines.push(l); });
         if (name) lines.push('', 'Name: ' + name);
         lines.push('Phone: +91 ' + phone);
         return lines.join('\n');
       }
 
       function sendWhatsApp() {
-        const msg = buildWhatsAppMsg();
+        var msg = buildWhatsAppMsg();
         window.open('https://wa.me/917610000654?text=' + encodeURIComponent(msg), '_blank');
         go('sent');
-        selected = []; name = ''; phone = ''; nameInput.value = ''; phoneInput.value = '';
+        resetAll();
+      }
+
+      function resetAll() {
+        selected = []; detailAnswers = {}; otherText = ''; name = ''; phone = '';
+        nameInput.value = ''; phoneInput.value = ''; otherInput.value = '';
       }
 
       bookBtn.addEventListener('click', sendWhatsApp);
       sendBtn.addEventListener('click', sendWhatsApp);
 
-      doneBtn.addEventListener('click', () => {
-        selected = []; name = ''; phone = ''; nameInput.value = ''; phoneInput.value = '';
+      doneBtn.addEventListener('click', function() {
+        resetAll();
         closePanel();
       });
 
       // Open / close
-      let lastFocus = null;
+      var lastFocus = null;
       function openPanel() {
         lastFocus = document.activeElement;
         panel.hidden = false;
         overlay.hidden = false;
-        requestAnimationFrame(() => {
+        requestAnimationFrame(function() {
           panel.classList.add('open');
           overlay.classList.add('show');
         });
         document.body.classList.add('sheet-open');
-        selected = [];
-        name = ''; phone = '';
-        nameInput.value = ''; phoneInput.value = '';
-        phoneError.hidden = true;
+        resetAll();
         buildServices();
         renderProgress();
         go('services');
-        setTimeout(() => close.focus(), 380);
+        setTimeout(function() { close.focus(); }, 380);
       }
       function closePanel() {
         panel.classList.remove('open');
         overlay.classList.remove('show');
         document.body.classList.remove('sheet-open');
-        setTimeout(() => {
+        setTimeout(function() {
           panel.hidden = true;
           overlay.hidden = true;
           if (lastFocus && lastFocus.focus) lastFocus.focus();
         }, 360);
       }
 
-      panel.addEventListener('keydown', (e) => {
+      panel.addEventListener('keydown', function(e) {
         if (e.key !== 'Tab' || panel.hidden) return;
-        const focusables = panel.querySelectorAll('button, input, [tabindex]:not([tabindex="-1"])');
+        var focusables = panel.querySelectorAll('button, input, [tabindex]:not([tabindex="-1"])');
         if (!focusables.length) return;
-        const first = focusables[0];
-        const lastEl = focusables[focusables.length - 1];
+        var first = focusables[0];
+        var lastEl = focusables[focusables.length - 1];
         if (e.shiftKey && document.activeElement === first) { e.preventDefault(); lastEl.focus(); }
         else if (!e.shiftKey && document.activeElement === lastEl) { e.preventDefault(); first.focus(); }
       });
 
-      openBtns.forEach((b) => b.addEventListener('click', openPanel));
+      openBtns.forEach(function(b) { b.addEventListener('click', openPanel); });
       close.addEventListener('click', closePanel);
       overlay.addEventListener('click', closePanel);
-      document.addEventListener('keydown', (e) => {
+      document.addEventListener('keydown', function(e) {
         if (e.key === 'Escape' && !panel.hidden) closePanel();
       });
     })();
