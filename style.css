@@ -4820,24 +4820,26 @@ details[open] .faq-a { grid-template-rows: 1fr; }
 
 /* Sun at centre */
 .solar-node.sun{z-index:3}
-.solar-node.sun .node-dot{width:44px;height:44px;background:radial-gradient(circle at 30% 30%,#6fe7ef,#0b4364 70%);border:3px solid #fff;box-shadow:0 0 0 5px rgba(12,215,229,.2),0 10px 28px rgba(11,67,100,.35)}
-.solar-node.sun .sun-name{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);color:#fff;font:800 .82rem/1 'Nunito',sans-serif;letter-spacing:.02em;white-space:nowrap}
-.solar-node.sun:hover .node-dot{transform:translate(-50%,-50%) scale(1.12)}
+.solar-node.sun .node-dot{width:56px;height:56px;border-radius:50%;background:radial-gradient(circle at 32% 30%,#2ee1ee,#0b4364 72%);border:4px solid #fff;box-shadow:0 0 0 6px rgba(12,215,229,.25),0 14px 34px rgba(11,67,100,.4)}
+.solar-node.sun .sun-name{position:absolute;left:0;top:0;transform:none}
+.solar-node.sun:hover .node-dot{transform:scale(1.08)}
 
-/* Ring 1 — radius ~31% (176px) : Kartarpur(top) Adampur(bottom) */
-.solar-node.n1{transform:translate(-50%,-160px)}
-.solar-node.n2{transform:translate(-50%,160px)}
-/* Ring 2 — radius ~53% : Phagwara, Kapurthala, Phillaur, Goraya */
-.solar-node.n3{transform:translate(-130px,-130px)}
-.solar-node.n4{transform:translate(130px,-130px)}
-.solar-node.n5{transform:translate(-130px,130px)}
-.solar-node.n6{transform:translate(130px,130px)}
-/* Ring 3 — radius ~80% : Nakodar, Sultanpur Lodhi, Nawanshahr, Banga, Hoshiarpur */
-.solar-node.n7{transform:translate(-190px,0)}
-.solar-node.n8{transform:translate(-118px,-148px)}
-.solar-node.n9{transform:translate(-60px,-180px)}
-.solar-node.n10{transform:translate(118px,-148px)}
-.solar-node.n11{transform:translate(190px,0)}
+/* Ring 1 — Kartarpur, Adampur (inner) */
+.solar-node.n1{--x:0px;--y:-150px}
+.solar-node.n2{--x:0px;--y:150px}
+/* Ring 2 — Phagwara, Kapurthala, Phillaur, Goraya */
+.solar-node.n3{--x:-106px;--y:-106px}
+.solar-node.n4{--x:106px;--y:-106px}
+.solar-node.n5{--x:-106px;--y:106px}
+.solar-node.n6{--x:106px;--y:106px}
+/* Ring 3 — Nakodar, Sultanpur Lodhi, Nawanshahr, Banga, Hoshiarpur */
+.solar-node.n7{--x:-170px;--y:0px}
+.solar-node.n8{--x:-105px;--y:-133px}
+.solar-node.n9{--x:0px;--y:-170px}
+.solar-node.n10{--x:105px;--y:-133px}
+.solar-node.n11{--x:170px;--y:0px}
+/* Label placement: keep readable, sit beside dot */
+.solar-node .node-name{left:18px;top:-8px;transform:none}
 /* Gentle breathing on the rings only (decorative, honor reduced-motion) */
 .solar-svg .ring-3-sub{animation:solarSpin 40s linear infinite;transform-origin:260px 260px}
 @keyframes solarSpin{to{transform:rotate(360deg)}}
