@@ -1777,57 +1777,40 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   .why-ico::before { animation: none; }
 }
 
-/* Why CleanNest — visible trust proof and four uncluttered benefits */
+/* Why CleanNest — visible trust proof and six uncluttered benefits */
 
 
-/* Trust stats bar — horizontal strip of key metrics */
-.trust-stats {
+/* Trust pills — compact stat badges */
+.why-pills {
   display: flex;
   justify-content: center;
-  gap: 28px;
+  gap: 14px;
   flex-wrap: wrap;
-  max-width: 900px;
   margin: 0 auto 32px;
-  padding: 24px 24px;
-  border-radius: 20px;
-  background: var(--white);
-  border: 1px solid rgba(11,67,100,0.08);
-  box-shadow: 0 14px 34px rgba(11,67,100,0.08);
 }
-.trust-stat {
-  display: flex;
-  flex-direction: column;
+.why-pill {
+  display: inline-flex;
   align-items: center;
-  gap: 3px;
-  min-width: 100px;
-}
-.trust-num {
-  font-family: 'Nunito', sans-serif;
-  font-weight: 900;
-  font-size: clamp(1.5rem, 3.5vw, 2rem);
-  line-height: 1;
-  color: var(--navy);
-  letter-spacing: -0.02em;
-}
-.trust-label {
-  font-family: 'Nunito', sans-serif;
-  font-weight: 600;
-  font-size: 0.76rem;
+  gap: 8px;
+  padding: 10px 22px;
+  border-radius: 999px;
+  background: var(--white);
+  border: 1px solid rgba(11,67,100,0.10);
+  box-shadow: 0 4px 14px rgba(11,67,100,0.06);
+  font: 600 0.85rem/1 'Nunito', sans-serif;
   color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
 }
-@media (max-width: 540px) {
-  .trust-stats { gap: 14px 20px; padding: 14px 16px; }
-  .trust-stat { min-width: 70px; }
-  .trust-num { font-size: 1.35rem; }
-  .trust-label { font-size: 0.68rem; }
+.why-pill strong {
+  font-weight: 900;
+  font-size: 1.05rem;
+  color: var(--navy);
+  letter-spacing: -0.01em;
 }
 .why-grid-new {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 16px;
-  max-width: 1050px;
+  max-width: 780px;
   margin: 0 auto;
   padding: 4px 0;
 }
@@ -1875,7 +1858,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 .why-results-link span { color: #078894; font-size: 1.2rem; transition: transform 0.2s ease; }
 .why-results-link:hover { text-decoration: underline; text-underline-offset: 4px; }
 .why-results-link:hover span { transform: translateX(3px); }
-@media (max-width:880px){.why-grid-new{grid-template-columns:repeat(2,minmax(0,1fr));max-width:640px;gap:14px}.why-card-new{min-height:154px;padding:22px 18px}}@media (max-width:640px){.why-proof{font-size:.73rem;gap:8px;margin-bottom:14px}.why-grid-new{grid-template-columns:1fr;max-width:400px;gap:12px}.why-card-new{min-height:auto;padding:20px 18px}.why-card-new .why-ico{margin-bottom:12px}.why-card-new h3{font-size:.98rem}.why-card-new p{font-size:.85rem;line-height:1.5}}
+@media (max-width:880px){.why-grid-new{grid-template-columns:repeat(2,minmax(0,1fr));max-width:580px;gap:14px}.why-card-new{min-height:154px;padding:22px 18px}.why-pills{gap:10px}.why-pill{padding:8px 18px;font-size:.8rem}}@media (max-width:640px){.why-proof{font-size:.73rem;gap:8px;margin-bottom:14px}.why-grid-new{grid-template-columns:1fr;max-width:400px;gap:12px}.why-card-new{min-height:auto;padding:20px 18px}.why-card-new .why-ico{margin-bottom:12px}.why-card-new h3{font-size:.98rem}.why-card-new p{font-size:.85rem;line-height:1.5}.why-pills{flex-direction:column;align-items:center;gap:8px}}
 
 /* ---------- FAQs ---------- */
 .faqs {
