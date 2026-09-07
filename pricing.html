@@ -136,6 +136,161 @@
     <p>All prices are starting rates. Your exact quote is confirmed free on WhatsApp — no obligation, no hidden charges.</p>
   </div>
 
+  <!-- Quick Estimate Calculator -->
+  <div class="pricing-hero calc-hero">
+    <h2 style="margin:0;font-size:clamp(1.4rem,3vw,1.8rem);color:var(--navy);letter-spacing:-.03em">Quick Estimate Calculator</h2>
+    <p>Select your home size and any add-on services. Your exact quote is confirmed free on WhatsApp.</p>
+    <div id="calc-root" style="background:#fff;border-radius:18px;border:1px solid rgba(11,67,100,.12);padding:22px;text-align:left;margin-top:18px;box-shadow:0 8px 24px rgba(11,67,100,.06)">
+      <div style="margin-bottom:16px">
+        <label style="font:800 .9rem/1 'Nunito',sans-serif;color:var(--navy);display:block;margin-bottom:8px">Home Size</label>
+        <div style="display:flex;gap:8px;flex-wrap:wrap" role="radiogroup" id="calc-bhk">
+          <button class="calc-bhk" data-bhk="1" style="border:1px solid rgba(11,67,100,.2);background:#fff;border-radius:999px;padding:8px 16px;font:700 .82rem/1 'Nunito',sans-serif;color:var(--navy);cursor:pointer;transition:all 180ms">1 BHK</button>
+          <button class="calc-bhk" data-bhk="2" style="border:1px solid rgba(11,67,100,.2);background:#fff;border-radius:999px;padding:8px 16px;font:700 .82rem/1 'Nunito',sans-serif;color:var(--navy);cursor:pointer;transition:all 180ms">2 BHK</button>
+          <button class="calc-bhk" data-bhk="3" style="border:1px solid rgba(11,67,100,.2);background:#fff;border-radius:999px;padding:8px 16px;font:700 .82rem/1 'Nunito',sans-serif;color:var(--navy);cursor:pointer;transition:all 180ms">3 BHK</button>
+          <button class="calc-bhk" data-bhk="4" style="border:1px solid rgba(11,67,100,.2);background:#fff;border-radius:999px;padding:8px 16px;font:700 .82rem/1 'Nunito',sans-serif;color:var(--navy);cursor:pointer;transition:all 180ms">4 BHK</button>
+          <button class="calc-bhk" data-bhk="villa" style="border:1px solid rgba(11,67,100,.2);background:#fff;border-radius:999px;padding:8px 16px;font:700 .82rem/1 'Nunito',sans-serif;color:var(--navy);cursor:pointer;transition:all 180ms">Villa</button>
+        </div>
+      </div>
+      <div id="calc-home-display" style="background:var(--surface);border-radius:12px;padding:12px 16px;margin-bottom:12px;display:flex;justify-content:space-between;align-items:center;font:800 .95rem/1 'Nunito',sans-serif;color:var(--navy)">
+        <span>Full-Home Deep Cleaning</span>
+        <span id="calc-home-price" style="color:var(--cyan)">—</span>
+      </div>
+      <div style="margin:0 0 6px;font:800 .85rem/1 'Nunito',sans-serif;color:var(--navy)">Add-on Services</div>
+      <div id="calc-addons" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px"></div>
+      <hr style="margin:14px 0;border:none;border-top:1px solid rgba(11,67,100,.08)">
+      <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+        <span style="font:900 1.25rem/1 'Nunito',sans-serif;color:var(--navy)">Estimated Total: <span id="calc-total" style="color:var(--navy)">—</span></span>
+        <a id="calc-wa" class="btn btn-primary" href="https://wa.me/917610000654?text=Hi%20CleanNest!%20I%20would%20like%20a%20free%20quote." target="_blank" rel="noopener" style="font-size:.85rem;gap:6px">Get Exact Quote on WhatsApp <span class="btn-icon" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+  (function(){
+    var prices = {
+      '1': {low:4500,high:5900,label:'₹4,500 – ₹5,900'},
+      '2': {low:9500,high:11900,label:'₹9,500 – ₹11,900'},
+      '3': {low:12500,high:14900,label:'₹12,500 – ₹14,900'},
+      '4': {low:15400,high:17800,label:'₹15,400 – ₹17,800'},
+      'villa':{low:0,high:0,label:'Quote after inspection'}
+    };
+    var addons = [
+      {id:'ac',label:'AC',base:490,unit:'/ unit',tiers:null},
+      {id:'chimney',label:'Chimney',base:690,unit:'/ unit',tiers:null},
+      {id:'gas-stove',label:'Gas Stove',base:290,unit:'/ unit',tiers:null},
+      {id:'fridge',label:'Refrigerator',base:899,unit:'/ unit',tiers:[{label:'Normal',p:899},{label:'Steam + sanitise',p:1299}]},
+      {id:'fan',label:'Ceiling Fan',base:70,unit:'/ fan',tiers:null},
+      {id:'exhaust',label:'Exhaust Fan',base:290,unit:'/ fan',tiers:null},
+      {id:'bathroom',label:'Bathroom',base:890,unit:'/ bathroom',tiers:null},
+      {id:'kitchen',label:'Kitchen',base:2490,unit:'/ kitchen',tiers:null},
+      {id:'balcony',label:'Balcony',base:490,unit:'/ unit',tiers:null},
+      {id:'sofa',label:'Sofa (per seat)',base:199,unit:'/ seat',tiers:[{label:'Dry',p:199},{label:'Premium',p:279},{label:'Premium+steam',p:349}]},
+      {id:'mattress',label:'Mattress',base:1199,unit:'/ mattress',tiers:null},
+      {id:'carpet',label:'Carpet',base:25,unit:'/ sq.ft',tiers:null}
+    ];
+    var sel={bhk:null,addons:{}};
+    addons.forEach(function(a){sel.addons[a.id]={qty:0,tier:0}});
+
+    function fmt(n){return '₹'+(n<100000?n.toLocaleString('en-IN'):n.toLocaleString('en-IN'))}
+
+    function update(){
+      var bhk=sel.bhk,p=prices[bhk];
+      var el=document.getElementById('calc-home-price');
+      if(!bhk||bhk==='villa'){el.textContent=p?p.label:'—';}
+      else if(p){el.textContent=p.label;}
+      // total
+      var t=bhk&&p&&p.low?p.low:0;
+      addons.forEach(function(a){
+        var s=sel.addons[a.id];
+        if(s.qty>0){
+          var up=a.tiers?((a.tiers[s.tier]||a.tiers[0]).p):a.base;
+          t+=up*s.qty;
+        }
+      });
+      document.getElementById('calc-total').textContent=t?fmt(t):'—';
+      // wa link
+      var msg='Hi CleanNest! I would like a free quote.';
+      if(bhk){
+        var bhkLabel=bhk==='villa'?'Villa':bhk+' BHK';
+        msg='Hi CleanNest! I need a quote for '+bhkLabel+' full-home deep cleaning';
+        var parts=[];
+        addons.forEach(function(a){
+          var s=sel.addons[a.id];
+          if(s.qty>0){
+            var l=a.tiers?((a.tiers[s.tier]||a.tiers[0]).label):'';
+            parts.push(a.label+(l?' ('+l+')':'')+' x'+s.qty);
+          }
+        });
+        if(parts.length) msg+=' plus '+parts.join(', ');
+        msg+='. Please send an exact quote.';
+      }
+      var wa=document.getElementById('calc-wa');
+      wa.href='https://wa.me/917610000654?text='+encodeURIComponent(msg);
+    }
+
+    // render addon rows
+    var container=document.getElementById('calc-addons');
+    addons.forEach(function(a){
+      var div=document.createElement('div');
+      div.style.cssText='background:var(--surface);border-radius:10px;padding:8px 10px;display:flex;align-items:center;gap:8px;flex-wrap:wrap';
+      // label
+      var label=document.createElement('span');
+      label.textContent=a.label;
+      label.style.cssText='font:600 .8rem/1 "Nunito",sans-serif;color:var(--ink);flex:1;min-width:80px';
+      div.appendChild(label);
+      // tier selector if any
+      if(a.tiers){
+        var selEl=document.createElement('select');
+        a.tiers.forEach(function(t,i){
+          var opt=document.createElement('option');
+          opt.value=i;opt.textContent=t.label+' ₹'+t.p.toLocaleString('en-IN');
+          selEl.appendChild(opt);
+        });
+        selEl.style.cssText='font:.78rem/1 "Nunito",sans-serif;border:1px solid rgba(11,67,100,.15);border-radius:8px;padding:4px 6px;background:#fff;color:var(--ink)';
+        div.appendChild(selEl);
+      }
+      // qty controls
+      var minus=document.createElement('button');
+      minus.textContent='−';minus.type='button';
+      minus.style.cssText='width:30px;height:30px;border:1px solid rgba(11,67,100,.15);border-radius:8px;background:#fff;font:700 1rem/1 "Nunito",sans-serif;color:var(--muted);cursor:pointer;display:flex;align-items:center;justify-content:center';
+      var qtySpan=document.createElement('span');
+      qtySpan.textContent='0';
+      qtySpan.style.cssText='min-width:22px;text-align:center;font:700 .85rem/1 "Nunito",sans-serif;color:var(--navy)';
+      var plus=document.createElement('button');
+      plus.textContent='+';plus.type='button';
+      plus.style.cssText='width:30px;height:30px;border:1px solid rgba(11,67,100,.15);border-radius:8px;background:#fff;font:700 1rem/1 "Nunito",sans-serif;color:var(--cyan);cursor:pointer;display:flex;align-items:center;justify-content:center';
+      div.appendChild(minus);
+      div.appendChild(qtySpan);
+      div.appendChild(plus);
+      container.appendChild(div);
+
+      function updateAddon(){
+        var s=sel.addons[a.id];
+        qtySpan.textContent=s.qty;
+        if(a.tiers){s.tier=parseInt(selEl.value);}
+        update();
+      }
+
+      minus.addEventListener('click',function(){var s=sel.addons[a.id];if(s.qty>0){s.qty--;updateAddon();}});
+      plus.addEventListener('click',function(){sel.addons[a.id].qty++;updateAddon();});
+      if(a.tiers){selEl.addEventListener('change',updateAddon);}
+    });
+
+    // BHK buttons
+    var bk=document.querySelectorAll('.calc-bhk');
+    bk.forEach(function(b){
+      b.addEventListener('click',function(){
+        bk.forEach(function(x){x.style.cssText=x.style.cssText.replace(/var\(--navy\)/g,'var(--navy)');x.style.background='#fff';x.style.borderColor='rgba(11,67,100,.2)';});
+        sel.bhk=b.getAttribute('data-bhk');
+        b.style.background='var(--navy)';b.style.color='#fff';b.style.borderColor='var(--navy)';
+        update();
+      });
+    });
+
+    update();
+  })();
+  </script>
+
   <!-- Full-Home Deep Cleaning -->
   <section class="pricing-group" data-section="full-home-pricing">
     <h2 class="pricing-group-title"><svg class="pgi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>Full-Home Deep Cleaning</h2>
