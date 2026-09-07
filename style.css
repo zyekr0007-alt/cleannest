@@ -199,8 +199,8 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   display: flex;
   align-items: center;
   padding: 90px 22px 70px;
-  background-color: #F6F7F9;
   overflow: hidden;
+  background-color: #F6F7F9;
 }
 
 .hero-inner {
