@@ -590,31 +590,35 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   background-size: 300% 300%;
 }
 
-/* Google review recap — solid navy theme, uniform with brand */
+/* Google review recap — glass pill, frosted, brand-aligned */
 .hero-rating {
   position: relative;
   display: inline-flex;
   align-items: stretch;
   margin-top: 32px;
-  padding: 10px 8px 10px 16px;
-  border-radius: 16px;
-  background: #0b4364;
+  padding: 10px 8px 10px 18px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.55);
+  border: 1px solid rgba(255,255,255,.65);
+  box-shadow: 0 8px 32px rgba(11,67,100,.12), inset 0 1px 0 rgba(255,255,255,.7);
+  backdrop-filter: blur(18px) saturate(160%);
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
   text-decoration: none;
   overflow: hidden;
   transition: transform .2s ease, box-shadow .2s ease;
 }
 .hero-rating:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 28px rgba(11,67,100,.28);
+  box-shadow: 0 12px 40px rgba(11,67,100,.18), inset 0 1px 0 rgba(255,255,255,.7);
 }
 
-/* Two equal cells split by a hairline divider */
+/* Two cells split by a hairline divider */
 .hr-cell {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: 3px;
   padding: 4px 14px;
   min-width: 0;
 }
@@ -624,7 +628,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   font-weight: 800;
   font-size: 1.6rem;
   line-height: 1;
-  color: #F9AB00;
+  color: #B26A00;
   letter-spacing: -0.02em;
 }
 .hr-stars { display: inline-flex; gap: 2px; }
@@ -638,24 +642,24 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   font-weight: 700;
   font-size: .9rem;
   line-height: 1.15;
-  color: #fff;
+  color: #0b4364;
   letter-spacing: .01em;
   white-space: nowrap;
 }
-.hr-count span { font-weight: 800; color: #fff; }
+.hr-count span { font-weight: 800; color: #0b4364; }
 .hr-label {
   font-family: 'Nunito', sans-serif;
   font-weight: 600;
   font-size: .68rem;
   line-height: 1;
-  color: rgba(255,255,255,.55);
+  color: rgba(11,67,100,.5);
   letter-spacing: .02em;
 }
 .hr-divider {
   align-self: center;
   width: 1px;
   height: 36px;
-  background: rgba(255,255,255,.15);
+  background: rgba(11,67,100,.12);
 }
 .hr-arrow {
   display: inline-flex;
@@ -663,10 +667,11 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
   align-self: center;
   margin: 0 4px 0 0;
   font-size: 1.1rem;
-  color: rgba(255,255,255,.4);
+  color: #0b4364;
+  opacity: .4;
   transition: transform .2s ease, opacity .2s ease;
 }
-.hero-rating:hover .hr-arrow { transform: translateX(3px); opacity: .9; }
+.hero-rating:hover .hr-arrow { transform: translateX(3px); opacity: .85; }
 @keyframes numBloom {
   0%   { transform: scale(1); }
   35%  { transform: scale(1.07); }
