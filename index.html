@@ -72,7 +72,7 @@
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=telma@400,500,600,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=301">
+  <link rel="stylesheet" href="style.css?v=302">
   <style>
     /* Critical preloader shell: keep it full-screen off-white instantly so
        nothing flashes before style.css loads. (Full styling lives in style.css.) */
@@ -131,18 +131,22 @@
 
   <!-- Hero -->
 <!-- SECTION 02: HOMEPAGE HERO -->
-<main class="hero" id="home" data-section="homepage-hero">
+<main class="hero homepage-hero" id="home" data-section="homepage-hero">
     <div class="hero-inner">
       <div class="hero-copy">
         <h1 class="hero-title">
           <span class="hero-line reveal"><span class="acc-yellow">Deep Cleaning</span> <span class="acc-yellow">in Jalandhar.</span></span>
           <span class="hero-line reveal"><span class="accent">Done Right.</span></span>
         </h1>
-        <p class="hero-sub reveal">Premium deep cleaning services for homes, offices and businesses across Jalandhar.</p>
+        <p class="hero-sub reveal">Professional home and commercial cleaning by a trained local team. Get a clear quote in under 60 seconds.</p>
         <div class="hero-ctas reveal">
-          <button class="btn btn-primary btn-quote" id="open-quote" type="button" data-open-quote>Get Free Quote <span class="btn-icon" aria-hidden="true">→</span></button>
+          <button class="btn btn-primary btn-quote" id="open-quote" type="button" data-open-quote>Get My Free Quote <span class="btn-icon" aria-hidden="true">→</span></button>
           <p class="hero-cta-sub">Get quote under <strong>60 seconds</strong></p>
         </div>
+      </div>
+      <div class="hero-media reveal">
+        <img src="assets/img/hero-team-collage.png" alt="CleanNest cleaning team and professional cleaning work" width="1254" height="1254" fetchpriority="high">
+        <span class="hero-media-badge">Our trained local team</span>
       </div>
       <div class="hero-aside">
         <div class="hero-contact reveal">
@@ -174,40 +178,40 @@
 <!-- SECTION 03: SERVICES GRID -->
 <section class="services" id="services" data-section="services-grid">
     <div class="section-head">
-      <span class="section-badge">Our Services</span>
+      <span class="section-badge">Popular Services</span>
       <h2 class="section-title">What We <span class="star">Clean</span></h2>
-      <p class="section-sub">Starting prices shown — tap any card for details &amp; booking.</p>
+      <p class="section-sub">Start with our most-booked services. Tap any card to see what&rsquo;s included and get a quote.</p>
     </div>
     <div class="svc-grid svc-grid-cover" id="svc-popular-grid">
       <!-- Full House -->
       <a class="svc-card svc-card-cover" href="full-house-cleaning.html" style="--bg-img:url(assets/img/services/full-house-cleaning.webp)">
         <span class="svc-card__name">Full House</span>
-        <span class="svc-card__price-des">from ₹4,500</span>
+        <span class="svc-card__meta"><span class="svc-card__benefit">Whole-home deep clean</span><span class="svc-card__price-des">from ₹4,500</span><span class="svc-card__arrow" aria-hidden="true">→</span></span>
       </a>
       <!-- Kitchen -->
       <a class="svc-card svc-card-cover" href="kitchen-cleaning.html" style="--bg-img:url(assets/img/services/kitchen-deep-cleaning.webp)">
         <span class="svc-card__name">Kitchen</span>
-        <span class="svc-card__price-des">from ₹2,490</span>
+        <span class="svc-card__meta"><span class="svc-card__benefit">Cut through grease</span><span class="svc-card__price-des">from ₹2,490</span><span class="svc-card__arrow" aria-hidden="true">→</span></span>
       </a>
       <!-- Bathroom -->
       <a class="svc-card svc-card-cover" href="bathroom-cleaning.html" style="--bg-img:url(assets/img/services/bathroom-deep-cleaning.webp)">
         <span class="svc-card__name">Bathroom</span>
-        <span class="svc-card__price-des">from ₹890</span>
+        <span class="svc-card__meta"><span class="svc-card__benefit">Tiles, grout &amp; fittings</span><span class="svc-card__price-des">from ₹890</span><span class="svc-card__arrow" aria-hidden="true">→</span></span>
       </a>
       <!-- Sofa -->
       <a class="svc-card svc-card-cover" href="sofa-cleaning.html" style="--bg-img:url(assets/img/services/sofa-dry-cleaning.webp)">
         <span class="svc-card__name">Sofa</span>
-        <span class="svc-card__price-des">from ₹199 / seat</span>
+        <span class="svc-card__meta"><span class="svc-card__benefit">Lift stains &amp; odours</span><span class="svc-card__price-des">from ₹199 / seat</span><span class="svc-card__arrow" aria-hidden="true">→</span></span>
       </a>
       <!-- Chimney -->
       <a class="svc-card svc-card-cover" href="chimney-cleaning.html" style="--bg-img:url(assets/img/services/chimney-cleaning.webp)">
         <span class="svc-card__name">Chimney</span>
-        <span class="svc-card__price-des">from ₹690</span>
+        <span class="svc-card__meta"><span class="svc-card__benefit">Remove built-up grease</span><span class="svc-card__price-des">from ₹690</span><span class="svc-card__arrow" aria-hidden="true">→</span></span>
       </a>
       <!-- AC -->
       <a class="svc-card svc-card-cover" href="ac-services.html" style="--bg-img:url(assets/img/services/ac-services.webp)">
         <span class="svc-card__name">AC</span>
-        <span class="svc-card__price-des">from ₹490</span>
+        <span class="svc-card__meta"><span class="svc-card__benefit">Improve cooling &amp; air quality</span><span class="svc-card__price-des">from ₹490</span><span class="svc-card__arrow" aria-hidden="true">→</span></span>
       </a>
     </div>
     <div class="services-more">

@@ -28,8 +28,8 @@ font-family: 'Ultima';
   --muted: #4E606E;
   --white: #FFFFFF;
   --card: #FFFFFF;
-  --surface: #F6F7F9;      /* uniform off-white page background */
-  --surface-2: #F6F7F9;    /* uniform off-white page background */
+  --surface: #FBFAF6;      /* warm off-white page background */
+  --surface-2: #F7F5EF;    /* warm off-white page background */
   --shadow: 0 10px 30px rgba(11, 67, 100, 0.12);
   --radius: 16px;
 
@@ -68,10 +68,9 @@ body {
 font-family: 'Nunito', -apple-system, sans-serif;
   color: var(--ink);
   background:
-    radial-gradient(80% 60% at 15% 10%, rgba(12, 215, 229, 0.18), transparent 55%),
-    radial-gradient(70% 55% at 85% 25%, rgba(11, 67, 100, 0.16), transparent 55%),
-    radial-gradient(90% 70% at 50% 95%, rgba(20, 118, 168, 0.14), transparent 60%),
-    linear-gradient(160deg, var(--surface) 0%, var(--surface-2) 55%, #E6EDF3 100%);
+    radial-gradient(70% 55% at 82% 12%, rgba(12, 215, 229, 0.10), transparent 62%),
+    radial-gradient(75% 60% at 12% 88%, rgba(11, 67, 100, 0.07), transparent 64%),
+    linear-gradient(160deg, var(--surface) 0%, var(--surface-2) 100%);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   overflow-x: clip;
@@ -181,7 +180,7 @@ position: relative;
   align-items: center;
   padding: 90px 22px 70px;
   overflow: hidden;
-  background-color: #F6F7F9;
+  background-color: var(--surface);
 }
 .hero-inner {
 position: relative;
@@ -415,6 +414,120 @@ width: 100%;
 .hero-media { flex: none; width: 100%; }
   .hero-media img { max-height: 58vh; }
 }
+
+/* Homepage hero: team-at-work visual with a quiet, conversion-first layout. */
+@media (min-width: 1024px) {
+  .homepage-hero .hero-inner {
+    grid-template-columns: minmax(0, 1fr) minmax(320px, 0.72fr);
+    grid-template-rows: auto auto;
+    gap: 22px 56px;
+  }
+  .homepage-hero .hero-copy {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: center;
+  }
+  .homepage-hero .hero-media {
+    grid-column: 2;
+    grid-row: 1;
+    width: 100%;
+  }
+  .homepage-hero .hero-aside {
+    grid-column: 1;
+    grid-row: 2;
+    align-items: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px 18px;
+  }
+  .homepage-hero .hero-rating {
+    width: auto;
+    max-width: 430px;
+    margin-top: 0;
+  }
+  .homepage-hero .hero-rating .hr-cell { padding-left: 8px; padding-right: 8px; }
+  .homepage-hero .hero-rating .hr-top { gap: 5px; }
+  .homepage-hero .hero-rating .hr-count { white-space: normal; font-size: 0.78rem; }
+}
+
+.hero-media-badge {
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+  padding: 8px 13px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.88);
+  color: var(--navy);
+  box-shadow: 0 8px 20px rgba(11, 67, 100, 0.14);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+/* Keep the hero typography and actions calm after their entrance. */
+.homepage-hero .hero-title .accent,
+.homepage-hero .hero-title .acc-yellow,
+.homepage-hero .btn-quote,
+.homepage-hero .hero-contact .hc-btn {
+  animation: none;
+}
+
+/* Homepage popular services: keep the card action legible without adding noise. */
+#svc-popular-grid .svc-card-cover {
+  min-height: 188px;
+  transition: transform var(--dur-quick) var(--ease-out), box-shadow var(--dur-quick) var(--ease-out);
+}
+#svc-popular-grid .svc-card__meta {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 5px 8px;
+  width: 100%;
+}
+#svc-popular-grid .svc-card__benefit {
+  grid-column: 1 / -1;
+  color: rgba(255,255,255,.84);
+  font-size: .72rem;
+  line-height: 1.25;
+}
+#svc-popular-grid .svc-card__price-des {
+  color: #fff;
+  font-size: .78rem;
+  font-weight: 800;
+}
+#svc-popular-grid .svc-card__arrow {
+  color: var(--cyan);
+  font-size: 1.25rem;
+  line-height: 1;
+  transition: transform var(--dur-quick) var(--ease-out);
+}
+@media (hover: hover) and (pointer: fine) {
+  #svc-popular-grid .svc-card-cover:hover .svc-card__arrow { transform: translateX(4px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  #svc-popular-grid .svc-card-cover,
+  #svc-popular-grid .svc-card__arrow { transition: none; }
+}
+
+@media (max-width: 1023px) {
+  .homepage-hero .hero-media {
+    order: 2;
+    width: min(100%, 520px);
+    margin: 26px auto 0;
+  }
+  .homepage-hero .hero-copy { order: 1; }
+  .homepage-hero .hero-aside { order: 3; }
+}
+
+@media (max-width: 520px) {
+  .homepage-hero .hero-media-badge {
+    right: 12px;
+    bottom: 12px;
+  }
+}
 @media (max-width: 1023px) {
 .hero-media { width: min(100%, 520px); margin: 4px auto 0; }
 }
@@ -467,8 +580,8 @@ from { opacity: 0; transform: translateY(100%); }
 transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
 }
 .hero {
-background: #F6F7F9;
-  background-color: #F6F7F9;
+background: var(--surface);
+  background-color: var(--surface);
 }
 .hero::before {
 content: "";
@@ -476,7 +589,7 @@ content: "";
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  background: #F6F7F9;
+  background: var(--surface);
   background-size: 300% 300%;
 }
 /* Google review recap — glass pill, frosted, brand-aligned */
@@ -3053,7 +3166,7 @@ font-size:clamp(1.6rem,3.5vw,2.2rem);font-weight:800;color:#0B4364;letter-spacin
 display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px;
 }
 .loc-svc {
-display:flex;flex-direction:column;gap:4px;background:#F6F7F9;border:1px solid #e3e8ee;border-radius:14px;padding:18px 20px;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease;
+display:flex;flex-direction:column;gap:4px;background:var(--surface);border:1px solid #e3e8ee;border-radius:14px;padding:18px 20px;text-decoration:none;transition:transform .15s ease,box-shadow .15s ease,border-color .15s ease;
 }
 .loc-svc:hover {
 transform:translateY(-3px);box-shadow:0 14px 30px rgba(12,67,98,.10);border-color:#0CD7E5;
