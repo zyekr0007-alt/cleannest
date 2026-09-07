@@ -758,7 +758,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 
 /* ---------- Services — card grid (redesigned Sep 2026) ---------- */
 .services {
-  max-width: 1280px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 28px 22px 32px;
   background: var(--surface);
@@ -1070,6 +1070,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 @media(max-width:640px){.dirt-item{font-family:'Telma',cursive;font-size:.88rem}.dirt-divider{margin:0 12px}.dirt-marquee{padding:14px 0}}
 
 .gallery {
+  max-width: 1200px;
   margin: 0 auto;
   padding: 64px 22px;
 }
@@ -1233,7 +1234,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 /* ---------- Reviews ---------- */
 /* Reviews — slideable carousel (one review per slide), compact */
 .reviews {
-  max-width: 1280px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 36px 22px;
 }
@@ -1801,9 +1802,9 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 }
 .why-grid-new {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 20px;
-  max-width: 900px;
+  max-width: 640px;
   margin: 0 auto;
   padding: 4px 0;
 }
@@ -1864,7 +1865,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 
 /* ---------- FAQs ---------- */
 .faqs {
-  max-width: 1280px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 80px 22px;
 }
@@ -2048,7 +2049,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 
 /* ---------- Pricing ---------- */
 .pricing {
-  max-width: 1280px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 0 22px 48px;
 }
@@ -4056,7 +4057,7 @@ main.hero > * {
   /* FAQ, footer, CTA: align on one wider column */
   .faq-list { max-width: 980px; }
   .footer-inner,
-  .cta-inner { max-width: 1240px; }
+  .cta-inner { max-width: 1200px; }
 
   /* Service + city page container */
   .svc-container,
