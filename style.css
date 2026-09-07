@@ -4855,10 +4855,10 @@ details[open] .faq-a { grid-template-rows: 1fr; }
 .hc-btn{min-width:48px;min-height:48px;}
 .reviews-dots button{padding:18px;background-clip:content-box;}
 /* ===== SVC CARD COVER ===== */
-.svc-grid-cover{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:640px;margin:0 auto}
+.svc-grid-cover{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;max-width:680px;margin:0 auto}
 @media(max-width:700px){.svc-grid-cover{grid-template-columns:repeat(2,1fr);gap:12px;max-width:580px}}
 @media(max-width:480px){.svc-grid-cover{grid-template-columns:1fr;gap:12px;max-width:360px;margin:0 auto}}
-.svc-card-cover{position:relative;display:flex;flex-direction:column;justify-content:space-between;min-height:180px;border-radius:14px;overflow:hidden;background-size:cover;background-position:center;background-image:var(--bg-img);text-decoration:none;padding:14px 14px;transition:transform .25s cubic-bezier(.22,1,.36,1),box-shadow .25s;box-shadow:0 2px 12px rgba(0,0,0,.06)}
+.svc-card-cover{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:200px;border-radius:16px;overflow:hidden;background-size:cover;background-position:center;background-image:var(--bg-img);text-decoration:none;padding:18px 16px;transition:transform .3s cubic-bezier(.22,1,.36,1),box-shadow .3s;box-shadow:0 2px 12px rgba(0,0,0,.06)}
 .svc-card-cover::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.5) 0%,transparent 25%,transparent 55%,rgba(0,0,0,.55) 85%,rgba(0,0,0,.75) 100%);z-index:1;pointer-events:none}
 .svc-card-cover:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.18)}
 .svc-card-cover .svc-card__name{position:relative;z-index:2;color:#fff;font-size:.95rem;font-weight:700;margin:0;line-height:1.2;align-self:flex-start}
