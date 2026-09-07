@@ -4429,7 +4429,7 @@ details[open] .faq-a { grid-template-rows: 1fr; }
 
 /* Areas section — inner column matches the site-wide 1200px grid */
 .cities { padding: 70px 22px 20px; }
-.cities-inner { max-width: 1200px; margin: 0 auto; }
+.cities-inner { max-width: 800px; margin: 0 auto; }
 .cities-head { text-align: center; margin-bottom: 30px; }
 .cities-head .section-title { justify-content: center; }
 .cities-sub {
