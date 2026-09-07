@@ -1623,7 +1623,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 .about {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 48px 22px;
+  padding: 36px 22px;
 }
 
 /* "Why Choose Us" — compact pill-shaped icon cards that toggle open */
@@ -1802,40 +1802,49 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 .why-grid-new {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+  gap: 20px;
   max-width: 900px;
   margin: 0 auto;
   padding: 4px 0;
 }
 .why-card-new {
-  min-height: 140px;
-  padding: 20px 20px;
-  border: 1px solid rgba(11, 67, 100, 0.08);
+  min-height: 160px;
+  padding: 28px 24px 24px;
+  border: 1px solid rgba(11, 67, 100, 0.06);
   border-radius: 18px;
   background: var(--white);
   color: var(--ink);
-  box-shadow: 0 14px 34px rgba(11, 67, 100, 0.08);
-  transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.24s ease;
+  box-shadow: 0 4px 20px rgba(11, 67, 100, 0.06);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease;
 }
 .why-card-new .why-ico {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  margin-bottom: 12px;
-  background: var(--cyan-soft);
-  color: var(--navy);
-  transition: background 0.24s ease, color 0.24s ease;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, #0a2b5e 0%, #0d3b7a 100%);
+  color: #0cd7e5;
+  box-shadow: 0 4px 12px rgba(10, 43, 94, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-.why-card-new h3 { margin: 0 0 6px; font: 800 0.95rem/1.2 'Nunito', sans-serif; color: var(--navy); }
-.why-card-new p { margin: 0; color: var(--muted); font: 500 0.85rem/1.5 'Nunito', sans-serif; }
+.why-card-new .why-ico svg {
+  width: 22px;
+  height: 22px;
+}
+.why-card-new h3 { margin: 0 0 6px; font: 800 1rem/1.3 'Nunito', sans-serif; color: var(--navy); }
+.why-card-new p { margin: 0; color: var(--muted); font: 500 0.82rem/1.55 'Nunito', sans-serif; }
 .why-card-new:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 22px 44px rgba(11, 67, 100, 0.14);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(11, 67, 100, 0.12);
 }
-.why-card-new:hover .why-ico { background: var(--navy); color: var(--cyan); }
+.why-card-new:hover .why-ico {
+  transform: scale(1.05);
+  box-shadow: 0 6px 18px rgba(10, 43, 94, 0.25);
+}
+.why-card-new:hover .why-ico { background: linear-gradient(135deg, #0cd7e5 0%, #0a2b5e 120%); color: #fff; }
 .why-results-link {
   display: flex;
   align-items: center;
@@ -1851,7 +1860,7 @@ h1, h2, h3, .hero-cta { font-family: 'Nunito', sans-serif; }
 .why-results-link span { color: #078894; font-size: 1.2rem; transition: transform 0.2s ease; }
 .why-results-link:hover { text-decoration: underline; text-underline-offset: 4px; }
 .why-results-link:hover span { transform: translateX(3px); }
-@media (max-width:880px){.why-grid-new{grid-template-columns:repeat(2,minmax(0,1fr));max-width:580px;gap:14px}.why-card-new{min-height:120px;padding:18px 16px}.why-pills{gap:10px}.why-pill{padding:8px 18px;font-size:.8rem}}@media (max-width:640px){.why-proof{font-size:.73rem;gap:8px;margin-bottom:14px}.why-grid-new{grid-template-columns:1fr;max-width:400px;gap:12px}.why-card-new{min-height:auto;padding:16px 16px}.why-card-new .why-ico{margin-bottom:10px;width:36px;height:36px;border-radius:10px}.why-card-new h3{font-size:.92rem}.why-card-new p{font-size:.82rem;line-height:1.45}.why-pills{flex-direction:column;align-items:center;gap:8px}}
+@media (max-width:880px){.why-grid-new{grid-template-columns:repeat(2,minmax(0,1fr));max-width:580px;gap:18px}.why-card-new{min-height:130px;padding:22px 20px}.why-card-new .why-ico{width:44px;height:44px;border-radius:13px;margin-bottom:14px}.why-pills{gap:10px}.why-pill{padding:8px 18px;font-size:.8rem}}@media (max-width:640px){.why-proof{font-size:.73rem;gap:8px;margin-bottom:14px}.why-grid-new{grid-template-columns:1fr;max-width:400px;gap:14px}.why-card-new{min-height:auto;padding:20px 18px}.why-card-new .why-ico{margin-bottom:12px;width:42px;height:42px;border-radius:12px}.why-card-new h3{font-size:.95rem}.why-card-new p{font-size:.85rem;line-height:1.5}.why-pills{flex-direction:column;align-items:center;gap:8px}}
 
 /* ---------- FAQs ---------- */
 .faqs {
@@ -4854,47 +4863,38 @@ details[open] .faq-a { grid-template-rows: 1fr; }
 .svc-card-cover:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.18)}
 .svc-card-cover .svc-card__name{position:relative;z-index:2;color:#fff;font-size:.95rem;font-weight:700;margin:0;line-height:1.2;align-self:flex-start}
 .svc-card-cover .svc-card__price-des{position:relative;z-index:2;color:rgba(255,255,255,.8);font-size:.8rem;font-weight:600;margin:0;line-height:1.2;align-self:flex-start}
-/* ===== HOME CONSTELLATION (dark night-sky) ===== */
-.cn-section{max-width:100%;margin:0 auto;padding:0;background:#080e18;border-radius:24px;box-shadow:inset 0 0 80px rgba(12,215,229,.04);overflow:hidden;position:relative}
-.cn-section-link{display:block;text-decoration:none;color:inherit;transition:transform .2s ease,box-shadow .2s ease}
-.cn-section-link:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(12,215,229,.1)}
-.cn-section-link:focus-visible{outline:3px solid #0cd7e5;outline-offset:4px;border-radius:26px}
-.cn-map{position:relative;width:100%;height:auto}
-.cn-svg{display:block;width:100%;height:auto}
-.cn-bg{fill:#080e18}
-.cn-vignette{fill:url(#cnVignetteHp)}
-/* Drifting + twinkling stars */
-.cn-stars-drift{animation:cnDrift 8s ease-in-out infinite alternate}
-@keyframes cnDrift{0%{transform:translateX(0)}100%{transform:translateX(12px)}}
-.cn-stars-drift circle{animation:cnTwinkle 3s ease-in-out infinite alternate}
-.cn-stars-drift circle:nth-child(2n){animation-delay:-1s}
-.cn-stars-drift circle:nth-child(3n){animation-delay:-2s}
-@keyframes cnTwinkle{0%{opacity:var(--t-op,0.7)}100%{opacity:1}}
-/* Expanding wave ring */
-.cn-wave-ring{animation:cnWaveExpand 3.5s ease-out infinite;transform-origin:450px 190px}
-@keyframes cnWaveExpand{0%{r:0;opacity:.7;stroke-width:2.5}100%{r:170;opacity:0;stroke-width:.5}}
-/* Constellation lines — staggered draw */
-.cn-line-hp{fill:none;stroke:rgba(12,215,229,.25);stroke-width:1.2;stroke-linecap:round;stroke-dasharray:300;stroke-dashoffset:300;animation:cnDrawLine 1.2s ease-out forwards;animation-delay:calc(var(--idx,0) * .08s)}
-@keyframes cnDrawLine{to{stroke-dashoffset:0}}
-/* Jalandhar sun */
-.cn-sun-halo-hp{fill:url(#cnSunGlowHp);animation:cnSunPulseHp 3s ease-out infinite;transform-origin:center}
-.cn-sun-core-hp{fill:#fdfeff;stroke:#0cd7e5;stroke-width:2.5}
-.cn-sun-label-hp{fill:#eef7fb;font:900 20px 'Nunito',sans-serif;letter-spacing:-.02em;paint-order:stroke;stroke:#080e18;stroke-width:5px;stroke-linejoin:round}
-@keyframes cnSunPulseHp{0%{transform:scale(.4);opacity:.8}70%,100%{transform:scale(1.5);opacity:0}}
-/* City stars */
-.cn-city{cursor:default}
-.cn-star-halo-hp{fill:url(#cnGlowHp);opacity:0;transition:opacity .35s}
-.cn-section-link:hover .cn-star-halo-hp,.cn-section-link:focus-visible .cn-star-halo-hp{opacity:.6}
-.cn-star-hp{fill:#e5f0f5;transition:fill .2s,transform .2s;transform-box:fill-box;transform-origin:center}
-.cn-section-link:hover .cn-star-hp{fill:#0cd7e5;transform:scale(1.2)}
-.cn-label-hp{fill:#b0cbd9;font:600 13px 'Nunito',sans-serif;letter-spacing:.02em;paint-order:stroke;stroke:#080e18;stroke-width:4px;stroke-linejoin:round}
-.cn-section-link:hover .cn-label-hp{fill:#e5f7fb}
-.cn-cta{display:flex;justify-content:center;align-items:center;gap:8px;padding:0 0 18px;color:#6d8da3;font:700 .9rem 'Nunito',sans-serif;transition:color .2s}
-.cn-section-link:hover .cn-cta{color:#0cd7e5}
-.cn-cta svg{width:18px;height:18px;transition:transform .2s}
-.cn-section-link:hover .cn-cta svg{transform:translateX(4px)}
-@media (max-width:600px){.cn-label-hp{font-size:10px}.cn-sun-label-hp{font-size:15px}.cn-star-hp{filter:none!important}}
-@media (prefers-reduced-motion:reduce){.cn-stars-drift,.cn-wave-ring,.cn-sun-halo-hp,.cn-line-hp,.cn-stars-drift circle{animation:none!important}.cn-line-hp{stroke-dashoffset:0}}
+/* ===== HOME PUNJAB MAP (dark night-sky) ===== */
+.pm-section{max-width:100%;margin:0 auto;padding:0;background:#080e18;border-radius:24px;box-shadow:inset 0 0 80px rgba(12,215,229,.04);overflow:hidden;position:relative}
+.pm-section-link{display:block;text-decoration:none;color:inherit;transition:transform .2s ease,box-shadow .2s ease}
+.pm-section-link:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(12,215,229,.1)}
+.pm-section-link:focus-visible{outline:3px solid #0cd7e5;outline-offset:4px;border-radius:26px}
+.pm-map{position:relative;width:100%;height:auto}
+.pm-svg{display:block;width:100%;height:auto}
+.pm-bg{fill:#080e18}
+/* Punjab outline */
+.pm-land{fill:rgba(12,215,229,.06);stroke:rgba(12,215,229,.35);stroke-width:1.2}
+.pm-contour{fill:none;stroke:rgba(12,215,229,.08);stroke-width:1;stroke-dasharray:3 11}
+/* Animated routes — each draws in staggered */
+.pm-route{fill:none;stroke:rgba(12,215,229,.5);stroke-width:1.5;stroke-linecap:round;stroke-dasharray:120;stroke-dashoffset:120;animation:pmDraw 1.4s ease-out forwards;animation-delay:calc(var(--idx,0) * .1s)}
+@keyframes pmDraw{to{stroke-dashoffset:0}}
+/* Jalandhar home */
+.pm-home-halo{fill:url(#pmGlowHome);animation:pmPulse 3s ease-out infinite;transform-origin:center}
+.pm-home-ring{fill:rgba(12,215,229,.1);stroke:rgba(12,215,229,.6);stroke-width:1.5}
+.pm-home-core{fill:#fdfeff;stroke:#0cd7e5;stroke-width:2.5}
+.pm-home-label{fill:#eef7fb;font:900 18px 'Nunito',sans-serif;letter-spacing:-.02em;paint-order:stroke;stroke:#080e18;stroke-width:5px;stroke-linejoin:round}
+@keyframes pmPulse{0%{transform:scale(.4);opacity:.8}70%,100%{transform:scale(1.5);opacity:0}}
+/* City dots */
+.pm-city{cursor:default}
+.pm-city-dot{fill:#e5f0f5;transition:fill .2s,transform .2s;transform-box:fill-box;transform-origin:center}
+.pm-section-link:hover .pm-city-dot{fill:#0cd7e5;transform:scale(1.3)}
+.pm-city-label{fill:#b0cbd9;font:600 13px 'Nunito',sans-serif;letter-spacing:.02em;transition:fill .2s;paint-order:stroke;stroke:#080e18;stroke-width:4px;stroke-linejoin:round}
+.pm-section-link:hover .pm-city-label{fill:#e5f7fb}
+.pm-cta{display:flex;justify-content:center;align-items:center;gap:8px;padding:0 0 18px;color:#6d8da3;font:700 .9rem 'Nunito',sans-serif;transition:color .2s}
+.pm-section-link:hover .pm-cta{color:#0cd7e5}
+.pm-cta svg{width:18px;height:18px;transition:transform .2s}
+.pm-section-link:hover .pm-cta svg{transform:translateX(4px)}
+@media (max-width:600px){.pm-city-label{font-size:10px}.pm-home-label{font-size:15px}}
+@media (prefers-reduced-motion:reduce){.pm-route,.pm-home-halo{animation:none!important}.pm-route{stroke-dashoffset:0}}
 /* ===== HERO CTA SUB ===== */
 .hero-cta-sub{margin:12px 0 0;font-size:.88rem;color:var(--ink);opacity:.78}
 .hero-cta-sub strong{color:var(--navy);font-weight:700}
