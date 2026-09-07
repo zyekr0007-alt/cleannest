@@ -180,45 +180,33 @@
     <div class="svc-grid svc-grid-cover" id="svc-popular-grid">
       <!-- Full House -->
       <a class="svc-card svc-card-cover" href="full-house-cleaning.html" style="--bg-img:url(assets/img/services/full-house-cleaning.webp)">
-        <span class="svc-card__bottom">
-          <span class="svc-card__name">Full House</span>
-          <span class="svc-card__price-des">from ₹4,500</span>
-        </span>
+        <span class="svc-card__name">Full House</span>
+        <span class="svc-card__price-des">from ₹4,500</span>
       </a>
       <!-- Kitchen -->
       <a class="svc-card svc-card-cover" href="kitchen-cleaning.html" style="--bg-img:url(assets/img/services/kitchen-deep-cleaning.webp)">
-        <span class="svc-card__bottom">
-          <span class="svc-card__name">Kitchen</span>
-          <span class="svc-card__price-des">from ₹2,490</span>
-        </span>
+        <span class="svc-card__name">Kitchen</span>
+        <span class="svc-card__price-des">from ₹2,490</span>
       </a>
       <!-- Bathroom -->
       <a class="svc-card svc-card-cover" href="bathroom-cleaning.html" style="--bg-img:url(assets/img/services/bathroom-deep-cleaning.webp)">
-        <span class="svc-card__bottom">
-          <span class="svc-card__name">Bathroom</span>
-          <span class="svc-card__price-des">from ₹890</span>
-        </span>
+        <span class="svc-card__name">Bathroom</span>
+        <span class="svc-card__price-des">from ₹890</span>
       </a>
       <!-- Sofa -->
       <a class="svc-card svc-card-cover" href="sofa-cleaning.html" style="--bg-img:url(assets/img/services/sofa-dry-cleaning.webp)">
-        <span class="svc-card__bottom">
-          <span class="svc-card__name">Sofa</span>
-          <span class="svc-card__price-des">from ₹199 / seat</span>
-        </span>
+        <span class="svc-card__name">Sofa</span>
+        <span class="svc-card__price-des">from ₹199 / seat</span>
       </a>
       <!-- Chimney -->
       <a class="svc-card svc-card-cover" href="chimney-cleaning.html" style="--bg-img:url(assets/img/services/chimney-cleaning.webp)">
-        <span class="svc-card__bottom">
-          <span class="svc-card__name">Chimney</span>
-          <span class="svc-card__price-des">from ₹690</span>
-        </span>
+        <span class="svc-card__name">Chimney</span>
+        <span class="svc-card__price-des">from ₹690</span>
       </a>
       <!-- AC -->
       <a class="svc-card svc-card-cover" href="ac-services.html" style="--bg-img:url(assets/img/services/ac-services.webp)">
-        <span class="svc-card__bottom">
-          <span class="svc-card__name">AC</span>
-          <span class="svc-card__price-des">from ₹490</span>
-        </span>
+        <span class="svc-card__name">AC</span>
+        <span class="svc-card__price-des">from ₹490</span>
       </a>
     </div>
     <div class="services-more">
@@ -1141,73 +1129,115 @@
       let timer = null;
       const INTERVAL = opts.interval || 5000;
 
-      slides.forEach((_, i) => {
-        const dot = document.createElement('button');
+      slides.forEach(function(_, i) {
+        var dot = document.createElement('button');
         dot.type = 'button';
         dot.setAttribute('aria-label', 'Show ' + label + ' ' + (i + 1));
-        dot.addEventListener('click', () => { goTo(i); resetTimer(); });
+        dot.addEventListener('click', function() { goTo(i); resetTimer(); });
         dotsWrap.appendChild(dot);
       });
-      const dots = Array.from(dotsWrap.children);
+      var dots = Array.from(dotsWrap.children);
 
-      const prevBtn = opts.prevId ? document.getElementById(opts.prevId) : null;
-      const nextBtn = opts.nextId ? document.getElementById(opts.nextId) : null;
-      function syncArrows() {
-        if (prevBtn) prevBtn.disabled = false;
-        if (nextBtn) nextBtn.disabled = false;
-      }
-      if (prevBtn) prevBtn.addEventListener('click', () => { goTo(index - 1); resetTimer(); });
-      if (nextBtn) nextBtn.addEventListener('click', () => { goTo(index + 1); resetTimer(); });
+      var prevBtn = opts.prevId ? document.getElementById(opts.prevId) : null;
+      var nextBtn = opts.nextId ? document.getElementById(opts.nextId) : null;
+      if (prevBtn) prevBtn.addEventListener('click', function() { goTo(index - 1); resetTimer(); });
+      if (nextBtn) nextBtn.addEventListener('click', function() { goTo(index + 1); resetTimer(); });
 
       function goTo(i) {
         index = (i + count) % count;
-        track.style.transform = 'translateX(-' + (index * 100) + '%)';
-        dots.forEach((d, di) => d.classList.toggle('active', di === index));
-        syncArrows();
+        track.style.transform = 'translate3d(-' + (index * 100) + '%,0,0)';
+        dots.forEach(function(d, di) { d.classList.toggle('active', di === index); });
       }
       function next() { goTo(index + 1); }
       function resetTimer() {
         clearInterval(timer);
-        timer = setInterval(next, INTERVAL);
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          timer = setInterval(next, INTERVAL);
+        }
       }
 
-      let startX = 0;
-      let dragging = false;
-      const onStart = (e) => {
-        startX = e.touches ? e.touches[0].clientX : e.clientX;
+      // Touch swipe — passive, optimized
+      var startX = 0, startY = 0, dragging = false, dx = 0;
+      var preventSwipe = false;
+
+      track.addEventListener('touchstart', function(e) {
+        startX = e.touches[0].clientX;
+        startY = e.touches[0].clientY;
         dragging = true;
-      };
-      const onMove = (e) => {
-        if (!dragging) return;
-        const dx = (e.touches ? e.touches[0].clientX : e.clientX) - startX;
+        preventSwipe = false;
+        dx = 0;
         track.style.transition = 'none';
-        track.style.transform = 'translateX(calc(-' + (index * 100) + '% + ' + dx + 'px))';
-      };
-      const onEnd = (e) => {
+        clearInterval(timer);
+      }, { passive: true });
+
+      track.addEventListener('touchmove', function(e) {
+        if (!dragging) return;
+        var cx = e.touches[0].clientX;
+        var cy = e.touches[0].clientY;
+        var dy = Math.abs(cy - startY);
+        // Only swallow horizontal swipes, let vertical scroll through
+        if (dy > Math.abs(cx - startX) * 1.5) { dragging = false; return; }
+        dx = cx - startX;
+        track.style.transform = 'translate3d(calc(-' + (index * 100) + '% + ' + dx + 'px),0,0)';
+      }, { passive: true });
+
+      track.addEventListener('touchend', function(e) {
         if (!dragging) return;
         dragging = false;
         track.style.transition = '';
-        const dx = (e.changedTouches ? e.changedTouches[0].clientX : e.clientX) - startX;
         if (Math.abs(dx) > 50) {
           goTo(index + (dx < 0 ? 1 : -1));
         } else {
           goTo(index);
         }
         resetTimer();
-      };
-      track.addEventListener('touchstart', onStart, { passive: true });
-      track.addEventListener('touchmove', onMove, { passive: true });
-      track.addEventListener('touchend', onEnd);
-      track.addEventListener('mousedown', onStart);
-      window.addEventListener('mousemove', onMove);
-      window.addEventListener('mouseup', onEnd);
+      }, { passive: true });
 
-      carousel.addEventListener('mouseenter', () => clearInterval(timer));
-      carousel.addEventListener('mouseleave', resetTimer);
+      // Mouse drag
+      track.addEventListener('mousedown', function(e) {
+        startX = e.clientX;
+        dragging = true;
+        dx = 0;
+        track.style.transition = 'none';
+        clearInterval(timer);
+        e.preventDefault();
+      });
 
-      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      function onMouseMove(e) {
+        if (!dragging) return;
+        dx = e.clientX - startX;
+        track.style.transform = 'translate3d(calc(-' + (index * 100) + '% + ' + dx + 'px),0,0)';
+      }
+
+      function onMouseUp() {
+        if (!dragging) return;
+        dragging = false;
+        track.style.transition = '';
+        window.removeEventListener('mousemove', onMouseMove);
+        window.removeEventListener('mouseup', onMouseUp);
+        if (Math.abs(dx) > 50) {
+          goTo(index + (dx < 0 ? 1 : -1));
+        } else {
+          goTo(index);
+        }
         resetTimer();
       }
+
+      track.addEventListener('mousedown', function(e) {
+        startX = e.clientX;
+        dragging = true;
+        dx = 0;
+        track.style.transition = 'none';
+        clearInterval(timer);
+        window.addEventListener('mousemove', onMouseMove);
+        window.addEventListener('mouseup', onMouseUp);
+        e.preventDefault();
+      });
+
+      carousel.addEventListener('mouseenter', function() { clearInterval(timer); });
+      carousel.addEventListener('mouseleave', resetTimer);
+
+      resetTimer();
       goTo(0);
     }
 
