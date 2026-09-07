@@ -4458,6 +4458,29 @@ margin:12px 0 0;font-size:.88rem;color:var(--ink);opacity:.78
 .hero-cta-sub strong {
 color:var(--navy);font-weight:700
 }
+.hero-proofline {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 20px;
+  color: var(--muted);
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .01em;
+}
+.hero-proofline i {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--cyan);
+}
+@media (max-width: 1023px) {
+  .hero-proofline { justify-content: center; }
+}
+@media (min-width: 1024px) {
+  .homepage-hero .hero-proofline { justify-content: flex-start; }
+}
 /* ===== PRICING PAGE — professional rate card ===== */
 .pricing-hero {
 padding:32px 24px 20px;text-align:center;max-width:720px;margin:0 auto
