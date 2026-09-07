@@ -71,7 +71,7 @@
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=telma@400,500,600,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=216">
+  <link rel="stylesheet" href="style.css?v=217">
   <style>
     /* Critical preloader shell: keep it full-screen off-white instantly so
        nothing flashes before style.css loads. (Full styling lives in style.css.) */
@@ -1193,16 +1193,7 @@
         resetTimer();
       }, { passive: true });
 
-      // Mouse drag
-      track.addEventListener('mousedown', function(e) {
-        startX = e.clientX;
-        dragging = true;
-        dx = 0;
-        track.style.transition = 'none';
-        clearInterval(timer);
-        e.preventDefault();
-      });
-
+      // Mouse drag — only one handler
       function onMouseMove(e) {
         if (!dragging) return;
         dx = e.clientX - startX;
@@ -1223,7 +1214,7 @@
         resetTimer();
       }
 
-      track.addEventListener('mousedown', function(e) {
+      function onMouseDown(e) {
         startX = e.clientX;
         dragging = true;
         dx = 0;
@@ -1232,7 +1223,8 @@
         window.addEventListener('mousemove', onMouseMove);
         window.addEventListener('mouseup', onMouseUp);
         e.preventDefault();
-      });
+      }
+      track.addEventListener('mousedown', onMouseDown);
 
       carousel.addEventListener('mouseenter', function() { clearInterval(timer); });
       carousel.addEventListener('mouseleave', resetTimer);
