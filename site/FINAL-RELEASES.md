@@ -6,7 +6,7 @@ The owner requested implementation and immediate deployment one completed page a
 2. Services: completed in this release. Six approved primary images retained; six secondary illustrations replaced and visually verified. Smaller services use compact price rows; stove/exhaust remain quote add-ons. Chimney is a separate ₹690 extra across kitchen text, FAQ, catalog and estimate. Mobile/desktop visual checks, all-page structural checks, 12 pricing tests and service-page WCAG A/AA scan passed. Also tightened the homepage comparison image crops.
 3. Pricing: completed in this release. Five two-column rate tables with readable service scope, units, starting rates and range endpoints. All 32 rows fit a 360px screen without table or page overflow; desktop fit, structural and WCAG A/AA checks passed. Services release `b46d5b3` and its live chimney-extra flag were verified before this release.
 4. Reviews: completed in this release. Dedicated `reviews.html`, main-menu destination, sitemap entry, owner-provided Google/Justdial links and rounded rating summaries. Existing authentic Google excerpts retained; Justdial full reviews are linked rather than invented. Yellow stars sit on navy for readable contrast.
-5. Service Areas: pending. District map at top and all 13 city links below.
+5. Service Areas: completed in this release. Zoomed district map at top, 13 named pins and 13 city-page links beneath. Mobile layout, structural and WCAG A/AA checks passed; no old detached map-city list remains.
 6. FAQs: pending. Dedicated categorized accordion page using shared animation.
 
 ## Secondary photo prompt set
