@@ -4498,7 +4498,7 @@ transform:translateX(4px)
 }
 /* ===== HERO CTA SUB ===== */
 .hero-cta-sub {
-margin:12px 0 0;font-size:.88rem;color:var(--ink);opacity:.78
+margin:4px 0 0;font-size:.88rem;color:var(--ink);opacity:.78
 }
 .hero-cta-sub strong {
 color:var(--navy);font-weight:700
