@@ -72,7 +72,7 @@
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=telma@400,500,600,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=303">
+  <link rel="stylesheet" href="style.css?v=304">
   <style>
     /* Critical preloader shell: keep it full-screen off-white instantly so
        nothing flashes before style.css loads. (Full styling lives in style.css.) */
@@ -181,11 +181,11 @@
 
   <!-- Services -->
 <!-- SECTION 03: SERVICES GRID -->
-<section class="services" id="services" data-section="services-grid">
+<section class="services" id="services" data-section="services-grid" aria-labelledby="services-title" aria-describedby="services-description">
     <div class="section-head">
       <span class="section-badge">Popular Services</span>
-      <h2 class="section-title">What We <span class="star">Clean</span></h2>
-      <p class="section-sub">Start with our most-booked services. Tap any card to see what&rsquo;s included and get a quote.</p>
+      <h2 class="section-title" id="services-title">What We <span class="star">Clean</span></h2>
+      <p class="section-sub" id="services-description">Start with our most-booked services. Tap any card to see what&rsquo;s included and get a quote.</p>
     </div>
     <div class="svc-grid svc-grid-cover" id="svc-popular-grid">
       <!-- Full House -->
@@ -220,7 +220,7 @@
       </a>
     </div>
     <div class="services-more">
-      <a class="services-more-btn" href="services.html">See Full Service List</a>
+      <a class="services-more-btn" href="services.html">Explore All Services <span aria-hidden="true">→</span></a>
     </div>
   </section>
 

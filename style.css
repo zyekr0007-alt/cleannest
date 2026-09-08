@@ -524,6 +524,11 @@ width: 100%;
   line-height: 1;
   transition: transform var(--dur-quick) var(--ease-out);
 }
+#svc-popular-grid .svc-card-cover:focus-visible,
+.services-more-btn:focus-visible {
+  outline: 3px solid rgba(12, 215, 229, 0.7);
+  outline-offset: 4px;
+}
 @media (hover: hover) and (pointer: fine) {
   #svc-popular-grid .svc-card-cover:hover .svc-card__arrow { transform: translateX(4px); }
 }
