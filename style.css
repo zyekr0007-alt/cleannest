@@ -440,7 +440,7 @@ width: 100%;
   .homepage-hero .hero-inner {
     grid-template-columns: minmax(0, 1fr) minmax(320px, 0.72fr);
     grid-template-rows: auto auto;
-    gap: 22px 56px;
+    gap: 6px 56px;
   }
   .homepage-hero .hero-copy {
     grid-column: 1;
@@ -539,12 +539,12 @@ width: 100%;
 
 @media (max-width: 1023px) {
   .homepage-hero .hero-media {
-    order: 2;
+    order: 3;
     width: min(100%, 520px);
     margin: 26px auto 0;
   }
   .homepage-hero .hero-copy { order: 1; }
-  .homepage-hero .hero-aside { order: 3; }
+  .homepage-hero .hero-aside { order: 2; margin-top: 8px; }
 }
 
 @media (max-width: 520px) {
