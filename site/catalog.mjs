@@ -38,12 +38,17 @@ const definitions=[
  ['recurring-cleaning','Regular cleaning','Keep that freshly-cleaned feeling.','Homes',null]
 ];
 const rateMap=Object.fromEntries(groups.flatMap(g=>g.items).map(r=>[r.id,r]));
+const refreshedImages={'mattress-steam-cleaning':'mattress','curtain-cleaning':'curtains','window-blinds-cleaning':'blinds','carpet-steam-cleaning':'carpet','refrigerator-cleaning':'fridge','floor-renewal':'floor'};
 export const extras=['cabinets','fan','dining-chairs','cushions'].map(id=>{const r=rateMap[id];return {id:'extra-'+id,name:r.label,rate:id,image:'',price:`${money(r.base)}${r.high?'–'+money(r.high):''} ${r.unit}`};});
 export const services=definitions.map(([id,name,tagline,category,rate,image])=>({id,name,tagline,category,rate,
- image:image?'assets/img/editorial/'+image+'.webp':source.pages[id+'.html']?.image||'assets/img/services/recurring-cleaning.webp',
+ image:refreshedImages[id]?'assets/img/editorial/'+refreshedImages[id]+'-v2.webp':image?'assets/img/editorial/'+image+'.webp':source.pages[id+'.html']?.image||'assets/img/services/recurring-cleaning.webp',
  price:rate==='home'?'From ₹4,500':rate?`${rateMap[rate].high?money(rateMap[rate].base)+'–'+money(rateMap[rate].high):'From '+money(rateMap[rate].base)} ${rateMap[rate].unit}`:'Custom quote',
  ...{includes:source.pages[id+'.html']?.includes||['A cleaning plan matched to your space','Scope and frequency agreed before booking','Professional equipment and trained staff'],faqs:source.pages[id+'.html']?.faqs||[]}
 }));
+// Owner-confirmed kitchen scope: chimney is a separately selected ₹690 extra.
+const kitchen=services.find(s=>s.id==='kitchen-cleaning');
+kitchen.includes=kitchen.includes.map(t=>t==='Chimney & exhaust cleaning'?'Exhaust cleaning':t);
+kitchen.faqs=kitchen.faqs.map(([q,a])=>/chimney/i.test(q)?[q,'Yes. Add chimney cleaning to your kitchen service for ₹690. It is optional and is not included in the kitchen price.']:[q,a]);
 export const faqs=[
  ['How do I get a quote?','Choose a service, tell us about your space and add any extras. You’ll see a rough estimate before sending your summary on WhatsApp. We then confirm the scope, exact price and available dates with you.'],
  ['Is the estimate the final price?','It is a guide based on our published rates. Size, condition, access and the agreed scope can affect the final quote. We confirm the price with you before booking.'],

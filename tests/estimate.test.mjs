@@ -12,8 +12,8 @@ test('bathrooms and kitchens are ranges, not treatment tiers',()=>{
  const r=calculate(catalog,state(['bathroom-cleaning','kitchen-cleaning']));assert.equal(r.low,3380);assert.equal(r.high,5680);
  const b=calculate(catalog,state(['bathroom-cleaning'],{'bathroom-cleaning':{qty:7,tier:1}}));assert.equal(b.low,6230);assert.equal(b.high,8330);
 });
-test('kitchen chimney inclusion is explicit and configurable',()=>{
- const s=state(['kitchen-cleaning','chimney-cleaning']);assert.equal(calculate(catalog,s).low,2490);assert.equal(calculate({...catalog,kitchenIncludesChimney:false},s).low,3180);
+test('kitchen chimney is a separately charged ₹690 optional extra',()=>{
+ const s=state(['kitchen-cleaning','chimney-cleaning']);assert.equal(catalog.kitchenIncludesChimney,false);assert.equal(calculate(catalog,s).low,3180);assert.equal(calculate(catalog,s).high,5180);assert.equal(calculate(catalog,state(['kitchen-cleaning'])).low,2490);
 });
 test('custom work is not presented as a complete priced total',()=>{
  const r=calculate(catalog,state(['full-house-cleaning','chimney-cleaning'],{'full-house-cleaning':{home:'villa'}}));assert.equal(r.custom,true);assert.equal(priceLabel(r),'₹690 + custom quote');
