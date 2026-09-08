@@ -1,5 +1,7 @@
 # CleanNest redesign — September 2026
 
+> The final page-by-page releases are documented in [FINAL-RELEASES.md](FINAL-RELEASES.md). Those refinements supersede the initial design notes below. The current site has 66 pages, including a dedicated Reviews page.
+
 ## Running and maintaining the site
 
 The public site remains static HTML/CSS/JavaScript, compatible with GitHub Pages. No server, account system, third-party animation dependency or production build service is required. Node is used locally to generate the HTML from shared templates.
@@ -32,13 +34,13 @@ Generated HTML is checked into the repository so GitHub Pages can publish it dir
 
 Four screens: multi-select services → relevant tap choices and counts → name and phone → itemized estimate and WhatsApp. Service links preselect a service while still allowing other selections. Expandable access includes all 24 services and smaller cabinet, ceiling-fan, dining-chair and cushion extras.
 
-Full-home estimates keep the published BHK ranges and collect kitchen/bathroom counts as scope information. Whole-home kitchen/bathroom work and other included basics are excluded from extras. The existing dedicated kitchen service includes chimney, hob, exhaust and cabinet cleaning; those are excluded as duplicate add-ons for that main service. Sofa cushion cleaning is not charged twice. Home-package chimney cleaning remains an optional specialist add-on, as requested by the owner.
+Full-home estimates keep the published BHK ranges and collect kitchen/bathroom counts as scope information. Whole-home kitchen/bathroom work and other included basics are excluded from extras. The dedicated kitchen service includes hob, exhaust and cabinet cleaning; those are excluded as duplicate add-ons. Chimney cleaning is an optional ₹690 extra. Sofa cushion cleaning is not charged twice. Home-package chimney cleaning remains an optional specialist add-on, as requested by the owner.
 
 Bathroom pricing is one ₹890–₹1,190 size/condition range, not standard/descaling tiers. Kitchen and full-home pricing retain their published ranges. Only sofa (Standard/Premium/Premium + steam) and AC have treatment options; other old tiers are represented as ranges with their original endpoints. Floor renewal retains material selection. Recliners add the published ₹150 surcharge and cannot exceed sofa seats. Custom jobs never display a priced subtotal as their complete total.
 
 The form validates name and phone before revealing the estimate. Location/notes are optional. A privacy notice explains the handoff; the visitor explicitly chooses the WhatsApp link and presses Send there. No delivery or reserved-slot claim is made. No customer details are stored in localStorage or sent to a separate backend.
 
-Pending owner clarification: the new brief asks for optional kitchen chimney cleaning, but the existing published kitchen package includes it. The exported `kitchenIncludesChimney` flag remains true until confirmed. If changed, update kitchen inclusions/FAQ as well as the flag; the existing standalone chimney rate is ₹690. Published sofa ₹199/₹279/₹349 per seat and AC ₹490/₹690 per unit remain unchanged.
+Owner confirmed that chimney cleaning is a separately charged kitchen add-on at ₹690. `kitchenIncludesChimney` is false, and kitchen inclusions, FAQ, quote suggestions and regression tests reflect this. Sofa ₹199/₹279/₹349 per seat and AC ₹490/₹690 per unit remain unchanged.
 
 ## Design and imagery
 

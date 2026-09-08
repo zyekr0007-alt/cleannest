@@ -50,7 +50,7 @@ const kitchen=services.find(s=>s.id==='kitchen-cleaning');
 kitchen.includes=kitchen.includes.map(t=>t==='Chimney & exhaust cleaning'?'Exhaust cleaning':t);
 kitchen.faqs=kitchen.faqs.map(([q,a])=>/chimney/i.test(q)?[q,'Yes. Add chimney cleaning to your kitchen service for ₹690. It is optional and is not included in the kitchen price.']:[q,a]);
 export const faqs=[
- ['How do I get a quote?','Choose a service, tell us about your space and add any extras. You’ll see a rough estimate before sending your summary on WhatsApp. We then confirm the scope, exact price and available dates with you.'],
+ ['How do I get a quote?','Select one or more services, answer a few questions about your space, then enter your name and mobile number to see a rough estimate. Send your summary on WhatsApp and we’ll confirm the scope, price and available dates with you.'],
  ['Is the estimate the final price?','It is a guide based on our published rates. Size, condition, access and the agreed scope can affect the final quote. We confirm the price with you before booking.'],
  ['What is included in a full-home clean?','Interior surface cleaning, kitchen degreasing, bathroom cleaning, floors, windows and appliance exteriors. Sofa treatments, AC servicing and specialist work are separate. Share your room counts so we can confirm the full scope.'],
  ['Are your products safe for children and pets?','We use professional products suitable for homes with children and pets. Tell us about sensitivities or delicate surfaces, and follow the team’s guidance on access while cleaning and drying.'],

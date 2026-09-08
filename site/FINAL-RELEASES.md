@@ -7,7 +7,7 @@ The owner requested implementation and immediate deployment one completed page a
 3. Pricing: completed in this release. Five two-column rate tables with readable service scope, units, starting rates and range endpoints. All 32 rows fit a 360px screen without table or page overflow; desktop fit, structural and WCAG A/AA checks passed. Services release `b46d5b3` and its live chimney-extra flag were verified before this release.
 4. Reviews: completed in this release. Dedicated `reviews.html`, main-menu destination, sitemap entry, owner-provided Google/Justdial links and rounded rating summaries. Existing authentic Google excerpts retained; Justdial full reviews are linked rather than invented. Yellow stars sit on navy for readable contrast.
 5. Service Areas: completed in this release. Zoomed district map at top, 13 named pins and 13 city-page links beneath. Mobile layout, structural and WCAG A/AA checks passed; no old detached map-city list remains.
-6. FAQs: pending. Dedicated categorized accordion page using shared animation.
+6. FAQs: completed in this release. Nine questions grouped under planning, home care and booking. Includes the confirmed ₹690 chimney extra. Native keyboard disclosure and interrupted/reversed pointer animations checked. All page destinations are dedicated URLs; the Google profile is consistent across review and directions links.
 
 ## Secondary photo prompt set
 
