@@ -1,5 +1,15 @@
 # CleanNest — cleannest.in
 
+## September 2026 redesign
+
+The site has been rebuilt locally with shared static templates, an off-white/navy design and a guided WhatsApp estimator. **Current maintenance instructions and verification notes are in [site/REDESIGN.md](site/REDESIGN.md).** The historical implementation notes below describe the previous site.
+
+Run `npm run build` after changing templates or source data. Run `npm run dev` for the local preview, `npm test` for pricing regression tests and `npm run check` for all-page structural checks. There are no npm dependencies to install. Generated HTML remains compatible with the existing GitHub Pages hosting.
+
+Do not run the old Python page generator. Pages are now built from `scripts/build.mjs` and `site/catalog.mjs`; `assets/site.css`, `assets/site.js` and the quote modules replace the old inline scripts and root stylesheet on generated pages. GitHub Pages publishes the generated files from `main` at https://cleannest.in/.
+
+---
+
 Static site for **CleanNest — Deep Cleaning Services, Jalandhar** (Punjab, India).
 
 - **Production domain:** https://www.cleannest.in (HTTP 200 verified)

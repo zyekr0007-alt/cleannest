@@ -1,5 +1,7 @@
 # CleanNest — Content Architecture and Publication Rules
 
+> September 2026 owner-authorized redesign: the current specification is [site/REDESIGN.md](site/REDESIGN.md). The historical rules below are retained for reference and are superseded where the owner approved the complete rebuild, new hero/copy, generated service imagery, confirmed team/product claims, guided estimate flow and 13-city coverage. Current templates generate 65 pages. The original branding and published prices remain fixed. Do not use historical page counts or old inline quote scripts as current requirements.
+
 Project: cleannest.in — CleanNest deep-cleaning services, Jalandhar, Punjab, India
 
 Repository: `/Users/zyekr/cleannest-site`
