@@ -72,7 +72,7 @@
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=telma@400,500,600,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=305">
+  <link rel="stylesheet" href="style.css?v=306">
   <style>
     /* Critical preloader shell: keep it full-screen off-white instantly so
        nothing flashes before style.css loads. (Full styling lives in style.css.) */
@@ -342,10 +342,10 @@
 
   <!-- Reviews -->
 <!-- SECTION 05: GOOGLE REVIEWS -->
-<section class="reviews" id="reviews" data-section="google-reviews">
+<section class="reviews" id="reviews" data-section="google-reviews" aria-labelledby="reviews-title">
     <div class="reviews-head">
       <span class="reviews-badge">Reviews</span>
-      <h2 class="reviews-title">Google <span class="star">Reviews</span></h2>
+      <h2 class="reviews-title" id="reviews-title">Google <span class="star">Reviews</span></h2>
       <div class="reviews-aggregate">
         <span class="agg-score" data-count="4.9" data-decimals="1">4.9</span>
         <span class="agg-stars" aria-hidden="true">★★★★★</span>
@@ -353,7 +353,7 @@
       </div>
     </div>
 
-    <div class="reviews-viewport" id="reviews-viewport">
+    <div class="reviews-viewport" id="reviews-viewport" role="region" aria-roledescription="carousel" aria-label="Customer reviews">
       <button class="reviews-arrow prev" id="reviews-prev" type="button" aria-label="Previous review">←</button>
       <div class="reviews-grid" id="reviews-track">
 <a class="review-card" href="https://www.google.com/maps/place/?q=place_id:ChIJ1zZzOUtbaR4RXbMy1OZsKsI" target="_blank" rel="noopener">
@@ -425,7 +425,10 @@
     </div>
       <button class="reviews-arrow next" id="reviews-next" type="button" aria-label="Next review">→</button>
     </div>
-    <div class="reviews-dots" id="reviews-dots" role="group" aria-label="Review slides"></div>
+    <div class="reviews-carousel-footer">
+      <div class="reviews-dots" id="reviews-dots" role="group" aria-label="Review slides"></div>
+      <span class="reviews-status" id="reviews-status" aria-live="polite">Review 1 of 6</span>
+    </div>
     <div class="reviews-actions">
       <a class="reviews-all" href="https://www.google.com/maps/place/?q=place_id:ChIJ1zZzOUtbaR4RXbMy1OZsKsI" target="_blank" rel="noopener">
         View all reviews on Google
@@ -1138,7 +1141,7 @@
     }
 
     makeCarousel({ carouselId: 'gallery-carousel', trackId: 'gallery-track', dotsId: 'gallery-dots', statusId: 'gallery-status', label: 'result', interval: 3600 });
-    makeCarousel({ carouselId: 'reviews-viewport', trackId: 'reviews-track', dotsId: 'reviews-dots', prevId: 'reviews-prev', nextId: 'reviews-next', label: 'review', interval: 6000 });
+    makeCarousel({ carouselId: 'reviews-viewport', trackId: 'reviews-track', dotsId: 'reviews-dots', statusId: 'reviews-status', prevId: 'reviews-prev', nextId: 'reviews-next', label: 'review', interval: 6000 });
 
     // Gallery lightbox: open before/after composite popup on card click
     (function initLightbox() {
