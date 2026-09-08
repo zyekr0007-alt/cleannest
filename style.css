@@ -1076,6 +1076,24 @@ display: flex;
   gap: 8px;
   margin-top: 22px;
 }
+.gallery-carousel-footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.gallery-carousel-footer .gallery-dots { margin-top: 22px; }
+.gallery-status {
+  margin-top: 22px;
+  color: var(--muted);
+  font-size: .78rem;
+  font-weight: 800;
+  white-space: nowrap;
+}
+@media (max-width: 480px) {
+  .gallery-carousel-footer { gap: 10px; }
+  .gallery-status { font-size: .72rem; }
+}
 .gallery-dots button {
 width: 8px;
   height: 8px;

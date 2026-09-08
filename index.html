@@ -72,7 +72,7 @@
   <link rel="preconnect" href="https://api.fontshare.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&family=Sora:wght@500;600;700&display=swap" rel="stylesheet">
   <link href="https://api.fontshare.com/v2/css?f[]=telma@400,500,600,700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css?v=304">
+  <link rel="stylesheet" href="style.css?v=305">
   <style>
     /* Critical preloader shell: keep it full-screen off-white instantly so
        nothing flashes before style.css loads. (Full styling lives in style.css.) */
@@ -296,7 +296,10 @@
           </button>
         </div>
       </div>
-      <div class="gallery-dots" id="gallery-dots" role="group" aria-label="Result slides"></div>
+      <div class="gallery-carousel-footer">
+        <div class="gallery-dots" id="gallery-dots" role="group" aria-label="Featured result slides"></div>
+        <span class="gallery-status" id="gallery-status" aria-live="polite">Result 1 of 6</span>
+      </div>
     </div>
     <div class="gallery-archive-head">
       <h3>More transformations</h3>
@@ -1017,6 +1020,7 @@
       const dotsWrap = document.getElementById(opts.dotsId);
       if (!carousel || !track || !dotsWrap) return;
       const label = opts.label || 'slide';
+      const status = opts.statusId ? document.getElementById(opts.statusId) : null;
 
       const slides = Array.from(track.children);
       const count = slides.length;
@@ -1042,6 +1046,7 @@
         index = (i + count) % count;
         track.style.transform = 'translate3d(-' + (index * 100) + '%,0,0)';
         dots.forEach(function(d, di) { d.classList.toggle('active', di === index); });
+        if (status) status.textContent = label.charAt(0).toUpperCase() + label.slice(1) + ' ' + (index + 1) + ' of ' + count;
       }
       function next() { goTo(index + 1); }
       function resetTimer() {
@@ -1123,12 +1128,16 @@
 
       carousel.addEventListener('mouseenter', function() { clearInterval(timer); });
       carousel.addEventListener('mouseleave', resetTimer);
+      carousel.addEventListener('focusin', function() { clearInterval(timer); });
+      carousel.addEventListener('focusout', function(e) {
+        if (!carousel.contains(e.relatedTarget)) resetTimer();
+      });
 
       resetTimer();
       goTo(0);
     }
 
-    makeCarousel({ carouselId: 'gallery-carousel', trackId: 'gallery-track', dotsId: 'gallery-dots', label: 'result', interval: 3600 });
+    makeCarousel({ carouselId: 'gallery-carousel', trackId: 'gallery-track', dotsId: 'gallery-dots', statusId: 'gallery-status', label: 'result', interval: 3600 });
     makeCarousel({ carouselId: 'reviews-viewport', trackId: 'reviews-track', dotsId: 'reviews-dots', prevId: 'reviews-prev', nextId: 'reviews-next', label: 'review', interval: 6000 });
 
     // Gallery lightbox: open before/after composite popup on card click
