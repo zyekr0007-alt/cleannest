@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import {blogArticles,renderArticle} from '../site/blog.mjs';
 import {cityPage} from '../site/city-content.mjs';
 import {serviceContent,safeInclusions} from '../site/service-content.mjs';
 import {businessInfo} from '../site/business.mjs';
@@ -73,7 +74,11 @@ set('contact.html','Contact CleanNest | Cleaning Services in Jalandhar',contact(
 set('about.html','About CleanNest | Your Local Cleaning Team',about());
 set('faqs.html','Cleaning & Booking Questions | CleanNest',faqsFinal());
 set('quote.html','Build Your Free Cleaning Estimate | CleanNest',quotePage(),'Personalise your cleaning with home size and optional extras. See an itemized estimate and send your request to CleanNest on WhatsApp.');
-set('blog/index.html','Cleaning Journal & Home Care Guides | CleanNest',pageIntro('THE CLEANING JOURNAL','A little know-how.<br>A happier home.','Practical guides to caring for your space between professional cleans.')+`<section class="container journal-grid">${Object.entries(source.pages).filter(([f,p])=>f.startsWith('blog/')&&p.main).map(([f,p])=>`<article class="journal-card"><span class="eyebrow">HOME CARE GUIDE</span><h2><a href="${f}">${esc(p.h1||p.title.split('|')[0])}</a></h2><p>${esc(p.description)}</p><a class="text-link" href="${f}">Read the guide ${icon()}</a></article>`).join('')}</section>`);
+for(const [id,article] of Object.entries(blogArticles)) {
+ set('blog/'+id+'.html',article.title+' | CleanNest Blog',renderArticle(article),article.description);
+ pages.get('blog/'+id+'.html').h1=article.title;
+}
+set('blog/index.html','Cleaning Journal & Home Care Guides | CleanNest',pageIntro('THE CLEANING JOURNAL','A little know-how.<br>A happier home.','Practical guides to caring for your space between professional cleans.')+`<section class="container journal-grid">${[...pages.entries()].filter(([f])=>f.startsWith('blog/')&&f!=='blog/index.html'&&blogArticles[f.slice(5,-5)]).map(([f,p])=>`<article class="journal-card"><span class="eyebrow">HOME CARE GUIDE</span><h2><a href="${f}">${esc(p.h1||p.title.split('|')[0])}</a></h2><p>${esc(p.description)}</p><a class="text-link" href="${f}">Read the guide ${icon()}</a></article>`).join('')}</section>`);
 const aliases=Object.entries(source.pages).filter(([f,p])=>f.startsWith('blog/')&&f!=='blog/index.html'&&!p.main).map(([f])=>f);
 for(const f of aliases)set(f,'Cleaning Prices & Booking Information | CleanNest',pageIntro('CLEANNEST GUIDES','Find your cleaning<br>and pricing information.','Our current prices and booking details are on the pricing page.')+`<div class="container error-actions"><a class="button primary" href="pricing.html">See the current rate card ${icon()}</a></div>`);
 set('404.html','Page Not Found | CleanNest',pageIntro('A LITTLE OUT OF PLACE','Let’s get you<br>back home.','This page may have moved. Your fresh start is still here.')+`<div class="container error-actions"><a class="button primary" href="/">Back to home ${icon()}</a><a class="button secondary" href="services.html">Explore services</a></div>`);
@@ -81,7 +86,7 @@ for(const [file,p] of pages){
  const root=file.startsWith('blog/')?'../':'';
  const canonical='https://cleannest.in/'+(aliases.includes(file)?'pricing.html':file==='index.html'?'':file);
  const s=services.find(s=>file===s.id+'.html');
- const schema=pageSchema({file,page:p,canonical,service:s,isArticle:file.startsWith('blog/')&&file!=='blog/index.html'&&!aliases.includes(file)});
+ const schema=pageSchema({file,page:p,canonical,service:s,isArticle:file.startsWith('blog/')&&file!=='blog/index.html'&&!aliases.includes(file),metadata:blogArticles[file.slice(5,-5)]});
  let html=`<!doctype html><html lang="en-IN" id="top"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(p.title)}</title><meta name="description" content="${esc(p.description)}"><link rel="canonical" href="${canonical}"><meta name="theme-color" content="#F8F7F4"><meta property="og:type" content="website"><meta property="og:title" content="${esc(p.title)}"><meta property="og:description" content="${esc(p.description)}"><meta property="og:url" content="${canonical}"><meta property="og:image" content="https://cleannest.in/assets/img/editorial/hero.webp"><meta name="twitter:card" content="summary_large_image"><link rel="icon" href="assets/img/wordmark.svg"><link rel="preload" href="assets/fonts/Ultima.ttf" as="font" type="font/ttf" crossorigin><link rel="stylesheet" href="assets/site.css"><link rel="stylesheet" href="assets/refinements.css"><link rel="stylesheet" href="assets/final.css?v=faqs1"><link rel="stylesheet" href="assets/pages.css?v=faqs1"><script type="application/ld+json">${JSON.stringify(schema).replaceAll('<','\\u003c')}</script><script src="assets/site.js" defer></script><script src="assets/final.js?v=faqs1" defer></script>${file==='quote.html'?'<script type="module" src="assets/quote-flow.js"></script>':''}${file==='404.html'?'<meta name="robots" content="noindex">':''}</head><body class="${file==='index.html'?'home-final':''}">${header(file)}<main id="main">${p.body}</main>${footer()}${lightbox}</body></html>`;
  if(root) html=html.replace(/(href|src)="(?!https?:|mailto:|tel:|#|\/)([^"]+)"/g,(_,attr,value)=>`${attr}="${root}${value}"`);
  fs.writeFileSync(file,html.replace(/[\t ]+$/gm,'')+'\n');
