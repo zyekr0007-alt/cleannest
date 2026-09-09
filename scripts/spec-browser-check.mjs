@@ -31,8 +31,14 @@ try {
  expect(evaluate('!document.querySelector(".city-route,.city-label-line,.map-replay")'),'map should have no connector lines or replay');
  expect(evaluate('document.querySelector(".coverage-home").dataset.city==="Jalandhar"&&document.querySelector(".coverage-home").dataset.lat==="31.326015"'),'Jalandhar city-centre marker');
  expect(evaluate('getComputedStyle(document.documentElement).getPropertyValue("--navy").trim().toLowerCase()==="#0a2647"'),'updated navy palette');
+ expect(evaluate('document.querySelector("link[rel=icon]")?.getAttribute("href").includes("assets/favicon.png")'),'supplied favicon is linked');
+ expect(evaluate('document.querySelector(".hero-final .hero-visual img")?.getAttribute("src").includes("hero-collage.webp")'),'supplied hero collage is used');
+ expect(evaluate('document.querySelectorAll(".result-carousel .comparison-card").length===7'),'homepage shows seven focused comparisons');
+ expect(evaluate('document.querySelector(".results-instagram")?.textContent.includes("Check out our Instagram for more content")'),'Instagram moved to results section');
+ expect(evaluate('document.querySelector(".homepage-service-grid .service-card-featured")?.classList.contains("service-card-featured")'),'full-home service is featured');
+ expect(evaluate('(()=>{const ids=[...document.querySelectorAll("main > section")].map(e=>e.id||e.className);const order=["hero hero-final container","trust-strip container","services","results","care-section container","process-wrap","reviews","coverage","section container faq-section","closing closing-final container"];return order.every((id,i)=>ids[i]===id)})()'),'homepage follows the requested section order');
  expect(evaluate('[...document.querySelectorAll(".journey-step")].every(e=>Math.abs(e.getBoundingClientRect().top-document.querySelector(".journey-step").getBoundingClientRect().top)<1)'),'booking steps remain horizontal on mobile');
- expect(evaluate('document.querySelectorAll(".quick-contacts [data-brand]").length===2'),'recognizable Instagram and WhatsApp brand SVGs');
+ expect(evaluate('document.querySelector(".quick-contacts [data-brand=whatsapp]")&&document.querySelector(".results-instagram [data-brand=instagram]")'),'recognizable Instagram and WhatsApp brand SVGs');
  expect(evaluate('document.querySelectorAll("image[data-href]").length>0'),'later carousel images should be deferred');
  run('click','.menu-toggle');
  expect(evaluate('document.querySelector(".menu-toggle").getAttribute("aria-expanded")==="true"&&!document.querySelector("#mobile-nav").inert'),'menu must become accessible');

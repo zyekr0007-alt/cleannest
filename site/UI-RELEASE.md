@@ -71,5 +71,19 @@ Pre-existing untracked hero images and SESSION-update1.md remain untouched.
 
 Known dependencies from [the audit report](IMPLEMENTATION-REPORT.md) remain:
 arbitrary legacy HTTP redirects need an edge/host decision; unique city facts,
-approved compact favicon, Ultima licensing confirmation and Search Console
-work need owner input/access. Publishing this code does not resolve those items.
+Ultima licensing confirmation and Search Console work need owner input/access.
+Publishing this code does not resolve those items.
+
+## Homepage refinement queued for publication
+
+10 September 2026. Owner supplied the compact CleanNest favicon and a new
+cleaning-team collage hero image. The follow-up keeps the navy direction while
+refining the conversion path: the hero now uses the supplied collage, Instagram
+has moved into Results with a clear content prompt, the quote CTA has a single
+reduced-motion-safe attention cue, and the homepage follows Hero → Trust →
+Services → Results → Why CleanNest → How It Works → Reviews → Areas → FAQ → CTA.
+
+Full Home is visually featured, the homepage shows seven focused comparison
+results with descriptive service labels, and Services/Pricing headings plus
+major service metadata use clearer search-facing language and unique scope
+descriptions. The favicon assets include PNG browser and Apple touch variants.
