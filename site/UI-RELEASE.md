@@ -3,6 +3,30 @@
 9 September 2026. Owner requested these UI changes and authorized publishing
 them together with the preceding implementation audit.
 
+## Published release
+
+GitHub Pages successfully published commit `96e6bdc` to https://cleannest.in/.
+Live verification completed: all 60 sitemap URLs return 200 with expected
+canonicals; unknown pages return a noindex 404. All 64 responsive checks,
+16 mobile accessibility audits and the interaction checks pass on production.
+All 18 local unit tests pass. No real enquiry was sent.
+
+Lighthouse 12.8.2 on production:
+
+| Metric | Mobile | Desktop |
+| --- | --- | --- |
+| Performance | 95 | 99 |
+| Accessibility / Best practices / SEO | 100 / 100 / 100 | 100 / 100 / 100 |
+| LCP | 2.0s | 0.8s |
+| CLS | 0 | 0 |
+| TBT | 60ms | 0ms |
+
+These are lab snapshots, not field Core Web Vitals or an INP measurement.
+Reports are saved locally as `.review/blue-live-{mobile,desktop}.report.{json,html}`.
+The live browser report is `.review/spec-qa/report.json`.
+`www` redirects to apex. The stale full-house slug still returns 404 because
+arbitrary edge redirects have not been activated, as documented below.
+
 ## Changes
 
 - Horizontal three-step booking journey, including mobile: circular SVG icons,
