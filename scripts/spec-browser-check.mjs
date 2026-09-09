@@ -28,7 +28,11 @@ try {
  }
  run('set','viewport','390','844');open('');
  expect(evaluate('!document.querySelector(".brand-intro")'),'brand overlay still present');
- expect(evaluate('document.querySelector(".map-replay").hidden'),'mobile map replay should be hidden');
+ expect(evaluate('!document.querySelector(".city-route,.city-label-line,.map-replay")'),'map should have no connector lines or replay');
+ expect(evaluate('document.querySelector(".coverage-home").dataset.city==="Jalandhar"&&document.querySelector(".coverage-home").dataset.lat==="31.326015"'),'Jalandhar city-centre marker');
+ expect(evaluate('getComputedStyle(document.documentElement).getPropertyValue("--navy").trim().toLowerCase()==="#0a2647"'),'updated navy palette');
+ expect(evaluate('[...document.querySelectorAll(".journey-step")].every(e=>Math.abs(e.getBoundingClientRect().top-document.querySelector(".journey-step").getBoundingClientRect().top)<1)'),'booking steps remain horizontal on mobile');
+ expect(evaluate('document.querySelectorAll(".quick-contacts [data-brand]").length===2'),'recognizable Instagram and WhatsApp brand SVGs');
  expect(evaluate('document.querySelectorAll("image[data-href]").length>0'),'later carousel images should be deferred');
  run('click','.menu-toggle');
  expect(evaluate('document.querySelector(".menu-toggle").getAttribute("aria-expanded")==="true"&&!document.querySelector("#mobile-nav").inert'),'menu must become accessible');
@@ -56,6 +60,7 @@ try {
  run('click','#quote-back');expect(evaluate('document.querySelector("#name").value==="Local QA"'),'Back retains local contact details');
  run('set','media','light','reduced-motion');open('');
  expect(evaluate('!document.querySelector(".brand-intro")&&getComputedStyle(document.documentElement).scrollBehavior==="auto"'),'reduced-motion content/scroll');
+ expect(evaluate('[...document.querySelectorAll(".stars")].every(e=>getComputedStyle(e,"::after").animationName==="none")'),'reduced motion disables star shimmer');
  console.log('Menu, quote, native FAQ, carousel, comparison slider, dialog and reduced-motion checks completed. No enquiry sent.');
 } catch(error){issues.push({executionError:error.message});}
 finally {

@@ -1,5 +1,7 @@
 # CleanNest implementation report
 
+Historical audit snapshot before the subsequent owner-authorized [UI release](UI-RELEASE.md). The release includes this work and supersedes the palette/map details below.
+
 9 September 2026. Implements the supplied CleanNest audit specification as a
 refactor, preserving the existing wordmark, imagery, palette and conversion flow.
 Changes are committed locally; this update has not been pushed or deployed.

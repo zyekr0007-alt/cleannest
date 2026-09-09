@@ -1,4 +1,5 @@
 import {cities,businessInfo,address} from './business.mjs';
+import {glyph} from './components.mjs';
 import {serviceContent} from './service-content.mjs';
 const esc=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 
@@ -29,7 +30,7 @@ export function cityPage(name){
  <section><h2>Choose a service and check its scope</h2><p>These are standard CleanNest services. Open a service page to review inclusions and preparation, then use the central rate card for the published price guide.</p><ul>${data.serviceIds.map(id=>`<li><a href="${id}.html">${esc(serviceContent[id].title)}</a></li>`).join('')}</ul><p><a href="services.html">All cleaning services</a> · <a href="pricing.html">Published pricing</a></p></section>
  ${projects.length?`<section><h2>Work in ${esc(name)}</h2>${projects.map(p=>`<figure><img src="${esc(p.photo)}" alt="${esc(p.alt)}" width="880" height="660" loading="lazy"><figcaption><a href="${esc(p.serviceId)}.html">${esc(serviceContent[p.serviceId].title)}</a> · ${esc(p.locality)} · ${esc(p.month)}<p>${esc(p.result)}</p></figcaption></figure>`).join('')}</section>`:''}
  ${reviews.length?`<section><h2>Customer feedback from ${esc(name)}</h2>${reviews.map(r=>`<figure><blockquote>${esc(r.text)}</blockquote><figcaption>${esc(r.name)} — <a href="${esc(r.sourceUrl)}" rel="noopener" target="_blank">Original review</a></figcaption></figure>`).join('')}</section>`:''}
- <section><h2>Booking questions for ${esc(name)}</h2><div class="faq-list"><details><summary>Is there a CleanNest branch in ${esc(name)}?</summary><p>${home?'Our listed business address is the Jalandhar office shown above.':'Our listed business address is in Jalandhar. This page does not represent a branch in '+esc(name)+'.'}</p></details><details><summary>Can I book same-day cleaning here?</summary><p>Same-day requests depend on team availability and your location. Call or message during our working hours to confirm a suitable date.</p></details></div></section>
+ <section><h2>Booking questions for ${esc(name)}</h2><div class="faq-list"><details><summary>Is there a CleanNest branch in ${esc(name)}?${glyph('chevron')}</summary><p>${home?'Our listed business address is the Jalandhar office shown above.':'Our listed business address is in Jalandhar. This page does not represent a branch in '+esc(name)+'.'}</p></details><details><summary>Can I book same-day cleaning here?${glyph('chevron')}</summary><p>Same-day requests depend on team availability and your location. Call or message during our working hours to confirm a suitable date.</p></details></div></section>
  <p><a class="button primary" href="quote.html">Build a cleaning estimate</a></p><p><a href="areas-we-serve.html">Back to all service areas</a></p>
  </section>`;
 }
