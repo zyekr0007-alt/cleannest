@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 const source=JSON.parse(fs.readFileSync(new URL('./content.json',import.meta.url),'utf8'));
-export const cities=['Jalandhar','Phagwara','Kapurthala','Nakodar','Hoshiarpur','Banga','Ludhiana','Kartarpur','Goraya','Phillaur','Adampur','Sultanpur Lodhi','Nawanshahr'];
+import {cities,address} from './business.mjs';
+export {cities,address};
 export const slug=s=>s.toLowerCase().replaceAll(' ','-');
 export const homes=source.homes;
 // Owner correction: size/condition ranges, not selectable package tiers.
@@ -10,7 +11,6 @@ export const groups=source.rates.map(group=>({...group,items:group.items.map(rat
  return {...rate};
 })}));
 export const money=n=>'₹'+n.toLocaleString('en-IN');
-export const address='Shop 3, Wadala Road, opposite Palm Royale Estate, Guru Teg Bahadur Nagar, Green Model Town, Jalandhar, Punjab 144003';
 const definitions=[
  ['full-house-cleaning','Full home','Every room. A fresh beginning.','Homes','home','hero'],
  ['kitchen-cleaning','Kitchen','A little less grease. A lot more joy.','Homes','kitchen-add','kitchen'],
@@ -42,7 +42,7 @@ const refreshedImages={'mattress-steam-cleaning':'mattress','curtain-cleaning':'
 export const extras=['cabinets','fan','dining-chairs','cushions'].map(id=>{const r=rateMap[id];return {id:'extra-'+id,name:r.label,rate:id,image:'',price:`${money(r.base)}${r.high?'–'+money(r.high):''} ${r.unit}`};});
 export const services=definitions.map(([id,name,tagline,category,rate,image])=>({id,name,tagline,category,rate,
  image:refreshedImages[id]?'assets/img/editorial/'+refreshedImages[id]+'-v2.webp':image?'assets/img/editorial/'+image+'.webp':source.pages[id+'.html']?.image||'assets/img/services/recurring-cleaning.webp',
- price:rate==='home'?'From ₹4,500':rate?`${rateMap[rate].high?money(rateMap[rate].base)+'–'+money(rateMap[rate].high):'From '+money(rateMap[rate].base)} ${rateMap[rate].unit}`:'Custom quote',
+ price:rate==='home'?'From '+money(homes['1'].low):rate?`${rateMap[rate].high?money(rateMap[rate].base)+'–'+money(rateMap[rate].high):'From '+money(rateMap[rate].base)} ${rateMap[rate].unit}`:'Custom quote',
  ...{includes:source.pages[id+'.html']?.includes||['A cleaning plan matched to your space','Scope and frequency agreed before booking','Professional equipment and trained staff'],faqs:source.pages[id+'.html']?.faqs||[]}
 }));
 // Owner-confirmed kitchen scope: chimney is a separately selected ₹690 extra.
@@ -58,5 +58,10 @@ export const faqs=[
  ['Can I book for today?','We try to accommodate same-day requests, subject to team availability. Message or call us between 9 AM and 8 PM, any day of the week, to check.'],
  ['What if an area needs another clean?','Let us know which area needs attention. Our free re-clean promise covers missed areas within the agreed cleaning scope. See our refund policy for the process.'],
  ['Which areas do you serve?',`We serve ${cities.join(', ')}. Share your locality and job details when requesting a quote so we can plan the visit.`]
+];
+export const faqSections = [
+ ['Planning your clean',[faqs[0],faqs[1],['Is chimney cleaning included with a kitchen clean?','Chimney cleaning is a separate optional add-on at ₹690. Select it with your kitchen cleaning if you would like both services.']]],
+ ['Care for your home',[faqs[2],faqs[3],faqs[6]]],
+ ['Booking your visit',[faqs[4],faqs[5],faqs[7]]],
 ];
 export {source};
