@@ -23,3 +23,8 @@ Do not invent path mappings or redirect those URLs indiscriminately.
 Caching: current Pages HTML/assets advertise a 600-second cache. Configure
 compression and immutable caching only for content-hashed assets at the chosen
 edge; keep HTML revalidated. Do not mark mutable asset filenames immutable.
+
+Gzip was confirmed on the current live CSS response. The new local preview
+uses gzip to make lab transfer measurements more representative; this does not
+change production cache headers. See GitHub's [static hosting description](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages)
+and [custom-domain redirect behavior](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages).

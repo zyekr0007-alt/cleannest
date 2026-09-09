@@ -1,5 +1,7 @@
 # CleanNest redesign — September 2026
 
+> Maintenance update, 9 September: [IMPLEMENTATION-REPORT.md](IMPLEMENTATION-REPORT.md) supersedes the CSS/build/content instructions below. These are historical redesign notes, including the original owner-verified business facts. The new implementation has not been published as part of this session.
+
 > The final page-by-page releases are documented in [FINAL-RELEASES.md](FINAL-RELEASES.md). Those refinements supersede the initial design notes below. The current site has 66 pages, including a dedicated Reviews page.
 
 ## Running and maintaining the site

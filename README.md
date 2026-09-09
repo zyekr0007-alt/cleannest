@@ -2,13 +2,26 @@
 
 ## September 2026 redesign
 
+The 9 September implementation audit is documented in [site/IMPLEMENTATION-REPORT.md](site/IMPLEMENTATION-REPORT.md), including remaining hosting and factual-content dependencies. This is the current maintenance reference.
+
+Run `npm ci` once for the development-only CSS build tools, then `npm run build`.
+The deployed website still has no runtime dependencies. Styles now live in
+`site/styles/base.css` and `site/styles/pages.css`, with minified content-hashed
+output in `assets/generated/`. Do not edit generated files or resurrect the
+retired four-layer CSS stack. `npm run dev` provides a local gzip-enabled static
+preview. `npm run check:browser` runs the implementation regression suite.
+
 The site has been rebuilt locally with shared static templates, an off-white/navy design and a guided WhatsApp estimator. **Current maintenance instructions and verification notes are in [site/REDESIGN.md](site/REDESIGN.md).** The historical implementation notes below describe the previous site.
 
-Run `npm run build` after changing templates or source data. Run `npm run dev` for the local preview, `npm test` for pricing regression tests and `npm run check` for all-page structural checks. There are no npm dependencies to install. Generated HTML remains compatible with the existing GitHub Pages hosting.
+Run `npm run build` after changing templates or source data. Run `npm run dev` for the local preview, `npm test` for pricing and redirect regression tests and `npm run check` for all-page SEO, schema, link and structural checks. Generated HTML remains compatible with the existing GitHub Pages hosting.
 
-Do not run the old Python page generator. Pages are now built from `scripts/build.mjs` and `site/catalog.mjs`; `assets/site.css`, `assets/site.js` and the quote modules replace the old inline scripts and root stylesheet on generated pages. GitHub Pages publishes the generated files from `main` at https://cleannest.in/.
+Do not run the old Python page generator. Pages are now built from `scripts/build.mjs` and shared `site/` modules; content-hashed CSS, shared scripts and quote modules replace the old inline scripts and root stylesheet on generated pages. GitHub Pages publishes the generated files from `main` at https://cleannest.in/ after a push.
 
 ---
+
+## Historical notes — superseded
+
+The following describes the pre-refactor site, including obsolete URLs, business snapshots and deployment settings. Do not use it as the current source of truth.
 
 Static site for **CleanNest — Deep Cleaning Services, Jalandhar** (Punjab, India).
 
