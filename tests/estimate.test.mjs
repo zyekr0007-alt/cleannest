@@ -33,6 +33,14 @@ test('recliner surcharge is bounded by seats',()=>{
  assert.throws(()=>calculate(catalog,state(['sofa-cleaning'],{'sofa-cleaning':{qty:2,recliners:3}})),/Recliners/);
 });
 test('repeated selections do not duplicate charges',()=>assert.equal(calculate(catalog,state(['bathroom-cleaning','bathroom-cleaning'])).low,890));
+test('changing the central recliner rate updates the estimate and summary',()=>{
+ const adjusted={...catalog,supplements:{recliner:175}};
+ const s=state(['sofa-cleaning'],{'sofa-cleaning':{qty:3,recliners:2}});
+ const result=calculate(adjusted,s);
+ assert.equal(result.low,947);
+ assert.ok(whatsappMessage(adjusted,s,result).includes('2 × ₹175'));
+ assert.throws(()=>calculate({...catalog,supplements:{}},s),/rate is unavailable/);
+});
 test('an included kitchen selection cannot remove a home chimney add-on charge',()=>{
  const r=calculate(catalog,state(['full-house-cleaning','kitchen-cleaning','chimney-cleaning'],{'full-house-cleaning':{home:'2'}}));assert.equal(r.low,10190);assert.equal(r.lines.length,2);
 });

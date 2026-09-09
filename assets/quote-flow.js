@@ -22,7 +22,7 @@ function details(id){const s=service(id),c=config(id);let content='';
   if(r.tiers)content+=pills(id,'tier',s.rate==='sofa'?'Choose your sofa treatment':'Choose your AC service',r.tiers.map((t,i)=>[i,t.label,formatMoney(t.p)+' '+r.unit]));
   if(r.unit.includes('sq.ft'))content+=`<label class="field">Approximate area (sq.ft)<input type="number" inputmode="numeric" min="1" max="100000" step="1" value="${c.qty}" data-id="${id}" data-key="qty" required></label>`;
   else content+=count(id,'qty',s.rate==='sofa'?'Total sofa seats':s.rate==='bathroom'?'Bathrooms':s.rate==='kitchen-add'?'Kitchens':s.rate==='ac'?'AC units':'How many?');
-  if(s.rate==='sofa')content+=`<p class="small">Count a chaise as 2 seats.</p><details class="optional-details"><summary>Any recliner seats?</summary>${count(id,'recliners','Recliners (+₹150 each)',0,c.qty)}</details>`;
+  if(s.rate==='sofa')content+=`<p class="small">Count a chaise as 2 seats.</p><details class="optional-details"><summary>Any recliner seats?</summary>${count(id,'recliners','Recliners (+'+formatMoney(catalog.supplements.recliner)+' each)',0,c.qty)}</details>`;
   if(r.high)content+='<p class="range-note">One service. Final price depends on size and condition.</p>';
  }else content='<p class="small">We’ll discuss the size and scope with you and provide a custom quote.</p>';
  return `<section class="service-question concentric" data-question="${id}"><div class="question-heading">${s.image?`<img src="${s.image}" alt="" width="52" height="52">`:'<span class="extra-question-icon" aria-hidden="true">＋</span>'}<h3>${s.name}</h3><button type="button" class="remove-service" data-remove="${id}" aria-label="Remove ${s.name}">×</button></div>${content}</section>`;

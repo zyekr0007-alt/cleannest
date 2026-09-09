@@ -37,8 +37,10 @@ const definitions=[
  ['jet-washing','Pressure washing','Powerful cleaning for outdoor surfaces.','Specialist','jet-washing'],
  ['recurring-cleaning','Regular cleaning','Keep that freshly-cleaned feeling.','Homes',null]
 ];
-const rateMap=Object.fromEntries(groups.flatMap(g=>g.items).map(r=>[r.id,r]));
+export const rateMap=Object.fromEntries(groups.flatMap(g=>g.items).map(r=>[r.id,r]));
 const refreshedImages={'mattress-steam-cleaning':'mattress','curtain-cleaning':'curtains','window-blinds-cleaning':'blinds','carpet-steam-cleaning':'carpet','refrigerator-cleaning':'fridge','floor-renewal':'floor'};
+export const supplements={recliner:150};
+export const chimneyPrice=money(rateMap.chimney.base);
 export const extras=['cabinets','fan','dining-chairs','cushions'].map(id=>{const r=rateMap[id];return {id:'extra-'+id,name:r.label,rate:id,image:'',price:`${money(r.base)}${r.high?'–'+money(r.high):''} ${r.unit}`};});
 export const services=definitions.map(([id,name,tagline,category,rate,image])=>({id,name,tagline,category,rate,
  image:refreshedImages[id]?'assets/img/editorial/'+refreshedImages[id]+'-v2.webp':image?'assets/img/editorial/'+image+'.webp':source.pages[id+'.html']?.image||'assets/img/services/recurring-cleaning.webp',
@@ -48,7 +50,7 @@ export const services=definitions.map(([id,name,tagline,category,rate,image])=>(
 // Owner-confirmed kitchen scope: chimney is a separately selected ₹690 extra.
 const kitchen=services.find(s=>s.id==='kitchen-cleaning');
 kitchen.includes=kitchen.includes.map(t=>t==='Chimney & exhaust cleaning'?'Exhaust cleaning':t);
-kitchen.faqs=kitchen.faqs.map(([q,a])=>/chimney/i.test(q)?[q,'Yes. Add chimney cleaning to your kitchen service for ₹690. It is optional and is not included in the kitchen price.']:[q,a]);
+kitchen.faqs=kitchen.faqs.map(([q,a])=>/chimney/i.test(q)?[q,`Yes. Add chimney cleaning to your kitchen service for ${chimneyPrice}. It is optional and is not included in the kitchen price.`]:[q,a]);
 export const faqs=[
  ['How do I get a quote?','Select one or more services, answer a few questions about your space, then enter your name and mobile number to see a rough estimate. Send your summary on WhatsApp and we’ll confirm the scope, price and available dates with you.'],
  ['Is the estimate the final price?','It is a guide based on our published rates. Size, condition, access and the agreed scope can affect the final quote. We confirm the price with you before booking.'],
@@ -60,7 +62,7 @@ export const faqs=[
  ['Which areas do you serve?',`We serve ${cities.join(', ')}. Share your locality and job details when requesting a quote so we can plan the visit.`]
 ];
 export const faqSections = [
- ['Planning your clean',[faqs[0],faqs[1],['Is chimney cleaning included with a kitchen clean?','Chimney cleaning is a separate optional add-on at ₹690. Select it with your kitchen cleaning if you would like both services.']]],
+ ['Planning your clean',[faqs[0],faqs[1],['Is chimney cleaning included with a kitchen clean?',`Chimney cleaning is a separate optional add-on at ${chimneyPrice}. Select it with your kitchen cleaning if you would like both services.`]]],
  ['Care for your home',[faqs[2],faqs[3],faqs[6]]],
  ['Booking your visit',[faqs[4],faqs[5],faqs[7]]],
 ];

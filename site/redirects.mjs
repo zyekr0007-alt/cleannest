@@ -12,6 +12,10 @@ export const redirects = {
   '/kitchen-deep-cleaning.html': '/kitchen-cleaning.html',
   '/bathroom-deep-cleaning.html': '/bathroom-cleaning.html',
   '/sofa-dry-cleaning.html': '/sofa-cleaning.html',
+  '/blog/deep-cleaning-cost-jalandhar-2026.html': '/pricing.html',
+  '/blog/how-to-choose-right-cleaning-service-jalandhar.html': '/blog/urban-company-deep-cleaning-review-honest.html',
+  '/blog/moving-out-cleaning-jalandhar-tenants.html': '/full-house-cleaning.html',
+  '/blog/what-professional-deep-clean-includes.html': '/full-house-cleaning.html',
 };
 
 export function redirectTarget(input) {
