@@ -9,6 +9,7 @@ export const glyph=(name='arrow')=>brandIcon(name)||`<svg class="icon" viewBox="
  leaf:'<path d="M20 3c0 10-2 16-10 16a7 7 0 0 1-7-7C3 4 12 6 20 3Z"/><path d="M3 21 15 9"/>',
  redo:'<path d="M3 10a9 9 0 1 1 0 6M3 3v7h7"/><path d="m9 13 2 2 5-5"/>',
  price:'<path d="M6 3h12M6 8h12M8 3c7 0 7 9 0 9H6l10 9"/>',
+ external:'<path d="M14 4h6v6M20 4l-9 9"/><path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5"/>',
  star:'<path d="m12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2-5.6-3-5.6 3 1.1-6.2L3 9.6l6.2-.9Z"/>',
  pin:'<path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z"/><circle cx="12" cy="10" r="2"/>',
  work:'<rect x="3" y="3" width="18" height="18" rx="3"/><path d="m3 16 5-5 4 4 4-7 5 6"/>',

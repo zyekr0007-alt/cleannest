@@ -10,7 +10,7 @@ import {serviceContent,safeInclusions} from '../site/service-content.mjs';
 import {businessInfo} from '../site/business.mjs';
 import {pageSchema} from '../site/seo.mjs';
 import {servicesFinal,pricingFinal,reviewsFinal,areasFinal,faqsFinal} from '../site/final-pages.mjs';
-import {homepage,footerFinal,closingFinal} from '../site/final-home.mjs';
+import {homepage,footerFinal,closingFinal,fromPrice} from '../site/final-home.mjs';
 import {coverageMap} from '../site/map.mjs';
 import {glyph,navigation,wordmark,simpleProcess,simpleCare} from '../site/components.mjs';
 import {services,extras,cities,slug,homes,groups,money,supplements,address,faqs,faqSections,source} from '../site/catalog.mjs';
@@ -25,7 +25,7 @@ const footer=footerFinal;
 const cta=closingFinal;
 const faqBlock=(items=faqs.slice(0,4))=>`<div class="faq-list">${items.map(([q,a])=>`<details><summary>${esc(q)}${glyph('chevron')}</summary><p>${esc(a)}</p></details>`).join('')}</div>`;
 const sectionHead=(eyebrow,title,description='',link='')=>`<div class="section-heading"><div><span class="eyebrow">${eyebrow}</span><h2>${title}</h2>${description?`<p>${description}</p>`:''}</div>${link}</div>`;
-const serviceCard=(s,i=0)=>`<article class="service-card" data-category="${s.category}" data-name="${esc(s.name.toLowerCase())}"><a class="service-image" href="${s.id}.html"><img src="${s.image}" alt="${esc(s.name)} service illustration" width="880" height="660" loading="lazy"><span class="image-action" aria-label="View ${esc(s.name)}">${icon()}</span>${i===0?'<span class="image-tag">THE WHOLE-HOME RESET</span>':''}</a><div class="service-title"><h3><a href="${s.id}.html">${s.name}</a></h3><a class="add-service" href="quote.html?service=${s.id}" aria-label="Get estimate for ${esc(s.name)}">${icon('plus')}</a></div><p>${s.tagline}</p><span class="service-price">${s.price}</span></article>`;
+const serviceCard=s=>`<article class="service-card" data-category="${s.category}" data-name="${esc(s.name.toLowerCase())}"><a class="service-image" href="${s.id}.html"><img src="${s.image}" alt="${esc(s.name)} service illustration" width="880" height="660" loading="lazy"><span class="image-action" aria-label="View ${esc(s.name)}">${icon()}</span>${s.id==='full-house-cleaning'?'<span class="image-tag">THE WHOLE-HOME RESET</span>':''}</a><div class="service-title"><h3><a href="${s.id}.html">${s.name}</a></h3><a class="add-service" href="quote.html?service=${s.id}" aria-label="Get estimate for ${esc(s.name)}">${icon('plus')}</a></div><p>${s.tagline}</p><span class="service-price">${fromPrice(s)}</span></article>`;
 const serviceGrid=(list=services.slice(0,6))=>`<div class="service-grid">${list.map(serviceCard).join('')}</div>`;
 const reviews=()=>`<section class="section container" id="reviews">${sectionHead('GOOD WORDS, FROM REAL HOMES','The kind of clean<br>people talk about.','','<a class="text-link" href="'+businessInfo.map+'" target="_blank" rel="noopener">Read our Google reviews '+icon()+'</a>')}<div class="review-grid">${[
  ['Jasleen Sagoo','Clean Nest Jalandhar offers excellent cleaning services! Their team is professional, thorough, and reliable, with great attention to detail.'],

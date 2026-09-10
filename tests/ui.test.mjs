@@ -2,6 +2,9 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {mapPoint,zoomMap} from '../site/zoom-map.mjs';
 import {glyph,simpleProcess} from '../site/components.mjs';
+import {footerFinal,fromPrice} from '../site/final-home.mjs';
+import {reviewsFinal,servicesFinal} from '../site/final-pages.mjs';
+import {services} from '../site/catalog.mjs';
 
 test('map uses shared geographic coordinates and no connector lines',()=>{
  const [x,y]=mapPoint(75.57618,31.326015);
@@ -30,4 +33,19 @@ test('brand SVGs and shared email/FAQ glyphs are available',()=>{
  assert.match(glyph('mail'),/<rect/);
  assert.match(glyph('help'),/<path/);
  assert.match(glyph('chevron'),/m7 10 5 5 5-5/);
+ assert.match(glyph('external'),/M14 4h6v6/);
+});
+
+test('service cards only badge full-home and use mobile card prices',()=>{
+ const html=servicesFinal();
+ assert.equal((html.match(/WHOLE-HOME RESET/g)||[]).length,1);
+ assert.match(html,/service-card-featured[^>]*>[\s\S]*?full-house-cleaning\.html[\s\S]*?WHOLE-HOME RESET/);
+ assert.equal(fromPrice(services.find(s=>s.id==='kitchen-cleaning')),'From ₹2,490');
+ assert.equal(fromPrice(services.find(s=>s.id==='sofa-cleaning')),'From ₹199 / seat');
+});
+
+test('external destinations use vector icons instead of arrow characters',()=>{
+ const html=footerFinal()+reviewsFinal();
+ assert.doesNotMatch(html,/↗/);
+ assert.ok((html.match(/M14 4h6v6/g)||[]).length>=5);
 });

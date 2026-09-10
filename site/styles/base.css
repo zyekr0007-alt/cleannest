@@ -4810,3 +4810,259 @@ body {
   .header .desktop-nav { display: flex; margin-left: auto; margin-right: 0; }
   .header .menu-toggle { display: none; }
 }
+
+/* Mobile layout hardening: quote flow, navigation, reviews and footer. */
+.mobile-nav .menu-grid > a,
+.menu-grid > a > span:nth-child(2),
+.quote-main,
+#quote-form,
+#quote-stage,
+.service-question,
+.tap-field,
+.tap-options,
+.tap-option,
+.quick-extras,
+.service-card,
+.service-card-bottom,
+.rating-pills > a,
+.review-platform-actions > a,
+.footer-final nav,
+.footer-final nav > a {
+  min-width: 0;
+  max-width: 100%;
+}
+.menu-icon {
+  background: rgb(255 255 255 / 66%);
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 85%);
+  height: 38px;
+  width: 38px;
+}
+.menu-icon .icon {
+  height: 19px;
+  width: 19px;
+}
+.menu-grid strong,
+.menu-grid small {
+  overflow-wrap: anywhere;
+}
+.tap-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(104px, 1fr));
+  gap: 8px;
+  width: 100%;
+}
+.tap-option {
+  border-radius: 14px;
+  min-height: 76px;
+  padding: 12px 10px;
+  width: 100%;
+}
+.tap-option strong,
+.tap-option small {
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+.service-question {
+  width: 100%;
+}
+.question-heading h3 {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.quick-extras {
+  border-top: 1px solid var(--line);
+  margin-top: 26px;
+  padding-top: 22px;
+}
+.quick-extras h3 {
+  margin-top: 0;
+}
+.change-services-button {
+  align-items: center;
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 15px;
+  color: var(--accent);
+  display: flex;
+  font-size: 13px;
+  font-weight: 650;
+  gap: 11px;
+  justify-content: flex-start;
+  margin: 12px 0 4px;
+  min-height: 52px;
+  padding: 9px 14px 9px 9px;
+  transition: transform 160ms var(--ease-out), border-color 180ms ease, background-color 180ms ease;
+  width: 100%;
+}
+.change-services-button .icon {
+  background: var(--badge);
+  border-radius: 10px;
+  flex: 0 0 32px;
+  height: 32px;
+  padding: 7px;
+  width: 32px;
+}
+.change-services-button:active {
+  transform: scale(.98);
+}
+.quote-navigation {
+  backdrop-filter: none;
+  background: transparent;
+  position: static;
+}
+.review-platform-actions .icon,
+.platform-story .icon,
+.rating-pills .icon {
+  flex-shrink: 0;
+}
+.review-platform-actions .button,
+.platform-story .button {
+  gap: 9px;
+}
+.dedicated-review-grid .review,
+.review blockquote,
+.reviews-page .section-heading h2 {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.footer-social a .icon:last-child {
+  height: 14px;
+  width: 14px;
+}
+.footer-social a span {
+  min-width: 0;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .change-services-button:hover {
+    background: var(--tint);
+    border-color: var(--accent);
+  }
+}
+
+@media (max-width: 600px) {
+  .mobile-nav {
+    left: 16px;
+    right: 16px;
+    width: auto;
+  }
+  .mobile-nav .menu-grid > a {
+    gap: 9px;
+    padding: 10px;
+  }
+  .menu-icon {
+    height: 36px;
+    width: 36px;
+  }
+  .menu-icon .icon {
+    height: 18px;
+    width: 18px;
+  }
+  .quote-layout {
+    max-width: calc(100% - 20px);
+  }
+  .quote-main {
+    width: 100%;
+  }
+  .tap-options {
+    grid-template-columns: repeat(auto-fit, minmax(98px, 1fr));
+  }
+  .tap-option {
+    min-height: 72px;
+  }
+  .quick-extras .tap-service-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .quote-navigation {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: minmax(0, .82fr) minmax(0, 1.35fr);
+  }
+  .quote-navigation .button,
+  .quote-navigation #quote-next {
+    margin: 0;
+    min-width: 0;
+    padding-inline: 12px;
+    width: 100%;
+  }
+  .review-platform-actions {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .review-platform-actions .button {
+    justify-content: center;
+    line-height: 1.35;
+    text-align: center;
+    white-space: normal;
+    width: 100%;
+  }
+  .footer-final .container {
+    max-width: calc(100% - 32px);
+  }
+  .footer-contact {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-inline: auto;
+    max-width: 350px;
+  }
+  .footer-contact .button {
+    min-width: 0;
+    padding-inline: 10px;
+    width: 100%;
+  }
+  .footer-explore {
+    display: grid;
+    gap: 2px 8px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    margin-inline: auto;
+    max-width: 340px;
+  }
+  .footer-explore a {
+    justify-content: center;
+    padding-inline: 4px;
+    text-align: center;
+  }
+  .footer-social {
+    display: grid;
+    gap: 4px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    margin-inline: auto;
+    max-width: 340px;
+  }
+  .footer-social a {
+    gap: 5px;
+    justify-content: center;
+    padding-inline: 2px;
+    white-space: nowrap;
+  }
+  .footer-legal {
+    display: grid;
+    gap: 4px 8px;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .footer-legal > span {
+    grid-column: 1 / -1;
+  }
+  .footer-legal a {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+@media (max-width: 360px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+  .mobile-nav .menu-grid > a {
+    min-height: 68px;
+  }
+  .review-platform-actions,
+  .footer-social {
+    grid-template-columns: 1fr;
+  }
+  .footer-social a {
+    min-height: 40px;
+  }
+}

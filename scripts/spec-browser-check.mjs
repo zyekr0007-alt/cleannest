@@ -8,6 +8,7 @@ const evaluate=code=>JSON.parse(run('eval',code));
 const routes=['','services.html','pricing.html','quote.html?service=full-house-cleaning','full-house-cleaning.html','bathroom-cleaning.html','ac-services.html','mattress-steam-cleaning.html','jalandhar.html','phagwara.html','blog/index.html','blog/ultimate-deep-cleaning-checklist.html','faqs.html','contact.html','reviews.html','results.html'];
 const issues=[],checks=[];
 const open=route=>run('open',(process.env.QA_BASE_URL||'http://127.0.0.1:8123')+'/'+route+(route.includes('?')?'&':'?')+'qa='+Date.now());
+const clickQuoteNext=()=>{evaluate('document.querySelector("#quote-next").scrollIntoView({block:"center",behavior:"instant"});true');run('click','#quote-next');};
 const expect=(value,message)=>{if(!value)issues.push(message);};
 try {
  for(const [width,height] of [[360,800],[390,844],[768,1024],[1440,900]]){
@@ -54,11 +55,11 @@ try {
  open('results.html');run('click','.result-card');
  expect(evaluate('document.querySelector("#lightbox").open'),'result dialog open');run('press','Escape');
  expect(evaluate('!document.querySelector("#lightbox").open&&document.activeElement.matches(".result-card")'),'dialog Escape/focus return');
- open('quote.html?service=kitchen-cleaning');run('click','#quote-next');
+ open('quote.html?service=kitchen-cleaning');clickQuoteNext();
  expect(evaluate('document.querySelector("#quote-builder").dataset.step==="1"'),'quote details step');
- run('click','#quote-next');
+ clickQuoteNext();
  expect(evaluate('document.querySelector("#quote-builder").dataset.step==="2"'),'quote contact step');
- run('fill','#name','Local QA');run('fill','#phone','9999999999');run('click','#quote-next');
+ run('fill','#name','Local QA');run('fill','#phone','9999999999');clickQuoteNext();
  expect(evaluate('document.querySelector("#quote-builder").dataset.step==="3"'),'quote estimate step');
  const handoff=evaluate('document.querySelector(".whatsapp-send").href');
  expect(new URL(handoff).pathname==='/917610000654'&&new URL(handoff).searchParams.get('text').includes('Local QA'),'WhatsApp handoff recipient/summary');
