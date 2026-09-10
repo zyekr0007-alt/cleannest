@@ -1,4 +1,4 @@
-# Redirect deployment
+# Cloudflare website deployment
 
 Current production: GitHub Pages, main branch, repository root, CNAME `cleannest.in`.
 Checked 9 September 2026: www redirects to apex; `/index.html` returns 200;
@@ -6,17 +6,20 @@ Checked 9 September 2026: www redirects to apex; `/index.html` returns 200;
 configuration for arbitrary HTTP 301/308 responses. A `_redirects` file or
 JavaScript redirect would not satisfy the specification on this host.
 
-`redirect-worker.mjs` is a prepared edge entry point using the exact mappings in
-`site/redirects.mjs`. It combines host and path normalization into one 301 and
-preserves query strings. Unmatched paths pass through; it does not send unknown
-pages to the homepage. Tests cover the mapping independently of a provider.
+`redirect-worker.mjs` now serves the complete static website through a Workers
+Static Assets binding. It uses the exact mappings in `site/redirects.mjs`,
+combines host and path normalization into one 301, and preserves query strings.
+Unknown paths use the real `404.html` response and are never sent to the
+homepage. Tests cover the mapping independently of a provider.
 
-Cloudflare configuration is defined in `wrangler.jsonc`. It deploys the worker
-to both apex and `www` routes while leaving GitHub Pages as the origin. The
-Cloudflare zone must be active and its GitHub origin records must be proxied for
-the routes to receive traffic. Verify `/`, every mapping (with a query string),
-and both hosts using HTTP headers after nameserver activation. The destination
-must return 200 with a self-canonical URL.
+Cloudflare configuration is defined in `wrangler.jsonc`. `npm run
+build:cloudflare` creates a public-only `dist/` package and omits the original
+full-size gallery PNGs. The `workers.dev` preview is explicitly marked noindex.
+It deploys to both apex and `www` routes, but those routes cannot receive traffic
+until the Cloudflare zone becomes active. Wix-managed nameservers are currently
+locked, so the owner must transfer the domain to a registrar that permits custom
+nameservers before production cutover. GitHub Pages remains the live origin
+until that change is approved and completed.
 
 The search-visible `/service-page/room-deep-clean` path is mapped to the closest
 current service, `/full-house-cleaning.html`. The other exact legacy paths in
