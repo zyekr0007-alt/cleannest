@@ -11,10 +11,12 @@ JavaScript redirect would not satisfy the specification on this host.
 preserves query strings. Unmatched paths pass through; it does not send unknown
 pages to the homepage. Tests cover the mapping independently of a provider.
 
-Owner action: choose/configure a redirect-capable edge in front of GitHub Pages
-or a new host. This code has NOT been activated, and DNS has NOT been changed.
-Once activated, verify `/`, every mapping (with a query string), and both hosts
-using HTTP headers. The destination must return 200 with a self-canonical URL.
+Cloudflare configuration is defined in `wrangler.jsonc`. It deploys the worker
+to both apex and `www` routes while leaving GitHub Pages as the origin. The
+Cloudflare zone must be active and its GitHub origin records must be proxied for
+the routes to receive traffic. Verify `/`, every mapping (with a query string),
+and both hosts using HTTP headers after nameserver activation. The destination
+must return 200 with a self-canonical URL.
 
 The search-visible `/service-page/room-deep-clean` path is mapped to the closest
 current service, `/full-house-cleaning.html`. The other exact legacy paths in
