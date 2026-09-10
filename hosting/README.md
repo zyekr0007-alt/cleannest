@@ -16,9 +16,13 @@ or a new host. This code has NOT been activated, and DNS has NOT been changed.
 Once activated, verify `/`, every mapping (with a query string), and both hosts
 using HTTP headers. The destination must return 200 with a self-canonical URL.
 
-Missing mappings: `/blank-1` has no current accessibility-page equivalent;
-actual indexed `/service-page/...` paths must be supplied before mapping them.
-Do not invent path mappings or redirect those URLs indiscriminately.
+The search-visible `/service-page/room-deep-clean` path is mapped to the closest
+current service, `/full-house-cleaning.html`. The other exact legacy paths in
+the Phase 1 recovery table are covered and query strings are retained.
+
+Held mapping: `/blank-1` has no current accessibility-page equivalent. Leave it
+unmapped until the owner supplies an equivalent page or confirms the intended
+policy. Do not send it, or unknown `/service-page/...` paths, to the homepage.
 
 Caching: current Pages HTML/assets advertise a 600-second cache. Configure
 compression and immutable caching only for content-hashed assets at the chosen

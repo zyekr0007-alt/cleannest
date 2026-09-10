@@ -18,13 +18,13 @@
   --space-16: 64px;
 }
 @font-face {
-  font-display: swap;
+  font-display: optional;
   font-family: Ultima;
   font-weight: 400;
   src: url("fonts/Ultima.ttf") format("truetype");
 }
 @font-face {
-  font-display: swap;
+  font-display: optional;
   font-family: Ultima;
   font-weight: 700;
   src: url("fonts/UltimaBold.ttf") format("truetype");
@@ -1638,13 +1638,13 @@ address {
   }
 }
 @font-face {
-  font-display: swap;
+  font-display: optional;
   font-family: Manrope;
   font-weight: 200 800;
   src: url("fonts/Manrope.woff2") format("woff2");
 }
 @font-face {
-  font-display: swap;
+  font-display: optional;
   font-family: "DM Serif Display";
   font-weight: 400;
   src: url("fonts/DMSerifDisplay.woff2") format("woff2");
@@ -2002,14 +2002,20 @@ h1 em {
   padding: 8px;
 }
 .result-crop {
+  aspect-ratio: var(--result-ratio, 1000/780);
   border-radius: var(--radius-image);
   display: block;
   overflow: hidden;
 }
-.result-crop svg {
+.result-crop picture,
+.result-crop img {
   display: block;
-  height: auto;
+  height: 100%;
   width: 100%;
+}
+.result-crop img {
+  object-fit: cover;
+  object-position: var(--result-position, center top);
 }
 .result-card > span:last-child {
   background: #fff;
@@ -2021,14 +2027,32 @@ h1 em {
   width: min(95vw, 1050px);
 }
 .lightbox-photo {
+  aspect-ratio: var(--result-ratio, 1000/780);
   border-radius: var(--radius-image);
   clear: both;
   overflow: hidden;
 }
-.lightbox-photo svg {
+.lightbox-photo picture,
+.lightbox-photo img {
   display: block;
-  max-height: 80dvh;
+  height: 100%;
   width: 100%;
+}
+.lightbox-photo img {
+  object-fit: cover;
+  object-position: var(--result-position, center top);
+}
+
+.article-publication {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 13px;
+  gap: 8px 18px;
+  margin-top: 18px;
+}
+.article-publication time {
+  color: var(--muted);
 }
 .dialog-close {
   border-radius: 12px;

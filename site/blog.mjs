@@ -1,6 +1,6 @@
 // Editorial source. Unknown historical dates and authors stay null.
 // Prices are linked to the maintained rate card, never copied into prose.
-const article=(title,description,sections)=>({title,description,sections,author:null,datePublished:null,dateModified:null,image:null});
+const article=(title,description,sections)=>({title,description,sections,author:null,datePublished:null,dateModified:'2026-09-10',image:null});
 export const blogArticles={
  'ultimate-deep-cleaning-checklist':article('The Ultimate Deep Cleaning Checklist for Every Room','A practical room-by-room checklist covering preparation, kitchens, bathrooms, bedrooms and living spaces, with material-care limits and booking guidance.',[
   ['Deep cleaning and routine cleaning','<p>A deep clean focuses on areas that routine wiping and sweeping can miss: edges, buildup, accessible fixtures and the surfaces behind everyday belongings. It does not mean every object needs the strongest chemical or that every appliance should be dismantled. Use this checklist to identify the work your home needs and agree a manageable scope.</p><p>Separate cleaning from repairs. A leaking tap, damaged grout or peeling cabinet finish needs attention beyond removing dirt. Mark those issues before you start, and keep manufacturer care instructions available for delicate surfaces.</p>'],
@@ -63,7 +63,25 @@ export const blogArticles={
  ]),
 };
 
+// These article pages and their metadata were updated on 10 September 2026.
+// That repository-backed date supports dateModified only; original publication dates and authors still
+// require owner confirmation. Images below are existing, attributable site
+// assets and are used as representative article images.
+const articleImages={
+ 'ultimate-deep-cleaning-checklist':{url:'assets/img/editorial/hero.webp',width:1536,height:1024},
+ 'how-often-to-deep-clean-home-guide':{url:'assets/img/editorial/hero-collage.webp',width:1254,height:1254},
+ 'bathroom-deep-cleaning-remove-hard-water-stains-mold':{url:'assets/img/editorial/bathroom.webp',width:1536,height:1024},
+ 'kitchen-deep-cleaning-complete-guide':{url:'assets/img/editorial/kitchen.webp',width:1536,height:1024},
+ 'sofa-cleaning-dry-clean-vs-steam-vs-shampoo':{url:'assets/img/editorial/sofa.webp',width:1536,height:1024},
+ 'ac-cleaning-importance-seasonal':{url:'assets/img/services/ac-services.webp',width:880,height:660},
+ 'urban-company-deep-cleaning-review-honest':{url:'assets/img/editorial/hero-collage.webp',width:1254,height:1254},
+ 'why-local-cleaning-services-better-than-urban-company':{url:'assets/img/editorial/hero.webp',width:1536,height:1024},
+};
+for(const [id,image] of Object.entries(articleImages)) blogArticles[id].image=image;
+
 const esc=s=>String(s).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 export function renderArticle(a){
- return `<section class="page-intro container"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/blog/index.html">Cleaning Journal</a></nav><span class="eyebrow">CLEANING JOURNAL</span><h1>${esc(a.title)}</h1><p>${esc(a.description)}</p></section><article class="container prose">${a.sections.map(([heading,body])=>`<section><h2>${esc(heading)}</h2>${body}</section>`).join('')}</article>`;
+ const update=a.dateModified?`<time datetime="${esc(a.dateModified)}">Updated 10 September 2026</time>`:'';
+ const author=a.author?`<span>By ${esc(typeof a.author==='string'?a.author:a.author.name)}</span>`:'';
+ return `<section class="page-intro container"><nav class="breadcrumb" aria-label="Breadcrumb"><a href="/">Home</a> / <a href="/blog/index.html">Cleaning Journal</a></nav><span class="eyebrow">CLEANING JOURNAL</span><h1>${esc(a.title)}</h1><p>${esc(a.description)}</p><p class="article-publication"><span>CleanNest Cleaning Journal</span>${author}${update}</p></section><article class="container prose">${a.sections.map(([heading,body])=>`<section><h2>${esc(heading)}</h2>${body}</section>`).join('')}</article>`;
 }

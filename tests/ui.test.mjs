@@ -2,9 +2,10 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {mapPoint,zoomMap} from '../site/zoom-map.mjs';
 import {glyph,simpleProcess} from '../site/components.mjs';
-import {footerFinal,fromPrice} from '../site/final-home.mjs';
+import {footerFinal,fromPrice,googleProfile} from '../site/final-home.mjs';
 import {reviewsFinal,servicesFinal} from '../site/final-pages.mjs';
 import {services} from '../site/catalog.mjs';
+import {businessInfo} from '../site/business.mjs';
 
 test('map uses shared geographic coordinates and no connector lines',()=>{
  const [x,y]=mapPoint(75.57618,31.326015);
@@ -48,4 +49,11 @@ test('external destinations use vector icons instead of arrow characters',()=>{
  const html=footerFinal()+reviewsFinal();
  assert.doesNotMatch(html,/↗/);
  assert.ok((html.match(/M14 4h6v6/g)||[]).length>=5);
+});
+
+test('Google review actions never reuse the directions URL',()=>{
+ assert.notEqual(googleProfile,businessInfo.map);
+ const html=reviewsFinal();
+ assert.doesNotMatch(html,new RegExp(`href="${businessInfo.map.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')}"[^>]*>[^<]*Read Google`));
+ assert.match(html,/href="#google-review-excerpts"/);
 });

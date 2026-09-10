@@ -1,4 +1,5 @@
-// Verified existing business data: see REDESIGN.md (owner decisions).
+// Canonical business record. Components and JSON-LD must import from here rather
+// than duplicating identity, contact or profile values.
 export const businessInfo = {
   name: 'CleanNest',
   url: 'https://cleannest.in/',
@@ -12,6 +13,9 @@ export const businessInfo = {
   instagram: 'https://www.instagram.com/cleannest.co',
   map: 'https://maps.app.goo.gl/ZdvdWPmDTeBtYeqAA',
   justdial: 'https://www.justdial.com/Jalandhar/CleanNest-Palm-Royale-Estate-Khurla-Kingra/0181PX181-X181-250306105239-A6Q9_BZDET',
+  // A directions URL is not a Google Reviews URL. Keep this null until the
+  // owner supplies the direct, verified Google review/profile destination.
+  googleReviews: null,
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Shop 3, Wadala Road, opposite Palm Royale Estate, Guru Teg Bahadur Nagar, Green Model Town',
@@ -28,4 +32,9 @@ export const businessSchema = {
   openingHours: businessInfo.openingHours, address: businessInfo.address,
   areaServed: cities.map(name => ({'@type': 'City', name})),
   sameAs: [businessInfo.instagram, businessInfo.justdial], hasMap: businessInfo.map,
+};
+export const websiteSchema = {
+  '@context': 'https://schema.org', '@type': 'WebSite', '@id': businessInfo.url+'#website',
+  name: businessInfo.name, url: businessInfo.url, publisher: {'@id': businessInfo.id},
+  inLanguage: 'en-IN',
 };

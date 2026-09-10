@@ -24,3 +24,8 @@ test('unknown paths retain their intent; unrelated hosts are untouched', () => {
   assert.equal(redirectTarget('https://www.cleannest.in/services.html?q=1'), 'https://cleannest.in/services.html?q=1');
   assert.equal(redirectTarget('https://example.com/index.html'), null);
 });
+
+test('search-visible Wix room service has a single relevant replacement', () => {
+  assert.equal(redirects['/service-page/room-deep-clean'], '/full-house-cleaning.html');
+  assert.equal(redirectTarget('https://www.cleannest.in/service-page/room-deep-clean?utm_campaign=old'), 'https://cleannest.in/full-house-cleaning.html?utm_campaign=old');
+});

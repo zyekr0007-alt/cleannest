@@ -1,4 +1,4 @@
-import {businessSchema, businessInfo} from './business.mjs';
+import {businessSchema, businessInfo, websiteSchema} from './business.mjs';
 import {faqSections} from './catalog.mjs';
 
 export const textContent = html => String(html || '').replace(/<[^>]*>/g, ' ').replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#39;|&apos;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/\s+/g, ' ').trim();
@@ -7,7 +7,12 @@ const crumbs = items => ({
   itemListElement: items.map(([name, item], i) => ({'@type':'ListItem', position:i+1, name, item})),
 });
 export function pageSchema({file, page, canonical, service, isArticle, metadata = {}}) {
-  const schema = [businessSchema];
+  const webPageId=canonical+'#webpage';
+  const schema = [businessSchema, websiteSchema, {
+    '@context':'https://schema.org', '@type':'WebPage', '@id':webPageId,
+    url:canonical, name:page.title, description:page.description,
+    isPartOf:{'@id':websiteSchema['@id']}, about:{'@id':businessInfo.id}, inLanguage:'en-IN',
+  }];
   const trail = [['Home', businessInfo.url]];
   if (service) {
     schema.push({'@context':'https://schema.org', '@type':'Service',
@@ -19,9 +24,14 @@ export function pageSchema({file, page, canonical, service, isArticle, metadata 
   } else if (isArticle) {
     schema.push({'@context':'https://schema.org', '@type':'BlogPosting',
       '@id':canonical+'#article', headline:page.h1 || page.title.split('|')[0].trim(),
-      description:page.description, mainEntityOfPage:{'@type':'WebPage','@id':canonical},
+      description:page.description, mainEntityOfPage:{'@id':webPageId},
       publisher:{'@id':businessInfo.id},
-      ...(metadata.image ? {image:new URL(metadata.image,businessInfo.url).href} : {}),
+      ...(metadata.image ? {image:{
+        '@type':'ImageObject',
+        url:new URL(metadata.image.url||metadata.image,businessInfo.url).href,
+        ...(metadata.image.width?{width:metadata.image.width}:{}),
+        ...(metadata.image.height?{height:metadata.image.height}:{}),
+      }} : {}),
       ...(metadata.author ? {author:metadata.author} : {}),
       ...(metadata.datePublished ? {datePublished:metadata.datePublished} : {}),
       ...(metadata.dateModified ? {dateModified:metadata.dateModified} : {}),
