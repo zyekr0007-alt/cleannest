@@ -40,7 +40,7 @@ test('quote first step is server rendered and contact data comes from business s
 });
 
 test('articles expose only supported publication metadata',()=>{
- assert.equal(Object.keys(blogArticles).length,8);
+ assert.equal(Object.keys(blogArticles).length,15);
  for(const [id,article] of Object.entries(blogArticles)){
   assert.equal(article.author,null);
   assert.equal(article.datePublished,null);
