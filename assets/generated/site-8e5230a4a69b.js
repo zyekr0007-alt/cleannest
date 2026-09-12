@@ -8,7 +8,7 @@ document.addEventListener('click',e=>{if(!mobileNav.hidden&&!e.target.closest('.
 mobileNav?.addEventListener('click',e=>{if(e.target.closest('a'))closeMenu();});
 document.addEventListener('focusin',e=>{if(menu?.getAttribute('aria-expanded')==='true'&&!e.target.closest('.header'))closeMenu();});
 const lightbox=document.querySelector('#lightbox');let imageTrigger;
-document.querySelectorAll('[data-lightbox]').forEach(button=>button.addEventListener('click',()=>{imageTrigger=button;const photo=lightbox.querySelector('.lightbox-photo'),img=photo.querySelector('img'),source=photo.querySelector('source');photo.style.cssText=button.dataset.resultStyle||'';source.srcset=button.dataset.lightboxAvif||'';img.src=button.dataset.lightbox;lightbox.showModal();document.body.style.overflow='hidden';}));
+document.querySelectorAll('[data-lightbox]').forEach(button=>button.addEventListener('click',()=>{imageTrigger=button;lightbox.querySelector('svg').setAttribute('viewBox',button.dataset.crop||'0 0 1000 780');lightbox.querySelector('image').setAttribute('href',button.dataset.lightbox);lightbox.showModal();document.body.style.overflow='hidden';}));
 lightbox?.querySelector('.dialog-close').addEventListener('click',()=>lightbox.close());
 lightbox?.addEventListener('click',e=>{if(e.target===lightbox)lightbox.close();});
 lightbox?.addEventListener('close',()=>{document.body.style.overflow='';imageTrigger?.focus();});

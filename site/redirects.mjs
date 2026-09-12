@@ -1,13 +1,10 @@
-import {businessInfo} from './business.mjs';
-
 // Exact legacy paths only. Unknown Wix service slugs need owner/index evidence.
-export const origin = businessInfo.url.replace(/\/$/,'');
+export const origin = 'https://cleannest.in';
 export const redirects = {
   '/index.html': '/',
   '/about': '/about.html',
   '/services': '/services.html',
   '/book-online': '/quote.html',
-  '/service-page/room-deep-clean': '/full-house-cleaning.html',
   '/blank': '/privacy.html',
   '/blank-2': '/terms.html',
   '/blank-3': '/refund.html',

@@ -1,5 +1,11 @@
 # CleanNest design requirements
 
+> **Superseded on 13 September 2026.** The live site is the "mint" design: warm
+> cream paper (`#f8f7f4`), sage (`#e3e8df`), navy `#0b4364`, DM Serif Display
+> headlines with Manrope text, and the owner's district map. This document
+> describes the later navy/white design and its retired `polish.css` layer, which
+> is no longer part of the build. Keep it for history only.
+
 Maintain a calm, polished white interface with deep navy and restrained sky blue.
 Use the system UI font for clear headings and reading text, preserving the CleanNest wordmark.
 

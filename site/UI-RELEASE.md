@@ -1,5 +1,9 @@
 # Navy and ice-blue UI follow-up
 
+> **Superseded on 13 September 2026.** This release was replaced by the "mint"
+> design. See `site/DESIGN.md` for the note and `site/REDESIGN.md` for the
+> build that now ships.
+
 9 September 2026. Owner requested these UI changes and authorized publishing
 them together with the preceding implementation audit.
 

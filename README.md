@@ -2,8 +2,6 @@
 
 ## September 2026 redesign
 
-The owner-authorized navy/ice-blue UI follow-up is documented in [site/UI-RELEASE.md](site/UI-RELEASE.md). Its palette, map and booking-step changes supersede the earlier visual notes.
-
 The 9 September implementation audit is documented in [site/IMPLEMENTATION-REPORT.md](site/IMPLEMENTATION-REPORT.md), including remaining hosting and factual-content dependencies. This is the current maintenance reference.
 
 Run `npm ci` once for the development-only CSS build tools, then `npm run build`.

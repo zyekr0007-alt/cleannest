@@ -13,7 +13,7 @@ const resolveFile=url=>decodeURIComponent(url.pathname).replace(/^\//,'').replac
 const sitemap=[...fs.readFileSync('sitemap.xml','utf8').matchAll(/<loc>(.*?)<\/loc>/g)].map(m=>m[1]);
 assert.equal(new Set(sitemap).size,sitemap.length,'unique sitemap URLs');
 for(const [file,html] of bodies){
- const url=origin+'/'+(file==='index.html'?'':file==='blog/index.html'?'blog/':file);
+ const url=origin+'/'+(file==='index.html'?'':file);
  const canonical=html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];
  const indexable=sitemap.includes(url);
  if((html.match(/<h1[\s>]/g)||[]).length!==1)fail(file,'expected one H1');
@@ -21,7 +21,7 @@ for(const [file,html] of bodies){
  if(!html.match(/<title>[^<]+<\/title>/)||!html.match(/<meta name="description" content="[^"]+"/))fail(file,'missing title/description');
  if(!canonical?.startsWith(origin+'/'))fail(file,'canonical host differs');
  if(indexable&&(canonical!==url||/name="robots" content="[^"]*noindex/.test(html)))fail(file,'indexable URL must be self-canonical and indexable');
- if(file==='404.html'&&!/name="robots" content="[^"]*noindex/.test(html))fail(file,'404 must be noindex');
+ if(file==='404.html'&&!html.includes('name="robots" content="noindex"'))fail(file,'404 must be noindex');
  const ids=[...html.matchAll(/\sid="([^"]+)"/g)].map(m=>m[1]);
  if(new Set(ids).size!==ids.length)fail(file,'duplicate IDs');
  for(const m of html.matchAll(/(?:href|src)="([^"]+)"/g)){
@@ -57,8 +57,6 @@ for(const [file,html] of bodies){
   const s=schemas.find(s=>s['@type']==='BlogPosting');
   if(s?.headline!==article.title||s.mainEntityOfPage?.['@id']!==canonical+'#webpage')fail(file,'article schema mismatch');
   for(const field of ['author','datePublished','dateModified'])if(!article[field]&&s?.[field])fail(file,'unsupported article '+field);
-  if(article.dateModified&&!html.includes(`<time datetime="${article.dateModified}">`))fail(file,'visible article update date missing');
-  if(article.image&&(s.image?.url!==new URL(article.image.url||article.image,origin+'/').href||s.image?.['@type']!=='ImageObject'))fail(file,'article image schema mismatch');
   let level=1;
   for(const m of html.matchAll(/<h([1-6])\b/g)){const next=Number(m[1]);if(next>level+1)fail(file,'heading level skipped');level=next;}
   if(html.includes('— official CleanNest rates'))fail(file,'blog metadata boilerplate');

@@ -1,8 +1,8 @@
-import {calculate,priceLabel,formatMoney,includedRates,whatsappMessage} from './estimate.mjs';
+import {calculate,priceLabel,formatMoney,includedRates,whatsappMessage} from './estimate-390d855e2782.mjs';
 const form=document.querySelector('#quote-form'),stage=document.querySelector('#quote-stage'),next=document.querySelector('#quote-next'),back=document.querySelector('#quote-back');
 const esc=s=>String(s??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 let catalog;
-try{const response=await fetch(new URL('./catalog.json',import.meta.url));if(!response.ok)throw Error();catalog=await response.json();}catch{stage.innerHTML='<p class="form-error">Please refresh to load the estimate builder, or <a href="https://wa.me/917610000654">contact us on WhatsApp</a>.</p>';next.hidden=true;back.hidden=true;throw Error('Catalog unavailable');}
+try{const response=await fetch(new URL('./catalog-bb6f0c24b015.json',import.meta.url));if(!response.ok)throw Error();catalog=await response.json();}catch{stage.innerHTML='<p class="form-error">Please refresh to load the estimate builder, or <a href="https://wa.me/917610000654">contact us on WhatsApp</a>.</p>';next.hidden=true;back.hidden=true;throw Error('Catalog unavailable');}
 const options=[...catalog.services,...(catalog.extras||[])];
 const rates=Object.fromEntries(catalog.groups.flatMap(g=>g.items).map(r=>[r.id,r]));
 const params=new URLSearchParams(location.search),preselected=params.get('service');

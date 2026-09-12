@@ -37,7 +37,7 @@ export function calculate(catalog,state){
     const recliners=quantity(config.recliners??0,0);if(recliners>qty)throw Error('Recliners cannot exceed the total sofa seats.');
     if(recliners){const surcharge=catalog.supplements?.recliner;if(!Number.isFinite(surcharge)||surcharge<0)throw Error('Recliner rate is unavailable. Please request a quote.');lines.push({id:id+'-recliners',label:'Recliner surcharge',detail:`${recliners} × ${formatMoney(surcharge)}`,low:recliners*surcharge,high:recliners*surcharge});}
    }
-  }else lines.push({id,label:s.name,detail:id==='recurring-cleaning'?(config.frequency||'Every two weeks')+' after an initial deep clean':id==='wooden-floor-polishing'?(config.qty??1)+' room(s); from ₹2,490 / room, final scope and price to be confirmed':'We’ll confirm the scope with you',low:0,high:0,custom:true});
+  }else lines.push({id,label:s.name,detail:'We’ll confirm the scope with you',low:0,high:0,custom:true});
  }
  return {lines,includedNames,custom:lines.some(l=>l.custom),low:lines.reduce((n,l)=>n+l.low,0),high:lines.reduce((n,l)=>n+l.high,0)};
 }
@@ -48,5 +48,6 @@ export function whatsappMessage(catalog,state,result){return [
  'Rough estimate: '+priceLabel(result),'Name: '+state.name,'Phone: '+state.phone,
  state.city?'City: '+state.city:'',state.locality?'Locality: '+state.locality:'',state.notes?'Notes: '+state.notes:'','',
  !state.selected.includes('recurring-cleaning')&&state.recurring&&state.recurring!=='One-off'?'Recurring care requested: '+state.recurring+' after the initial deep clean.':'',
- catalog.booking?.payment||'',catalog.booking?.cancellation||'','Please confirm the final price and available booking dates.'
+ catalog.booking?.payment||'',catalog.booking?.cancellation||'',
+ 'Please confirm the final price and available booking dates.'
 ].join('\n');}
