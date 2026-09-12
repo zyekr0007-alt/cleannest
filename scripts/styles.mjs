@@ -6,7 +6,7 @@ import cssnano from 'cssnano';
 export async function buildStyles(){
  const files=[];
  fs.mkdirSync('assets/generated',{recursive:true});
- for(const name of ['base','pages']){
+ for(const name of ['base','pages','polish']){
   const from='site/styles/'+name+'.css';
   const {css}=await postcss([cssnano({preset:['default',{normalizeUrl:false,mergeLonghand:false}]})]).process(fs.readFileSync(from,'utf8'),{from,map:false});
   const served=css.replaceAll('url(fonts/','url(../fonts/').replaceAll('url("fonts/','url("../fonts/');
