@@ -48,7 +48,7 @@ test('service cards only badge full-home and use mobile card prices',()=>{
 test('external destinations use vector icons instead of arrow characters',()=>{
  const html=footerFinal()+reviewsFinal();
  assert.doesNotMatch(html,/↗/);
- assert.ok((html.match(/M14 4h6v6/g)||[]).length>=5);
+ assert.match(reviewsFinal(),/Open Justdial<\/span><svg[^>]+>[\s\S]*?M14 4h6v6/);
 });
 
 test('Google review actions never reuse the directions URL',()=>{

@@ -39,6 +39,7 @@ export function buildQuoteClient(catalog){
  const data=write('catalog','json',JSON.stringify(catalog));
  const estimate=write('estimate','mjs',fs.readFileSync('assets/estimate.mjs','utf8'));
  const icons=write('brand-icons','mjs',fs.readFileSync('assets/brand-icons.mjs','utf8'));
- const quote=fs.readFileSync('assets/quote-flow.js','utf8').replace('./brand-icons.mjs','./'+icons).replace('./estimate.mjs','./'+estimate).replace('./catalog.json','./'+data);
+ const ui=write('ui-icons','mjs',fs.readFileSync('assets/ui-icons.mjs','utf8').replace('./brand-icons.mjs','./'+icons));
+ const quote=fs.readFileSync('assets/quote-flow.js','utf8').replace('./ui-icons.mjs','./'+ui).replace('./estimate.mjs','./'+estimate).replace('./catalog.json','./'+data);
  return 'assets/generated/'+write('quote-flow','mjs',quote);
 }

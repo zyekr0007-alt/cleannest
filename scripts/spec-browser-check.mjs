@@ -30,14 +30,16 @@ try {
  run('set','viewport','390','844');open('');
  expect(evaluate('!document.querySelector(".brand-intro")'),'brand overlay still present');
  expect(evaluate('!document.querySelector(".city-route,.city-label-line,.map-replay")'),'map should have no connector lines or replay');
- expect(evaluate('document.querySelector(".coverage-home").dataset.city==="Jalandhar"&&document.querySelector(".coverage-home").dataset.lat==="31.326015"'),'Jalandhar city-centre marker');
+ expect(evaluate('getComputedStyle(document.querySelector(".header")).position==="relative"'),'header scrolls naturally with the page');
  expect(evaluate('getComputedStyle(document.documentElement).getPropertyValue("--navy").trim().toLowerCase()==="#0a2647"'),'updated navy palette');
  expect(evaluate('document.querySelector("link[rel=icon]")?.getAttribute("href").includes("assets/favicon.png")'),'supplied favicon is linked');
  expect(evaluate('document.querySelector(".hero-final .hero-visual img")?.getAttribute("src").includes("hero-collage.webp")'),'supplied hero collage is used');
  expect(evaluate('document.querySelectorAll(".result-carousel .comparison-card").length===7'),'homepage shows seven focused comparisons');
  expect(evaluate('document.querySelector(".results-instagram")?.textContent.includes("Check out our Instagram for more content")'),'Instagram moved to results section');
  expect(evaluate('document.querySelector(".homepage-service-grid .service-card-featured")?.classList.contains("service-card-featured")'),'full-home service is featured');
- expect(evaluate('(()=>{const ids=[...document.querySelectorAll("main > section")].map(e=>e.id||e.className);const order=["hero hero-final container","trust-strip container","services","results","care-section container","process-wrap","reviews","coverage","section container faq-section","closing closing-final container"];return order.every((id,i)=>ids[i]===id)})()'),'homepage follows the requested section order');
+ expect(evaluate('(()=>{const ids=[...document.querySelectorAll("main > section")].map(e=>e.id||e.className);const order=["hero hero-final container","services","process-wrap","results","section container faq-section","closing closing-final container"];return order.every((id,i)=>ids[i]===id)})()'),'homepage follows the requested section order');
+ expect(evaluate('document.querySelectorAll(".homepage-service-grid .service-card-featured").length===1&&document.querySelectorAll(".home-service-options > article").length===6'), 'one highlighted full-house service and a six-card grid');
+ expect(evaluate('[...document.querySelectorAll(".button,.contact-pill,.tap-option")].every(e=>parseFloat(getComputedStyle(e).borderTopLeftRadius)>=999)'), 'all action buttons are capsules');
  expect(evaluate('[...document.querySelectorAll(".journey-step")].every(e=>Math.abs(e.getBoundingClientRect().top-document.querySelector(".journey-step").getBoundingClientRect().top)<1)'),'booking steps remain horizontal on mobile');
  expect(evaluate('document.querySelector(".quick-contacts [data-brand=whatsapp]")&&document.querySelector(".results-instagram [data-brand=instagram]")'),'recognizable Instagram and WhatsApp brand SVGs');
  expect(evaluate('document.querySelectorAll("image[data-href]").length>0'),'later carousel images should be deferred');
@@ -51,7 +53,7 @@ try {
  expect(evaluate('document.querySelector(".comparison-after").style.clipPath.includes("51")'),'before/after slider keyboard update');
  open('faqs.html');run('focus','.faq-list summary');run('press','Enter');
  expect(evaluate('document.querySelector(".faq-list details").open'),'FAQ keyboard open');
- run('press','Enter');expect(evaluate('!document.querySelector(".faq-list details").open'),'FAQ keyboard close');
+ run('press','Enter');run('wait','--fn','!document.querySelector(".faq-list details").open');expect(evaluate('!document.querySelector(".faq-list details").open'),'FAQ keyboard close');
  open('results.html');run('click','.result-card');
  expect(evaluate('document.querySelector("#lightbox").open'),'result dialog open');run('press','Escape');
  expect(evaluate('!document.querySelector("#lightbox").open&&document.activeElement.matches(".result-card")'),'dialog Escape/focus return');
@@ -64,6 +66,7 @@ try {
  const handoff=evaluate('document.querySelector(".whatsapp-send").href');
  expect(new URL(handoff).pathname==='/917610000654'&&new URL(handoff).searchParams.get('text').includes('Local QA'),'WhatsApp handoff recipient/summary');
  // Inspect only: do not click the outbound handoff and do not send an enquiry.
+ evaluate('document.querySelector("#quote-back").scrollIntoView({block:"center",behavior:"instant"});true');
  run('click','#quote-back');expect(evaluate('document.querySelector("#name").value==="Local QA"'),'Back retains local contact details');
  run('set','media','light','reduced-motion');open('');
  expect(evaluate('!document.querySelector(".brand-intro")&&getComputedStyle(document.documentElement).scrollBehavior==="auto"'),'reduced-motion content/scroll');
