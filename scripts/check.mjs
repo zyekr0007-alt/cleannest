@@ -13,7 +13,7 @@ const resolveFile=url=>decodeURIComponent(url.pathname).replace(/^\//,'').replac
 const sitemap=[...fs.readFileSync('sitemap.xml','utf8').matchAll(/<loc>(.*?)<\/loc>/g)].map(m=>m[1]);
 assert.equal(new Set(sitemap).size,sitemap.length,'unique sitemap URLs');
 for(const [file,html] of bodies){
- const url=origin+'/'+(file==='index.html'?'':file);
+ const url=origin+'/'+(file==='index.html'?'':file==='blog/index.html'?'blog/':file);
  const canonical=html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];
  const indexable=sitemap.includes(url);
  if((html.match(/<h1[\s>]/g)||[]).length!==1)fail(file,'expected one H1');
