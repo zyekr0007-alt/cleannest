@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 const source=JSON.parse(fs.readFileSync(new URL('./content.json',import.meta.url),'utf8'));
+import {booking} from './booking.mjs';
 import {cities,address} from './business.mjs';
 export {cities,address};
 export const slug=s=>s.toLowerCase().replaceAll(' ','-');
@@ -35,6 +36,7 @@ const definitions=[
  ['chandelier-cleaning','Chandelier & crystal','Careful attention to delicate details.','Specialist',null],
  ['pool-cleaning','Swimming pool','A fresh start for your pool.','Specialist',null],
  ['jet-washing','Pressure washing','Powerful cleaning for outdoor surfaces.','Specialist','jet-washing'],
+ ['wooden-floor-polishing','Wooden floor cleaning & polishing','Care for the wood beneath your feet.','Specialist',null,'wooden-floor'],
  ['recurring-cleaning','Regular cleaning','Keep that freshly-cleaned feeling.','Homes',null]
 ];
 export const rateMap=Object.fromEntries(groups.flatMap(g=>g.items).map(r=>[r.id,r]));
@@ -44,26 +46,29 @@ export const chimneyPrice=money(rateMap.chimney.base);
 export const extras=['cabinets','fan','dining-chairs','cushions'].map(id=>{const r=rateMap[id];return {id:'extra-'+id,name:r.label,rate:id,image:'',price:`${money(r.base)}${r.high?'–'+money(r.high):''} ${r.unit}`};});
 export const services=definitions.map(([id,name,tagline,category,rate,image])=>({id,name,tagline,category,rate,
  image:refreshedImages[id]?'assets/img/editorial/'+refreshedImages[id]+'-v2.webp':image?'assets/img/editorial/'+image+'.webp':source.pages[id+'.html']?.image||'assets/img/services/recurring-cleaning.webp',
- price:rate==='home'?'From '+money(homes['1'].low):rate?`${rateMap[rate].high?money(rateMap[rate].base)+'–'+money(rateMap[rate].high):'From '+money(rateMap[rate].base)} ${rateMap[rate].unit}`:'Custom quote',
+ price:id==='wooden-floor-polishing'?'From ₹2,490 / room · custom quote':rate==='home'?'From '+money(homes['1'].low):rate?`${rateMap[rate].high?money(rateMap[rate].base)+'–'+money(rateMap[rate].high):'From '+money(rateMap[rate].base)} ${rateMap[rate].unit}`:'Custom quote',
  ...{includes:source.pages[id+'.html']?.includes||['A cleaning plan matched to your space','Scope and frequency agreed before booking','Professional equipment and trained staff'],faqs:source.pages[id+'.html']?.faqs||[]}
 }));
 // Owner-confirmed kitchen scope: chimney is a separately selected ₹690 extra.
+const wood=services.find(s=>s.id==='wooden-floor-polishing');
+wood.startingPrice=2490;
+wood.includes=['Wooden-floor cleaning','Polishing suited to the floor finish','Steam mopping only where permitted by the flooring manufacturer','Final scope and price confirmed after assessment'];
 const kitchen=services.find(s=>s.id==='kitchen-cleaning');
-kitchen.includes=kitchen.includes.map(t=>t==='Chimney & exhaust cleaning'?'Exhaust cleaning':t);
+kitchen.includes=['Cabinets cleaned inside and outside','Tiles and backsplash','Sink and fittings','Kitchen flooring','Accessible windows','Hob degreasing and exhaust cleaning'];
 kitchen.faqs=kitchen.faqs.map(([q,a])=>/chimney/i.test(q)?[q,`Yes. Add chimney cleaning to your kitchen service for ${chimneyPrice}. It is optional and is not included in the kitchen price.`]:[q,a]);
 export const faqs=[
  ['How do I get a quote?','Select one or more services, answer a few questions about your space, then enter your name and mobile number to see a rough estimate. Send your summary on WhatsApp and we’ll confirm the scope, price and available dates with you.'],
  ['Is the estimate the final price?','It is a guide based on our published rates. Size, condition, access and the agreed scope can affect the final quote. We confirm the price with you before booking.'],
  ['What is included in a full-home clean?','Interior surface cleaning, kitchen degreasing, bathroom cleaning, floors, windows and appliance exteriors. Sofa treatments, AC servicing and specialist work are separate. Share your room counts so we can confirm the full scope.'],
  ['Are your products safe for children and pets?','We use professional products suitable for homes with children and pets. Tell us about sensitivities or delicate surfaces, and follow the team’s guidance on access while cleaning and drying.'],
- ['How do payment and booking work?','Once we agree the scope, price and date, 50% is payable to confirm your booking and the remaining 50% after the service. The online estimate itself does not reserve a slot.'],
+ ['How do payment and booking work?',booking.payment+' The online estimate itself does not reserve a slot.'],
  ['Can I book for today?','We try to accommodate same-day requests, subject to team availability. Message or call us between 9 AM and 8 PM, any day of the week, to check.'],
- ['What if an area needs another clean?','Let us know which area needs attention. Our free re-clean promise covers missed areas within the agreed cleaning scope. See our refund policy for the process.'],
+ ['What if an area needs another clean?',booking.reclean],
  ['Which areas do you serve?',`We serve ${cities.join(', ')}. Share your locality and job details when requesting a quote so we can plan the visit.`]
 ];
 export const faqSections = [
  ['Planning your clean',[faqs[0],faqs[1],['Is chimney cleaning included with a kitchen clean?',`Chimney cleaning is a separate optional add-on at ${chimneyPrice}. Select it with your kitchen cleaning if you would like both services.`]]],
  ['Care for your home',[faqs[2],faqs[3],faqs[6]]],
- ['Booking your visit',[faqs[4],faqs[5],faqs[7]]],
+ ['Booking your visit',[faqs[4],faqs[5],faqs[7],['What happens after I send my enquiry?',booking.response],['When is my booking advance refundable?',booking.cancellation],['Can I schedule regular cleaning?',booking.recurring]]],
 ];
 export {source};

@@ -6,13 +6,21 @@ Use the system UI font for clear headings and reading text, preserving the Clean
 - No sharp surface corners. For nested frames, inner radius equals outer radius minus padding and border thickness.
 - All action buttons are capsules. Icon-only actions are circles. Image and content surfaces retain concentric rectangular frames.
 - Align edges, card heights, action positions and gaps. Use space to separate decisions without leaving accidental gaps.
-- Header stays in document flow and scrolls naturally. Do not restore sticky positioning or scroll-triggered hiding.
-- Homepage order: hero, services, three booking steps, results with a review excerpt, brief FAQs, final quote action.
+- Header branding is centred. The header stays in document flow and scrolls naturally. Do not restore sticky positioning or scroll-triggered hiding.
+- Homepage order: hero, services, three booking steps, results with a review excerpt, brief FAQs, restored service-area map, final quote action.
 - Only Full House Cleaning receives a featured panel. Five other services and a View all services card form an equal grid, with two columns on small screens.
 - Footer contains brand, Call, WhatsApp, Instagram, four essential page links and legal links. Additional navigation belongs in the menu.
 - Use assets/ui-icons.mjs for interface SVGs; preserve the sourced brand paths in assets/brand-icons.mjs. Do not use text characters as control icons.
-- Motion gives immediate feedback and remains interruptible. Respect reduced motion. Do not add decorative animation loops.
+- Motion gives immediate feedback and remains interruptible. Respect reduced motion. The homepage wordmark briefly moves into its header position once per tab visit. Golden SVG review stars reveal once, then settle. Do not add decorative animation loops.
 - Quote selections and options use pills with visible selection and focus states. Keep native input semantics, existing pricing logic and user details when going back.
 - Preserve published articles, metadata, schemas, canonical URLs and redirects. Keep publication through GitHub main.
 
 Before publishing, run the static build/checks and the browser regression script. Review the homepage, menu, footer and quote flow visually on mobile and desktop. Use local test contact details and never send a test enquiry.
+Owner-approved September update:
+- Headline: Professional cleaning. Done right. No location eyebrow or green dot above it.
+- Call pills are sky blue; WhatsApp pills green; Instagram uses a readable brand gradient. Standalone action links have pill backgrounds.
+- Menu groups work and reviews at results.html, and journal with FAQs. Preserve old URLs.
+- Numeric rating remains unpublished until its score and count can be verified together. Use genuine review excerpts with selected phrases emphasized.
+- Quote stays four steps with no preferred date/time. Offer recurring frequency after the initial deep clean.
+- Booking copy comes from booking.mjs: 30% advance, 70% after completion, advance refundable with at least 48 hours cancellation notice.
+- Wooden floor cleaning and polishing starts at ₹2,490/room and remains a custom quote. Steam mopping is conditional on the flooring manufacturer's guidance.
