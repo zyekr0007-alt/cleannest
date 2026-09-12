@@ -1,10 +1,9 @@
 # Redirect deployment
 
-Current production: GitHub Pages, main branch, repository root, CNAME `cleannest.in`.
-Checked 9 September 2026: www redirects to apex; `/index.html` returns 200;
-`/full-house-deep-cleaning.html` returns 404. GitHub Pages has no repository
-configuration for arbitrary HTTP 301/308 responses. A `_redirects` file or
-JavaScript redirect would not satisfy the specification on this host.
+Current production: Cloudflare Pages project `cleannest`, connected to the
+GitHub `main` branch, with `cleannest.pages.dev` as the origin. The active
+Cloudflare Worker routes both public CleanNest hosts so legacy paths can keep
+their 301 redirects while normal requests reach the current Pages deployment.
 
 `redirect-worker.mjs` is a prepared edge entry point using the exact mappings in
 `site/redirects.mjs`. It combines host and path normalization into one 301 and
@@ -12,11 +11,10 @@ preserves query strings. Unmatched paths pass through; it does not send unknown
 pages to the homepage. Tests cover the mapping independently of a provider.
 
 Cloudflare configuration is defined in `wrangler.jsonc`. It deploys the worker
-to both apex and `www` routes while leaving GitHub Pages as the origin. The
-Cloudflare zone must be active and its GitHub origin records must be proxied for
-the routes to receive traffic. Verify `/`, every mapping (with a query string),
-and both hosts using HTTP headers after nameserver activation. The destination
-must return 200 with a self-canonical URL.
+to both apex and `www` routes while forwarding unmatched requests to the Pages
+origin. Verify `/`, every mapping (with a query string), and both hosts using
+HTTP headers after nameserver activation. The destination must return 200 with
+a self-canonical URL.
 
 The search-visible `/service-page/room-deep-clean` path is mapped to the closest
 current service, `/full-house-cleaning.html`. The other exact legacy paths in
