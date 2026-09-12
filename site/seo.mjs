@@ -36,7 +36,7 @@ export function pageSchema({file, page, canonical, service, isArticle, metadata 
       ...(metadata.datePublished ? {datePublished:metadata.datePublished} : {}),
       ...(metadata.dateModified ? {dateModified:metadata.dateModified} : {}),
     });
-    trail.push(['Cleaning Journal',businessInfo.url+'blog/index.html'],[page.h1 || page.title,canonical]);
+    trail.push(['Cleaning Journal',businessInfo.url+'blog/'],[page.h1 || page.title,canonical]);
   }
   if(file === 'faqs.html') schema.push({'@context':'https://schema.org','@type':'FAQPage',
     '@id':canonical+'#faqs',mainEntity:faqSections.flatMap(([,items])=>items).map(([q,a])=>({

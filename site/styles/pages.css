@@ -339,6 +339,59 @@
     font-size: 28px;
   }
 }
+.popular-prices {
+  margin-bottom: 30px;
+}
+.popular-prices > div:first-child {
+  margin-bottom: 16px;
+}
+.popular-prices p {
+  margin: 6px 0 0;
+}
+.popular-price-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(3, 1fr);
+}
+.popular-price-grid a {
+  align-items: center;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  display: flex;
+  gap: 10px;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.popular-price-grid a span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 700;
+}
+.popular-price-grid a strong {
+  color: var(--navy);
+  font-size: 14px;
+  margin-left: auto;
+  text-align: right;
+}
+.popular-price-grid a .icon {
+  flex-shrink: 0;
+  height: 16px;
+  width: 16px;
+}
+@media (max-width: 1000px) {
+  .popular-price-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .popular-price-grid {
+    grid-template-columns: 1fr;
+  }
+  .popular-price-grid a {
+    padding: 13px 15px;
+  }
+}
 .rate-page {
   max-width: 960px;
   padding-bottom: 15px;
