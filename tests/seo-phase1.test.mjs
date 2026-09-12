@@ -44,11 +44,11 @@ test('articles expose only supported publication metadata',()=>{
  for(const [id,article] of Object.entries(blogArticles)){
   assert.equal(article.author,null);
   assert.equal(article.datePublished,null);
-  assert.equal(article.dateModified,'2026-09-10');
+  assert.equal(article.dateModified,'2026-09-12');
   assert.ok(article.image?.url);
   const html=read(`blog/${id}.html`);
   assert.match(html,/CleanNest Cleaning Journal/);
-  assert.match(html,/<time datetime="2026-09-10">Updated 10 September 2026<\/time>/);
+  assert.match(html,/<time datetime="2026-09-12">Updated 12 September 2026<\/time>/);
  }
 });
 
