@@ -1,0 +1,10 @@
+# CleanNest — repo hygiene (never commit these)
+.env
+.env.*
+*.local
+.DS_Store
+node_modules/
+*.log
+Thumbs.db
+.hermes/
+.review/

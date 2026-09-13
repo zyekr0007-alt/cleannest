@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+
+# The deploy publishes the repository root: keep build sources and tests out of
+# search results. Response headers carry the same rule for crawlers that ignore
+# this file.
+Disallow: /site/
+Disallow: /scripts/
+Disallow: /tests/
+
+Sitemap: https://cleannest.in/sitemap.xml
