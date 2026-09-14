@@ -13,7 +13,9 @@ const resolveFile=url=>decodeURIComponent(url.pathname).replace(/^\//,'').replac
 const sitemap=[...fs.readFileSync('sitemap.xml','utf8').matchAll(/<loc>(.*?)<\/loc>/g)].map(m=>m[1]);
 assert.equal(new Set(sitemap).size,sitemap.length,'unique sitemap URLs');
 for(const [file,html] of bodies){
- const url=origin+'/'+(file==='index.html'?'':file);
+ // The blog index is served at /blog/ (blog/index.html 308s to it), so that — not the
+ // .html path — is the indexable URL its canonical must match.
+ const url=origin+'/'+(file==='index.html'?'':file==='blog/index.html'?'blog/':file);
  const canonical=html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];
  const indexable=sitemap.includes(url);
  if((html.match(/<h1[\s>]/g)||[]).length!==1)fail(file,'expected one H1');
