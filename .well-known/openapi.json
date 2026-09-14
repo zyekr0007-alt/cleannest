@@ -1,0 +1,173 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "CleanNest enquiry API",
+    "version": "1.0.0",
+    "description": "Accepts a cleaning enquiry for CleanNest, a cleaning company based in Jalandhar, Punjab, and delivers it to the business. This is the site's only machine interface. It is public but gated by a Cloudflare Turnstile token, so it is intended to be called from the cleannest.in pages rather than by unattended agents, which cannot obtain a token.",
+    "contact": {
+      "name": "CleanNest",
+      "url": "https://cleannest.in/contact.html",
+      "telephone": "+91 76100 00654"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://cleannest.in",
+      "description": "Production"
+    }
+  ],
+  "paths": {
+    "/api/inquiry": {
+      "post": {
+        "summary": "Send a cleaning enquiry",
+        "description": "Validates the enquiry and sends it to the business. Values are trimmed and clamped to the documented maximum lengths; control characters are stripped. On success the enquiry has been delivered, and there is no idempotency key — a repeated identical request is a second enquiry.",
+        "operationId": "createInquiry",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Inquiry"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "The enquiry was delivered.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Success"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "`invalid_json` for a malformed or non-object body, `name_required` when name is empty, `phone_invalid` when the phone number is not 10-15 digits after non-digits are stripped.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "`captcha_failed` — the Turnstile token was missing, rejected, or could not be verified.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "405": {
+            "description": "`method_not_allowed` — this path only accepts POST.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "413": {
+            "description": "`payload_too_large` — the declared body exceeds 16384 bytes.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "502": {
+            "description": "`send_failed` — the enquiry passed validation but could not be delivered downstream.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "`not_configured` — captcha verification or delivery is not configured in this deployment.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Inquiry": {
+        "type": "object",
+        "required": ["name", "phone", "turnstileToken"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 80,
+            "description": "The customer's name."
+          },
+          "phone": {
+            "type": "string",
+            "maxLength": 20,
+            "description": "Contact number. Non-digits are stripped, so spacing and punctuation are accepted. A 10-digit number is treated as Indian and prefixed with 91; 10 to 15 digits are required, and the digits are what is delivered."
+          },
+          "when": {
+            "type": "string",
+            "maxLength": 40,
+            "description": "Free-text preferred timing, passed through to the business unchanged."
+          },
+          "notes": {
+            "type": "string",
+            "maxLength": 1500,
+            "description": "Free-text notes. Line breaks are preserved."
+          },
+          "services": {
+            "type": "array",
+            "maxItems": 20,
+            "description": "The services the enquiry is about. At most 20 are kept; each is clamped to 80 characters and any that are empty after trimming are dropped.",
+            "items": {
+              "type": "string",
+              "maxLength": 80
+            }
+          },
+          "turnstileToken": {
+            "type": "string",
+            "maxLength": 2048,
+            "description": "Cloudflare Turnstile response token. Required — the endpoint rejects the request without a verifiable token."
+          }
+        }
+      },
+      "Success": {
+        "type": "object",
+        "properties": {
+          "ok": {
+            "const": true
+          }
+        },
+        "required": ["ok"]
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "A machine-readable reason code."
+          }
+        },
+        "required": ["error"]
+      }
+    }
+  }
+}

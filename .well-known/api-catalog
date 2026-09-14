@@ -1,0 +1,14 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://cleannest.in/api/inquiry",
+      "service-desc": [
+        {
+          "href": "https://cleannest.in/.well-known/openapi.json",
+          "type": "application/json",
+          "title": "CleanNest enquiry API — OpenAPI 3.1 description"
+        }
+      ]
+    }
+  ]
+}
