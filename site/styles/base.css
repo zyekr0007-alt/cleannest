@@ -304,31 +304,6 @@
   object-fit: cover;
   object-position: center top;
   width: 100%;
-}.hero-caption{
-  align-items: center;
-  animation: none;
-  backdrop-filter: blur(8px);
-  background: rgb(255 255 255 / 94%);
-  border: 1px solid rgb(255 255 255 / 44%);
-  bottom: 27px;
-  display: flex;
-  font-size: 13px;
-  gap: 13px;
-  left: 28px;
-  padding: 15px 20px;
-  position: absolute;
-}.hero-caption small{
-  color: var(--muted);
-  display: block;
-  font-size: 12px;
-  margin-top: 3px;
-}.caption-icon{
-  border: 1px solid var(--line);
-  border-radius: 50%;
-  display: grid;
-  height: 38px;
-  place-items: center;
-  width: 38px;
 }.hero-image-link{
   align-items: center;
   background: var(--paper);
@@ -896,7 +871,6 @@
   animation: section-arrive 0.65s var(--ease-out) both;
 }
 
-
 @keyframes section-arrive {
   0% {
     opacity: 0.5;
@@ -1014,18 +988,6 @@
     height: 350px;
   }.hero-visual > img{
     object-position: 43% center;
-  }.hero-caption{
-    border-radius: 10px;
-    bottom: 15px;
-    gap: 10px;
-    left: 13px;
-    padding: 12px;
-    right: 13px;
-  }.hero-caption, .hero-caption small{
-    font-size: 12px;
-  }.caption-icon{
-    height: 32px;
-    width: 32px;
   }.hero-image-link{
     bottom: auto;
     font-size: 12px;
@@ -1233,8 +1195,6 @@
     height: 40px;
     width: 40px;
   }
-}.hero-caption{
-  background: var(--paper);
 }.more-services{
   margin-top: 20px;
 }.more-services > summary{
@@ -1423,14 +1383,8 @@
   padding: 8px;
 }.hero-visual, .hero-visual > img{
   border-radius: var(--radius-image);
-}.hero-caption{
-  border-radius: 12px;
-  bottom: 20px;
-  left: 20px;
 }.hero-image-link{
   right: 20px;
-}.hero-caption .caption-icon{
-  border-radius: 10px;
 }.hero h1{
   font-size: clamp(58px, 6.6vw, 94px);
   line-height: 1.05;
@@ -1906,11 +1860,6 @@
     padding: 6px;
   }.hero-visual, .hero-visual > img{
     border-radius: var(--radius-image);
-  }.hero-caption{
-    border-radius: 12px;
-    bottom: 14px;
-    left: 14px;
-    right: 14px;
   }.hero-image-link{
     border-radius: 12px;
     right: 14px;
@@ -2282,10 +2231,12 @@
   margin: 0;
 }.hero-final .hero-visual > img{
   object-position: center 60%;
-}.hero-final .hero-caption{
-  text-align: left;
-}.hero-final .hero-image-link{
+}/* The photograph carries one overlay now, so it holds the same corner at every
+   width instead of being shuffled to avoid a second control. */
+.hero-final .hero-image-link{
   bottom: 20px;
+  left: 20px;
+  right: auto;
   top: auto;
 }.carousel{
   min-width: 0;
@@ -2709,15 +2660,11 @@
   width: var(--icon-sm);
   }.hero-final .hero-visual{
     height: 265px;
-  }.hero-final .hero-caption{
+  }.hero-final .hero-image-link{
     bottom: 14px;
     left: 14px;
-    right: 14px;
-  }.hero-final .hero-image-link{
-    bottom: auto;
-    top: 14px;
-  }.hero-caption small{
-    font-size: 12px;
+    right: auto;
+    top: auto;
   }.service-grid{
     gap: 10px;
   }.service-card-bottom{
@@ -3272,16 +3219,11 @@ body{
   object-fit: contain;
   object-position: center;
   width: 100%;
-}.hero-caption{
-  background: rgb(255 255 255 / 88%);
-  border: 1px solid var(--edge);
-  border-radius: 14px;
-  bottom: 20px;
-  left: 20px;
 }
 @media (min-width: 761px) {.hero-final .hero-image-link{
     bottom: 20px;
-    right: 24px;
+    left: 20px;
+    right: auto;
     top: auto;
   }
 }/* --- Process: three real destinations, joined by a rail. --- */
@@ -3676,21 +3618,12 @@ body{
     margin-top: 22px;
     padding: 6px;
     width: 100%;
-  }/* There is no room for both controls along the bottom of a phone-width photo, so the link moves to the top corner where it cannot collide. */
-  .hero-final .hero-caption{
+  }  .hero-final .hero-image-link{
     bottom: 14px;
     font-size: 12px;
     left: 14px;
-    max-width: none;
-    padding: 10px 12px;
-    right: 14px;
-  }.hero-final .hero-caption small{
-    font-size: 12px;
-  }.hero-final .hero-image-link{
-    bottom: auto;
-    font-size: 12px;
-    right: 14px;
-    top: 16px;
+    right: auto;
+    top: auto;
   }.review, .reviews-carousel .review{
     padding: 22px 20px 20px;
   }.review blockquote{
