@@ -807,9 +807,7 @@
   padding: 0 0 23px;
 }.quote-steps li{
   color: var(--muted);
-}.quote-steps li span{
-  display: block;
-  margin-top: 6px;
+  text-align: center;
 }.quote-steps li.active{
   font-weight: 700;
 }.quote-steps li.done{
@@ -1635,8 +1633,8 @@
   font-weight: 650;
   margin: 18px 0 0;
 }.quote-navigation{
-  backdrop-filter: blur(12px);
-  background: rgb(255 255 255 / 96%);
+  background: var(--paper);
+  border-top: 1px solid var(--line);
   bottom: 0;
   margin-top: 20px;
   padding: 16px 0 max(12px, env(safe-area-inset-bottom));
@@ -2993,9 +2991,11 @@
 }.booking-expectations p{
   font-size: 14px;
   margin: 10px 0;
-}.booking-expectations .text-link{
-  display: inline-flex;
-  margin-top: 8px;
+}.expectation-actions{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
 }/* Concentric frames.
    Rule: inner radius = outer radius − padding − border thickness. */
 .hero-visual{

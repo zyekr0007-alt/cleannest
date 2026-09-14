@@ -1,5 +1,6 @@
 // Owner-confirmed booking information, shared by visible pages and the quote.
 export const booking = {
+ termsBrief: '30% advance reserves your date, 70% after the clean. The advance is refundable with at least 48 hours’ notice.',
  response: 'Our team will respond within 1–2 hours of receiving your enquiry during working hours (9 AM–8 PM). A team representative will confirm the scope, available service date and final price with you.',
  payment: 'Pay 30% in advance to reserve your service date. Pay the remaining 70% after the service is completed.',
  cancellation: 'The 30% advance is refundable if you cancel at least two days (48 hours) before the confirmed service start. For cancellations with less than 48 hours’ notice, the advance is non-refundable.',
