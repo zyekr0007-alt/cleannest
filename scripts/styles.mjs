@@ -36,8 +36,17 @@ export function buildQuoteClient(catalog){
   fs.writeFileSync('assets/generated/'+file,content);
   return file;
  };
- const data=write('catalog','json',JSON.stringify(catalog));
- const estimate=write('estimate','mjs',fs.readFileSync('assets/estimate.mjs','utf8'));
- const quote=fs.readFileSync('assets/quote-flow.js','utf8').replace('./estimate.mjs','./'+estimate).replace('./catalog.json','./'+data);
- return 'assets/generated/'+write('quote-flow','mjs',quote);
+ // Shared modules are hashed once, then every entry point is rewritten to point
+ // at the hashed names so the module graph resolves under assets/generated/.
+ const shared={
+  './estimate.mjs':write('estimate','mjs',fs.readFileSync('assets/estimate.mjs','utf8')),
+  './catalog.json':write('catalog','json',JSON.stringify(catalog)),
+  './enquiry.mjs':write('enquiry','mjs',fs.readFileSync('assets/enquiry.mjs','utf8')),
+ };
+ const entry=file=>{
+  const source=fs.readFileSync('assets/'+file,'utf8');
+  const rewritten=Object.entries(shared).reduce((out,[from,to])=>out.replaceAll(from,'./'+to),source);
+  return 'assets/generated/'+write(file.replace(/\.[a-z]+$/,''),'mjs',rewritten);
+ };
+ return {quote:entry('quote-flow.js'),contact:entry('contact-form.mjs')};
 }

@@ -1,4 +1,4 @@
-import {calculate,priceLabel,formatMoney,includedRates,whatsappMessage} from './estimate.mjs';
+import {calculate,priceLabel,formatMoney,includedRates,whatsappMessage} from './estimate-6bcd2c3ecd4c.mjs';
 import {submitEnquiry,failureMessage} from './enquiry.mjs';
 const ICON_ARROW='<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>';
 const ICON_EXTERNAL='<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5"/></svg>';
@@ -7,7 +7,7 @@ const ICON_PLUS='<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="curre
 const form=document.querySelector('#quote-form'),stage=document.querySelector('#quote-stage'),next=document.querySelector('#quote-next'),back=document.querySelector('#quote-back'),builder=document.querySelector('#quote-builder');
 const esc=s=>String(s??'').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
 let catalog;
-try{const response=await fetch(new URL('./catalog.json',import.meta.url));if(!response.ok)throw Error();catalog=await response.json();}catch{stage.innerHTML='<p class="form-error">Please refresh to load the estimate builder, or <a href="https://wa.me/917610000654">contact us on WhatsApp</a>.</p>';next.hidden=true;back.hidden=true;throw Error('Catalog unavailable');}
+try{const response=await fetch(new URL('./catalog-33a67709771c.json',import.meta.url));if(!response.ok)throw Error();catalog=await response.json();}catch{stage.innerHTML='<p class="form-error">Please refresh to load the estimate builder, or <a href="https://wa.me/917610000654">contact us on WhatsApp</a>.</p>';next.hidden=true;back.hidden=true;throw Error('Catalog unavailable');}
 const options=[...catalog.services,...(catalog.extras||[])];
 const rates=Object.fromEntries(catalog.groups.flatMap(g=>g.items).map(r=>[r.id,r]));
 const params=new URLSearchParams(location.search),preselected=params.get('service');
@@ -50,26 +50,6 @@ function render(focus=true){
  if(focus){stage.querySelector('h2')?.focus({preventScroll:true});document.querySelector('#quote-builder').scrollIntoView({behavior:'instant',block:'start'});}
 }
 function error(message){let el=document.querySelector('#quote-error');if(!el){el=document.createElement('p');el.id='quote-error';el.className='form-error';el.setAttribute('role','alert');stage.append(el);}el.textContent=message;el.scrollIntoView({block:'nearest',behavior:'instant'});}
-let sending=false;
-async function sendRequest(button){
- if(sending)return;
- collect();
- if(!state.name.trim()){error('Please enter your name.');return;}
- if(!/^\+?[\d ()-]+$/.test(state.phone)||state.phone.replace(/\D/g,'').length<10||state.phone.replace(/\D/g,'').length>15){error('Please enter a valid mobile number.');return;}
- const status=document.querySelector('#send-status'),result=calculate(catalog,state);
- sending=true;button.disabled=true;button.textContent='Sending…';
- if(status)status.innerHTML='';
- const outcome=await submitEnquiry({
-  endpoint:builder.dataset.endpoint,
-  sitekey:builder.dataset.turnstile||'',
-  container:document.querySelector('#turnstile-slot'),
-  payload:{name:state.name,phone:state.phone,city:state.city,locality:state.locality,notes:state.notes,services:effective().map(id=>service(id).name),summary:whatsappMessage(catalog,state,result),source:'quote.html'},
- });
- sending=false;button.disabled=false;button.textContent='Send my request';
- // The WhatsApp link below stays put either way, so a failure never loses the enquiry.
- if(outcome.ok){button.hidden=true;if(status)status.innerHTML=`<p class="sent-note">Request sent. We’ll contact you on ${esc(state.phone)} to confirm the price and book a date.</p>`;}
- else error(failureMessage(outcome.error,outcome.status)+' You can still send it on WhatsApp below.');
-}
 form.addEventListener('change',e=>{collect();if(e.target.matches('[data-service]')){const id=e.target.dataset.service;state.selected=e.target.checked?[...new Set([...state.selected,id])]:state.selected.filter(v=>v!==id);config(id);const y=scrollY;render(false);const control=form.querySelector(`input[data-service="${id}"]:not(:disabled)`);(control||stage.querySelector('h2'))?.focus({preventScroll:true});window.scrollTo({top:y,behavior:'instant'});}});
 form.addEventListener('input',e=>{collect();if(e.target.matches('input[data-key="qty"]')){const id=e.target.dataset.id,value=Number(e.target.value),recliner=form.querySelector(`input[data-id="${id}"][data-key="recliners"]`);if(recliner&&Number.isInteger(value)&&value>0){recliner.max=value;if(Number(recliner.value)>value){recliner.value=value;config(id).recliners=value;}}}});
 form.addEventListener('click',e=>{
@@ -79,7 +59,6 @@ form.addEventListener('click',e=>{
  const pill=e.target.closest('[data-value]:not([data-pref])');if(pill){const {id,key,value}=pill.dataset;config(id)[key]=value;const group=pill.closest('.tap-options');group.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b===pill)));if(key==='floorRate'){config(id).tier=0;render(false);form.querySelector(`[data-id="${id}"][data-value="${value}"]`)?.focus({preventScroll:true});}return;}
  const counter=e.target.closest('[data-count]');if(counter){const {id,key,count}=counter.dataset,input=counter.parentElement.querySelector('input');const value=Math.min(Number(input.max),Math.max(Number(input.min),Number(input.value||0)+Number(count)));config(id)[key]=value;input.value=value;if(key==='qty'){const recliner=form.querySelector(`input[data-id="${id}"][data-key="recliners"]`);if(recliner){recliner.max=value;if(Number(recliner.value)>value){recliner.value=value;config(id).recliners=value;}}}return;}
  const remove=e.target.closest('[data-remove]');if(remove){state.selected=state.selected.filter(id=>id!==remove.dataset.remove);if(!state.selected.length)step=0;render();return;}
- if(e.target.closest('#send-request')){sendRequest(e.target.closest('#send-request'));return;}
  if(e.target.closest('#change-services')){collect();step=0;render();}
  if(e.target.closest('#edit-details')){step=1;render();}
  if(e.target.closest('.whatsapp-send'))document.querySelector('#send-status').innerHTML='<p class="sent-note">WhatsApp opens with your summary. Press Send there to deliver it.</p>';

@@ -4906,3 +4906,211 @@ body{
     line-height: 1.35;
   }
 }
+
+
+/* --- Service cards: the photograph leads, the text is one line beneath it.
+   The card is a plain white surface. The picture sits on top at its own 4:3
+   ratio so nothing is cropped, and the name and price share a single row
+   below it, which keeps the text to one line of height instead of three
+   stacked pills of three different widths. Nothing is laid over the
+   photograph, so legibility no longer depends on which image is behind it,
+   and because the whole card is the link the round arrow controls are gone. --- */
+.service-card.service-card-overlay{
+  background: var(--paper);
+  border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: transform 350ms var(--ease-out), box-shadow 350ms var(--ease-out), border-color 300ms ease;
+}.service-card-overlay .overlay-link{
+  aspect-ratio: auto;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  height: auto;
+  /* Without these the image's intrinsic width props the flex item open and
+     the whole card overflows its grid cell. */
+  min-width: 0;
+  width: 100%;
+}.service-card-overlay .overlay-link > img{
+  aspect-ratio: 4 / 3;
+  height: auto;
+  inset: auto;
+  max-width: 100%;
+  object-fit: cover;
+  position: static;
+  transition: transform 700ms var(--ease-out);
+  width: 100%;
+}.service-card-overlay .overlay-body{
+  align-items: baseline;
+  background: var(--paper);
+  bottom: auto;
+  display: flex;
+  gap: 14px;
+  left: auto;
+  margin-top: auto;
+  padding: 14px 16px 15px;
+  position: static;
+  right: auto;
+}/* :not() is needed here — the stacked rule it replaces is written with it,
+   so a plain .overlay-text selector loses on specificity. */
+.service-card-overlay:not(.service-card-all) .overlay-text{
+  align-items: baseline;
+  display: flex;
+  flex: 1;
+  flex-direction: row;
+  gap: 14px;
+  justify-content: space-between;
+  min-width: 0;
+}/* The pills go: this text now sits on a plain surface, so it needs no
+   frosted backing and no shadow to stay readable. */
+.service-card-overlay:not(.service-card-all) h3,
+.service-card-overlay:not(.service-card-all) .service-price,
+.service-card-overlay.service-card-featured .overlay-lede{
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  text-shadow: none;
+}/* :not() again: the pill rule sets colour at this specificity, so a plain
+   .service-card-overlay h3 would leave the text white on a white card. */
+.service-card-overlay:not(.service-card-all) h3{
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: -.012em;
+  line-height: 1.25;
+}.service-card-overlay:not(.service-card-all) .service-price{
+  color: var(--navy);
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1;
+  margin: 0;
+  white-space: nowrap;
+}/* No arrows anywhere: the entire card is the link. */
+.service-card-overlay .add-service{
+  display: none;
+}
+@media (hover: hover) and (pointer: fine) {.service-card-overlay:hover{
+    border-color: #bcd9ef;
+    box-shadow: 0 2px 4px rgb(11 67 100 / 5%), 0 26px 50px -28px rgb(11 67 100 / 42%);
+    transform: translateY(-3px);
+  }.service-card-overlay:hover .overlay-link > img{
+    transform: scale(1.045);
+  }
+}
+/* --- Featured banner: a 16:9 photograph. The old 1184x330 letterbox was
+   cutting a 3:2 image down to a thin strip. --- */
+.service-card-overlay.service-card-featured .overlay-link > img{
+  aspect-ratio: 16 / 9;
+}.service-card-overlay.service-card-featured .overlay-body{
+  align-items: center;
+  gap: 22px;
+  padding: 18px 22px 19px;
+}.service-card-overlay.service-card-featured .overlay-text{
+  flex-direction: column;
+  gap: 0;
+}.service-card-overlay.service-card-featured h3{
+  font-size: 20px;
+}.service-card-overlay.service-card-featured .overlay-lede{
+  color: var(--muted);
+  line-height: 1.5;
+  margin-top: 4px;
+}.service-card-overlay.service-card-featured .service-price{
+  font-size: 15px;
+  margin-top: 10px;
+}.service-card-overlay.service-card-featured .overlay-cta{
+  margin-left: auto;
+}.service-card-overlay.service-card-featured .overlay-cta .icon{
+  display: none;
+}
+/* --- The See-all tile carries no photograph and keeps its navy fill. Its
+   body spans the whole tile, so it must not paint a surface of its own. --- */
+.service-card-overlay.service-card-all{
+  background: var(--navy);
+  border-color: var(--navy);
+}.service-card-overlay.service-card-all .overlay-body{
+  background: transparent;
+  padding: 34px 20px;
+}.service-card-overlay.service-card-all .overlay-text{
+  align-items: center;
+  flex-direction: column;
+  gap: 0;
+  justify-content: center;
+  text-align: center;
+}.service-card-overlay.service-card-all h3{
+  color: #fff;
+}.service-card-overlay.service-card-all .service-price{
+  color: rgb(255 255 255 / 78%);
+  font-size: 13px;
+  line-height: 1.5;
+  margin-top: 4px;
+  white-space: normal;
+}.service-card-overlay.service-card-all .overlay-icon{
+  stroke: rgb(255 255 255 / 85%);
+}
+@media (max-width: 700px) {.service-card-overlay .overlay-body{
+    gap: 8px;
+    padding: 11px 12px 12px;
+  }.service-card-overlay:not(.service-card-all) h3{
+    font-size: 14px;
+  }.service-card-overlay:not(.service-card-all) .service-price{
+    font-size: 12.5px;
+  }.service-card-overlay.service-card-featured .overlay-link > img{
+    aspect-ratio: 3 / 2;
+  }.service-card-overlay.service-card-featured .overlay-body{
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 14px 15px;
+  }.service-card-overlay.service-card-featured h3{
+    font-size: 17px;
+  }.service-card-overlay.service-card-featured .overlay-cta{
+    margin-left: 0;
+    width: 100%;
+  }.service-card-overlay.service-card-featured .overlay-cta .button{
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+/* Website enquiry forms: shared by the quote wizard and the contact page.
+   Both pages load base.css only, so these cannot live in pages.css. */
+.turnstile-slot:empty {
+  display: none;
+}
+.turnstile-slot {
+  margin-top: 4px;
+}
+.contact-form {
+  border-top: 1px solid var(--line);
+  margin-top: 30px;
+  padding-top: 26px;
+}
+.contact-form h2 {
+  font-size: 25px;
+}
+.contact-form > .small {
+  font-size: 12px;
+  margin: 10px 0 0;
+}
+.contact-form .button {
+  margin-top: 18px;
+}
+.contact-form .privacy-note {
+  margin-top: 18px;
+}
+.contact-form #contact-status:empty {
+  display: none;
+}
+@media (max-width: 600px) {
+  .contact-form {
+    margin-top: 24px;
+    padding-top: 22px;
+  }
+  .contact-form h2 {
+    font-size: 22px;
+  }
+}
