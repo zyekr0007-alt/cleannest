@@ -1,5 +1,15 @@
 User-agent: *
 Allow: /
+# Content Signals (https://contentsignals.org). The values are a deliberate
+# business choice, not a default: CleanNest wants to be found and cited — by
+# search engines and by AI assistants answering questions — but does not hand
+# its content over to model training. ai-input=yes is the signal that lets an
+# assistant ground an answer in this site, and it is the only one that does:
+# `search` covers indexes and result excerpts and explicitly excludes
+# AI-generated search summaries. use=reference permits quoting rather than
+# wholesale reproduction. Crawlers that do not recognise the directive ignore
+# it, so this cannot break anything that works today.
+Content-Signal: search=yes, ai-input=yes, ai-train=no, use=reference
 
 # The deploy publishes the repository root: keep build sources and tests out of
 # search results. Response headers carry the same rule for crawlers that ignore
