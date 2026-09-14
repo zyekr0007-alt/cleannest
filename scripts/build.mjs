@@ -4,17 +4,27 @@ import {buildStyles,buildScripts,buildQuoteClient} from './styles.mjs';
 import {inquiryEndpoint,turnstileSiteKey} from '../site/forms.mjs';
 // Google Tag Manager. The container carries the GA4 configuration tag, so the
 // measurement ID lives in the GTM dashboard rather than here and changing it
-// needs no deploy. The snippet goes at the top of <head>, which is where Google
-// specifies it and what costs the page weight: GTM is ~100KB of JavaScript, and
-// this site measured LCP 172ms without it. The preconnect pulls up the TLS
-// handshake to googletagmanager.com so that cost lands as early as possible.
-// Set GTM_ID="" to build without tagging at all.
+// needs no deploy. Set GTM_ID="" to build without tagging at all.
+//
 // The container MUST be a Web one. The account's earlier container,
 // GTM-PXJ99426, is an Android container — its ID loads the web loader happily
 // but the container carries no web tags, so it costs the page weight and
 // measures nothing. That mistake was live for one deploy.
+//
+// LOADED AFTER `load`, NOT IN <head>. Google's documented install puts the
+// snippet at the top of the head, and measured on the live site that was
+// expensive: the PageSpeed report of 2026-09-14 attributes 138ms of main-thread
+// work to gtm.js, 168ms of script parse+execute, and 198ms of blocking time —
+// roughly 40% of the page's 490ms total blocking time. It also ships 115KB over
+// the wire of which 67% goes unused. Waiting for `load` leaves the measurement
+// identical for a pageview (gtm.js still runs, dataLayer still receives
+// gtm.start) while moving all of that off the critical path, so it cannot delay
+// LCP or first input. The trade is that events fired before `load` are not
+// captured; nothing on this site pushes to dataLayer, so there is nothing to
+// lose. The preconnect that used to sit in <head> is gone with it — a
+// connection opened at parse time and unused until `load` is a wasted one.
 const gtmId=process.env.GTM_ID??'GTM-PQT9CDGT';
-const gtmHead=gtmId?`<link rel="preconnect" href="https://www.googletagmanager.com"><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${gtmId}');</script>`:'';
+const gtmHead=gtmId?`<script>(function(w,d){function go(){w.dataLayer=w.dataLayer||[];w.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});var j=d.createElement('script');j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id=${gtmId}';d.head.appendChild(j);}if(d.readyState==='complete'){go();}else{w.addEventListener('load',go,{once:true});}})(window,document);</script>`:'';
 const gtmBody=gtmId?`<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${gtmId}" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>`:'';
 const stylesheets=await buildStyles();
 const scripts=buildScripts();
@@ -149,7 +159,7 @@ for(const [file,p] of pages){
  const canonical='https://cleannest.in/'+(aliases.includes(file)?redirects['/'+file].slice(1):file==='index.html'?'':file==='blog/index.html'?'blog/':file);
  const s=services.find(s=>file===s.id+'.html');
  const schema=pageSchema({file,page:p,canonical,service:s,isArticle:file.startsWith('blog/')&&file!=='blog/index.html'&&!aliases.includes(file),metadata:blogArticles[file.slice(5,-5)]});
- let html=`<!doctype html><html lang="en-IN" id="top"><head>${gtmHead}<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(p.title)}</title><meta name="description" content="${esc(p.description)}"><link rel="canonical" href="${canonical}"><meta name="theme-color" content="#F8F7F4"><meta property="og:type" content="${blogArticles[file.slice(5,-5)]?'article':'website'}"><meta property="og:title" content="${esc(p.title)}"><meta property="og:description" content="${esc(p.description)}"><meta property="og:url" content="${canonical}"><meta property="og:image" content="https://cleannest.in/assets/img/editorial/hero.webp"><meta name="twitter:card" content="summary_large_image"><noscript><style>.comparison-card:nth-child(n+3),.gallery-all .result-entry:nth-child(n+4){display:none}</style></noscript><link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png"><link rel="apple-touch-icon" href="assets/apple-touch-icon.png"><link rel="preload" href="assets/fonts/DMSerifDisplay.woff2" as="font" type="font/woff2" crossorigin>${stylesheets.filter((_,i)=>i===0||['services.html','pricing.html','reviews.html','areas-we-serve.html','faqs.html'].includes(file)).map(href=>`<link rel="stylesheet" href="${href}">`).join('')}<script type="application/ld+json">${JSON.stringify(schema).replaceAll('<','\\u003c')}</script>${scripts.map(src=>`<script src="${src}" defer></script>`).join('')}${file==='quote.html'?`<script type="module" src="${clients.quote}"></script>`:''}${file==='contact.html'?`<script type="module" src="${clients.contact}"></script>`:''}${file==='404.html'||aliases.includes(file)||p.noindex?'<meta name="robots" content="noindex">':''}</head><body class="${file==='index.html'?'home-final':''}">${gtmBody}${header(file)}<main id="main" tabindex="-1">${p.body}</main>${footer()}${lightbox}</body></html>`;
+ let html=`<!doctype html><html lang="en-IN" id="top"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(p.title)}</title><meta name="description" content="${esc(p.description)}"><link rel="canonical" href="${canonical}"><meta name="theme-color" content="#F8F7F4"><meta property="og:type" content="${blogArticles[file.slice(5,-5)]?'article':'website'}"><meta property="og:title" content="${esc(p.title)}"><meta property="og:description" content="${esc(p.description)}"><meta property="og:url" content="${canonical}"><meta property="og:image" content="https://cleannest.in/assets/img/editorial/hero.webp"><meta name="twitter:card" content="summary_large_image"><noscript><style>.comparison-card:nth-child(n+3),.gallery-all .result-entry:nth-child(n+4){display:none}</style></noscript><link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png"><link rel="apple-touch-icon" href="assets/apple-touch-icon.png"><link rel="preload" href="assets/fonts/DMSerifDisplay.woff2" as="font" type="font/woff2" crossorigin>${stylesheets.filter((_,i)=>i===0||['services.html','pricing.html','reviews.html','areas-we-serve.html','faqs.html'].includes(file)).map(href=>`<link rel="stylesheet" href="${href}">`).join('')}<script type="application/ld+json">${JSON.stringify(schema).replaceAll('<','\\u003c')}</script>${scripts.map(src=>`<script src="${src}" defer></script>`).join('')}${file==='quote.html'?`<script type="module" src="${clients.quote}"></script>`:''}${file==='contact.html'?`<script type="module" src="${clients.contact}"></script>`:''}${file==='404.html'||aliases.includes(file)||p.noindex?'<meta name="robots" content="noindex">':''}${gtmHead}</head><body class="${file==='index.html'?'home-final':''}">${gtmBody}${header(file)}<main id="main" tabindex="-1">${p.body}</main>${footer()}${lightbox}</body></html>`;
  for(const homeLink of ['index.html','../index.html','/index.html','https://cleannest.in/index.html'])html=html.replaceAll('href="'+homeLink+'"','href="/"');
  // Prefix root-relative refs for pages in a subdirectory. A ref that is already
  // site-absolute ("/blog/x.html", "/pricing.html") or already climbs ("../x") is left
