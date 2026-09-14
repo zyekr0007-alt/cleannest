@@ -9,7 +9,11 @@ import {inquiryEndpoint,turnstileSiteKey} from '../site/forms.mjs';
 // this site measured LCP 172ms without it. The preconnect pulls up the TLS
 // handshake to googletagmanager.com so that cost lands as early as possible.
 // Set GTM_ID="" to build without tagging at all.
-const gtmId=process.env.GTM_ID??'GTM-PXJ99426';
+// The container MUST be a Web one. The account's earlier container,
+// GTM-PXJ99426, is an Android container — its ID loads the web loader happily
+// but the container carries no web tags, so it costs the page weight and
+// measures nothing. That mistake was live for one deploy.
+const gtmId=process.env.GTM_ID??'GTM-PQT9CDGT';
 const gtmHead=gtmId?`<link rel="preconnect" href="https://www.googletagmanager.com"><script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','${gtmId}');</script>`:'';
 const gtmBody=gtmId?`<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${gtmId}" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>`:'';
 const stylesheets=await buildStyles();
