@@ -4246,8 +4246,16 @@ body{
    has to name seven places. Each row pins its icon to the left edge and centres
    the label against the full row width, with no trailing arrow, so the labels
    stack as one centred column. */
+/* The panel is capped by a max-height, but its own height is content-driven,
+   so the single auto grid row used to size to the rows inside it and leave
+   `.menu-inner` exactly as tall as its content. The panel then clipped the
+   overflow with no way to reach it: on a landscape phone (844x390) the panel
+   is 298px against 488px of rows, and the bottom rows were unreachable.
+   minmax(0, 1fr) bounds the row by the panel instead, so `.menu-inner` is
+   shorter than its content and its own overflow-y finally scrolls. */
 .mobile-nav {
   display: grid;
+  grid-template-rows: minmax(0, 1fr);
   overflow: hidden;
 }
 .menu-inner {
@@ -4255,6 +4263,7 @@ body{
   overflow-y: auto;
   overscroll-behavior: contain;
   scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
 }
 .menu-heading {
   text-align: center;
@@ -4710,13 +4719,18 @@ body{
   max-width: 30ch;
 }/* --------------------------------------------------------------------------
    The full-home card keeps the size it has always had and takes the same
-   treatment: the photograph fills the card and the copy sits on it. Its
-   ratios are the measured before-heights at each breakpoint.
+   treatment: the photograph fills the card and the copy sits on it.
+   It carries no aspect-ratio of its own. It once did — a measured "before"
+   height per breakpoint, from when the copy sat on top of the photograph and
+   the card had to be a fixed shape. Now that the copy sits under the
+   photograph, that fixed box was taller than the photo plus the text at most
+   widths, and `.overlay-body`'s margin-top:auto pushed the text to the floor
+   and left the slack as dead space between the two (measured: 59px at 390,
+   149px at 480, 239px at 600, 50px at 900). Left content-driven, the card is
+   exactly as tall as its photograph plus its copy, like every other card.
    -------------------------------------------------------------------------- */
 .service-card-overlay.service-card-featured{
   display: block;
-}.service-card-overlay.service-card-featured .overlay-link{
-  aspect-ratio: 1184 / 379;
 }.service-card-overlay.service-card-featured .featured-tag{
   background: rgb(255 255 255 / 92%);
   border-radius: var(--radius-pill);
@@ -4765,9 +4779,7 @@ body{
     background: rgb(5 34 51 / 52%);
     border-color: rgb(255 255 255 / 22%);
   }
-}@media (max-width: 900px) {.service-card-overlay.service-card-featured .overlay-link{
-    aspect-ratio: 812 / 714;
-  }.service-card-overlay.service-card-featured .overlay-body{
+}@media (max-width: 900px) {.service-card-overlay.service-card-featured .overlay-body{
     flex-direction: column;
     gap: 16px;
     padding: 20px 22px;
@@ -4778,8 +4790,6 @@ body{
    wrapped into the arrow. */
 @media (max-width: 600px) {.service-card-overlay .overlay-link{
     aspect-ratio: 169 / 221;
-  }.service-card-overlay.service-card-featured .overlay-link{
-    aspect-ratio: 350 / 497;
   }.service-card-overlay .overlay-body{
     gap: 8px;
     padding: 12px 10px;
