@@ -3,7 +3,6 @@
 // automatic Pages deployments, and handles website enquiries so a visitor never
 // has to leave the site to send one.
 import {redirectTarget} from '../site/redirects.mjs';
-import {enquiryFrom, enquiryTo} from '../site/forms.mjs';
 
 const pagesOrigin = 'https://cleannest.pages.dev';
 
@@ -22,7 +21,7 @@ function pagesRequest(request) {
 // --- Website enquiry endpoint -------------------------------------------------
 
 const MAX_BODY_BYTES = 16384;
-const LIMITS = {name: 80, phone: 20, city: 80, locality: 250, notes: 1500, summary: 4000};
+const LIMITS = {name: 80, phone: 20, when: 40, notes: 1500};
 const MAX_SERVICES = 20;
 const MAX_SERVICE_LENGTH = 80;
 // Keeps the subject line short: a name is clamped to 80 chars, far too much to
@@ -34,8 +33,41 @@ const stripControls = value => String(value ?? "")
   .replace(/\r\n?/g, "\n")
   .replace(/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/g, "");
 const clean = (value, max) => stripControls(value).trim().slice(0, max);
-// Anything interpolated into a mail header must not carry line breaks.
+// Anything interpolated into a single-line field must not carry line breaks.
 const headerSafe = (value, max) => clean(value, max).replace(/\s+/g, ' ').trim();
+// The Telegram message is sent with parse_mode HTML, so customer text must be
+// escaped or it could inject markup (and a stray < would make Telegram reject it).
+const escapeHtml = value => String(value ?? '')
+  .replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+
+// Shown as plain text in contiguous E.164 form (+919812345678), which is what
+// Telegram's own phone-number detection turns into a tappable "call" action.
+// Deliberately unspaced: grouping digits with spaces stops the clients recognising
+// it as a phone number, so it renders as inert text. An explicit <a href="tel:...">
+// is accepted by the API but does not dial either.
+const formatPhoneDisplay = value => {
+  const digits = String(value ?? '').replace(/\D/g, '');
+  return digits ? '+' + digits : '';
+};
+
+// Enquiries are local, so the stamp is rendered in IST rather than the edge's UTC —
+// otherwise every notification would read five and a half hours early.
+const BUSINESS_TIME_ZONE = 'Asia/Kolkata';
+const ordinal = day =>
+  (day % 10 === 1 && day !== 11) ? 'st'
+    : (day % 10 === 2 && day !== 12) ? 'nd'
+      : (day % 10 === 3 && day !== 13) ? 'rd' : 'th';
+
+export function formatStamp(date = new Date()) {
+  const parts = new Intl.DateTimeFormat('en-GB', {
+    timeZone: BUSINESS_TIME_ZONE,
+    day: 'numeric', month: 'long', hour: 'numeric', minute: '2-digit', hour12: true,
+  }).formatToParts(date);
+  const part = type => parts.find(p => p.type === type)?.value || '';
+  const day = Number(part('day'));
+  const period = part('dayPeriod').toLowerCase();
+  return `${day}${ordinal(day)} ${part('month')}, ${part('hour')}:${part('minute')} ${period}`;
+}
 
 const jsonResponse = (body, status = 200) => new Response(JSON.stringify(body), {
   status,
@@ -69,52 +101,40 @@ export async function verifyTurnstile(token, ip, secret, fetchImpl = fetch) {
   }
 }
 
-// Mailjet's transactional API. Chosen over Brevo because Brevo gates new accounts
-// behind a discretionary manual approval before they can send at all, and stamps
-// "Sent with Brevo" on free-plan email; Mailjet verifies a sender by confirmation
-// link with no DNS records and no approval queue.
-const MAILJET_ENDPOINT = 'https://api.mailjet.com/v3.1/send';
+// Telegram Bot API. The enquiry goes straight to the owner's phone with no message
+// templates, no sender verification, no per-message fee and no DNS records, which is
+// why it replaces the email transport entirely.
+const TELEGRAM_API = 'https://api.telegram.org';
+// Telegram rejects a message text longer than this.
+const TELEGRAM_MAX_TEXT = 4096;
 
-// Mailjet wants {Email, Name}; site/forms.mjs stays provider-neutral with
-// {email, name} so swapping providers does not mean editing configuration.
-const mailjetAddress = address => ({Email: address.email, Name: address.name});
-
-export async function sendEnquiryEmail(env, {subject, text}, fetchImpl = fetch) {
-  if (!env.MAILJET_API_KEY || !env.MAILJET_API_SECRET) return {ok: false, reason: 'not_configured'};
+export async function sendEnquiryTelegram(env, {text, replyMarkup}, fetchImpl = fetch) {
+  if (!env.TELEGRAM_BOT_TOKEN || !env.TELEGRAM_CHAT_ID) return {ok: false, reason: 'not_configured'};
 
   let response;
   try {
-    response = await fetchImpl(MAILJET_ENDPOINT, {
+    response = await fetchImpl(TELEGRAM_API + '/bot' + env.TELEGRAM_BOT_TOKEN + '/sendMessage', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: 'Basic ' + btoa(env.MAILJET_API_KEY + ':' + env.MAILJET_API_SECRET),
-      },
+      headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({
-        Messages: [{
-          From: mailjetAddress(enquiryFrom),
-          // Recipient comes from configuration only, never the request body. That
-          // is what keeps this public endpoint from being an open mail relay.
-          To: [mailjetAddress(enquiryTo)],
-          Subject: subject,
-          TextPart: text,
-        }],
+        // chat_id comes from configuration only, never the request body, so this
+        // public endpoint cannot be turned into a way to message arbitrary chats.
+        chat_id: env.TELEGRAM_CHAT_ID,
+        text: text.slice(0, TELEGRAM_MAX_TEXT),
+        // HTML lets the phone number be a tappable tel: link. Every interpolated
+        // value is escaped by the caller, so customer text cannot inject markup.
+        parse_mode: 'HTML',
+        disable_web_page_preview: true,
+        ...(replyMarkup ? {reply_markup: replyMarkup} : {}),
       }),
     });
   } catch (error) {
     return {ok: false, reason: 'unreachable: ' + (error?.message || 'unknown')};
   }
 
-  // Mailjet reports per-message failures inside a 200 response, so the body has to
-  // be inspected rather than trusting the status code alone.
   const payload = await response.json().catch(() => null);
-  const failed = payload?.Messages?.find(message => message?.Status === 'error');
-  if (response.ok && !failed) return {ok: true};
-
-  const reason = failed?.Errors?.[0]?.ErrorCode          // per-message failure
-    || payload?.ErrorCode                                 // malformed request (flat shape)
-    || 'http_' + response.status;
-  return {ok: false, reason: reason + ' ' + response.status};
+  if (response.ok && payload?.ok) return {ok: true};
+  return {ok: false, reason: payload?.description || 'http_' + response.status};
 }
 
 export async function handleInquiry(request, env, fetchImpl = fetch) {
@@ -152,37 +172,32 @@ export async function handleInquiry(request, env, fetchImpl = fetch) {
   if (!name) return jsonResponse({error: 'name_required'}, 400);
   if (digits.length < 10 || digits.length > 15) return jsonResponse({error: 'phone_invalid'}, 400);
 
-  const city = clean(payload.city, LIMITS.city);
-  const locality = clean(payload.locality, LIMITS.locality);
-  const notes = clean(payload.notes, LIMITS.notes);
-  const summary = clean(payload.summary, LIMITS.summary);
-  const source = headerSafe(payload.source, 40) || 'website';
+  const when = clean(payload.when, LIMITS.when);
+  const note = clean(payload.notes, LIMITS.notes);
   const services = Array.isArray(payload.services)
     ? payload.services.slice(0, MAX_SERVICES).map(service => headerSafe(service, MAX_SERVICE_LENGTH)).filter(Boolean)
     : [];
 
   const waNumber = normalisePhone(phone);
-  // Optional lines are `null` so that only they drop out — an empty string here is
-  // a deliberate blank line separating the summary from the details block.
-  const body = [
-    summary || 'No service summary was provided.',
+  // Only what's needed to act on the enquiry: who, how to reach them, when they
+  // want it, and anything they wrote themselves. The estimate receipt, city,
+  // locality and page source are deliberately not repeated here. Every value is
+  // HTML escaped because the message is sent with parse_mode HTML.
+  const lines = [
+    '🔔 <b>New lead</b>',
     '',
-    '---',
-    'Name: ' + name,
-    'Phone: ' + phone,
-    city ? 'City: ' + city : null,
-    locality ? 'Locality: ' + locality : null,
-    notes ? 'Notes: ' + notes : null,
-    'Sent from: ' + source,
-    '',
-    waNumber ? 'Reply on WhatsApp: https://wa.me/' + waNumber : null,
-    'Call: tel:+' + digits,
-  ].filter(line => line !== null).join('\n');
+    '👤 ' + escapeHtml(headerSafe(name, SUBJECT_NAME_LIMIT)),
+    '📞 ' + escapeHtml(formatPhoneDisplay(waNumber) || phone),
+  ];
+  if (when) lines.push('🗓️ ' + escapeHtml(when));
+  if (note) lines.push('📝 ' + escapeHtml(note));
+  // Inline in the message body. An inline_keyboard button would be rendered by
+  // Telegram BELOW the message, which is not where this belongs.
+  if (waNumber) lines.push('', `💬 <a href="https://wa.me/${waNumber}">Message on WhatsApp</a>`);
+  lines.push('', '🕒 ' + formatStamp());
+  const text = lines.join('\n');
 
-  const firstName = headerSafe(name, SUBJECT_NAME_LIMIT).split(' ')[0] || 'website visitor';
-  const subject = (services.length ? 'Quote request' : 'Website enquiry') + ' — ' + firstName;
-
-  const delivery = await sendEnquiryEmail(env, {subject, text: body}, fetchImpl);
+  const delivery = await sendEnquiryTelegram(env, {text}, fetchImpl);
   if (!delivery.ok) {
     console.log('inquiry not sent: ' + delivery.reason);
     return jsonResponse({error: delivery.reason === 'not_configured' ? 'not_configured' : 'send_failed'},

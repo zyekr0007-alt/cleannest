@@ -1,4 +1,4 @@
-import {submitEnquiry,failureMessage} from './enquiry.mjs';
+import {submitEnquiry,failureMessage} from './enquiry-2fb83b53bf9f.mjs';
 
 const form = document.querySelector('#contact-form');
 

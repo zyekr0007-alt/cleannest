@@ -8,9 +8,8 @@ export const inquiryEndpoint = '/api/inquiry';
 // (`npx wrangler secret put TURNSTILE_SECRET`) and is never committed here.
 export const turnstileSiteKey = '0x4AAAAAAEzktKRvX4XIhF6E';
 
-// Both addresses are configuration ONLY. They are never read from the request
-// body — that is what stops the public endpoint being used as an open mail relay.
-export const enquiryTo = {email: 'admin@cleannest.in', name: 'CleanNest'};
-
-// Must be an address verified with Mailjet (a confirmation link, no DNS records).
-export const enquiryFrom = {email: 'admin@cleannest.in', name: 'CleanNest website'};
+// Enquiries are delivered to Telegram. Both values are Worker secrets, never
+// committed, and the destination chat is configuration only — it is never read
+// from the request body, so the public endpoint cannot message arbitrary chats:
+//   npx wrangler secret put TELEGRAM_BOT_TOKEN
+//   npx wrangler secret put TELEGRAM_CHAT_ID
