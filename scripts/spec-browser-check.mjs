@@ -5,7 +5,7 @@ const session='cleannest-spec-regression';
 const directory=path.resolve('.review/spec-qa');fs.mkdirSync(directory,{recursive:true});
 const run=(...args)=>execFileSync('agent-browser',['--session',session,...args],{encoding:'utf8',maxBuffer:8*1024*1024,timeout:60000});
 const evaluate=code=>JSON.parse(run('eval',code));
-const routes=['','services.html','pricing.html','quote.html?service=full-house-cleaning','full-house-cleaning.html','bathroom-cleaning.html','ac-services.html','mattress-steam-cleaning.html','jalandhar.html','phagwara.html','blog/index.html','blog/ultimate-deep-cleaning-checklist.html','faqs.html','contact.html','reviews.html','results.html'];
+const routes=['','services.html','pricing.html','quote.html?service=full-house-cleaning','full-house-cleaning.html','bathroom-cleaning.html','ac-services.html','mattress-steam-cleaning.html','jalandhar.html','phagwara.html','blog/index.html','blog/ultimate-deep-cleaning-checklist.html','faqs.html','contact.html','reviews.html','results.html','areas-we-serve.html'];
 const issues=[],checks=[];
 const open=route=>run('open',(process.env.QA_BASE_URL||'http://127.0.0.1:8123')+'/'+route+(route.includes('?')?'&':'?')+'qa='+Date.now());
 const expect=(value,message)=>{if(!value)issues.push(message);};

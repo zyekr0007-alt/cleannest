@@ -12,7 +12,9 @@
   --navy: #0b4364;
   --deep: #08324b;
   --ink: #12384f;
-  --muted: #56687b;
+  /* Kept dark enough to clear 4.5:1 on the tinted panels (--ice/#dce5ec) as well as
+     on white; at #56687b it measured 4.49:1 on the .area-enquiry panel. */
+  --muted: #556779;
   --accent: #176b9e;
   --sky: #6fbdf0;
   --sky-deep: #2f8fd0;
