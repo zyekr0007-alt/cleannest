@@ -9,6 +9,9 @@ const routes=['','services.html','pricing.html','quote.html?service=full-house-c
 const issues=[],checks=[];
 const open=route=>run('open',(process.env.QA_BASE_URL||'http://127.0.0.1:8123')+'/'+route+(route.includes('?')?'&':'?')+'qa='+Date.now());
 const expect=(value,message)=>{if(!value)issues.push(message);};
+// Wait for a selector without aborting the run if it never appears — the assertion
+// that follows reports the miss with a readable message instead of an exec error.
+const settle=selector=>{try{run('wait',selector);}catch{}};
 try {
  for(const [width,height] of [[360,800],[390,844],[768,1024],[1440,900]]){
   run('set','viewport',String(width),String(height));
@@ -72,9 +75,15 @@ try {
  run('click','#quote-next');
  expect(evaluate('document.querySelector("#quote-builder").dataset.step==="2"'),'quote contact step');
  run('fill','#name','Local QA');run('fill','#phone','9999999999');run('click','#quote-next');
+ // "See my estimate" sends the enquiry in the same action, so the estimate step now
+ // arrives after a network round-trip instead of on the next tick.
+ settle('#estimate-total');
  expect(evaluate('document.querySelector("#quote-builder").dataset.step==="3"'),'quote estimate step');
- const handoff=evaluate('document.querySelector(".whatsapp-send").href');
- expect(new URL(handoff).pathname==='/917610000654'&&new URL(handoff).searchParams.get('text').includes('Local QA'),'WhatsApp handoff recipient/summary');
+ // A send that succeeded confirms inline; one that failed offers the WhatsApp
+ // fallback. Either way the visitor is shown the estimate they asked for.
+ expect(evaluate('!!document.querySelector(".sent-note")||!!document.querySelector(".whatsapp-send")'),'estimate step must confirm the send or offer the WhatsApp fallback');
+ const handoff=evaluate('document.querySelector(".whatsapp-send")?.href||""');
+ expect(!handoff||(new URL(handoff).pathname==='/917610000654'&&new URL(handoff).searchParams.get('text').includes('Local QA')),'WhatsApp handoff recipient/summary');
  // Inspect only: do not click the outbound handoff and do not send an enquiry.
  run('click','#quote-back');expect(evaluate('document.querySelector("#name").value==="Local QA"'),'Back retains local contact details');
  run('set','media','light','reduced-motion');open('');
