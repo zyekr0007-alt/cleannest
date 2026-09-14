@@ -23,6 +23,29 @@ import {inquiryEndpoint,turnstileSiteKey} from '../site/forms.mjs';
 // captured; nothing on this site pushes to dataLayer, so there is nothing to
 // lose. The preconnect that used to sit in <head> is gone with it — a
 // connection opened at parse time and unused until `load` is a wasted one.
+// Google Search Console ownership token. Search Console is the only source of
+// the queries this site actually appears for, and of the authoritative list of
+// indexed-but-404 URLs left over from the Wix site — neither is derivable from
+// the repo.
+//
+// COMMITTED, NOT AN ENV VAR. Cloudflare Pages builds this repo from source on
+// every push, so a variable set only in a local shell would render the tag on
+// this machine and nowhere else: verification would pass locally and the live
+// site would never carry the tag. The token is public by design (Google fetches
+// it over the open web), so committing it is the point rather than a leak.
+//
+// Empty by default so an unset token renders nothing at all rather than an empty
+// meta tag, which Google would read as a failed verification.
+//
+// The HTML-meta method is used rather than a DNS TXT record because the wrangler
+// OAuth token on this machine carries `zone (read)` and no DNS write, so a
+// domain property cannot be completed without the owner in the Cloudflare
+// dashboard. A URL-prefix property on https://cleannest.in/ covers the whole
+// site — it is a single-host site, with www and http both 301ing to the apex.
+const googleSiteVerification=process.env.GOOGLE_SITE_VERIFICATION??'';
+const googleVerificationTag=googleSiteVerification
+ ?`<meta name="google-site-verification" content="${googleSiteVerification}">`
+ :'';
 const gtmId=process.env.GTM_ID??'GTM-PQT9CDGT';
 const gtmHead=gtmId?`<script>(function(w,d){function go(){w.dataLayer=w.dataLayer||[];w.dataLayer.push({'gtm.start':new Date().getTime(),event:'gtm.js'});var j=d.createElement('script');j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id=${gtmId}';d.head.appendChild(j);}if(d.readyState==='complete'){go();}else{w.addEventListener('load',go,{once:true});}})(window,document);</script>`:'';
 const gtmBody=gtmId?`<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${gtmId}" height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>`:'';
@@ -159,7 +182,7 @@ for(const [file,p] of pages){
  const canonical='https://cleannest.in/'+(aliases.includes(file)?redirects['/'+file].slice(1):file==='index.html'?'':file==='blog/index.html'?'blog/':file);
  const s=services.find(s=>file===s.id+'.html');
  const schema=pageSchema({file,page:p,canonical,service:s,isArticle:file.startsWith('blog/')&&file!=='blog/index.html'&&!aliases.includes(file),metadata:blogArticles[file.slice(5,-5)]});
- let html=`<!doctype html><html lang="en-IN" id="top"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(p.title)}</title><meta name="description" content="${esc(p.description)}"><link rel="canonical" href="${canonical}"><meta name="theme-color" content="#F8F7F4"><meta property="og:type" content="${blogArticles[file.slice(5,-5)]?'article':'website'}"><meta property="og:title" content="${esc(p.title)}"><meta property="og:description" content="${esc(p.description)}"><meta property="og:url" content="${canonical}"><meta property="og:image" content="https://cleannest.in/assets/img/editorial/hero.webp"><meta name="twitter:card" content="summary_large_image"><noscript><style>.comparison-card:nth-child(n+3),.gallery-all .result-entry:nth-child(n+4){display:none}</style></noscript><link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png"><link rel="apple-touch-icon" href="assets/apple-touch-icon.png"><link rel="preload" href="assets/fonts/DMSerifDisplay.woff2" as="font" type="font/woff2" crossorigin>${stylesheets.filter((_,i)=>i===0||['services.html','pricing.html','reviews.html','areas-we-serve.html','faqs.html'].includes(file)).map(href=>`<link rel="stylesheet" href="${href}">`).join('')}<script type="application/ld+json">${JSON.stringify(schema).replaceAll('<','\\u003c')}</script>${scripts.map(src=>`<script src="${src}" defer></script>`).join('')}${file==='quote.html'?`<script type="module" src="${clients.quote}"></script>`:''}${file==='contact.html'?`<script type="module" src="${clients.contact}"></script>`:''}${file==='404.html'||aliases.includes(file)||p.noindex?'<meta name="robots" content="noindex">':''}${gtmHead}</head><body class="${file==='index.html'?'home-final':''}">${gtmBody}${header(file)}<main id="main" tabindex="-1">${p.body}</main>${footer()}${lightbox}</body></html>`;
+ let html=`<!doctype html><html lang="en-IN" id="top"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>${esc(p.title)}</title><meta name="description" content="${esc(p.description)}"><link rel="canonical" href="${canonical}"><meta name="theme-color" content="#F8F7F4">${googleVerificationTag}<meta property="og:type" content="${blogArticles[file.slice(5,-5)]?'article':'website'}"><meta property="og:title" content="${esc(p.title)}"><meta property="og:description" content="${esc(p.description)}"><meta property="og:url" content="${canonical}"><meta property="og:image" content="https://cleannest.in/assets/img/editorial/hero.webp"><meta name="twitter:card" content="summary_large_image"><noscript><style>.comparison-card:nth-child(n+3),.gallery-all .result-entry:nth-child(n+4){display:none}</style></noscript><link rel="icon" type="image/png" sizes="64x64" href="assets/favicon.png"><link rel="apple-touch-icon" href="assets/apple-touch-icon.png"><link rel="preload" href="assets/fonts/DMSerifDisplay.woff2" as="font" type="font/woff2" crossorigin>${stylesheets.filter((_,i)=>i===0||['services.html','pricing.html','reviews.html','areas-we-serve.html','faqs.html'].includes(file)).map(href=>`<link rel="stylesheet" href="${href}">`).join('')}<script type="application/ld+json">${JSON.stringify(schema).replaceAll('<','\\u003c')}</script>${scripts.map(src=>`<script src="${src}" defer></script>`).join('')}${file==='quote.html'?`<script type="module" src="${clients.quote}"></script>`:''}${file==='contact.html'?`<script type="module" src="${clients.contact}"></script>`:''}${file==='404.html'||aliases.includes(file)||p.noindex?'<meta name="robots" content="noindex">':''}${gtmHead}</head><body class="${file==='index.html'?'home-final':''}">${gtmBody}${header(file)}<main id="main" tabindex="-1">${p.body}</main>${footer()}${lightbox}</body></html>`;
  for(const homeLink of ['index.html','../index.html','/index.html','https://cleannest.in/index.html'])html=html.replaceAll('href="'+homeLink+'"','href="/"');
  // Prefix root-relative refs for pages in a subdirectory. A ref that is already
  // site-absolute ("/blog/x.html", "/pricing.html") or already climbs ("../x") is left
