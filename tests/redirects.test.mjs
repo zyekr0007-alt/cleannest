@@ -19,7 +19,12 @@ test('legacy paths and host normalization use one redirect and preserve queries'
   }
 });
 test('unknown paths retain their intent; unrelated hosts are untouched', () => {
-  assert.equal(redirectTarget('https://cleannest.in/blank-1'), null);
+  // This fixture used to be /blank-1, which was itself an unmapped Wix legacy
+  // path: the test was asserting that a real redirect gap behaved like a
+  // deliberately unknown path, so it passed while www.cleannest.in/blank-1 was
+  // 301ing into a 404. Any fixture here must be a path that cannot become a
+  // legacy redirect, or it will quietly excuse the next gap the same way.
+  assert.equal(redirectTarget('https://cleannest.in/no-such-page-xyz'), null);
   assert.equal(redirectTarget('https://cleannest.in/service-page/unknown'), null);
   assert.equal(redirectTarget('https://www.cleannest.in/services.html?q=1'), 'https://cleannest.in/services.html?q=1');
   assert.equal(redirectTarget('https://example.com/index.html'), null);
