@@ -58,5 +58,5 @@ export const homeServicesSection=()=>{const featured=services[0];const others=[s
   +'<span class="overlay-body"><span class="overlay-text"><h3>'+featured.name+'</h3><span class="overlay-lede">Kitchen, bathrooms, floors and the details in between, with the scope agreed before we arrive.</span><span class="service-price">'+fromPrice(featured)+'</span></span>'
   +'<span class="overlay-cta"><span class="button primary">Explore full house '+glyph()+'</span></span></span></a></article>'
   +'<div class="home-service-options">'+others.map(compactServiceCard).join('')
-  +'<article class="service-card service-card-overlay service-card-all"><a class="overlay-link" href="services.html"><span class="overlay-body"><span class="overlay-text"><h3>See all services</h3></span><span class="overlay-cta"><span class="button">Browse services</span></span></span></a></article>'
+  +'<article class="service-card service-card-overlay service-card-all"><a class="overlay-link" href="services.html"><span class="overlay-body"><span class="overlay-text"><h3>See all services</h3></span><span class="overlay-cta"><span class="button">'+glyph()+'</span></span></span></a></article>'
   +'</div></div></section>';};

@@ -5057,14 +5057,20 @@ body{
   margin-top: 16px;
 }
 /* `.button.primary` is navy on navy on this tile and `.button.secondary` is
-   navy type with a navy border, so the tile inverts the pair: a white pill
-   with navy type. The whole tile is already the link, so the button only has
-   to look like one. */
+   navy type with a navy border, so the tile inverts the pair: a white control
+   with navy ink. The whole tile is already the link, so the control only has
+   to look like one. It holds the arrow alone, so it is squared off into the
+   round control the rest of the page uses rather than a pill with a hole in
+   the middle of it. */
 .service-card-overlay.service-card-all .overlay-cta .button{
   background: var(--paper);
   border-color: transparent;
+  border-radius: 50%;
   color: var(--navy);
+  height: var(--control-h-primary);
+  padding: 0;
   pointer-events: none;
+  width: var(--control-h-primary);
 }
 @media (hover: hover) and (pointer: fine) {.service-card-overlay:hover .overlay-cta .button{
     background: var(--ice);
