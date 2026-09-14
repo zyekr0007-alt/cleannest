@@ -124,6 +124,10 @@ set('blog/index.html','Cleaning Journal & Home Care Guides | CleanNest',pageIntr
 const aliases=Object.entries(source.pages).filter(([f,p])=>f.startsWith('blog/')&&f!=='blog/index.html'&&!p.main).map(([f])=>f);
 for(const f of aliases){const aliasLabel=f.slice(5,-5).split('-').map(w=>w.charAt(0).toUpperCase()+w.slice(1)).join(' ');set(f,aliasLabel+' | CleanNest',pageIntro('CLEANNEST GUIDES','Find current<br>cleaning information.',`This page has moved. Continue to the current CleanNest guidance on ${aliasLabel.toLowerCase()}.`)+`<div class="container error-actions"><a class="button primary" href="${redirects['/'+f]}">View current information ${icon()}</a></div>`,`Moved page. Continue to the current CleanNest guidance on ${aliasLabel.toLowerCase()}, including scope, preparation and published pricing.`);}
 set('404.html','Page Not Found | CleanNest',pageIntro('A LITTLE OUT OF PLACE','Let’s get you<br>back home.','This page may have moved. Your fresh start is still here.')+`<div class="container error-actions"><a class="button primary" href="/">Back to home ${icon()}</a><a class="button secondary" href="services.html">Explore services</a></div>`);
+// The output is not tracked, so a fresh clone has no blog/ directory at all —
+// git does not keep empty ones, and every file that used to live there is
+// generated. Create it rather than assuming it exists.
+fs.mkdirSync('blog',{recursive:true});
 for(const [file,p] of pages){
  const root=file.startsWith('blog/')?'../':'';
  // The blog index is served at /blog/ — /blog/index.html redirects to it — so the

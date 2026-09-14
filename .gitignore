@@ -8,3 +8,25 @@ node_modules/
 Thumbs.db
 .hermes/
 .review/
+
+# ---------------------------------------------------------------------------
+# Build output. Never commit these.
+#
+# Cloudflare Pages runs `npm run build` and publishes the repo root, so every
+# one of these is regenerated at deploy time and the committed copy is never
+# what gets served. Keeping them tracked meant two things: the working tree
+# showed ~80 modified files after every single build, and the committed copies
+# silently drifted — before this, all 55 committed HTML files pointed at a
+# superseded stylesheet hash while production was serving a newer one.
+#
+# The build writes only into these paths and touches no source file, so a
+# fresh clone plus `npm run build` reproduces the exact tree that deploys.
+# ---------------------------------------------------------------------------
+/*.html
+/blog/*.html
+/assets/generated/
+/sitemap.xml
+
+# Deliberately NOT ignored: assets/catalog.json. The build regenerates it, but
+# tests/estimate.test.mjs reads it directly, so a fresh clone needs it present
+# to run `npm test` without building first.
