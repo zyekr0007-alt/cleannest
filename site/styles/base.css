@@ -3066,7 +3066,20 @@
 }.home-service-options{
   display: grid;
   gap: 20px;
+  /* Every row takes the height of the tallest, so the six tiles read as one
+     set instead of three rows of three different heights. */
+  grid-auto-rows: 1fr;
   grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+/* A tile whose copy is shorter than its row used to hand the slack to
+   `.overlay-body`'s margin-top:auto, which pushed the text to the floor and
+   opened a gap between the photograph and the text — 35px on the Chimney tile
+   at 390px. The body now fills the tile instead, so the text stays directly
+   under the photograph and any slack falls below it, where the card's own
+   white surface hides it. */
+.home-service-options .service-card-overlay .overlay-body{
+  flex: 1;
+  margin-top: 0;
 }.service-card-all{
   background: var(--tint);
   justify-content: center;
@@ -4705,20 +4718,6 @@ body{
   text-align: center;
 }.service-card-overlay.service-card-all .overlay-text{
   flex: none;
-}.service-card-overlay.service-card-all .overlay-icon{
-  fill: none;
-  height: 26px;
-  stroke: rgb(255 255 255 / 80%);
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 1.6;
-  width: 26px;
-}.service-card-overlay.service-card-all .service-price{
-  color: rgb(255 255 255 / 78%);
-  font-size: 12px;
-  font-weight: 500;
-  margin-top: 5px;
-  max-width: 30ch;
 }/* --------------------------------------------------------------------------
    The full-home card keeps the size it has always had and takes the same
    treatment: the photograph fills the card and the copy sits on it.
@@ -4808,11 +4807,6 @@ body{
     width: 15px;
   }.service-card-overlay.service-card-all .overlay-body{
     padding: 16px 14px;
-  }.service-card-overlay.service-card-all .overlay-icon{
-    height: 22px;
-    width: 22px;
-  }.service-card-overlay.service-card-all .service-price{
-    font-size: 11px;
   }.service-card-overlay:not(.service-card-all) h3{
     padding: 3px 8px;
   }.service-card-overlay:not(.service-card-all) .service-price{
@@ -5054,14 +5048,27 @@ body{
   text-align: center;
 }.service-card-overlay.service-card-all h3{
   color: #fff;
-}.service-card-overlay.service-card-all .service-price{
-  color: rgb(255 255 255 / 78%);
-  font-size: 13px;
-  line-height: 1.5;
-  margin-top: 4px;
-  white-space: normal;
-}.service-card-overlay.service-card-all .overlay-icon{
-  stroke: rgb(255 255 255 / 85%);
+}/* The tile is the heading and one button, nothing else. It used to carry a
+   grid icon and a caption ("Furnishings, appliances, offices and specialist
+   floor care"); both are gone, and with them the only reason the third row was
+   taller than the two above it. */
+.service-card-overlay.service-card-all .overlay-cta{
+  display: flex;
+  margin-top: 16px;
+}
+/* `.button.primary` is navy on navy on this tile and `.button.secondary` is
+   navy type with a navy border, so the tile inverts the pair: a white pill
+   with navy type. The whole tile is already the link, so the button only has
+   to look like one. */
+.service-card-overlay.service-card-all .overlay-cta .button{
+  background: var(--paper);
+  border-color: transparent;
+  color: var(--navy);
+  pointer-events: none;
+}
+@media (hover: hover) and (pointer: fine) {.service-card-overlay:hover .overlay-cta .button{
+    background: var(--ice);
+  }
 }
 @media (max-width: 700px) {.service-card-overlay .overlay-body{
     gap: 8px;
