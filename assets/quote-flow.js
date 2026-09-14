@@ -1,4 +1,4 @@
-import {calculate,priceLabel,formatMoney,includedRates,whatsappMessage} from './estimate.mjs';
+import {calculate,priceLabel,formatMoney,includedRates,includedRooms,whatsappMessage} from './estimate.mjs';
 import {submitEnquiry,failureMessage} from './enquiry.mjs';
 const ICON_ARROW='<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>';
 const ICON_EXTERNAL='<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5"/></svg>';
@@ -13,7 +13,13 @@ const rates=Object.fromEntries(catalog.groups.flatMap(g=>g.items).map(r=>[r.id,r
 const params=new URLSearchParams(location.search),preselected=params.get('service');
 let step=0;
 const state={selected:options.some(s=>s.id===preselected)?[preselected]:[],configs:{},name:'',phone:'',city:'',locality:'',notes:'',date:''};
-const config=id=>state.configs[id]||(state.configs[id]={qty:1,tier:0,home:catalog.homes[params.get('home')]?params.get('home'):'',bathrooms:1,kitchens:1,recliners:0,floorRate:'tile-floor'});
+const config=id=>{
+ if(!state.configs[id]){
+  const home=catalog.homes[params.get('home')]?params.get('home'):'',inc=includedRooms(catalog,home);
+  state.configs[id]={qty:1,tier:0,home,bathrooms:inc.bathrooms,kitchens:inc.kitchens,recliners:0,floorRate:'tile-floor'};
+ }
+ return state.configs[id];
+};
 const service=id=>options.find(s=>s.id===id);
 const covered=()=>includedRates(state.selected,catalog);
 const effective=()=>state.selected.filter(id=>!covered().has(service(id).rate));
@@ -21,8 +27,17 @@ const choice=(s,extra=false)=>{const included=covered().has(s.rate),selected=sta
 function pills(id,key,label,values){const value=config(id)[key];return `<fieldset class="tap-field"><legend>${label}</legend><div class="tap-options">${values.map(([v,text,sub])=>`<button type="button" class="tap-option" data-id="${id}" data-key="${key}" data-value="${v}" aria-pressed="${String(v)===String(value)}"><strong>${text}</strong>${sub?'<small>'+sub+'</small>':''}</button>`).join('')}</div></fieldset>`;}
 function preference(key,label,values){const value=state[key];return `<fieldset class="tap-field"><legend>${label}</legend><div class="tap-options">${values.map(v=>`<button type="button" class="tap-option" data-pref="${key}" data-value="${v}" aria-pressed="${String(v)===String(value)}"><strong>${v}</strong></button>`).join('')}</div></fieldset>`;}
 function count(id,key,label,min=1,max=100000){return `<div class="count-field"><span id="label-${id}-${key}">${label}</span><div class="stepper"><button type="button" data-count="-1" data-id="${id}" data-key="${key}" aria-label="Decrease ${label}">−</button><input aria-labelledby="label-${id}-${key}" data-id="${id}" data-key="${key}" type="number" inputmode="numeric" min="${min}" max="${max}" step="1" value="${config(id)[key]}" required><button type="button" data-count="1" data-id="${id}" data-key="${key}" aria-label="Increase ${label}">+</button></div></div>`;}
+// The steppers start at what the package already covers and can only go up, so
+// every count above the included number is visibly a priced extra.
+function roomsNote(id){const inc=includedRooms(catalog,config(id).home),b=rates.bathroom,k=rates['kitchen-add'];
+ if(config(id).home==='villa')return 'A villa is quoted after a visit. Tell us the room count and we’ll prepare the estimate with you.';
+ const plural=(n,word)=>`${n} ${word}${n===1?'':'s'}`;
+ return `Includes ${plural(inc.bathrooms,'bathroom')} and ${plural(inc.kitchens,'kitchen')}. Extra bathrooms ${formatMoney(b.base)}${b.high?' – '+formatMoney(b.high):''} each, extra kitchens ${formatMoney(k.base)}${k.high?' – '+formatMoney(k.high):''} each.`;}
+function applyHomeRooms(id){const inc=includedRooms(catalog,config(id).home);
+ for(const [key,value] of [['bathrooms',inc.bathrooms],['kitchens',inc.kitchens]]){const input=form.querySelector(`input[data-id="${id}"][data-key="${key}"]`);if(!input)continue;input.min=value;input.value=value;config(id)[key]=value;}
+ const note=document.getElementById('note-'+id);if(note)note.textContent=roomsNote(id);}
 function details(id){const s=service(id),c=config(id);let content='';
- if(s.rate==='home')content=pills(id,'home','How many bedrooms?',[[1,'1 BHK'],[2,'2 BHK'],[3,'3 BHK'],[4,'4 BHK'],['villa','5+ / Villa']])+`<div class="room-counts">${count(id,'bathrooms','Bathrooms',0,100)}${count(id,'kitchens','Kitchens',0,100)}</div><p class="included-note">Kitchen and bathroom cleaning included. No double charges.</p>`;
+ if(s.rate==='home'){const inc=includedRooms(catalog,c.home);content=pills(id,'home','How many bedrooms?',[[1,'1 BHK'],[2,'2 BHK'],[3,'3 BHK'],[4,'4 BHK'],['villa','5+ / Villa']])+`<div class="room-counts">${count(id,'bathrooms','Bathrooms',inc.bathrooms,100)}${count(id,'kitchens','Kitchens',inc.kitchens,100)}</div><p class="included-note" id="note-${id}">${roomsNote(id)}</p>`;}
  else if(s.rate){const r=rates[s.id==='floor-renewal'?c.floorRate:s.rate];
   if(s.id==='floor-renewal')content+=pills(id,'floorRate','Floor material',['tile-floor','marble','granite','italian-marble'].map(v=>[v,rates[v].label]));
   if(r.tiers)content+=pills(id,'tier',s.rate==='sofa'?'Choose your sofa treatment':'Choose your AC service',r.tiers.map((t,i)=>[i,t.label,formatMoney(t.p)+' '+r.unit]));
@@ -71,7 +86,7 @@ form.addEventListener('click',e=>{
  const pref=e.target.closest('[data-pref]');if(pref){state[pref.dataset.pref]=pref.dataset.value;const prefGroup=pref.closest('.tap-options');prefGroup.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b===pref)));return;}
  // Keep the anchor's own target=_blank handoff, then confirm in this tab.
  const send=e.target.closest('.whatsapp-send');if(send){const status=document.querySelector('#send-status');if(status)status.textContent='Opening WhatsApp…';setTimeout(()=>{location.href='thank-you.html';},700);return;}
- const pill=e.target.closest('[data-value]:not([data-pref])');if(pill){const {id,key,value}=pill.dataset;config(id)[key]=value;const group=pill.closest('.tap-options');group.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b===pill)));if(key==='floorRate'){config(id).tier=0;render(false);form.querySelector(`[data-id="${id}"][data-value="${value}"]`)?.focus({preventScroll:true});}return;}
+ const pill=e.target.closest('[data-value]:not([data-pref])');if(pill){const {id,key,value}=pill.dataset;config(id)[key]=value;const group=pill.closest('.tap-options');group.querySelectorAll('button').forEach(b=>b.setAttribute('aria-pressed',String(b===pill)));if(key==='floorRate'){config(id).tier=0;render(false);form.querySelector(`[data-id="${id}"][data-value="${value}"]`)?.focus({preventScroll:true});}if(key==='home')applyHomeRooms(id);return;}
  const counter=e.target.closest('[data-count]');if(counter){const {id,key,count}=counter.dataset,input=counter.parentElement.querySelector('input');const value=Math.min(Number(input.max),Math.max(Number(input.min),Number(input.value||0)+Number(count)));config(id)[key]=value;input.value=value;if(key==='qty'){const recliner=form.querySelector(`input[data-id="${id}"][data-key="recliners"]`);if(recliner){recliner.max=value;if(Number(recliner.value)>value){recliner.value=value;config(id).recliners=value;}}}return;}
  const remove=e.target.closest('[data-remove]');if(remove){state.selected=state.selected.filter(id=>id!==remove.dataset.remove);if(!state.selected.length)step=0;render();return;}
  if(e.target.closest('#change-services')){collect();step=0;render();}

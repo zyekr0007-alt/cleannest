@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import fs from 'node:fs';
-import {calculate,priceLabel,whatsappMessage} from '../assets/estimate.mjs';
+import {calculate,priceLabel,whatsappMessage,includedRooms} from '../assets/estimate.mjs';
 const catalog=JSON.parse(fs.readFileSync(new URL('../assets/catalog.json',import.meta.url)));
 const state=(selected,configs={},extra={})=>({selected,configs,...extra});
 test('home range and add-ons avoid double charging rooms',()=>{
@@ -52,6 +52,29 @@ test('WhatsApp includes scope, contact and final price caveat',()=>{
 test('floor renewal applies the material range',()=>{
  const r=calculate(catalog,state(['floor-renewal'],{'floor-renewal':{floorRate:'italian-marble',qty:200}}));assert.equal(r.low,3600);assert.equal(r.high,6000);
  assert.throws(()=>calculate(catalog,state(['floor-renewal'],{'floor-renewal':{floorRate:'invalid'}})),/material/);
+});
+test('each home size includes one bathroom per bedroom and exactly one kitchen',()=>{
+ for(const [home,bathrooms] of [['1',1],['2',2],['3',3],['4',4]])assert.deepEqual(includedRooms(catalog,home),{bathrooms,kitchens:1},home);
+ assert.deepEqual(includedRooms(catalog,'villa'),{bathrooms:0,kitchens:0});
+});
+test('bathrooms and kitchens above the included count are charged as extras',()=>{
+ // 2 BHK already covers 2 bathrooms and 1 kitchen, so asking for exactly those adds nothing.
+ assert.equal(calculate(catalog,state(['full-house-cleaning'],{'full-house-cleaning':{home:'2',bathrooms:2,kitchens:1}})).low,9500);
+ // A third bathroom and a second kitchen are billed at the published per-room rates.
+ const extra=calculate(catalog,state(['full-house-cleaning'],{'full-house-cleaning':{home:'2',bathrooms:3,kitchens:2}}));
+ assert.equal(extra.low,9500+890+2490);assert.equal(extra.high,11900+1190+4490);assert.equal(extra.lines.length,3);
+ assert.deepEqual(extra.lines.slice(1).map(l=>l.label),['Extra bathrooms','Extra kitchens']);
+ // The package price itself never changes with the room counts.
+ assert.equal(calculate(catalog,state(['full-house-cleaning'],{'full-house-cleaning':{home:'4',bathrooms:4,kitchens:1}})).low,catalog.homes['4'].low);
+ assert.equal(calculate(catalog,state(['full-house-cleaning'],{'full-house-cleaning':{home:'4',bathrooms:6,kitchens:1}})).low,catalog.homes['4'].low+890*2);
+});
+test('a 1 BHK covers one bathroom, so a second is an extra',()=>{
+ const r=calculate(catalog,state(['full-house-cleaning'],{'full-house-cleaning':{home:'1',bathrooms:2,kitchens:1}}));
+ assert.equal(includedRooms(catalog,'1').bathrooms,1);assert.equal(r.low,4500+890);assert.equal(r.lines.length,2);
+});
+test('a villa is quoted after inspection, so room counts add no charge',()=>{
+ const r=calculate(catalog,state(['full-house-cleaning'],{'full-house-cleaning':{home:'villa',bathrooms:9,kitchens:4}}));
+ assert.equal(r.low,0);assert.equal(r.lines.length,1);assert.equal(r.custom,true);
 });
 test('smaller extras remain selectable and package inclusions avoid duplicate charges',()=>{
  const extras=calculate(catalog,state(['extra-dining-chairs','extra-fan','extra-cabinets','extra-cushions']));assert.equal(extras.low,760);assert.equal(extras.high,1800);

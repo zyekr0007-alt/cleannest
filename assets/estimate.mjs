@@ -3,6 +3,17 @@ export function priceLabel(result){
  const amount=result.low===result.high?formatMoney(result.low):`${formatMoney(result.low)} – ${formatMoney(result.high)}`;
  return result.custom?(result.low?amount+' + custom quote':'Custom quote'):amount;
 }
+// Every full-home package includes one bathroom per bedroom and exactly one
+// kitchen. Anything above those counts is charged at the published per-room
+// rate, so the package price stays flat and the extras are itemised.
+export function includedRooms(catalog,home){
+ const h=catalog?.homes?.[home]||{},bedrooms=Number(home),fallback=Number.isInteger(bedrooms)&&bedrooms>0?bedrooms:0;
+ const bathrooms=Number.isFinite(h.bathrooms)?h.bathrooms:home==='villa'?0:fallback;
+ const kitchens=Number.isFinite(h.kitchens)?h.kitchens:home==='villa'?0:1;
+ return {bathrooms,kitchens};
+}
+// The two room rates an extra bathroom or kitchen is charged at.
+const EXTRA_ROOMS=[['bathroom','Extra bathrooms'],['kitchen-add','Extra kitchens']];
 export function includedRates(selected,catalog){
  const ids=new Set(Array.isArray(selected)?selected:[selected]),included=new Set();
  if(ids.has('full-house-cleaning'))['kitchen-add','bathroom','fan','gas-stove','exhaust','tile-floor'].forEach(id=>included.add(id));
@@ -24,8 +35,18 @@ export function calculate(catalog,state){
   if(included.has(rateId)){includedNames.push(s.name);continue;}
   if(rateId==='home'){
    const h=catalog.homes[config.home];if(!h)throw Error('Choose how many bedrooms your home has.');
-   const baths=quantity(config.bathrooms??1,0),kitchens=quantity(config.kitchens??1,0);
-   lines.push({id,label:config.home==='villa'?'5+ bedrooms / villa':config.home+' BHK full-home cleaning',detail:`${baths} bathroom${baths===1?'':'s'} · ${kitchens} kitchen${kitchens===1?'':'s'} included`,low:h.low,high:h.high,custom:config.home==='villa'});
+   const inc=includedRooms(catalog,config.home);
+   const baths=quantity(config.bathrooms??inc.bathrooms,0),kitchens=quantity(config.kitchens??inc.kitchens,0);
+   lines.push({id,label:config.home==='villa'?'5+ bedrooms / villa':config.home+' BHK full-home cleaning',detail:`${inc.bathrooms} bathroom${inc.bathrooms===1?'':'s'} · ${inc.kitchens} kitchen${inc.kitchens===1?'':'s'} included`,low:h.low,high:h.high,custom:config.home==='villa'});
+   // A villa is priced after inspection, so its room counts never add a line.
+   if(config.home!=='villa')for(const [rateId,label] of EXTRA_ROOMS){
+    const extra=rateId==='bathroom'?baths-inc.bathrooms:kitchens-inc.kitchens;
+    if(extra<=0)continue;
+    const rate=rates[rateId];
+    if(!rate||!Number.isFinite(rate.base))throw Error('Extra room rates are unavailable. Please request a quote.');
+    const high=Number.isFinite(rate.high)?rate.high:rate.base;
+    lines.push({id:id+'-'+rateId,label,detail:`${extra} × ${formatMoney(rate.base)}${high!==rate.base?' – '+formatMoney(high):''} each`,low:rate.base*extra,high:high*extra});
+   }
   }else if(rateId){
    const rate=rates[rateId];if(!rate)throw Error('Unknown rate.');
    const qty=quantity(config.qty??1),option=rate.tiers?.[Number(config.tier??0)];
