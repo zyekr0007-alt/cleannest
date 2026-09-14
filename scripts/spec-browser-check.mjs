@@ -32,6 +32,10 @@ try {
  run('set','viewport','390','844');open('');
  expect(evaluate('!document.querySelector(".brand-intro")'),'brand overlay still present');
  expect(evaluate('!document.querySelector(".coverage-svg")'),'the congestion-prone service-area map should be gone');
+ // The chart is server-rendered, but `open` resolves on navigation rather than on
+ // parse, so an immediate query can land on a document that has not built one yet.
+ // Settle on the chart before asserting its contents.
+ settle('.radius-chart');
  expect(evaluate('document.querySelectorAll(".radius-ring").length===6'),'service-area chart should draw a ring every 10 km out to 60 km');
  expect(evaluate('document.querySelectorAll(".radius-city").length===12&&document.querySelectorAll(".radius-hq__core").length===1'),'service-area chart should plot twelve cities around the base');
  // The rings are hairlines in a scaled viewBox; without a non-scaling stroke they
