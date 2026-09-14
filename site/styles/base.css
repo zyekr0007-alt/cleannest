@@ -4689,18 +4689,27 @@ body{
 }.service-card-overlay:not(.service-card-all) h3,
 .service-card-overlay:not(.service-card-all) .service-price,
 .service-card-overlay.service-card-featured .overlay-lede{
-  background: rgb(255 255 255 / 20%);
-  border: 1px solid rgb(255 255 255 / 38%);
-  border-radius: var(--radius-pill);
+  background: rgb(255 255 255 / 28%);
+  border: 1px solid rgb(255 255 255 / 44%);
+  /* A stadium radius cuts into the text as soon as a label wraps to a second
+     line: the curve retreats past the padding, which pushed "Sofa & upholstery"
+     and "AC cleaning" outside their own pill. One moderate radius contains
+     every label at any line count. */
+  border-radius: var(--radius-control);
   color: #fff;
   margin: 0;
   max-width: 100%;
+  /* A long single word — "upholstery" on a phone-sized card — can never leave
+     the pill, whatever the card width. The padding below keeps this from
+     triggering in practice. */
+  overflow-wrap: break-word;
   -webkit-backdrop-filter: blur(10px) saturate(160%);
   backdrop-filter: blur(10px) saturate(160%);
 }.service-card-overlay:not(.service-card-all) h3{
-  padding: 4px 11px;
+  padding: 5px 12px;
 }.service-card-overlay:not(.service-card-all) .service-price{
-  padding: 3px 9px;
+  padding: 4px 10px;
+  text-shadow: 0 1px 3px rgb(0 0 0 / 35%);
 }.service-card-overlay h3{
   color: #fff;
   font-family: var(--heading);
@@ -4840,7 +4849,7 @@ body{
     aspect-ratio: 350 / 497;
   }.service-card-overlay .overlay-body{
     gap: 8px;
-    padding: 12px 13px;
+    padding: 12px 10px;
   }.service-card-overlay h3{
     font-size: 16px;
   }.service-card-overlay .service-price{
@@ -4860,9 +4869,28 @@ body{
   }.service-card-overlay.service-card-all .service-price{
     font-size: 11px;
   }.service-card-overlay:not(.service-card-all) h3{
-    padding: 3px 9px;
+    padding: 3px 8px;
   }.service-card-overlay:not(.service-card-all) .service-price{
-    padding: 2px 8px;
+    padding: 2px 7px;
+  }/* The name takes the whole card width. Sharing its row with the round control
+     left "upholstery" too narrow for the word, so it broke mid-word. */
+  .service-card-overlay:not(.service-card-featured):not(.service-card-all) .overlay-text{
+    display: contents;
+  }.service-card-overlay:not(.service-card-featured):not(.service-card-all) .overlay-body{
+    align-items: end;
+    display: grid;
+    gap: 6px 8px;
+    grid-template-columns: minmax(0, 1fr) auto;
+  }.service-card-overlay:not(.service-card-featured):not(.service-card-all) h3{
+    grid-column: 1 / -1;
+    justify-self: start;
+  }.service-card-overlay:not(.service-card-featured):not(.service-card-all) .service-price{
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: start;
+  }.service-card-overlay:not(.service-card-featured):not(.service-card-all) .add-service{
+    grid-column: 2;
+    grid-row: 2;
   }.service-card-overlay.service-card-featured .overlay-body{
     padding: 18px 18px;
   }
