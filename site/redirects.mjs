@@ -1,4 +1,5 @@
-// Exact legacy paths only. Unknown Wix service slugs need owner/index evidence.
+// Exact legacy paths only. Remaining Wix service slugs still need their own
+// index evidence before they are added here.
 export const origin = 'https://cleannest.in';
 export const redirects = {
   '/index.html': '/',
@@ -16,6 +17,15 @@ export const redirects = {
   '/blog/how-to-choose-right-cleaning-service-jalandhar.html': '/blog/urban-company-deep-cleaning-review-honest.html',
   '/blog/moving-out-cleaning-jalandhar-tenants.html': '/full-house-cleaning.html',
   '/blog/what-professional-deep-clean-includes.html': '/full-house-cleaning.html',
+  // Index-evidenced 2026-09-14: a site: query still returns each of these four
+  // while they answer 404 live, so they were dropping whatever the old pages had
+  // earned. Two are Wix /service-page/ slugs, which is the evidence the note
+  // above was waiting for; the other two are the old booking page and a retired
+  // guide. Targets are the nearest current page, not a blanket fallback.
+  '/service-page/kitchen-deep-clean': '/kitchen-cleaning.html',
+  '/service-page/room-deep-clean': '/full-house-cleaning.html',
+  '/book.html': '/quote.html',
+  '/blog/best-cleaning-products-healthy-home.html': '/blog/ultimate-deep-cleaning-checklist.html',
 };
 
 export function redirectTarget(input) {
