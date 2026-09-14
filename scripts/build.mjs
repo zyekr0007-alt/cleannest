@@ -101,6 +101,9 @@ set('contact.html','Contact CleanNest | Cleaning Services in Jalandhar',contact(
 set('about.html','About CleanNest | Your Local Cleaning Team',about());
 set('faqs.html','Cleaning & Booking Questions | CleanNest',faqsFinal());
 set('quote.html','Build Your Free Cleaning Estimate | CleanNest',quotePage(),'Personalise your cleaning with home size and optional extras. See an itemized estimate and send your request to CleanNest on WhatsApp.');
+// Confirmation the quote flow lands on after the WhatsApp handoff. Not a
+// navigation destination, so it stays out of the sitemap and out of search.
+set('thank-you.html','Request Sent | CleanNest',pageIntro('THANK YOU','Your request<br>has been sent.','We’ll contact you soon to confirm the price and book your date.')+`<section class="container"><aside class="booking-expectations"><h2>What happens next?</h2><p>${esc(booking.termsBrief)}</p><div class="expectation-actions"><a class="button secondary sm" href="refund.html">Refund policy</a><a class="button secondary sm" href="faqs.html">FAQs</a></div></aside><div class="error-actions thank-you-actions"><a class="button primary" href="/">Back to home ${icon()}</a><a class="button secondary" href="services.html">Explore services</a></div></section>`,'Your cleaning request has been sent to CleanNest. We will contact you shortly to confirm the price and book your date.',{noindex:true});
 // Journal titles carry the brand suffix only when the result still fits a search
 // result. Long editorial headlines keep the whole 60 characters for the topic.
 const blogTitle=t=>t.length+18<=60?t+' | CleanNest Blog':t;

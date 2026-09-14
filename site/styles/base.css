@@ -736,6 +736,8 @@
   display: flex;
   gap: 20px;
   margin-bottom: 100px;
+}.thank-you-actions{
+  margin-top: 30px;
 }.lightbox{
   background: var(--paper);
   border: 0;
@@ -1787,8 +1789,6 @@
 }.estimate-ready .whatsapp-send{
   font-size: 14px;
   min-height: 54px;
-}.quote-layout[data-step="3"] .quote-navigation{
-  position: static;
 }.quote-layout[data-step="3"] .quote-steps{
   margin-bottom: 25px;
 }
