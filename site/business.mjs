@@ -23,9 +23,15 @@ export const businessInfo = {
 };
 export const address = `${businessInfo.address.streetAddress}, Jalandhar, Punjab ${businessInfo.address.postalCode}`;
 export const cities = ['Jalandhar','Phagwara','Kapurthala','Nakodar','Hoshiarpur','Banga','Ludhiana','Kartarpur','Goraya','Phillaur','Adampur','Sultanpur Lodhi','Nawanshahr'];
+// Declares the spellings people actually type. schema.org alternateName is the
+// documented slot for an alias, and this is the only place the site can state that
+// "Cleanest" (the common one-n misspelling) and "CleanNest" are the same business.
+// Note the misspelling is a real English word, so this is an entity-clarity signal,
+// not a route to ranking for the bare dictionary term.
+export const alternateNames = ['Cleanest', 'Cleannest', 'Clean Nest', 'CleanNest Jalandhar'];
 export const businessSchema = {
   '@context': 'https://schema.org', '@type': 'LocalBusiness', '@id': businessInfo.id,
-  name: businessInfo.name, url: businessInfo.url,
+  name: businessInfo.name, alternateName: alternateNames, url: businessInfo.url,
   logo: businessInfo.url + 'assets/img/wordmark.svg',
   telephone: businessInfo.telephone, email: businessInfo.email,
   openingHours: businessInfo.openingHours, address: businessInfo.address,
@@ -34,6 +40,7 @@ export const businessSchema = {
 };
 export const websiteSchema = {
   '@context': 'https://schema.org', '@type': 'WebSite', '@id': businessInfo.url+'#website',
-  name: businessInfo.name, url: businessInfo.url, publisher: {'@id': businessInfo.id},
+  name: businessInfo.name, alternateName: alternateNames, url: businessInfo.url,
+  publisher: {'@id': businessInfo.id},
   inLanguage: 'en-IN',
 };
