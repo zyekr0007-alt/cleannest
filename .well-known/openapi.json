@@ -3,7 +3,7 @@
   "info": {
     "title": "CleanNest enquiry API",
     "version": "1.0.0",
-    "description": "Accepts a cleaning enquiry for CleanNest, a cleaning company based in Jalandhar, Punjab, and delivers it to the business. This is the site's only machine interface. It is public but gated by a Cloudflare Turnstile token, so it is intended to be called from the cleannest.in pages rather than by unattended agents, which cannot obtain a token.",
+    "description": "Accepts a cleaning enquiry for CleanNest, a cleaning company based in Jalandhar, Punjab, and delivers it to the business. This is the site's only interface intended to be called by visitors. It is public but gated by a Cloudflare Turnstile token, so it is meant to be called from the cleannest.in pages rather than by unattended agents, which cannot obtain a token. The site also exposes a WhatsApp webhook at /api/whatsapp, but that is Meta's callback rather than a visitor interface: it is documented here only so this description is complete, and it rejects every request that is not signed by Meta.",
     "contact": {
       "name": "CleanNest",
       "url": "https://cleannest.in/contact.html",
@@ -102,6 +102,79 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "/api/whatsapp": {
+      "get": {
+        "summary": "Meta webhook verification (not a visitor interface)",
+        "description": "The one-time handshake Meta performs when the webhook URL is saved in the WhatsApp Business app configuration. Echoes `hub.challenge` back as plain text when `hub.verify_token` matches the deployment's configured token, and returns 403 otherwise — including when no token is configured, so an unconfigured deployment refuses subscriptions rather than accepting them.",
+        "operationId": "verifyWhatsAppWebhook",
+        "parameters": [
+          {
+            "name": "hub.mode",
+            "in": "query",
+            "required": true,
+            "schema": {"type": "string", "const": "subscribe"}
+          },
+          {
+            "name": "hub.verify_token",
+            "in": "query",
+            "required": true,
+            "schema": {"type": "string"}
+          },
+          {
+            "name": "hub.challenge",
+            "in": "query",
+            "required": true,
+            "schema": {"type": "string"}
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "The challenge, echoed as `text/plain`.",
+            "content": {"text/plain": {"schema": {"type": "string"}}}
+          },
+          "403": {
+            "description": "The mode is not `subscribe`, the token does not match, or no verify token is configured."
+          }
+        }
+      },
+      "post": {
+        "summary": "Inbound WhatsApp message delivery (called by Meta, not by clients)",
+        "description": "Receives message deliveries from the WhatsApp Business Cloud API. Every request must carry a valid `X-Hub-Signature-256` HMAC of the raw body computed with the app secret; an unsigned or mis-signed body is rejected with 401 and never reaches the send path. The first message from a given number within a 24-hour window is answered once with a greeting, and repeat messages in that window are ignored. Messages the business sends from the WhatsApp Business app are echoed back by Meta under a separate field and are never answered. The response is 200 even when an outbound reply fails, because Meta retries any other status and a retry would greet the customer twice.",
+        "operationId": "receiveWhatsAppMessage",
+        "responses": {
+          "200": {
+            "description": "The delivery was accepted and processed. `greeted` counts the greetings actually sent.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "ok": {"const": true},
+                    "greeted": {"type": "integer"}
+                  },
+                  "required": ["ok", "greeted"]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "`invalid_json` — the signed body was not valid JSON."
+          },
+          "401": {
+            "description": "`bad_signature` — the `X-Hub-Signature-256` header was missing or did not match the app secret."
+          },
+          "405": {
+            "description": "`method_not_allowed` — this path accepts only GET (verification) and POST (delivery)."
+          },
+          "413": {
+            "description": "`payload_too_large` — the declared body exceeds 65536 bytes."
+          },
+          "503": {
+            "description": "`not_configured` — no app secret is set in this deployment, so no delivery can be authenticated."
           }
         }
       }

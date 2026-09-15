@@ -5,6 +5,16 @@
   // endpoint. Both values are Worker secrets, never committed:
   //   npx wrangler secret put TELEGRAM_BOT_TOKEN
   //   npx wrangler secret put TELEGRAM_CHAT_ID
+  //
+  // The /api/whatsapp endpoint additionally needs these. It stays inert — it
+  // answers 503 to Meta rather than accepting deliveries — until the first three
+  // are set, so deploying without them is safe:
+  //   npx wrangler secret put WHATSAPP_APP_SECRET      # signs every webhook body
+  //   npx wrangler secret put WHATSAPP_VERIFY_TOKEN    # the webhook handshake
+  //   npx wrangler secret put WHATSAPP_TOKEN           # System User access token
+  //   npx wrangler secret put WHATSAPP_PHONE_NUMBER_ID # phone number ID, not the number
+  // WHATSAPP_DISPLAY_NUMBER is optional and only guards against replying to the
+  // business's own number; set it if inbound echoes are ever seen in the logs.
   "main": "hosting/redirect-worker.mjs",
   "compatibility_date": "2026-09-10",
   "workers_dev": false,
