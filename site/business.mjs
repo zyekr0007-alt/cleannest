@@ -18,7 +18,7 @@ export const businessInfo = {
   address: {
     '@type': 'PostalAddress',
     streetAddress: 'Shop 3, Wadala Road, opposite Palm Royale Estate, Guru Teg Bahadur Nagar, Green Model Town',
-    addressLocality: 'Jalandhar', addressRegion: 'Punjab', postalCode: '144001', addressCountry: 'IN',
+    addressLocality: 'Jalandhar', addressRegion: 'Punjab', postalCode: '144003', addressCountry: 'IN',
   },
 };
 export const address = `${businessInfo.address.streetAddress}, Jalandhar, Punjab ${businessInfo.address.postalCode}`;
