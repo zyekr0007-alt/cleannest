@@ -95,7 +95,7 @@ test('the notification leads with "New lead" and makes the phone tappable', asyn
   assert.equal(message.body.disable_web_page_preview, true);
 
   const lines = sentText(calls).split('\n');
-  assert.deepEqual(lines.slice(0, 8), [
+  assert.deepEqual(lines.slice(0, 6), [
     '\u{1F514} <b>New lead</b>',
     '',
     '\u{1F464} Ravi Kumar',
@@ -103,11 +103,18 @@ test('the notification leads with "New lead" and makes the phone tappable', asyn
     '\u{1F4DE} +919812345678',
     '\u{1F5D3}\u{FE0F} Within 2 days',
     '\u{1F4DD} Third floor, lift available',
-    '',
-    '\u{1F4AC} <a href="https://wa.me/919812345678">Message on WhatsApp</a>',
   ]);
-  assert.equal(lines[8], '');
-  assert.match(lines[9], /^\u{1F552} \d{1,2}(st|nd|rd|th) [A-Z][a-z]+, \d{1,2}:\d{2} (am|pm)$/u, 'stamp is the last line');
+  // What they chose, then how to reach them, then the stamp.
+  assert.deepEqual(lines.slice(6, 10), [
+    '',
+    '\u{1F9FE} <b>Selected services</b>',
+    '• balcony-cleaning',
+    '',
+  ]);
+  assert.equal(lines[10], '\u{1F4AC} <a href="https://wa.me/919812345678">Message on WhatsApp</a>');
+  assert.equal(lines[11], '');
+  assert.match(lines[12], /^\u{1F552} \d{1,2}(st|nd|rd|th) [A-Z][a-z]+, \d{1,2}:\d{2} (am|pm)$/u, 'stamp is the last line');
+  assert.equal(lines.length, 13, 'nothing follows the stamp');
   // The WhatsApp link lives inside the message, not on a button below it.
   assert.equal(message.body.reply_markup, undefined);
   assert.doesNotMatch(sentText(calls), /tel:/, 'no tel: anchor - it does not dial in the clients');
@@ -125,16 +132,64 @@ test('customer text is HTML-escaped so it cannot inject markup', async () => {
   assert.doesNotMatch(text, /<script>|<b>bold/, 'no live markup from customer input');
 });
 
-test('the receipt, city, locality and page source are NOT repeated in the message', async () => {
+test('the chosen scope and the estimate shown to the visitor reach the owner', async () => {
   const {env, calls, fetchImpl} = inquiryEnv();
   await handleInquiry(post('https://cleannest.in/api/inquiry', inquiryPayload({
     city: 'Jalandhar', locality: 'Model Town',
-    summary: 'Estimated price ₹9,500 – ₹11,900\n• Full home: 2 BHK — ₹9,500',
+    scope: [
+      '2 BHK full-home cleaning — 2 bathrooms · 1 kitchen included — ₹9,500 – ₹11,900',
+      'Extra bathrooms — 1 × ₹890 – ₹1,190 each — ₹890 – ₹1,190',
+    ],
+    included: ['Bathroom', 'Kitchen'],
+    estimate: '₹10,390 – ₹13,090',
   })), env, fetchImpl);
   const text = sentText(calls);
+  assert.match(text, /\u{1F9FE} <b>Estimate ₹10,390 – ₹13,090<\/b>/u, 'the total is the headline');
+  assert.match(text, /• 2 BHK full-home cleaning — 2 bathrooms · 1 kitchen included — ₹9,500 – ₹11,900/u);
+  assert.match(text, /• Extra bathrooms — 1 × ₹890 – ₹1,190 each — ₹890 – ₹1,190/u);
+  assert.match(text, /\u{2795} Included: Bathroom, Kitchen/u);
   assert.doesNotMatch(text, /Jalandhar|Model Town/, 'location fields are dropped');
-  assert.doesNotMatch(text, /9,500|Estimate|Estimated/, 'the estimate receipt is dropped');
   assert.doesNotMatch(text, /quote\.html|Sent from/, 'the page source is dropped');
+});
+
+test('service names stand in when no itemised receipt is sent', async () => {
+  const {env, calls, fetchImpl} = inquiryEnv();
+  await handleInquiry(post('https://cleannest.in/api/inquiry',
+    inquiryPayload({services: ['balcony-cleaning', 'sofa-cleaning']})), env, fetchImpl);
+  const text = sentText(calls);
+  assert.match(text, /\u{1F9FE} <b>Selected services<\/b>/u, 'no estimate means no figure to headline');
+  assert.match(text, /• balcony-cleaning/);
+  assert.match(text, /• sofa-cleaning/);
+});
+
+test('an enquiry with nothing selected omits the receipt block entirely', async () => {
+  const {env, calls, fetchImpl} = inquiryEnv();
+  await handleInquiry(post('https://cleannest.in/api/inquiry',
+    inquiryPayload({services: [], scope: [], included: [], estimate: ''})), env, fetchImpl);
+  assert.ok(!sentText(calls).includes('\u{1F9FE}'), 'the contact form gets no receipt block');
+});
+
+test('the receipt is escaped and clamped like every other field', async () => {
+  const {env, calls, fetchImpl} = inquiryEnv();
+  await handleInquiry(post('https://cleannest.in/api/inquiry', inquiryPayload({
+    scope: ['<script>alert(1)</script> & <b>bold</b>'],
+    included: ['<i>Kitchen</i>'],
+    estimate: '<b>₹9,500</b>',
+  })), env, fetchImpl);
+  const text = sentText(calls);
+  assert.match(text, /• &lt;script&gt;alert\(1\)&lt;\/script&gt; &amp; &lt;b&gt;bold&lt;\/b&gt;/u);
+  assert.match(text, /\u{2795} Included: &lt;i&gt;Kitchen&lt;\/i&gt;/u);
+  assert.match(text, /<b>Estimate &lt;b&gt;₹9,500&lt;\/b&gt;<\/b>/u);
+  assert.doesNotMatch(text, /<script>|<i>Kitchen<\/i>/, 'no live markup from the receipt');
+
+  const many = inquiryEnv();
+  await handleInquiry(post('https://cleannest.in/api/inquiry', inquiryPayload({
+    scope: Array.from({length: 200}, (_, i) => 'line-' + i + '-'.repeat(400)),
+    included: Array.from({length: 200}, (_, i) => 'inc-' + i),
+  })), many.env, many.fetchImpl);
+  const clamped = sentText(many.calls);
+  assert.equal(clamped.match(/^• /gm).length, 20, 'scope lines are capped at 20');
+  assert.ok(clamped.length <= 4096, 'the whole message still fits Telegram');
 });
 
 test('a missing preferred date or note simply omits those lines', async () => {

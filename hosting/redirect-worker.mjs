@@ -24,6 +24,12 @@ const MAX_BODY_BYTES = 16384;
 const LIMITS = {name: 80, phone: 20, when: 40, notes: 1500};
 const MAX_SERVICES = 20;
 const MAX_SERVICE_LENGTH = 80;
+// The itemised receipt the visitor was shown: one line per priced row, plus the
+// total and the names of anything the package already covered.
+const MAX_SCOPE_LINES = 20;
+const MAX_SCOPE_LENGTH = 160;
+const MAX_ESTIMATE_LENGTH = 40;
+const MAX_INCLUDED = 12;
 // Keeps the subject line short: a name is clamped to 80 chars, far too much to
 // echo into a mail header.
 const SUBJECT_NAME_LIMIT = 40;
@@ -177,12 +183,22 @@ export async function handleInquiry(request, env, fetchImpl = fetch) {
   const services = Array.isArray(payload.services)
     ? payload.services.slice(0, MAX_SERVICES).map(service => headerSafe(service, MAX_SERVICE_LENGTH)).filter(Boolean)
     : [];
+  const scope = Array.isArray(payload.scope)
+    ? payload.scope.slice(0, MAX_SCOPE_LINES).map(line => headerSafe(line, MAX_SCOPE_LENGTH)).filter(Boolean)
+    : [];
+  const included = Array.isArray(payload.included)
+    ? payload.included.slice(0, MAX_INCLUDED).map(name => headerSafe(name, MAX_SERVICE_LENGTH)).filter(Boolean)
+    : [];
+  const estimate = headerSafe(payload.estimate, MAX_ESTIMATE_LENGTH);
+  // The quote flow sends the receipt; the contact form sends only a message, and
+  // older clients send bare service names. Show whichever of those arrived.
+  const scopeLines = scope.length ? scope : services;
 
   const waNumber = normalisePhone(phone);
-  // Only what's needed to act on the enquiry: who, how to reach them, when they
-  // want it, and anything they wrote themselves. The estimate receipt, city,
-  // locality and page source are deliberately not repeated here. Every value is
-  // HTML escaped because the message is sent with parse_mode HTML.
+  // Who, how to reach them, when they want it, what they chose and for how much.
+  // City, locality and page source stay out: they add noise without changing what
+  // the owner does next. Every value is HTML escaped because the message is sent
+  // with parse_mode HTML.
   const lines = [
     '🔔 <b>New lead</b>',
     '',
@@ -191,6 +207,12 @@ export async function handleInquiry(request, env, fetchImpl = fetch) {
   ];
   if (when) lines.push('🗓️ ' + escapeHtml(when));
   if (note) lines.push('📝 ' + escapeHtml(note));
+  // The receipt the visitor saw, so the owner can quote from the same numbers.
+  if (scopeLines.length || estimate || included.length) {
+    lines.push('', '🧾 <b>' + (estimate ? 'Estimate ' + escapeHtml(estimate) : 'Selected services') + '</b>');
+    if (scopeLines.length) lines.push(...scopeLines.map(line => '• ' + escapeHtml(line)));
+    if (included.length) lines.push('➕ Included: ' + escapeHtml(included.join(', ')));
+  }
   // Inline in the message body. An inline_keyboard button would be rendered by
   // Telegram BELOW the message, which is not where this belongs.
   if (waNumber) lines.push('', `💬 <a href="https://wa.me/${waNumber}">Message on WhatsApp</a>`);

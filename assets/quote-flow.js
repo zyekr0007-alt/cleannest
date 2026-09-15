@@ -1,4 +1,4 @@
-import {calculate,priceLabel,formatMoney,includedRates,includedRooms,whatsappMessage} from './estimate.mjs';
+import {calculate,priceLabel,formatMoney,includedRates,includedRooms,receiptLines,whatsappMessage} from './estimate.mjs';
 import {submitEnquiry,failureMessage} from './enquiry.mjs';
 const ICON_ARROW='<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg>';
 const ICON_EXTERNAL='<svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5"/></svg>';
@@ -75,7 +75,9 @@ async function sendWithEstimate(button){
   endpoint:builder.dataset.endpoint,
   sitekey:builder.dataset.turnstile||'',
   container:document.querySelector('#turnstile-slot'),
-  payload:{name:state.name,phone:state.phone,when:state.date,notes:state.notes,services:effective().map(id=>service(id).name),source:'quote.html'},
+  // `scope` and `estimate` carry the itemised receipt and the figure the visitor
+  // was shown, so the owner's notification states what was chosen and for how much.
+  payload:{name:state.name,phone:state.phone,when:state.date,notes:state.notes,services:effective().map(id=>service(id).name),scope:receiptLines(result),included:result.includedNames,estimate:priceLabel(result),source:'quote.html'},
  });
  sending=false;button.disabled=false;button.innerHTML=label;
  state.send=outcome;

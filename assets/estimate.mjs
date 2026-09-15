@@ -3,6 +3,11 @@ export function priceLabel(result){
  const amount=result.low===result.high?formatMoney(result.low):`${formatMoney(result.low)} – ${formatMoney(result.high)}`;
  return result.custom?(result.low?amount+' + custom quote':'Custom quote'):amount;
 }
+const lineAmount=l=>l.custom?'Custom quote':l.low===l.high?formatMoney(l.low):`${formatMoney(l.low)} – ${formatMoney(l.high)}`;
+// One plain-text line per receipt row: what was chosen, its scope, and its price.
+// The WhatsApp handoff and the owner's Telegram notification both read this, so a
+// lead shows the owner the same scope and figure the visitor was shown.
+export function receiptLines(result){return result.lines.map(l=>`${l.label} — ${l.detail} — ${lineAmount(l)}`);}
 // Every full-home package includes one bathroom per bedroom and exactly one
 // kitchen. Anything above those counts is charged at the published per-room
 // rate, so the package price stays flat and the extras are itemised.
@@ -64,7 +69,7 @@ export function calculate(catalog,state){
 }
 export function whatsappMessage(catalog,state,result){return [
  'Hi CleanNest! I’d like a cleaning quote.','',
- ...result.lines.map(l=>`• ${l.label}: ${l.detail} — ${l.custom?'Custom quote':l.low===l.high?formatMoney(l.low):formatMoney(l.low)+' – '+formatMoney(l.high)}`),
+ ...result.lines.map(l=>`• ${l.label}: ${l.detail} — ${lineAmount(l)}`),
  ...(result.includedNames.length?['Already included: '+result.includedNames.join(', ')]:[]),'',
  'Rough estimate: '+priceLabel(result),'Name: '+state.name,'Phone: '+state.phone,
  state.date?'Preferred date: '+state.date:'',
