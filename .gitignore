@@ -27,6 +27,13 @@ Thumbs.db
 /assets/generated/
 /sitemap.xml
 
+# Meta domain verification (18 Sept 2026). Meta fetches this exact URL and
+# checks the token inside, so it must be TRACKED and served — it is not build
+# output, it is an input. The `/*.html` rule above would otherwise swallow it
+# silently: the file copies in, git reports a clean tree, nothing is pushed,
+# and Meta sees a 404. The negation must stay AFTER /*.html to take effect.
+!/pxawfl5xxh0yig08fro10644ikkd84.html
+
 # Deliberately NOT ignored: assets/catalog.json. The build regenerates it, but
 # tests/estimate.test.mjs reads it directly, so a fresh clone needs it present
 # to run `npm test` without building first.
