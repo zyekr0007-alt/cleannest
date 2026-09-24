@@ -343,7 +343,10 @@
   border: 1px solid #d4dde3;
   border-radius: var(--radius-card);
   display: flex;
-  flex: 1 1 268px;
+  /* flex-grow is intentionally 0: some groups don't divide evenly into a full
+     row (e.g. the 7-item Floor Renewal group), and a lone leftover card should
+     keep the same width as its siblings instead of stretching to fill the row. */
+  flex: 0 1 268px;
   flex-direction: column;
   gap: 8px;
   min-width: 0;

@@ -77,12 +77,15 @@ const ringMarkup=rings.map((km,i)=>{
  return '<circle class="radius-ring" data-reveal="bloom" data-delay="'+(i*110)+'" cx="'+CX+'" cy="'+CY+'" r="'+r+'"/>';
 }).join('');
 
-export function zoomMap(){
+// `onAreasPage` is true when this chart is reused on areas-we-serve.html itself,
+// where "Show all cities" linking to that same page would be a no-op link. There
+// it instead jumps to the full city list already lower on that page.
+export function zoomMap(onAreasPage=false){
  return '<section class="coverage-band zoom-coverage" id="coverage"><div class="container zoom-layout">'
   +'<div class="coverage-heading"><span class="eyebrow">ROOTED IN JALANDHAR</span>'
   +'<h2>Your city.<br>Our care.</h2>'
   +'<p>A local team. Thirteen cities, all within about an hour of our Jalandhar base.</p>'
-  +'<a class="button primary" href="areas-we-serve.html">Show all cities '+glyph()+'</a></div>'
+  +(onAreasPage?'':'<a class="button primary" href="areas-we-serve.html">Show all cities '+glyph()+'</a>')+'</div>'
   +'<div class="radius-chart" data-sweep><svg viewBox="0 0 620 580" role="group" aria-label="The thirteen cities CleanNest serves, shown around our Jalandhar base">'
   +'<g class="radius-chart__rings">'+ringMarkup+'</g>'
   +'<g class="radius-sweep"><line x1="'+CX+'" y1="'+CY+'" x2="'+CX+'" y2="'+(CY-RADIUS)+'"/></g>'

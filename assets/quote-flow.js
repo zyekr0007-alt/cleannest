@@ -33,11 +33,18 @@ function roomsNote(id){const inc=includedRooms(catalog,config(id).home),b=rates.
  if(config(id).home==='villa')return 'A villa is quoted after a visit. Tell us the room count and we’ll prepare the estimate with you.';
  const plural=(n,word)=>`${n} ${word}${n===1?'':'s'}`;
  return `Includes ${plural(inc.bathrooms,'bathroom')} and ${plural(inc.kitchens,'kitchen')}. Extra bathrooms ${formatMoney(b.base)}${b.high?' – '+formatMoney(b.high):''} each, extra kitchens ${formatMoney(k.base)}${k.high?' – '+formatMoney(k.high):''} each.`;}
+// A full re-render (rather than patching the counters in place) is needed because
+// the room-count fields don't exist in the DOM until a bedroom size is chosen —
+// see the `c.home` check in details() below.
 function applyHomeRooms(id){const inc=includedRooms(catalog,config(id).home);
- for(const [key,value] of [['bathrooms',inc.bathrooms],['kitchens',inc.kitchens]]){const input=form.querySelector(`input[data-id="${id}"][data-key="${key}"]`);if(!input)continue;input.min=value;input.value=value;config(id)[key]=value;}
- const note=document.getElementById('note-'+id);if(note)note.textContent=roomsNote(id);}
+ config(id).bathrooms=inc.bathrooms;config(id).kitchens=inc.kitchens;
+ render(false);
+ form.querySelector(`[data-id="${id}"][data-key="home"][data-value="${config(id).home}"]`)?.focus({preventScroll:true});}
 function details(id){const s=service(id),c=config(id);let content='';
- if(s.rate==='home'){const inc=includedRooms(catalog,c.home);content=pills(id,'home','How many bedrooms?',[[1,'1 BHK'],[2,'2 BHK'],[3,'3 BHK'],[4,'4 BHK'],['villa','5+ / Villa']])+`<div class="room-counts">${count(id,'bathrooms','Bathrooms',inc.bathrooms,100)}${count(id,'kitchens','Kitchens',inc.kitchens,100)}</div><p class="included-note" id="note-${id}">${roomsNote(id)}</p>`;}
+ if(s.rate==='home'){const inc=includedRooms(catalog,c.home);content=pills(id,'home','How many bedrooms?',[[1,'1 BHK'],[2,'2 BHK'],[3,'3 BHK'],[4,'4 BHK'],['villa','5+ / Villa']])
+  // Nothing is included yet until a bedroom size is picked, so the counters and
+  // the "Includes N bathrooms" note stay hidden rather than showing a misleading 0.
+  +(c.home?`<div class="room-counts">${count(id,'bathrooms','Bathrooms',inc.bathrooms,100)}${count(id,'kitchens','Kitchens',inc.kitchens,100)}</div><p class="included-note" id="note-${id}">${roomsNote(id)}</p>`:'<p class="included-note">Choose a bedroom size above to see what’s included.</p>');}
  else if(s.rate){const r=rates[s.id==='floor-renewal'?c.floorRate:s.rate];
   if(s.id==='floor-renewal')content+=pills(id,'floorRate','Floor material',['tile-floor','marble','granite','italian-marble'].map(v=>[v,rates[v].label]));
   if(r.tiers)content+=pills(id,'tier',s.rate==='sofa'?'Choose your sofa treatment':'Choose your AC service',r.tiers.map((t,i)=>[i,t.label,formatMoney(t.p)+' '+r.unit]));

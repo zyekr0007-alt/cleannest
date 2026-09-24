@@ -749,7 +749,7 @@
   overflow: auto;
 }.lightbox::backdrop{
   backdrop-filter: blur(5px);
-  background: var(rgb(8 46 70 / 79%));
+  background: rgb(8 46 70 / 79%);
 }.lightbox > img{
   max-height: 86dvh;
   max-width: 100%;
@@ -860,9 +860,9 @@
   margin-top: 15px;
   width: 100%;
 }.form-error{
-  border: 1px solid var(var(--danger-line));
+  border: 1px solid var(--danger-line);
   border-radius: 8px;
-  color: var(var(--danger));
+  color: var(--danger);
   font-size: 13px;
   padding: 12px;
 }.sent-note{
@@ -2223,11 +2223,11 @@
   background: var(--line);
   border-color: var(--tint);
 }.rating-star{
-  color: var(var(--gold-ink));
+  color: var(--gold-ink);
   font-size: 21px;
   line-height: 1;
   position: relative;
-  text-shadow: 0 0 12px var(rgb(240 180 41 / 44%));
+  text-shadow: 0 0 12px rgb(240 180 41 / 44%);
 }.hero-final .hero-visual{
   height: 420px;
   margin: 0;
