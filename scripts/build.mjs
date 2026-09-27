@@ -42,7 +42,10 @@ import {inquiryEndpoint,turnstileSiteKey} from '../site/forms.mjs';
 // domain property cannot be completed without the owner in the Cloudflare
 // dashboard. A URL-prefix property on https://cleannest.in/ covers the whole
 // site — it is a single-host site, with www and http both 301ing to the apex.
-const googleSiteVerification=process.env.GOOGLE_SITE_VERIFICATION??'';
+// Owner's GSC property (URL prefix, https://cleannest.in/, verified via this
+// meta tag on 27 Sept 2026, account cleannestclub@gmail.com). Committed rather
+// than left as a Cloudflare Pages dashboard env var — see the note above.
+const googleSiteVerification=process.env.GOOGLE_SITE_VERIFICATION??'2_HQyk9llYQuldHl619UYirpxtmzDuCDw4hSNsb173M';
 const googleVerificationTag=googleSiteVerification
  ?`<meta name="google-site-verification" content="${googleSiteVerification}">`
  :'';
