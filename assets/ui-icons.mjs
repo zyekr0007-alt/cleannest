@@ -17,5 +17,11 @@ export const uiIcon=(name='arrow')=>brandIcon(name)||`<svg class="icon" viewBox=
  mail:'<rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/>',
  phone:'<path d="M22 16.9v3a2 2 0 0 1-2.2 2A19.8 19.8 0 0 1 3.1 5.2 2 2 0 0 1 5.1 3h3a2 2 0 0 1 2 1.7l.4 2.7a2 2 0 0 1-.6 1.7L8.6 10.4a16 16 0 0 0 5 5l1.3-1.3a2 2 0 0 1 1.7-.6l2.7.4a2 2 0 0 1 1.7 2Z"/>',
  up:'<path d="M12 19V5M6 11l6-6 6 6"/>',journal:'<path d="M6 3h11a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2Z"/><path d="M8 3v18M11 8h5M11 12h5"/>',chevron:'<path d="m7 10 5 5 5-5"/>',
- help:'<path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H8l-5 2V11.5a8.5 8.5 0 1 1 18 0Z"/><path d="M9.5 8.5a2.5 2.5 0 0 1 5 0c0 1.7-2.5 2-2.5 3.5m0 3h.01"/>'
+ help:'<path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H8l-5 2V11.5a8.5 8.5 0 1 1 18 0Z"/><path d="M9.5 8.5a2.5 2.5 0 0 1 5 0c0 1.7-2.5 2-2.5 3.5m0 3h.01"/>',
+ // Sofa-cleaning process steps (the /sofa-cleaning comparison + the quote builder).
+ vacuum:'<path d="M12 12V6a3 3 0 0 1 3-3h2"/><circle cx="18" cy="3.6" r="1.3"/><path d="M8 21a4 4 0 1 1 8 0"/><path d="M6 21h12"/>',
+ drop:'<path d="M12 3s6 7 6 11a6 6 0 0 1-12 0c0-4 6-11 6-11Z"/>',
+ scrub:'<rect x="4.5" y="13" width="9" height="6" rx="2"/><path d="M6.5 13V9.5a2.5 2.5 0 0 1 2.5-2.5h1a2.5 2.5 0 0 1 2.5 2.5V13"/><path d="M16 10.5 19 9m-3 4.5 3 1M16 18l3-1"/>',
+ extract:'<path d="M9 13.5c0 3 1.3 5 3 5s3-2 3-5c0-2.3-3-6.5-3-6.5s-3 4.2-3 6.5Z"/><path d="M12 20V4m0 0-2.6 2.6M12 4l2.6 2.6"/>',
+ steam:'<path d="M4 20h16"/><path d="M8.5 20c0-2.7 1-3.6 1-5.6s-1-2.8-1-4.7 1-2.8 1-4.7M13 20c0-2.7 1-3.6 1-5.6s-1-2.8-1-4.7 1-2.8 1-4.7m4.5 14.7c0-2.7 1-3.6 1-5.6s-1-2.8-1-4.7"/>'
 }[name]||''}</svg>`;

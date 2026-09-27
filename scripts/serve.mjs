@@ -16,7 +16,16 @@ http.createServer(async(req,res)=>{
   let file=path.resolve(root,'.'+pathname);
   if(!file.startsWith(root+path.sep)&&file!==root){res.writeHead(404);res.end();return;}
   let status=200;
-  try{if((await fs.stat(file)).isDirectory())file=path.join(file,'index.html');await fs.access(file);}catch{status=404;file=path.join(root,'404.html');}
+  try{
+   if((await fs.stat(file)).isDirectory())file=path.join(file,'index.html');
+   await fs.access(file);
+  }catch{
+   // Mirror Cloudflare Pages' clean-URL resolution: /foo serves foo.html when
+   // foo.html exists but a literal file named foo does not.
+   const withHtml=file+'.html';
+   try{await fs.access(withHtml);file=withHtml;}
+   catch{status=404;file=path.join(root,'404.html');}
+  }
   let body=await fs.readFile(file);
   const type=types[path.extname(file)]||'application/octet-stream';
   const headers={'content-type':type,'cache-control':'no-cache','vary':'Accept-Encoding'};

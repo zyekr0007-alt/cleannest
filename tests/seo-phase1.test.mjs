@@ -14,13 +14,13 @@ test('service-area pages are indexable and each carries its own geography',()=>{
  for(const city of cities){
   const file=slug(city)+'.html';
   assert.doesNotMatch(read(file),noindex,file);
-  assert.match(sitemap,new RegExp(`${slug(city)}\\.html`),city);
+  assert.match(sitemap,new RegExp(`/${slug(city)}</loc>`),city);
  }
  // Unconfirmed coverage stays out of the index.
  for(const city of ['Dasuya','Hariana']){
   const file=slug(city)+'.html';
   assert.match(read(file),noindex,file);
-  assert.doesNotMatch(sitemap,new RegExp(`${slug(city)}\\.html`),city);
+  assert.doesNotMatch(sitemap,new RegExp(`/${slug(city)}</loc>`),city);
  }
  // Every town outside the base states its own distance, direction and neighbours,
  // so the pages are not near-duplicates of one another.

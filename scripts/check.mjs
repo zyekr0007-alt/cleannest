@@ -4,18 +4,25 @@ import {businessSchema} from '../site/business.mjs';
 import {services} from '../site/catalog.mjs';
 import {blogArticles} from '../site/blog.mjs';
 import {textContent} from '../site/seo.mjs';
+import {PROTECTED_HTML} from '../site/redirects.mjs';
 const origin='https://cleannest.in';
 const pages=[...fs.readdirSync('.').filter(f=>f.endsWith('.html')),...fs.readdirSync('blog').filter(f=>f.endsWith('.html')).map(f=>'blog/'+f)];
 const bodies=new Map(pages.map(file=>[file,fs.readFileSync(file,'utf8')]));
 const errors=[];
 const fail=(file,message)=>errors.push(file+': '+message);
-const resolveFile=url=>decodeURIComponent(url.pathname).replace(/^\//,'').replace(/\/$/,'/index.html')||'index.html';
+// Every page is still a real foo.html file on disk; /foo is just the public,
+// canonical name for it now (Cloudflare Pages resolves the two the same way).
+const resolveFile=url=>{
+ const path=decodeURIComponent(url.pathname).replace(/^\//,'');
+ if(path===''||path.endsWith('/'))return path+'index.html';
+ return /\.[a-z0-9]+$/i.test(path)?path:path+'.html';
+};
 const sitemap=[...fs.readFileSync('sitemap.xml','utf8').matchAll(/<loc>(.*?)<\/loc>/g)].map(m=>m[1]);
 assert.equal(new Set(sitemap).size,sitemap.length,'unique sitemap URLs');
 for(const [file,html] of bodies){
  // The blog index is served at /blog/ (blog/index.html 308s to it), so that — not the
  // .html path — is the indexable URL its canonical must match.
- const url=origin+'/'+(file==='index.html'?'':file==='blog/index.html'?'blog/':file);
+ const url=origin+'/'+(file==='index.html'?'':file==='blog/index.html'?'blog/':file.replace(/\.html$/,''));
  const canonical=html.match(/<link rel="canonical" href="([^"]+)"/)?.[1];
  const indexable=sitemap.includes(url);
  if((html.match(/<h1[\s>]/g)||[]).length!==1)fail(file,'expected one H1');
@@ -31,6 +38,7 @@ for(const [file,html] of bodies){
   const target=new URL(ref.replaceAll('&amp;','&'),url);
   if(!['cleannest.in','www.cleannest.in'].includes(target.hostname))continue;
   if(target.pathname==='/index.html')fail(file,'internal homepage link uses index.html');
+  if(target.pathname.endsWith('.html')&&target.pathname!==PROTECTED_HTML)fail(file,'internal link still uses .html: '+ref);
   if(target.hostname==='www.cleannest.in')fail(file,'internal link uses www');
   const targetFile=resolveFile(target);
   if(!fs.existsSync(targetFile)){fail(file,'missing '+ref);continue;}

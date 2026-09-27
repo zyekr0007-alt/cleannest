@@ -321,7 +321,7 @@ export const AUTO_REPLY = [
   'Hi! Thanks for messaging CleanNest 🙏',
   'Tell me what needs cleaning and which area you’re in — I’ll come back with a price and the earliest date.',
   '',
-  'Rates: cleannest.in/pricing.html',
+  'Rates: cleannest.in/pricing',
   'In a hurry? Call 76100 00654.',
 ].join('\n');
 
@@ -331,7 +331,7 @@ export const MEDIA_REPLY = [
   'Hi! Thanks for messaging CleanNest 🙏',
   'I’ve got your attachment. Tell me which area you’re in and when you’d like it done, and I’ll come back with a price.',
   '',
-  'Rates: cleannest.in/pricing.html',
+  'Rates: cleannest.in/pricing',
   'In a hurry? Call 76100 00654.',
 ].join('\n');
 
