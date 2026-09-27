@@ -8,5 +8,7 @@ export const booking = {
  reclean: 'If an area in the agreed scope is missed or you are unhappy with the result, contact us within 24 hours. We will return to re-clean the affected area free of charge.',
  preparation: 'Please move all open food items out of the kitchen before our team arrives.',
  recurring: 'Recurring cleaning can be arranged weekly, every two weeks or monthly after the initial deep clean has been completed. The team confirms the scope, schedule and price with you.',
+ access: 'You provide water and electricity for the visit. Please arrange safe access for the team and clear loose items from the areas being cleaned beforehand.',
+ travel: 'For addresses outside Jalandhar, any travel charge or arrangement is confirmed with your final quote.',
 };
 export const serviceDurations = { '1':'2–3 hours', '2':'4–5 hours', '3':'5–6 hours', '4':'one full day' };

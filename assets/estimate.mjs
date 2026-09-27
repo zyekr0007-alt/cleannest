@@ -23,7 +23,8 @@ export function includedRates(selected,catalog){
  const ids=new Set(Array.isArray(selected)?selected:[selected]),included=new Set();
  if(ids.has('full-house-cleaning'))['kitchen-add','bathroom','fan','gas-stove','exhaust','tile-floor'].forEach(id=>included.add(id));
  if(ids.has('kitchen-cleaning')&&!ids.has('full-house-cleaning'))['gas-stove','exhaust','cabinets',...(catalog?.kitchenIncludesChimney!==false?['chimney']:[])].forEach(id=>included.add(id));
- if(ids.has('sofa-cleaning'))included.add('cushions');
+ // Owner correction: cushions are a separately charged per-piece service, not
+ // bundled free into sofa cleaning — see the rate card's Cushions line.
  return included;
 }
 export function calculate(catalog,state){

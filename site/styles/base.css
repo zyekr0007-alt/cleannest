@@ -5139,3 +5139,210 @@ body{
     font-size: 22px;
   }
 }
+
+/* Sofa tier comparison, the full-home room-by-room scope, and the shared
+   extra/exclusion lists. Service detail pages load base.css only, so these
+   live here rather than in pages.css. */
+.process-steps {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(5, 1fr);
+  list-style: none;
+  margin: var(--space-6) 0;
+  padding: 0;
+}
+.process-steps li {
+  background: var(--tint);
+  border-radius: var(--radius);
+  font-size: var(--text-sm);
+  padding: var(--space-4) var(--space-3);
+}
+.process-steps li > .icon {
+  display: block;
+  height: var(--icon-lg);
+  margin-bottom: var(--space-3);
+  width: var(--icon-lg);
+}
+.process-steps li strong {
+  color: var(--navy);
+}
+.process-step-optional {
+  background: var(--sage) !important;
+}
+.process-step-optional em {
+  color: var(--muted);
+  display: block;
+  font-size: var(--text-xs);
+  font-style: normal;
+  margin-top: 2px;
+}
+.tier-grid {
+  display: grid;
+  gap: var(--space-4);
+  grid-template-columns: repeat(3, 1fr);
+  margin-bottom: var(--space-6);
+}
+.tier-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-card);
+  padding: var(--space-6);
+  position: relative;
+}
+.tier-card h3 {
+  font-size: 19px;
+  margin: 0 0 var(--space-2);
+}
+.tier-price {
+  color: var(--navy);
+  display: block;
+  font-size: 22px;
+  margin-bottom: var(--space-3);
+}
+.tier-price span {
+  color: var(--muted);
+  font-size: var(--text-sm);
+}
+.tier-card p {
+  font-size: var(--text-sm);
+  margin: 0 0 var(--space-3);
+}
+.tier-step-count {
+  color: var(--muted);
+  font-size: var(--text-xs);
+}
+.tier-card-featured {
+  background: var(--tint);
+  border-color: var(--accent);
+}
+.tier-badge {
+  background: var(--navy);
+  border-radius: var(--radius-pill);
+  color: #fff;
+  font-size: var(--text-xs);
+  padding: 3px 10px;
+  position: absolute;
+  right: var(--space-4);
+  top: var(--space-4);
+}
+.room-scope-grid {
+  display: grid;
+  gap: var(--space-6);
+  grid-template-columns: repeat(2, 1fr);
+  margin: var(--space-4) 0;
+}
+.room-scope h3 {
+  font-size: var(--text-md);
+  margin-bottom: var(--space-2);
+}
+.inclusion-grid.compact li {
+  font-size: var(--text-sm);
+  padding: 10px 0;
+}
+.mini-rate-grid {
+  display: grid;
+  gap: var(--space-3);
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  list-style: none;
+  margin: var(--space-4) 0;
+  padding: 0;
+}
+.mini-rate-item {
+  background: var(--tint);
+  border-radius: var(--radius);
+  padding: var(--space-4);
+}
+.mini-rate-item h3 {
+  font-size: var(--text-md);
+  margin: 0 0 4px;
+}
+.mini-rate-item p {
+  color: var(--muted);
+  font-size: var(--text-xs);
+  margin: 0 0 var(--space-2);
+}
+.mini-rate-price {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.mini-rate-price strong {
+  color: var(--navy);
+  font-size: var(--text-md);
+}
+.mini-rate-price span, .mini-rate-price small {
+  color: var(--muted);
+  font-size: var(--text-xs);
+}
+.extra-list, .exclusion-list {
+  display: grid;
+  gap: var(--space-2);
+  grid-template-columns: repeat(2, 1fr);
+  list-style: none;
+  margin: var(--space-4) 0 0;
+  padding: 0;
+}
+.extra-list li a {
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  color: var(--ink);
+  display: flex;
+  font-size: var(--text-sm);
+  gap: var(--space-2);
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  text-decoration: none;
+}
+.extra-list li a .icon {
+  color: var(--accent);
+  flex-shrink: 0;
+  height: var(--icon-sm);
+  width: var(--icon-sm);
+}
+.exclusion-list li {
+  align-items: flex-start;
+  display: flex;
+  font-size: var(--text-sm);
+  gap: var(--space-2);
+  padding: var(--space-2) 0;
+}
+.exclusion-list .icon {
+  color: var(--muted);
+  flex-shrink: 0;
+  height: var(--icon-sm);
+  margin-top: 2px;
+  width: var(--icon-sm);
+}
+@media (max-width: 900px) {
+  .process-steps {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .tier-grid {
+    grid-template-columns: 1fr;
+  }
+  .room-scope-grid, .extra-list, .exclusion-list {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 600px) {
+  .process-steps {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+/* Quote builder: sofa tier explanations, matching sofa-cleaning.html's wording. */
+.tier-summary {
+  background: var(--tint);
+  border-radius: var(--radius);
+  font-size: var(--text-sm);
+  list-style: none;
+  margin: var(--space-3) 0;
+  padding: var(--space-4);
+}
+.tier-summary li {
+  padding: var(--space-1) 0;
+}
+.tier-summary strong {
+  color: var(--navy);
+}

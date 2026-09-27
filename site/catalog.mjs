@@ -6,9 +6,19 @@ export {cities,address};
 export const slug=s=>s.toLowerCase().replaceAll(' ','-');
 export const homes=source.homes;
 // Owner correction: size/condition ranges, not selectable package tiers.
+// The four-step process every sofa treatment shares; Premium + steam adds a
+// fifth step. Shown on sofa-cleaning.html and, via clientCatalog, in the
+// quote builder's tier picker, so both stay worded identically.
+export const sofaSteps=['Dry vacuuming','Applying cleaning chemicals suitable for the fabric','Scrubbing','Wet vacuuming to extract moisture and residue'];
+export const sofaSteamStep='Steam cleaning, when suitable for the fabric';
+const sofaTierCopy=[
+ 'The regular four-step sofa cleaning treatment.',
+ 'The same four-step treatment, using higher-quality organic cleaning chemicals for improved results where suitable for the fabric.',
+ 'The Premium treatment plus a steam step, when suitable for the fabric — CleanNest’s most advanced sofa treatment. Steam helps sanitise the sofa and leave it more bacteria-free.',
+];
 export const groups=source.rates.map(group=>({...group,items:group.items.map(rate=>{
  if(rate.tiers&&!['sofa','ac'].includes(rate.id))return {...rate,base:Math.min(...rate.tiers.map(t=>t.p)),high:Math.max(...rate.tiers.map(t=>t.p)),tiers:null};
- if(rate.id==='sofa')return {...rate,tiers:rate.tiers.map((t,i)=>({...t,label:['Standard','Premium','Premium + steam'][i]}))};
+ if(rate.id==='sofa')return {...rate,tiers:rate.tiers.map((t,i)=>({...t,label:['Standard','Premium','Premium + steam'][i],description:sofaTierCopy[i],steps:i===2?5:4}))};
  return {...rate};
 })}));
 export const money=n=>'₹'+n.toLocaleString('en-IN');
@@ -43,7 +53,8 @@ export const rateMap=Object.fromEntries(groups.flatMap(g=>g.items).map(r=>[r.id,
 const refreshedImages={'mattress-steam-cleaning':'mattress','curtain-cleaning':'curtains','window-blinds-cleaning':'blinds','carpet-steam-cleaning':'carpet','refrigerator-cleaning':'fridge','floor-renewal':'floor'};
 export const supplements={recliner:150};
 export const chimneyPrice=money(rateMap.chimney.base);
-export const extras=['cabinets','fan','dining-chairs','cushions'].map(id=>{const r=rateMap[id];return {id:'extra-'+id,name:r.label,rate:id,image:'',price:`${money(r.base)}${r.high?'–'+money(r.high):''} ${r.unit}`};});
+export const glassPartitionPrice=money(rateMap['glass-partition'].base);
+export const extras=['cabinets','fan','dining-chairs','cushions','glass-partition'].map(id=>{const r=rateMap[id];return {id:'extra-'+id,name:r.label,rate:id,image:'',price:`${money(r.base)}${r.high?'–'+money(r.high):''} ${r.unit}`};});
 export const services=definitions.map(([id,name,tagline,category,rate,image])=>({id,name,tagline,category,rate,
  image:refreshedImages[id]?'assets/img/editorial/'+refreshedImages[id]+'-v2.webp':image?'assets/img/editorial/'+image+'.webp':source.pages[id+'.html']?.image||'assets/img/services/recurring-cleaning.webp',
  price:id==='wooden-floor-polishing'?'From ₹2,490 / room · custom quote':rate==='home'?'From '+money(homes['1'].low):rate?`${rateMap[rate].high?money(rateMap[rate].base)+'–'+money(rateMap[rate].high):'From '+money(rateMap[rate].base)} ${rateMap[rate].unit}`:'Custom quote',

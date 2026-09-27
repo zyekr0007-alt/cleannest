@@ -78,5 +78,8 @@ test('a villa is quoted after inspection, so room counts add no charge',()=>{
 });
 test('smaller extras remain selectable and package inclusions avoid duplicate charges',()=>{
  const extras=calculate(catalog,state(['extra-dining-chairs','extra-fan','extra-cabinets','extra-cushions']));assert.equal(extras.low,760);assert.equal(extras.high,1800);
- const sofa=calculate(catalog,state(['sofa-cleaning','extra-cushions']));assert.equal(sofa.low,199);assert.equal(sofa.includedNames.length,1);
+});
+// Owner correction: cushions are charged per piece, not bundled free with sofa cleaning.
+test('cushions are a separately charged extra, not included with sofa cleaning',()=>{
+ const sofa=calculate(catalog,state(['sofa-cleaning','extra-cushions']));assert.equal(sofa.low,199+50);assert.equal(sofa.includedNames.length,0);
 });

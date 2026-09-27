@@ -4,7 +4,7 @@ import {booking,serviceDurations} from './booking.mjs';
 export const serviceContent = {
  'full-house-cleaning': {
   title:'Full-Home Deep Cleaning', related:['kitchen-cleaning','bathroom-cleaning','sofa-cleaning'], guide:'ultimate-deep-cleaning-checklist',
-  sections:[['Planning a furnished or empty home clean','Tell us the bedroom count, occupied rooms and access restrictions. Identify surfaces behind furniture and any rooms that must remain usable during the visit. Empty and furnished homes need different access planning; the team will confirm the agreed scope before booking.'],['Whole-home scope and optional specialist work','The home clean covers kitchen, bathrooms, floors and interior surfaces in the agreed scope. Appliance exteriors differ from internal servicing. Sofa treatments, AC work and chimney cleaning are separate selections, so list these explicitly when requesting your estimate.']],
+  sections:[['Planning a furnished or empty home clean','Tell us the bedroom count, occupied rooms and access restrictions. Identify surfaces behind furniture and any rooms that must remain usable during the visit. Empty and furnished homes need different access planning; the team will confirm the agreed scope before booking.'],['Whole-home scope and optional specialist work','The home clean covers the bedroom, bathroom, kitchen and lobby scope set out above, including routine floor vacuuming and mopping. Kitchen cabinet interiors are included; interior cleaning of cabinets in other rooms is a separate extra. Floor buffing or renewal, bathroom glass-partition cleaning, sofa treatments, AC work and chimney cleaning are separate selections, so list these explicitly when requesting your estimate.']],
  },
  'kitchen-cleaning': {
   title:'Kitchen Deep Cleaning',related:['chimney-cleaning','refrigerator-cleaning','bathroom-cleaning'],guide:'kitchen-deep-cleaning-complete-guide',
@@ -12,11 +12,11 @@ export const serviceContent = {
  },
  'bathroom-cleaning': {
   title:'Bathroom Deep Cleaning',related:['full-house-cleaning','kitchen-cleaning','floor-renewal'],guide:'bathroom-deep-cleaning-remove-hard-water-stains-mold',
-  sections:[['Hard-water deposits, limescale and grout','Share close-up photos of white deposits, dark grout and marked fittings. Mineral buildup and damaged finishes can look similar, so the material and condition need checking before treatment. Cleaning cannot promise to reverse etching, worn plating or permanently discoloured grout.'],['Preparing tiles, glass and drains for cleaning','Remove toiletries and loose floor items, and identify chipped tiles, loose fittings or drainage problems. The scope includes tile and grout scrubbing, glass, fittings and accessible drain cleaning. Plumbing repairs and recurring damp problems need separate attention; flag them when booking.']],
+  sections:[['Hard-water deposits, limescale and grout','Share close-up photos of white deposits, dark grout and marked fittings. Mineral buildup and damaged finishes can look similar, so the material and condition need checking before treatment. Cleaning cannot promise to reverse etching, worn plating or permanently discoloured grout.'],['Preparing tiles, glass and drains for cleaning','Remove toiletries and loose floor items, and identify chipped tiles, loose fittings or drainage problems. The scope includes tile and grout scrubbing, mirror cleaning, fittings and accessible drain cleaning. Plumbing repairs and recurring damp problems need separate attention; flag them when booking.'],['Glass-partition cleaning is extra','A glass shower or wet-area partition is not part of the standard bathroom price. Add it separately, from ₹200 per partition, when requesting your quote.']],
  },
  'sofa-cleaning': {
   title:'Sofa Cleaning',related:['carpet-steam-cleaning','mattress-steam-cleaning','curtain-cleaning'],guide:'sofa-cleaning-dry-clean-vs-steam-vs-shampoo',
-  sections:[['Fabric care and sofa treatment options','Send a photo of the whole sofa and its care label, plus any stain close-ups. Standard, Premium and Premium + steam are the published options; fabric suitability should be confirmed before choosing a treatment. Leather, delicate trims and previous colour bleeding need a specific assessment.'],['Counting seats and planning drying time','Count the main seats and identify chaise and recliner sections in your request. Chaise sections count as two seats and recliners carry the published supplement. Cushions are included with sofa cleaning. Ask about drying for your fabric and ventilation; avoid planning use around a guaranteed drying hour.']],
+  sections:[['Fabric care and sofa treatment options','Send a photo of the whole sofa and its care label, plus any stain close-ups. Standard, Premium and Premium + steam are the published options; fabric suitability should be confirmed before choosing a treatment. Leather, delicate trims and previous colour bleeding need a specific assessment. Set-in or old stains may not fully lift; we’ll confirm what’s achievable once the material and stain are assessed.'],['Counting seats and planning drying time','Count the main seats and identify chaise and recliner sections in your request. Chaise sections count as two seats and recliners carry the published supplement. Cushions are cleaned as a separately priced per-piece service — see the rate card for small, medium and large pricing. Ask about drying for your fabric and ventilation; avoid planning use around a guaranteed drying hour.']],
  },
  'ac-services': {
   title:'AC Service & Deep Cleaning',related:['exhaust-fan-cleaning','full-house-cleaning','commercial-cleaning'],guide:'ac-cleaning-importance-seasonal',
@@ -47,10 +47,36 @@ export const serviceContent = {
 serviceContent['wooden-floor-polishing']={title:'Wooden Floor Cleaning & Polishing',related:['floor-renewal','full-house-cleaning','recurring-cleaning'],sections:[['Cleaning and polishing, matched to your floor','Wooden-floor cleaning and polishing starts from ₹2,490 per room, with a custom quote. Share room sizes and photos of the wood and finish. We confirm the price and suitable treatment after assessing the condition.'],['Steam mopping and finish care','Steam mopping is included only where the flooring manufacturer permits it for your specific floor and finish. Otherwise, we use a suitable low-moisture cleaning method before polishing. Let us know about worn coatings, loose boards or previous treatments.']]};
 serviceContent['full-house-cleaning'].sections.push(['Before we arrive',booking.preparation],['How long does a full-home clean take?',Object.entries(serviceDurations).map(([size,time])=>size+' BHK: approximately '+time+'.').join(' ')+' These are rough estimates; actual duration depends on size, condition, access and agreed scope.']);
 serviceContent['kitchen-cleaning'].sections=[['What we clean','Cabinets are cleaned inside and outside, along with tiles, the sink, kitchen flooring and accessible windows. Hob degreasing and exhaust cleaning are also included.'],['Not included in the kitchen price','Utensil washing is not included. Chimney cleaning and refrigerator cleaning are optional services charged separately; select them when requesting your quote.'],['Before we arrive',booking.preparation]];
-serviceContent['sofa-cleaning'].sections=[['Our sofa cleaning procedure','1. Dry vacuuming. 2. Applying suitable cleaning chemicals. 3. Scrubbing. 4. Wet vacuuming. Steam cleaning is the fifth step only if you select the steam option and it suits the fabric.'],['Selecting your treatment','Choose Standard, Premium or Premium + steam. Share a photo of the sofa and its care label so the team can confirm suitability. Cushions are included; chaise sections count as two seats and recliners carry the published supplement.'],['Cleaning time and sofa drying','A five-seater sofa usually takes around one hour to clean. Drying usually takes 1–2 hours, depending on the fabric, sofa condition, moisture, ventilation and weather. These are rough estimates. Wait until the sofa is dry before using it.']];
+serviceContent['sofa-cleaning'].sections=[['Our sofa cleaning procedure','1. Dry vacuuming. 2. Applying cleaning chemicals suitable for the fabric. 3. Scrubbing. 4. Wet vacuuming to extract moisture and residue. Steam cleaning is a fifth step, included only with Premium + steam and only where suitable for the fabric.'],['Selecting your treatment','Choose Standard, Premium or Premium + steam. Share a photo of the sofa and its care label so the team can confirm suitability. Cushions are charged separately, per piece; chaise sections count as two seats and recliners carry the published supplement.'],['Cleaning time and sofa drying','A five-seater sofa usually takes around one hour to clean. Drying usually takes 1–2 hours, depending on the fabric, sofa condition, moisture, ventilation and weather. These are rough estimates. Wait until the sofa is dry before using it.']];
 serviceContent['bathroom-cleaning'].sections.push(['How long does bathroom cleaning take?','One bathroom usually takes around one hour, depending on its size, condition, access and agreed scope. This is a rough estimate.']);
 serviceContent['recurring-cleaning'].sections=[['Regular care after a deep clean',booking.recurring],['Plan your ongoing care','Tell us which rooms and tasks need attention between deep cleans. Choose weekly, every two weeks or monthly visits when requesting your quote. If your first deep clean is still pending, the team will arrange that before recurring visits begin.']];
 
+// Room-by-room full-house scope, owner-confirmed. Kitchen cabinet interiors are
+// in scope; cabinet interiors in every other room are the separate "Interior
+// cleaning of room cabinets" extra below.
+export const fullHouseScope = {
+ 'Bedroom':['Bed','Windows, doors and frames','Cabinet exteriors','Chairs and tables','Switchboards','AC exterior and fan','Lights and fixtures','Cobweb removal','Wall dusting'],
+ 'Bathroom':['Taps and accessories','Toilet','Tile and grout descaling and sanitisation','Basin','Doors and windows','Cabinet exterior','Drain trap','Geyser exterior','Exhaust fan'],
+ 'Kitchen':['Cabinet interiors and exteriors, including scrubbing and degreasing','Tiles','Sink','Window','Slab / countertop','Walls and cobweb removal','Appliance exterior wiping'],
+ 'Lobby & drawing room':['Furniture wipedown','Windows, doors and frames','Cabinet exteriors','Switchboards','AC exterior and fan','Lights and fixtures','Cobweb removal','Wall dusting'],
+};
+export const fullHouseExtras = [
+ ['sofa-cleaning.html','Sofa dry cleaning'],
+ ['carpet-steam-cleaning.html','Carpet cleaning'],
+ ['ac-services.html','AC service'],
+ ['chimney-cleaning.html','Chimney cleaning'],
+ ['quote.html?service=extra-cabinets','Interior cleaning of room cabinets'],
+ ['bathroom-cleaning.html','Bathroom glass-partition cleaning, from ₹200 per partition'],
+ ['floor-renewal.html','Floor buffing or floor renewal'],
+];
+export const fullHouseExclusions = [
+ 'Moving heavy furniture',
+ 'Exterior glass that is not safely accessible',
+ 'Repairs to fittings, fixtures or appliances',
+ 'Wall washing — wall dusting is included, washing walls is not',
+ 'Internal servicing of appliances',
+ 'Cleaning behind fixed units that cannot be safely moved',
+];
 // Remove inherited claims that lack supporting certification or treatment evidence.
 export const safeInclusions = {
  'sofa-cleaning':['Dry vacuuming','Suitable cleaning chemicals applied','Scrubbing','Wet vacuuming','Optional steam cleaning when selected'],

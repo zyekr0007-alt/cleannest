@@ -594,12 +594,18 @@
       "image": "assets/img/services/bathroom-deep-cleaning.webp",
       "sub": "Remove grime, limescale and soap scum to leave your bathroom fresh and sparkling.",
       "includes": [
-        "Tile & grout deep scrubbing",
-        "Basin, faucet & fittings polish",
-        "Shower & bathtub descale",
-        "Mirror & glass cleaning",
-        "Sanitising & hygiene treatment",
-        "Floor scrub & drain cleaning"
+        "Taps and accessories",
+        "Toilet",
+        "Tile and grout descaling and sanitisation",
+        "Basin",
+        "Doors and windows",
+        "Cabinet exterior",
+        "Drain trap",
+        "Geyser exterior",
+        "Exhaust fan",
+        "Shower and bathtub descale",
+        "Mirror cleaning",
+        "Floor scrub"
       ],
       "faqs": [
         [
@@ -2024,13 +2030,11 @@
       "image": "assets/img/services/full-house-cleaning.webp",
       "sub": "A top-to-bottom clean of your whole home — every room, every surface, from dust to shine.",
       "includes": [
-        "Interior dusting & wipe-down of furniture and surfaces",
-        "Kitchen deep clean (countertop, stove, degrease)",
-        "Bathroom descale, sanitise & fittings polish",
-        "Floor vacuuming & mopping throughout",
-        "Windows, mirrors & glass cleaning",
-        "Appliance exterior cleaning",
-        "Skirting boards, switchboards & door frames"
+        "Bedrooms: bed, windows, doors, frames, cabinet exteriors, chairs and tables, switchboards, AC exterior and fan, lights and fixtures, cobweb removal, wall dusting",
+        "Bathrooms: taps, toilet, tile and grout descaling and sanitisation, basin, doors and windows, cabinet exterior, drain trap, geyser exterior, exhaust fan",
+        "Kitchen: cabinet interiors and exteriors, tiles, sink, window, slab, walls and cobweb removal, appliance exteriors",
+        "Lobby and drawing room: furniture wipedown, windows, doors, frames, cabinet exteriors, switchboards, AC exterior and fan, lights and fixtures, cobweb removal, wall dusting",
+        "Routine floor vacuuming and mopping throughout"
       ],
       "faqs": [
         [
@@ -5941,6 +5945,13 @@
               "p": 1190
             }
           ]
+        },
+        {
+          "id": "glass-partition",
+          "label": "Glass Partition Cleaning",
+          "base": 200,
+          "unit": "/ partition",
+          "tiers": null
         },
         {
           "id": "kitchen-add",
